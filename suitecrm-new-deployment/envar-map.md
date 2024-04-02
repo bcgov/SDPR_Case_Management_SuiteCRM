@@ -38,4 +38,3 @@ The following environment variables need to be defined for the SuiteCRM deployme
 - SESSION_SAVE_HANDLER - can be set to files, redis, or rediscluster. Redis is required for HA session failover.
 - SESSION_SAVE_PATH - can be a file path for files, a redis command, or a rediscluster command.
 
-- 
