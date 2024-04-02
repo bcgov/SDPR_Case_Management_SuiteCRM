@@ -1,0 +1,55 @@
+kind: CronJob
+apiVersion: batch/v1
+metadata:
+  name: suitecrm-cron
+  namespace: d1f241-dev
+spec:
+  schedule: '*/5 * * * *'
+  concurrencyPolicy: Allow
+  suspend: false
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+            - name: suitecrm-cronjobs
+              image: 'image-registry.apps.gold.devops.gov.bc.ca/d1f241-dev/cbsuitecrm:redis8'
+              env:
+                - name: SUITE_DB_HOST
+                  value: cbmariadb
+                - name: SUITE_DB_USER
+                  value: cbsuite_adm
+                - name: SUITE_DB_PASSW
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-secrets
+                      key: SUITE_DB_PASSW
+                - name: SUITE_DB_NAME
+                  value: cb_suitecrm
+                - name: SUITE_DB_PORT
+                  value: '3306'
+                - name: DATABASE_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-secrets
+                      key: DATABASE_URL
+              lifecycle:
+                postStart:
+                  exec:
+                    command: ["cd /suitecrm; php -f /suitecrm/public/legacy/cron.php > /dev/null 2>&1"]
+              resources: {}
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+              imagePullPolicy: IfNotPresent
+          restartPolicy: OnFailure
+          terminationGracePeriodSeconds: 30
+          dnsPolicy: ClusterFirst
+          securityContext: {}
+          schedulerName: default-scheduler
+successfulJobsHistoryLimit: 3
+failedJobsHistoryLimit: 1
+
