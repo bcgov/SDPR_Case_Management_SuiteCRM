@@ -16,7 +16,7 @@ Subsequent scripts and eviornment variables assume that secrets have been create
 
 1. Change the values in the create-suitecrm-secrets.yaml file and deploy to the project.
 
-### Setup Bitnami Maria DB Help Chart
+### Setup Bitnami Maria DB Helm Chart
 
 1. Edit the values in the mariadb-helm-values.yaml as needed. Ensure that the username and password matches the values created in the secrets above.
 
