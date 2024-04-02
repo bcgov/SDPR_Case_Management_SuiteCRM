@@ -1,4 +1,4 @@
-# BCGov SuiteCRM OpenShift Installation Instruction
+# BCGov SuiteCRM OpenShift Installation Instructions
 
 These instructions will setup the required resources to run an instance of SuiteCRM within the BC Governmetn OpenShift cluster.
 
