@@ -78,7 +78,19 @@ If you do not want to use SAML for logins, you can change the AUTH_TYPE to nativ
 
 2. Import the YAML file into your OpenShift project. 
 
-3. Wait until deployment completes and then test the application. 
+3. Wait until deployment completes and then test the application.
+
+### Setup Service
+
+1. Edit the create-suitecrm-service.yaml file and ensure that the project namespace is set correctly.
+
+2. Import the YAML file into your OpenShift project.
+
+### Setup Route
+
+1. Edit the create-suitecrm-route.yaml file and ensure the project namespace is set correctly.
+
+2. Import the YAML file into your OpenShift project.
 
 
 
