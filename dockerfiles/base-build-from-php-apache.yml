@@ -32,6 +32,7 @@ RUN sudo adduser www-data root
 
 
 # Change to the SuiteCRM direcotry and clear the cache
+RUN ls -l /
 
 RUN cd /suitecrm
 RUN ./bin/console cache:clear
