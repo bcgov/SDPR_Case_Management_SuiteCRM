@@ -24,6 +24,10 @@ spec:
       annotations:
         openshift.io/generated-by: OpenShiftWebConsole
     spec:
+      volumes:
+        - name: shared-uploads
+          persistentVolumeClaim:
+            claimName: cbsuitecrm-uploads-shared
       containers:
         - name: cbsuitecrm
           image: >-
@@ -93,6 +97,9 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: shared-uploads
+              mountPath: /suitecrm/public/legacy/upload
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
