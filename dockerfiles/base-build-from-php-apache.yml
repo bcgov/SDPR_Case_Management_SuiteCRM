@@ -27,9 +27,9 @@ RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
 && sudo a2enmod ssl \
 # Add the user www-data to the root group
 && sudo adduser www-data root \
-&& yes | cp -rf /tmp/repo/suitecrm-modified-files/etc/apache2/ /etc/apache2/ \
-&& yes | cp -rf /tmp/repo/suitecrm-modified-files/usr/local/etc/php/ /usr/local/etc/php/
-  
+&& sudo mv -f /tmp/repo/suitecrm-modified-files/etc/apache2/* /etc/apache2/ \
+&& sudo mv -f /tmp/repo/suitecrm-modified-files/usr/local/etc/php/* /usr/local/etc/php/
+ 
 # Change to the SuiteCRM direcotry and clear the cache
  
 RUN cd /suitecrm \
