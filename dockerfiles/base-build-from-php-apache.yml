@@ -5,7 +5,7 @@ USER root
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-ADD --chmod=0755 https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/tree/main/suitecrm /suitecrm
+ADD --chmod=0755 https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/tree/main/suitecrm /
 
 # The following lines are split to allow easy editing or commenting out of each statement 
 
