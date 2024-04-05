@@ -3,9 +3,22 @@ FROM php:8.2-apache AS cbsuitecrm
 
 USER root
 
-ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN apt update
+RUN apt upgrade -y
 
-ADD --chmod=0755 https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /usr/local/bin/
+RUN apt install git
+
+RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /usr/local/bin/suitecrm
+
+RUN mkdir /suitecrm
+
+RUN cd /usr/local/bin
+
+RUN ls -al
+
+RUN mv /usr/local/bin/suitecrm/ /suitecrm
+
+ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
 RUN cd /usr/local/bin
 
@@ -16,8 +29,6 @@ RUN mv /usr/local/bin/SDPR_Case_management_SuiteCRM/suitecrm /
 # The following lines are split to allow easy editing or commenting out of each statement 
 
 # Update and upgrade packages
-RUN apt update
-RUN apt upgrade -y
 RUN apt install sudo -y
 RUN apt install nano -y 
 RUN apt install systemctl -y 
