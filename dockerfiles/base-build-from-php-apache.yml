@@ -3,7 +3,7 @@ FROM php:8.2-apache AS cbsuitecrm
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-ADD https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/suitecrm /suitecrm
+ADD https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/tree/main/suitecrm /suitecrm
 
 # The following lines are split to allow easy editing or commenting out of each statement 
 
