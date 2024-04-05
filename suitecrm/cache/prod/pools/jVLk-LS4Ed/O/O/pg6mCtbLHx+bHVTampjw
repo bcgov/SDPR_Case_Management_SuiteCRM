@@ -1,0 +1,3 @@
+<?php //App%255CInstall%255CService%255CLegacyMigration%255CLegacyMigrationStepInterface
+
+return [PHP_INT_MAX, []];

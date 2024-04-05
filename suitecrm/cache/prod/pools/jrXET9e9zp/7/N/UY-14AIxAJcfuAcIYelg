@@ -1,0 +1,52 @@
+<?php //property_metadata_9d0ab834a70fccb9494c40a108e68914
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['ApiPlatform\\Core\\Metadata\\Property\\PropertyMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Metadata\\Property\\PropertyMetadata')),
+        clone ($p['Symfony\\Component\\PropertyInfo\\Type'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Component\\PropertyInfo\\Type')),
+    ],
+    null,
+    [
+        'ApiPlatform\\Core\\Metadata\\Property\\PropertyMetadata' => [
+            'type' => [
+                $o[1],
+            ],
+            'description' => [
+                'Language strings',
+            ],
+            'readable' => [
+                true,
+            ],
+            'writable' => [
+                true,
+            ],
+            'required' => [
+                false,
+            ],
+            'attributes' => [
+                [
+                    'openapi_context' => [
+                        'type' => 'array',
+                        'description' => 'The language strings',
+                    ],
+                ],
+            ],
+            'initializable' => [
+                false,
+            ],
+        ],
+        'Symfony\\Component\\PropertyInfo\\Type' => [
+            'builtinType' => [
+                1 => 'array',
+            ],
+            'nullable' => [
+                1 => false,
+            ],
+            'collection' => [
+                1 => true,
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

@@ -1,0 +1,3 @@
+<?php //App%255CInstall%255CLegacyHandler%255CInstallHandler
+
+return [PHP_INT_MAX, []];

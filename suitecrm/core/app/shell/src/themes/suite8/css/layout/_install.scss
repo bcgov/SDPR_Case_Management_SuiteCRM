@@ -1,0 +1,61 @@
+.install-view {
+  padding-top: 4.5em;
+  width: 100%;
+  margin: 0;
+
+  .install-view-header {
+
+    .install-view-subtitle {
+      text-transform: uppercase;
+    }
+
+    .install-header-buttons-col {
+      align-self: flex-end;
+    }
+
+    .install-header-options .checkbox-field {
+      padding-bottom: 1.2rem!important;
+    }
+  }
+
+  .install-view-container {
+    .field-layout {
+      .form-row {
+        align-items: start !important;
+
+        .field-html {
+          max-height: 200px;
+          overflow: auto;
+
+          pre {
+            font-family: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+            font-size: 1em;
+            white-space: pre;
+            z-index: 10;
+            background: inherit;
+            border: inherit;
+            color: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+
+.custom-modal .modal-dialog {
+  max-width: 900px;
+}
+
+.alert-header {
+  color: #721c24;
+}
+
+.alert-body {
+  font-size: 0.85em;
+}
+
+.list-style-none {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}

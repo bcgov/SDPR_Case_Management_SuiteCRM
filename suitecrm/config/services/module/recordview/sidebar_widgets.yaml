@@ -1,0 +1,10 @@
+parameters:
+  module.recordview.sidebar_widgets:
+    default:
+      widgets: []
+    modules:
+  module.recordview.bottom_widgets:
+    default:
+      widgets: []
+    modules:
+

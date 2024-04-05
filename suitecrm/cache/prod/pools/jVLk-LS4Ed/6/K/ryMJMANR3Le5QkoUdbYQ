@@ -1,0 +1,3 @@
+<?php //App%255CUserPreferences%255CLegacyHandler%255CMappers%255CTimezonePreferenceMapper
+
+return [PHP_INT_MAX, []];

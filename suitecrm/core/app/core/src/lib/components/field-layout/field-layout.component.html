@@ -1,0 +1,77 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<form class="field-layout {{config.mode}}">
+    <div [ngClass]="rowClass" *ngFor="let row of fieldGrid; index as i">
+
+        <div *ngFor="let col of row.cols; index as colNumber"
+             [class.field-column-bordered]="row.cols.length > 1 && colNumber < row.cols.length - 1"
+             [ngClass]="colClass">
+
+            <ng-container *ngIf="col.field && col.field.display !== 'none'">
+                <div class="label-container">
+                    <strong>
+                        <label [ngClass]="labelClass">{{col.field.label | uppercase}}</label>:
+                        <ng-container
+                            *ngIf="col.field.definition.required && (['edit', 'create'].includes(config.mode))">
+                            <span class="required">*</span>
+                        </ng-container>
+                    </strong>
+                </div>
+                <div class="d-flex flex-grow-1">
+                    <div class="flex-grow-1 text-break">
+                        <scrm-field [type]="col.field.type"
+                                    [mode]="config.mode"
+                                    [klass]="inputClass"
+                                    [field]="col.field"
+                                    [record]="record">
+                        </scrm-field>
+                    </div>
+                    <div>
+                        <button type="button" class="record-action-button"
+                                (click)="this.dataSource.getEditAction()"
+                                *ngIf="col.field.definition.inline_edit !== false && !col.field.readonly && !col.field.definition.readonly && this.dataSource.inlineEdit && config.mode === 'detail'">
+                            <scrm-image class="sicon" image="pencil"></scrm-image>
+                        </button>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="col.actionSlot">
+                <ng-content select="[field-grid-actions]"></ng-content>
+            </ng-container>
+
+            <ng-container *ngIf="col.specialSlot">
+                <ng-content select="[field-grid-special]"></ng-content>
+            </ng-container>
+
+            <div *ngIf="col.field && col.field?.display !== 'none' && i < fieldGrid.length - 1"
+                 class="field-separation mt-2">
+            </div>
+        </div>
+    </div>
+</form>

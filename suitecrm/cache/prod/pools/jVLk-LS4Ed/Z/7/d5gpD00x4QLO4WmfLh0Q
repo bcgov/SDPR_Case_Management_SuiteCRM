@@ -1,0 +1,28 @@
+<?php //App%255CMetadata%255CEntity%255CAppMetadata%2524id
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Annotation\\ApiProperty'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiProperty')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'identifier' => [
+                true,
+            ],
+            'attributes' => [
+                [
+                    'openapi_context' => [
+                        'type' => 'string',
+                        'description' => 'The module.',
+                        'example' => 'Accounts',
+                    ],
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

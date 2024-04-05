@@ -1,0 +1,91 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+tag-input tag {
+  margin-top: 0 !important;
+  padding: 0 0.5rem 0 .7rem !important;
+  line-height: 24px !important;
+  height: 24px !important;
+  background-color: $light-grey !important;
+}
+
+tag-input tag delete-icon:hover {
+  transform: none !important;
+}
+
+tag-input .ng2-tag-input {
+  padding: 0 0 2px 0 !important;
+  min-height: 28px !important;
+}
+
+tag-input-form form input.ng2-tag-input__text-input {
+  height: 28px !important;
+}
+
+tag-input tag delete-icon span {
+  background-color: $shell-grey;
+  border-radius: 50%;
+  padding: 0 0 2px 0;
+  font-size: 10px !important;
+  position: relative;
+  bottom: auto;
+  top: -2px;
+}
+
+tag-input tag delete-icon span:hover {
+  background-color: $median-grey;
+}
+
+tag-input tag delete-icon span svg {
+  height: 9px !important;
+  width: 14px;
+  vertical-align: middle !important;
+}
+
+tag-input tag delete-icon span svg path {
+  fill: none !important;
+  stroke: $pebble-grey;
+  stroke-width: 4px;
+}
+
+tag-input-form {
+  flex-grow: 1;
+}
+
+.ng2-dropdown-menu {
+  max-height: 12em !important;
+  z-index: map-get($zindex, modal-mid) !important;
+}
+
+tag-input.is-invalid .ng2-tag-input {
+  border-bottom: 1px solid $amaranth;
+}
+
+tag-input-form {
+  ::placeholder {
+    color: $dusky-blue;
+  }
+}

@@ -1,0 +1,13 @@
+@media all and (max-width: $breakpoint-xlarge) { 
+    .record-list-modal {
+        .modal-header , .modal-footer {
+            padding: 0;
+        }
+        .close-button {
+            background: $white;
+            border: none;
+            font-size: 1.5em;
+            color: $midnight-blue;
+        }
+    }   
+}

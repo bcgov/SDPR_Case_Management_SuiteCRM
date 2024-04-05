@@ -1,0 +1,3 @@
+<?php //App%255CMetadata%255CDataProvider%255CModuleMetadataItemDataProvider
+
+return [PHP_INT_MAX, []];

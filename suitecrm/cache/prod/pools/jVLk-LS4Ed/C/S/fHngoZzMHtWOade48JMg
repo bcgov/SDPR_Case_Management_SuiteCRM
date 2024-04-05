@@ -1,0 +1,13 @@
+<?php //App%255CNavbar%255CEntity%255CNavbar%2524userActionMenu
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Annotation\\ApiProperty'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiProperty')),
+    ],
+    null,
+    [],
+    [
+        $o[0],
+    ],
+    []
+); }];

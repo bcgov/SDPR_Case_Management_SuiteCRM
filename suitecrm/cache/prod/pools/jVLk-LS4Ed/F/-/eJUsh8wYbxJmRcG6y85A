@@ -1,0 +1,3 @@
+<?php //App%255CViewDefinitions%255CLegacyHandler%255CSearchDefs%255CSearchDefsEnumToRelateTypeMapper
+
+return [PHP_INT_MAX, []];

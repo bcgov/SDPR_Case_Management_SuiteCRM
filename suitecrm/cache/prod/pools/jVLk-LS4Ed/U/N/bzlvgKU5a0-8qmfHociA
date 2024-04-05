@@ -1,0 +1,3 @@
+<?php //App%255CFieldDefinitions%255CLegacyHandler%255CLegacyReadOnlyFieldDefinitionMapper
+
+return [PHP_INT_MAX, []];

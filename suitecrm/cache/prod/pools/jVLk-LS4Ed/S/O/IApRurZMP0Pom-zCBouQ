@@ -1,0 +1,3 @@
+<?php //App%255CInstall%255CCommand%255CCopyLegacyAssets
+
+return [PHP_INT_MAX, []];

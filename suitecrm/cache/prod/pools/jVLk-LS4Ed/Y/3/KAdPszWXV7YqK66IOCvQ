@@ -1,0 +1,3 @@
+<?php //App%255CSystemConfig%255CDataProvider%255CSystemConfigItemDataProvider
+
+return [PHP_INT_MAX, []];

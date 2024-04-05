@@ -1,0 +1,3 @@
+<?php //App%255CModule%255COpportunities%255CStatistics%255CWonOpportunityAmountByYear
+
+return [PHP_INT_MAX, []];

@@ -1,0 +1,3 @@
+<?php //App%255CNavbar%255CLegacyHandler%255CNavbarHandler
+
+return [PHP_INT_MAX, []];

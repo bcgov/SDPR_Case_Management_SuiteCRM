@@ -1,0 +1,7 @@
+<?php //getProperties.a%253A2%253A%257Bi%253A0%253Bs%253A43%253A%2522App%255CFieldDefinitions%255CEntity%255CFieldDefinition%2522%253Bi%253A1%253Ba%253A1%253A%257Bs%253A17%253A%2522serializer_groups%2522%253BN%253B%257D%257D
+
+return [PHP_INT_MAX, [
+    'vardef',
+    'id',
+    'readOnlyFieldDefinition',
+]];

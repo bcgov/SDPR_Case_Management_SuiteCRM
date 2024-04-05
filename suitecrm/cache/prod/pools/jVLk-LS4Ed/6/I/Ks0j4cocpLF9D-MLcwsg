@@ -1,0 +1,3 @@
+<?php //App%255CLanguages%255CEntity%255CModStrings%2523toArray
+
+return [PHP_INT_MAX, []];

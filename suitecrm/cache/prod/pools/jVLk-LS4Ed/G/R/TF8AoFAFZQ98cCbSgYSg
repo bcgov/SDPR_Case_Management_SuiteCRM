@@ -1,0 +1,3 @@
+<?php //App%255CData%255CLegacyHandler%255CFilterMapper%255CLegacyFilterMapper
+
+return [PHP_INT_MAX, []];

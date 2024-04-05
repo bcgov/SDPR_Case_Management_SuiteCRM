@@ -1,0 +1,3 @@
+<?php //App%255CEngine%255CService%255CFolderSync%255CFolderComparatorInterface
+
+return [PHP_INT_MAX, []];

@@ -1,0 +1,3 @@
+<?php //App%255CModule%255CCampaigns%255CStatistics%255CSubpanels%255CSubPanelCampaignsLastReceived
+
+return [PHP_INT_MAX, []];

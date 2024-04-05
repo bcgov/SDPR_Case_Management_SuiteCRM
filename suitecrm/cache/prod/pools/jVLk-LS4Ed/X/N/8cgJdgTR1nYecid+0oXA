@@ -1,0 +1,67 @@
+<?php //App%255CData%255CEntity%255CRecord
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                [],
+            ],
+            'graphql' => [
+                [
+                    'get' => [
+                        'item_query' => 'App\\Data\\Resolver\\RecordItemResolver',
+                        'args' => [
+                            'module' => [
+                                'type' => 'String!',
+                            ],
+                            'record' => [
+                                'type' => 'String!',
+                            ],
+                        ],
+                    ],
+                    'save' => [
+                        'validate' => false,
+                        'args' => [
+                            '_id' => [
+                                'type' => 'String',
+                                'description' => 'id',
+                            ],
+                            'identifier' => [
+                                'type' => 'String',
+                                'description' => 'id',
+                            ],
+                            'module' => [
+                                'type' => 'String!',
+                                'description' => 'module',
+                            ],
+                            'attributes' => [
+                                'type' => 'Iterable',
+                                'description' => 'attributes',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'path' => '/record/{id}',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'security' => 'is_granted(\'ROLE_USER\')',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

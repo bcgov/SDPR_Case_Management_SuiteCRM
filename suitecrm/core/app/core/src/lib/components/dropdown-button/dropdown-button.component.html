@@ -1,0 +1,109 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<div ngbDropdown
+     [autoClose]="autoClose"
+     [placement]="getPlacement()"
+     #dropDown="ngbDropdown"
+     class="d-inline-block dropdown-button"
+     [class.sectioned-dropdown-menu]="sectionsEnabled"
+     [ngClass]="config.wrapperKlass">
+    <button [disabled]="disabled"
+            [ngClass]="config.klass"
+            [title]="language.getFieldLabel(config.titleKey) || ''"
+            ngbDropdownToggle>
+
+        <scrm-image *ngIf="config.icon"
+                    [image]="config.icon"
+                    [klass]="config.iconKlass || ''"></scrm-image>
+
+        <ng-container *ngIf="config.label">
+            {{ config.label }}
+        </ng-container>
+
+        <ng-container *ngIf="!config.label && config.labelKey">
+            <scrm-label [labelKey]="config.labelKey"></scrm-label>
+        </ng-container>
+
+    </button>
+    <div ngbDropdownMenu>
+
+        <ng-container *ngIf="sectionsEnabled">
+
+            <div *ngFor="let section of sections; last as isLast; first as isFirst"
+                 [ngClass]="section.klass ?? ''"
+                 [class.section-split]="!isFirst"
+                 [class.last-section]="isLast"
+                 [class.first-section]="isFirst">
+                <div class="dropdown-menu-item-header">
+                    <scrm-label [labelKey]="section.labelKey ?? section.label ?? ''" ></scrm-label>
+                </div>
+
+                <ng-container *ngFor="let item of section.items; let last = last">
+                    <ng-container *ngTemplateOutlet="buttonTemplate; context: { item: item }"></ng-container>
+                </ng-container>
+
+            </div>
+
+        </ng-container>
+
+        <ng-container *ngIf="!sectionsEnabled">
+            <ng-container *ngFor="let item of buttons">
+                <ng-container *ngTemplateOutlet="buttonTemplate; context: { item: item }"></ng-container>
+            </ng-container>
+        </ng-container>
+
+    </div>
+</div>
+
+
+<ng-template #buttonTemplate let-item="item">
+
+    <ng-container *ngIf="item && !isDropdown(item)">
+        <a ngbDropdownItem [ngClass]="item && item.klass" (click)="item && click(item.onClick, dropDown)">
+            <div class="d-flex align-items-center">
+                <div *ngIf="item.icon">
+                    <scrm-image [image]="item.icon" [klass]="item.iconKlass || ''"></scrm-image>
+                </div>
+                <div class="dropdown-item-label flex-grow-1">
+                    <ng-container *ngIf="item && item.label">
+                        {{ item.label }}
+                    </ng-container>
+                    <ng-container *ngIf="item && !item.label && item.labelKey">
+                        <scrm-label *ngIf="item && item.labelKey" [labelKey]="item.labelKey"
+                                    [module]="item.labelModule ?? ''"></scrm-label>
+                    </ng-container>
+                </div>
+            </div>
+        </a>
+    </ng-container>
+
+    <ng-container *ngIf="item && isDropdown(item)">
+        <scrm-dropdown-submenu (item-clicked)="close(dropDown)" [item]="item"></scrm-dropdown-submenu>
+    </ng-container>
+
+</ng-template>

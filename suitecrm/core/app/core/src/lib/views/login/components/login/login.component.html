@@ -1,0 +1,161 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<div *ngIf="(vm$ | async) as vm" class="login-view full-height-view d-flex align-items-center">
+
+    <!-- Start of login form section -->
+
+    <form name="login" class="login-form" #loginForm="ngForm">
+        <div class="form-row form-group">
+            <div class="col">
+                <scrm-logo-ui></scrm-logo-ui>
+            </div>
+        </div>
+        <div class="form-row" *ngIf="vm.showLanguages">
+            <div class="col">
+                <label class="" for="languages">{{vm.appStrings['LBL_LANGUAGE']}}</label>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+                <div class="inner-addon left-addon">
+                    <select #languageSelect id="languages"
+                            (change)="onLanguageSelect(languageSelect.value)">
+                        <option *ngFor="let item of getEnabledLanguagesKeys()"
+                                [selected]="(language ?? 'en_us') === item"
+                                [value]="item">
+                            {{getEnabledLanguages()[item]}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row fade-card">
+
+            <!-- Card front -->
+            <div class="fade-card-front col"
+                 *ngIf="cardState==='front'"
+                 [@fade]>
+
+                <div class="inner-addon left-addon">
+                    <scrm-image image="login_user"></scrm-image>
+                    <input [(ngModel)]="uname"
+                           type="text"
+                           name="username"
+                           [class.is-invalid]="username.invalid && username.touched"
+                           #username="ngModel"
+                           placeholder="{{vm.appStrings['LBL_USER_NAME']}}"
+                           aria-label="Username"
+                           required>
+                    <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+                        {{vm.appStrings['ERR_MISSING_REQUIRED_FIELDS']}}
+                    </div>
+                </div>
+
+                <div class="inner-addon left-addon">
+                    <scrm-image image="login_password"></scrm-image>
+                    <input [(ngModel)]="passw"
+                           type="password"
+                           name="password"
+                           [class.is-invalid]="password.invalid && password.touched"
+                           #password="ngModel"
+                           placeholder="{{vm.appStrings['LBL_PASSWORD']}}"
+                           aria-label="Password"
+                           required>
+                    <div *ngIf="password.invalid && password.touched" class="invalid-feedback">
+                        {{vm.appStrings['ERR_MISSING_REQUIRED_FIELDS']}}
+                    </div>
+                </div>
+
+
+                <button id="login-button" class="login-button"
+                        [scrm-button-loading]="loading"
+                        (click)="loginForm.control.markAllAsTouched(); loginForm.valid && doLogin()">
+                    {{vm.appStrings['LBL_LOGIN_BUTTON_LABEL']}}
+                </button>
+                <div class="forgotten-password" *ngIf="vm.showForgotPassword">
+                    <a class="forgotten-password-link" (click)="flipCard()">
+                        {{vm.appStrings['LBL_LOGIN_FORGOT_PASSWORD']}}
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Card back-->
+            <div class="fade-card-back col"
+                 *ngIf="cardState==='back'"
+                 [@fade]>
+                <div class="inner-addon left-addon">
+                    <scrm-image image="login_user"></scrm-image>
+                    <input [(ngModel)]="uname"
+                           type="text"
+                           name="username"
+                           [class.is-invalid]="username.invalid && username.touched"
+                           #username="ngModel"
+                           placeholder="{{vm.appStrings['LBL_USER_NAME']}}"
+                           aria-label="Username"
+                           required>
+                    <div *ngIf="username.invalid && username.touched" class="invalid-feedback">
+                        {{vm.appStrings['ERR_MISSING_REQUIRED_FIELDS']}}
+                    </div>
+                </div>
+
+                <div class="inner-addon left-addon">
+                    <scrm-image image="email"></scrm-image>
+                    <input [(ngModel)]="email"
+                           type="email"
+                           name="email"
+                           [class.is-invalid]="mail.invalid && mail.touched"
+                           #mail="ngModel"
+                           placeholder="{{vm.appStrings['LBL_EMAIL']}}"
+                           aria-label="Email"
+                           required>
+                    <div *ngIf="mail.invalid && mail.touched" class="invalid-feedback">
+                        {{vm.appStrings['ERR_MISSING_REQUIRED_FIELDS']}}
+                    </div>
+                </div>
+
+                <button class="submit-button login-button"
+                        scrm-button-loading
+                        (click)="loginForm.control.markAllAsTouched(); loginForm.valid && recoverPassword()">
+                    {{vm.appStrings['LBL_GENERATE_PASSWORD_BUTTON_TITLE']}}
+                </button>
+                <div>
+                    <a class="back-link forgotten-password-link" (click)="flipCard()">
+                        {{vm.appStrings['LBL_BACK']}}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- End of login form section -->
+
+</div>
+
+<!-- End of login component section -->

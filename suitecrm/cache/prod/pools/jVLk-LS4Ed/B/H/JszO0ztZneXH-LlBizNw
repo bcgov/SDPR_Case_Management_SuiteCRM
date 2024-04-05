@@ -1,0 +1,3 @@
+<?php //App%255CInstall%255CCommand%255CUpgradeCommand
+
+return [PHP_INT_MAX, []];

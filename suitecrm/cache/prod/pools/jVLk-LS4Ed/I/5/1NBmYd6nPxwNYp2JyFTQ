@@ -1,0 +1,3 @@
+<?php //App%255CInstall%255CLegacyHandler%255CUpgrade%255CMetadataMergeHandler
+
+return [PHP_INT_MAX, []];

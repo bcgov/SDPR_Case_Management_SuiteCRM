@@ -1,0 +1,3 @@
+<?php //App%255CStatistics%255CLegacyHandler%255CSubpanelDefault
+
+return [PHP_INT_MAX, []];

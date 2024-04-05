@@ -1,0 +1,19 @@
+Mon Mar 11 16:18:54 2024 [29][1][SECURITY] OutboundEmail::checkSavePermissions - not logged in - skipping check
+Mon Mar 11 16:18:54 2024 [29][1][FATAL] User update error: Temp User is not retrieved at ID 1, boolean given
+Mon Mar 11 16:18:54 2024 [29][1][FATAL] Email address save error
+Mon Mar 11 16:18:59 2024 [29][1][SECURITY] Invalid ext  logger_file_ext : ''.
+Mon Mar 11 16:18:59 2024 [29][1][SECURITY] Setting logger_file_ext to '.log'.
+Mon Mar 11 16:18:59 2024 [29][1][SECURITY] Setting logger_file_name to ''.
+Mon Mar 11 16:18:59 2024 [29][1][SECURITY] Log file extension can't be blank.
+Mon Mar 11 16:18:59 2024 [29][1][SECURITY] Setting logger_file_name to ''.
+Mon Mar 11 16:18:59 2024 [29][1][SECURITY] Log file extension can't be blank.
+Mon Mar 11 17:05:36 2024 [18][-none-][FATAL] SECURITY: User authentication for cbsuitecrm failed
+Mon Mar 11 17:05:36 2024 [18][-none-][FATAL] FAILED LOGIN:attempts[1], ip[172.22.0.1], username[cbsuitecrm]
+Mon Mar 11 17:05:46 2024 [35][-none-][FATAL] SECURITY: User authentication for cbsuitecrm failed
+Mon Mar 11 17:05:46 2024 [35][-none-][FATAL] FAILED LOGIN:attempts[2], ip[172.22.0.1], username[cbsuitecrm]
+Wed Mar 13 03:10:20 2024 [51][1][FATAL] User update error: Temp User is not retrieved at ID 499a54b7-8c3d-3a7e-34f4-65f1191caab8, boolean given
+Wed Mar 13 03:10:20 2024 [51][1][FATAL] Email address save error
+Wed Mar 13 03:10:51 2024 [19][1][FATAL] User update error: Temp User is not retrieved at ID 2a485acf-4e6b-5888-b699-65f1196edade, boolean given
+Wed Mar 13 03:10:51 2024 [19][1][FATAL] Email address save error
+Wed Mar 13 03:11:28 2024 [20][1][FATAL] User update error: Temp User is not retrieved at ID 2b4ceb8e-58cb-a4cb-2e20-65f119d07782, boolean given
+Wed Mar 13 03:11:28 2024 [20][1][FATAL] Email address save error

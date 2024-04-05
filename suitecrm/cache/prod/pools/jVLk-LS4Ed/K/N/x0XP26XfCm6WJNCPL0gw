@@ -1,0 +1,3 @@
+<?php //App%255CSystemConfig%255CLegacyHandler%255CDateFormatConfigMapper
+
+return [PHP_INT_MAX, []];

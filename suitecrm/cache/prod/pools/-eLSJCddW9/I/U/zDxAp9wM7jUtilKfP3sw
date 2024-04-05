@@ -1,0 +1,135 @@
+<?php //resource_metadata_0b756f0d616352ae63ca4d3474f53b82
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata')),
+    ],
+    null,
+    [
+        'ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata' => [
+            'shortName' => [
+                'BatchedStatistics',
+            ],
+            'description' => [
+                '',
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'openapi_context' => [
+                            'parameters' => [
+                                [
+                                    'name' => 'id',
+                                    'in' => 'path',
+                                    'description' => 'module name',
+                                    'required' => true,
+                                ],
+                                [
+                                    'name' => 'queries',
+                                    'in' => 'query',
+                                    'description' => 'queries',
+                                    'required' => true,
+                                    'style' => 'simple',
+                                    'schema' => [
+                                        'type' => 'object',
+                                        'additionalProperties' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'key' => [
+                                                    'type' => 'string',
+                                                ],
+                                                'context' => [
+                                                    'type' => 'object',
+                                                    'properties' => [
+                                                        'module' => [
+                                                            'type' => 'string',
+                                                            'required' => false,
+                                                        ],
+                                                        'id' => [
+                                                            'type' => 'string',
+                                                            'required' => false,
+                                                        ],
+                                                        'criteria' => [
+                                                            'type' => 'object',
+                                                            'required' => false,
+                                                            'additionalProperties' => true,
+                                                        ],
+                                                        'sort' => [
+                                                            'type' => 'object',
+                                                            'required' => false,
+                                                            'additionalProperties' => true,
+                                                        ],
+                                                    ],
+                                                ],
+                                                'params' => [
+                                                    'type' => 'object',
+                                                    'required' => false,
+                                                    'additionalProperties' => true,
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'input' => null,
+                        'output' => null,
+                        'method' => 'GET',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'collectionOperations' => [
+                [],
+            ],
+            'graphql' => [
+                [
+                    'get' => [
+                        'item_query' => 'App\\Statistics\\Resolver\\BatchedStatisticsItemResolver',
+                        'args' => [
+                            'module' => [
+                                'type' => 'String!',
+                            ],
+                            'queries' => [
+                                'type' => 'Iterable',
+                            ],
+                        ],
+                        'input' => null,
+                        'output' => null,
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'security' => 'is_granted(\'ROLE_USER\')',
+                    'input' => null,
+                    'output' => null,
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

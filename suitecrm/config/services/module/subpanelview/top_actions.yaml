@@ -1,0 +1,50 @@
+parameters:
+  module.subpanel.top_actions:
+    default:
+      actions:
+        create:
+          key: create
+          labelKey: LBL_QUICK_CREATE
+          action: create
+          params:
+          modes:
+            - list
+          acl:
+            - edit
+        link:
+          key: select
+          labelKey: LBL_LINK
+          action: select
+          params:
+          modes:
+            - list
+          acl:
+        edit:
+          key: edit
+          labelKey: LBL_EDIT
+          action: edit
+          asyncProcess: true
+          params:
+          modes:
+            - list
+          acl:
+            - edit
+        show-filter:
+          key: show-filter
+          icon: filter
+          labelKey: LBL_FILTERS
+          action: show-filter
+          params:
+            expanded: true
+          modes:
+            - list
+          acl:
+        clear-filter:
+          key: clear-filter
+          labelKey: LBL_CLEAR_FILTER
+          action: clear-filter
+          params:
+            expanded: true
+          modes:
+            - list
+          acl:

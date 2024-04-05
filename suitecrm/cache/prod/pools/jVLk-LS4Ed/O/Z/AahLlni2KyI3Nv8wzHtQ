@@ -1,0 +1,3 @@
+<?php //App%255CRoutes%255CService%255CLegacyRouteHandler
+
+return [PHP_INT_MAX, []];

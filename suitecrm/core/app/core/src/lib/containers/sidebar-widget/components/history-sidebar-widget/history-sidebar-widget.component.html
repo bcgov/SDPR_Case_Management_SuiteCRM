@@ -1,0 +1,122 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<scrm-widget-panel [title]="getHeaderLabel()">
+    <div widget-body *ngIf="(adapter?.dataStream$| async) as vm">
+
+        <div class="widget-background history-timeline p-2 pt-2">
+
+            <div *ngIf="adapter?.loading" class="d-flex record-thread-loading justify-content-center">
+                <scrm-loading-spinner [overlay]="true"></scrm-loading-spinner>
+            </div>
+
+            <cdk-virtual-scroll-viewport itemSize="100"
+                                         class="history-timeline-viewport"
+                                         [ngClass]="[vm.length <= 0 ? 'history-timeline-viewport-no-data' : 'history-timeline-viewport']"
+                                         (scroll)="onScroll()">
+
+                <scrm-chart-message-area *ngIf="!adapter?.loading && vm.length <= 0"
+                                         labelKey="LBL_NO_DATA"></scrm-chart-message-area>
+
+                <div *ngFor="let entry of vm;">
+                    <div *ngIf="vm.length > 0"
+                         class="d-flex flex-row m-2 history-timeline-entry entry-{{entry.color}}">
+                        <div class="">
+                            <div class="circle">
+                                <div
+                                    class="d-flex justify-content-center align-items-center h-100 history-timeline-image">
+                                    <scrm-image [image]="entry.icon"></scrm-image>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="d-flex justify-content-center h-100">
+                                <div class="connector mt-3">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="flex-grow-1">
+
+                            <div class="card">
+                                <div class="card-body p-1 pr-2 pl-2">
+                                    <p class="card-title text-break history-timeline-entry-title">
+                                        <a *ngIf="entry.record.module !== 'audit'"
+                                           [routerLink]="redirectLink(entry.record.module, entry.record.id)"
+                                        >
+                                        <scrm-field [type]="entry.title.type"
+                                                    mode="list"
+                                                    [field]="entry.title"
+                                                    [record]="entry.record">
+                                        </scrm-field>
+                                        </a>
+                                        <a *ngIf="entry.record.module === 'audit'">
+                                            <scrm-field [type]="entry.title.type"
+                                                        mode="list"
+                                                        [field]="entry.title"
+                                                        [record]="entry.record">
+                                            </scrm-field>
+                                        </a>
+                                    </p>
+                                    <div *ngIf="entry.description"
+                                         class="card-text history-timeline-entry-description">
+                                        <small class="text-break">
+                                            <scrm-field [type]="entry.description.type"
+                                                        mode="detail"
+                                                        [field]="entry.description"
+                                                        [record]="entry.record">
+                                            </scrm-field>
+                                        </small>
+                                    </div>
+                                    <div class="card-text history-timeline-entry-user text-uppercase">
+                                        <small class="text-break">
+                                            <scrm-field [type]="entry.user.type"
+                                                        mode="list"
+                                                        [field]="entry.user"
+                                                        [record]="entry.record">
+                                            </scrm-field>
+                                        </small>
+                                    </div>
+                                    <div class="card-text text-break history-timeline-entry-date">
+                                        <small class="font-italic">
+                                            <scrm-field [type]="entry.date.type"
+                                                        mode="list"
+                                                        [field]="entry.date"
+                                                        [record]="entry.record"></scrm-field>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </cdk-virtual-scroll-viewport>
+        </div>
+    </div>
+</scrm-widget-panel>

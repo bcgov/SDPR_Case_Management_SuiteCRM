@@ -1,0 +1,3 @@
+<?php //App%255CThemes%255CService%255CThemeImageService
+
+return [PHP_INT_MAX, []];

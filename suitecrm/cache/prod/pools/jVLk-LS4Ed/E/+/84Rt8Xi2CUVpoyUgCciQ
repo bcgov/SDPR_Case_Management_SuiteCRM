@@ -1,0 +1,3 @@
+<?php //App%255CMetadata%255CEntity%255CAppMetadata%2523getSystemConfig
+
+return [PHP_INT_MAX, []];

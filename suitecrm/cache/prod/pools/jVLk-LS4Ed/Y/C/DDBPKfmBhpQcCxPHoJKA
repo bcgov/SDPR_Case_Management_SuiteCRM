@@ -1,0 +1,38 @@
+<?php //App%255CModule%255CUsers%255CEntity%255CUser%2524showOnEmployees
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['ApiPlatform\\Core\\Annotation\\ApiProperty'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiProperty')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Column'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Column')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                1 => 'show_on_employees',
+            ],
+            'type' => [
+                1 => 'boolean',
+            ],
+            'precision' => [
+                1 => null,
+            ],
+            'scale' => [
+                1 => null,
+            ],
+            'nullable' => [
+                1 => true,
+            ],
+            'options' => [
+                1 => [
+                    'default' => '1',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+    ],
+    []
+); }];

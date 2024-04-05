@@ -1,0 +1,3 @@
+<?php //App%255CInstall%255CService%255CLegacyMigration%255CSteps%255CManualConfigCheck
+
+return [PHP_INT_MAX, []];
