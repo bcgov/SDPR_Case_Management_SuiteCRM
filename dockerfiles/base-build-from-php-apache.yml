@@ -1,71 +1,48 @@
 # syntax=docker/dockerfile:1
 FROM php:8.2-apache AS cbsuitecrm
-
+ 
 USER root
-
-RUN apt update
-RUN apt upgrade -y
-
-RUN apt install git -y
-
-RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /usr/local/bin/suitecrm
-
-RUN mkdir /suitecrm
-
-RUN cd /usr/local/bin
-
-RUN ls -al
-
-RUN mv /usr/local/bin/suitecrm/ /suitecrm
-
-RUN cd /suitecrm
-
-RUN ls -al
-
+ 
+RUN apt update \
+&& apt upgrade -y \
+&& apt install git -y
+ 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-
-# The following lines are split to allow easy editing or commenting out of each statement 
-
+ 
+RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
+    && mkdir /suitecrm \
+    && mv /tmp/repo/suitecrm/ / \
+# The following lines are split to allow easy editing or commenting out of each statement
 # Update and upgrade packages
-RUN apt install sudo -y
-RUN apt install nano -y 
-RUN apt install systemctl -y 
+&& apt install sudo -y \
+&& apt install nano -y \
+&& apt install systemctl -y \
 # RUN service cron start
-RUN sudo rm -rf /etc/localtime
-RUN sudo ln -s /usr/share/zoneinfo/America/Vancouver /etc/localtime
-RUN install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip
-
+&& sudo rm -rf /etc/localtime \
+&& sudo ln -s /usr/share/zoneinfo/America/Vancouver /etc/localtime \
+&& install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip \
 # Enable mod rewrite for Apache
-
-RUN sudo a2enmod rewrite
-
+&&  sudo a2enmod rewrite \
 # Enable ssl for Apache
-
-RUN sudo a2enmod ssl
-
+&& sudo a2enmod ssl \
 # Add the user www-data to the root group
-
-RUN sudo adduser www-data root 
-
-
+&& sudo adduser www-data root
+ 
+ 
 # Change to the SuiteCRM direcotry and clear the cache
-
-RUN cd /suitecrm
-RUN ls -al
-RUN ./bin/console cache:clear
-
+ 
+RUN cd /suitecrm \
+&& ls -al \
+&& chmod +x ./bin/console \
+&& ls -al bin \
+&&  ./bin/console cache:clear \
 # Set permissions for the root group and www-data on the suitecrm folder
-
-RUN find . -type d -not -perm 2755 -exec chmod 2755 {} \;
-RUN find . -type f -not -perm 0644 -exec chmod 0644 {} \;
-RUN find . ! -user www-data -exec chown www-data:root {} \;
-RUN chmod +x bin/console
-
-# Change group to root and then mod folder for the root group 
-
-RUN chgrp -R root /suitecrm
-RUN chmod -R g+rwx /suitecrm
+&& find . -type d -not -perm 2755 -exec chmod 2755 {} \; \
+&& find . -type f -not -perm 0644 -exec chmod 0644 {} \; \
+&& find . ! -user www-data -exec chown www-data:root {} \; \
+# Change group to root and then mod folder for the root group
+&& chgrp -R root /suitecrm \
+&& chmod -R g+rwx /suitecrm
 
 
 
