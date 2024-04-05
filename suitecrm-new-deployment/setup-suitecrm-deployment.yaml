@@ -5,6 +5,7 @@ metadata:
   name: cbsuitecrm
   labels:
     app: cbsuitecrm
+    deployment: cbsuitecrm
     app.kubernetes.io/component: cbsuitecrm
     app.kubernetes.io/instance: cbsuitecrm
     app.kubernetes.io/name: cbsuitecrm
@@ -12,7 +13,7 @@ metadata:
     app.openshift.io/runtime: apache
     app.openshift.io/runtime-namespace: d1f241-dev
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: cbsuitecrm
@@ -30,12 +31,10 @@ spec:
           persistentVolumeClaim:
             claimName: cbsuitecrm-uploads-shared
       containers:
-        - name: cbsuitecrm
-          image: >-
-            image-registry.openshift-image-registry.svc:5000/d1f241-dev/cbsuitecrm@sha256:a0ccbe6b72bd5f88a2e20e1f6939d277e74e58c4f52e82bc4bb037ebbb6d7bc8
+          - name: bcgovsuitecrm
+            image: >-
+              image-registry.openshift-image-registry.svc:5000/d1f241-tools/bcgovsuitecrm@sha256:4e4de0c18af55cca9ff6b431f8e5a5290213332df2c8f22188677f60171f1363
           ports:
-            - containerPort: 8143
-              protocol: TCP
             - containerPort: 8181
               protocol: TCP
           env:
