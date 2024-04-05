@@ -1,9 +1,9 @@
 # syntax=docker/dockerfile:1
-FROM php:8.2-apache AS cbsuitecrm11:bcgov
+FROM php:8.2-apache AS cbsuitecrm
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-ADD https://github.com/bcgov/SDPR_Case_Management_SuiteCRM//suitecrm-deployed-repo /suitecrm
+ADD https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/suitecrm /suitecrm
 
 # The following lines are split to allow easy editing or commenting out of each statement 
 
@@ -39,9 +39,9 @@ RUN ./bin/console cache:clear
 # Set permissions for the root group and www-data on the suitecrm folder
 
 RUN find . -type d -not -perm 2755 -exec chmod 2755 {} \;
-find . -type f -not -perm 0644 -exec chmod 0644 {} \;
-find . ! -user www-data -exec chown www-data:root {} \;
-chmod +x bin/console
+RUN find . -type f -not -perm 0644 -exec chmod 0644 {} \;
+RUN find . ! -user www-data -exec chown www-data:root {} \;
+RUN chmod +x bin/console
 
 # Change group to root and then mod folder for the root group 
 
