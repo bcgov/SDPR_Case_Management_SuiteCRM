@@ -5,11 +5,13 @@ USER root
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 
-ADD --chmod=0755 https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/tree/main/suitecrm /usr/local/bin/
+ADD--keep-git-dir=true --chmod=0755 https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /usr/local/bin/
 
-RUN ls -l /usr/local/bin/suitecrm
+RUN cd /usr/local/bin
 
-RUN mv /usr/local/bin/suitecrm /
+RUN ls -al
+
+RUN mv /usr/local/bin/SDPR_Case_management_SuiteCRM/suitecrm /
 
 # The following lines are split to allow easy editing or commenting out of each statement 
 
