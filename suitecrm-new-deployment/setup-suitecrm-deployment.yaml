@@ -48,8 +48,10 @@ spec:
               value: >-
                 https://dev.loginproxy.gov.bc.ca/auth/realms/standard/protocol/saml
             - name: SAML_IDP_X509
-              value: >-
-                Thisisascrambledsinglelinecertdocumentslakjdflasdjhwe9r87hw90w8rswdp89f7as0d89fysaf
+              valueFrom:
+                secretKeyRef:
+                  name: suitecrm-secrets
+                  key: SAML_IDP_X509
             - name: SAML_SP_ENTITY_ID
               value: suite-crm-po-c-5317
             - name: SAML_SP_ASSERTION_URL
