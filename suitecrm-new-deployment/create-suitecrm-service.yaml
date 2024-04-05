@@ -4,24 +4,14 @@ metadata:
   name: cbsuitecrm
   namespace: d1f241-dev
   labels:
-    app: cbsuitecrm
-    app.kubernetes.io/component: cbsuitecrm
-    app.kubernetes.io/instance: cbsuitecrm
-    app.kubernetes.io/name: cbsuitecrm
-    app.kubernetes.io/part-of: cbsuitecrm-app
-    app.openshift.io/runtime-version: bcgov
+    deployment: cbsuitecrm
   annotations:
     openshift.io/generated-by: OpenShiftWebConsole
 spec:
   ports:
-    - name: 8143-tcp
-      protocol: TCP
-      port: 8143
-      targetPort: 8143
     - name: 8181-tcp
       protocol: TCP
       port: 8181
       targetPort: 8181
   selector:
-    app: cbsuitecrm
     deployment: cbsuitecrm
