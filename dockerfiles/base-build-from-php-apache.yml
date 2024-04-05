@@ -8,7 +8,9 @@ RUN apt update \
 && apt install git -y
  
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
- 
+
+USER root 
+
 RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
 && mkdir /suitecrm \
 && mv /tmp/repo/suitecrm/ / \
@@ -18,8 +20,8 @@ RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
 && apt install nano -y \
 && apt install systemctl -y \
 # RUN service cron start
-&& sudo rm -rf /etc/localtime \
-&& sudo ln -s /usr/share/zoneinfo/America/Vancouver /etc/localtime \
+# && sudo rm -rf /etc/localtime \
+# && sudo ln -s /usr/share/zoneinfo/America/Vancouver /etc/localtime \
 && install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip \
 # Enable mod rewrite for Apache
 && sudo a2enmod rewrite \
@@ -33,8 +35,11 @@ RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
 && cp -f /tmp/repo/suitecrm-modified-files/etc/apache2/ports.conf /etc/apache2/ \
 && cp -f /tmp/repo/suitecrm-modified-files/etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/ \
 && cp -f /tmp/repo/suitecrm-modified-files/usr/local/etc/php/php.ini /usr/local/etc/php/ \
-&& openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj /emailAddress=support@crowdbitz.com/C=CA/ST=BC/L=Victoria/O=BCGov/OU=Ministry/CN=cbsuitecrm -keyout /etc/ssl/private/apache-selfsigned.key -out /etc/ssl/certs/apache-selfsigned.crt
- 
+&& mkdir /suitecrm/sslcerts
+&& openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj /emailAddress=support@crowdbitz.com/C=CA/ST=BC/L=Victoria/O=BCGov/OU=Ministry/CN=cbsuitecrm -keyout /suitecrm/sslcerts/apache-selfsigned.key -out /suitecrm/sslcerts/apache-selfsigned.crt
+
+USER root 
+
 # Change to the SuiteCRM direcotry and clear the cache
  
 RUN cd /suitecrm \
