@@ -7,6 +7,8 @@ ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/relea
 
 ADD --chmod=0755 https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/tree/main/suitecrm /suitecrm/
 
+RUN ls -l /
+
 # The following lines are split to allow easy editing or commenting out of each statement 
 
 # Update and upgrade packages
@@ -34,7 +36,6 @@ RUN sudo adduser www-data root
 
 
 # Change to the SuiteCRM direcotry and clear the cache
-RUN ls -l /
 
 RUN cd /suitecrm
 RUN ./bin/console cache:clear
