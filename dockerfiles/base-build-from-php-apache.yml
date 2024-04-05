@@ -10,8 +10,8 @@ RUN apt update \
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
  
 RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
-    && mkdir /suitecrm \
-    && mv /tmp/repo/suitecrm/ / \
+&& mkdir /suitecrm \
+&& mv /tmp/repo/suitecrm/ / \
 # The following lines are split to allow easy editing or commenting out of each statement
 # Update and upgrade packages
 && apt install sudo -y \
@@ -22,13 +22,14 @@ RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
 && sudo ln -s /usr/share/zoneinfo/America/Vancouver /etc/localtime \
 && install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip \
 # Enable mod rewrite for Apache
-&&  sudo a2enmod rewrite \
+&& sudo a2enmod rewrite \
 # Enable ssl for Apache
 && sudo a2enmod ssl \
 # Add the user www-data to the root group
 && sudo adduser www-data root
- 
- 
+&& cp /tmp/repo/suitecrm-modified-files/etc/apache2/ /etc/apache2/
+&& cp /tmp/repo/suitecrm-modified-files/usr/local/etc/php/ /usr/local/etc/php/
+  
 # Change to the SuiteCRM direcotry and clear the cache
  
 RUN cd /suitecrm \
