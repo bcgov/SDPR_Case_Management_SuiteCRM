@@ -1,0 +1,50 @@
+@media (max-width: 750px) {
+    #dashboard {
+        #tab-actions > ul.dropdown-menu  {        
+            left: 0;  
+            min-width: 131px;
+            border-top-right-radius: 4px;      
+        }
+        ul.nav-dashboard {
+            li {
+                margin-bottom: 0;
+                a.first-tab-xs {                
+                    background: $dashboard-titlt-bg !important;                
+                    padding: 11px;                    
+                }
+            }
+            li.active {
+                a {
+                  background: $dashboard-toolbar-bg; 
+                  padding-top: 0.8em;
+                  padding-bottom: 0.8em;
+                }
+              }
+            span.suitepicon-action-caret {
+                font-size: 8px;
+            }            
+        }
+    }       
+    #first-tab-menu-xs.dropdown-menu {
+        li {
+            a {
+                padding-top: 0.8em;
+                padding-bottom: 0.8em;
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    #dashboard {
+        ul.nav-dashboard {            
+            li.active {
+                a {
+                  background: #534d64;
+                  padding-top: 0.8em;
+                  padding-bottom: 0.8em;
+                }
+              }                       
+        }
+    }
+}

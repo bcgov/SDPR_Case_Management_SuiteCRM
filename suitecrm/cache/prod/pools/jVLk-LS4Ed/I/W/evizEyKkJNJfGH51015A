@@ -1,0 +1,3 @@
+<?php //App%255CStatistics%255CDataProvider%255CBatchedStatisticsItemDataProvider
+
+return [PHP_INT_MAX, []];

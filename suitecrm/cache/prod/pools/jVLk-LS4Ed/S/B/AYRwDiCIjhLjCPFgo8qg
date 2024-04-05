@@ -1,0 +1,3 @@
+<?php //App%255CStatistics%255CService%255CStatisticsProviderRegistry
+
+return [PHP_INT_MAX, []];

@@ -1,0 +1,3 @@
+<?php //App%255CData%255CService%255CRecordProviderInterface
+
+return [PHP_INT_MAX, []];

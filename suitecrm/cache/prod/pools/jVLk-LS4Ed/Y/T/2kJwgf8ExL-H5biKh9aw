@@ -1,0 +1,3 @@
+<?php //App%255CEngine%255CLegacyHandler%255CLegacyHandler
+
+return [PHP_INT_MAX, []];

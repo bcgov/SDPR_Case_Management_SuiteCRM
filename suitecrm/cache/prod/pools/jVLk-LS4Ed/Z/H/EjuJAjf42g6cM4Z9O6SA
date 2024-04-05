@@ -1,0 +1,3 @@
+<?php //App%255CSecurity%255CAppJsonLoginAuthenticator
+
+return [PHP_INT_MAX, []];

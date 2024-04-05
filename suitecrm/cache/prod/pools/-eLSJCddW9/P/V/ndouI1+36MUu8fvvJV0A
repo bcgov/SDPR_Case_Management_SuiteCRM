@@ -1,0 +1,103 @@
+<?php //resource_metadata_3d6c01c3ef4efdab29976a316a0cc80a
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata')),
+    ],
+    null,
+    [
+        'ApiPlatform\\Core\\Metadata\\Resource\\ResourceMetadata' => [
+            'shortName' => [
+                'Record',
+            ],
+            'description' => [
+                '',
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'path' => '/record/{id}',
+                        'input' => null,
+                        'output' => null,
+                        'method' => 'GET',
+                        'stateless' => null,
+                        'input_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                        'output_formats' => [
+                            'jsonld' => [
+                                'application/ld+json',
+                            ],
+                            'json' => [
+                                'application/json',
+                            ],
+                            'html' => [
+                                'text/html',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'collectionOperations' => [
+                [],
+            ],
+            'graphql' => [
+                [
+                    'get' => [
+                        'item_query' => 'App\\Data\\Resolver\\RecordItemResolver',
+                        'args' => [
+                            'module' => [
+                                'type' => 'String!',
+                            ],
+                            'record' => [
+                                'type' => 'String!',
+                            ],
+                        ],
+                        'input' => null,
+                        'output' => null,
+                    ],
+                    'save' => [
+                        'validate' => false,
+                        'args' => [
+                            '_id' => [
+                                'type' => 'String',
+                                'description' => 'id',
+                            ],
+                            'identifier' => [
+                                'type' => 'String',
+                                'description' => 'id',
+                            ],
+                            'module' => [
+                                'type' => 'String!',
+                                'description' => 'module',
+                            ],
+                            'attributes' => [
+                                'type' => 'Iterable',
+                                'description' => 'attributes',
+                            ],
+                        ],
+                        'input' => null,
+                        'output' => null,
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'security' => 'is_granted(\'ROLE_USER\')',
+                    'input' => null,
+                    'output' => null,
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+); }];

@@ -1,0 +1,3 @@
+<?php //App%255CUserPreferences%255CLegacyHandler%255CUserPreferenceHandler
+
+return [PHP_INT_MAX, []];

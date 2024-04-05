@@ -1,0 +1,24 @@
+<?php //App%255CMetadata%255CEntity%255CModuleMetadata%2524listView
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Annotation\\ApiProperty'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiProperty')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'attributes' => [
+                [
+                    'openapi_context' => [
+                        'type' => 'array',
+                        'description' => 'The list-view metadata',
+                    ],
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

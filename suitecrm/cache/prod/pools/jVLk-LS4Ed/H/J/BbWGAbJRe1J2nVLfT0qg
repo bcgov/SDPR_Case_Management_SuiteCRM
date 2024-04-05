@@ -1,0 +1,3 @@
+<?php //App%255CModule%255CLegacyHandler%255CRecentlyViewed%255CRecentlyViewedHandler
+
+return [PHP_INT_MAX, []];

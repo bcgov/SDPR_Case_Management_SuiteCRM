@@ -1,0 +1,3 @@
+<?php //App%255CStatistics%255CModel%255CSeries
+
+return [PHP_INT_MAX, []];

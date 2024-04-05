@@ -1,0 +1,3 @@
+<?php //App%255CEngine%255CLegacyHandler%255CActionAvailabilityChecker%255CCheckers%255CDuplicateMergeActionChecker
+
+return [PHP_INT_MAX, []];

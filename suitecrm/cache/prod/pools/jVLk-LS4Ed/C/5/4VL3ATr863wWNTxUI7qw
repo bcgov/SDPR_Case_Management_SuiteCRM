@@ -1,0 +1,3 @@
+<?php //App%255CData%255CDataProvider%255CRecordListItemDataProvider
+
+return [PHP_INT_MAX, []];

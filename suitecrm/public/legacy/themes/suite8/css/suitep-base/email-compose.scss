@@ -1,0 +1,39 @@
+.view-action-ComposeView {
+    .compose-view  {
+        .panel-content {
+            .tab-content {
+                .edit-view-row {
+                    .edit-view-field {
+                        width: 99%;
+                    }
+                }
+            }
+        }       
+    }
+}
+
+.message-box {
+    .modal-dialog {
+        .modal-content {
+            .modal-body {
+                #ComposeView {
+                    .panel {
+                        .col-sm-8 {
+                            width: 99%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.view-module-Emails {
+    #ComposeView {
+        .panel {
+            .col-sm-8 {
+                width: 99%;
+            }
+        }
+    }
+}

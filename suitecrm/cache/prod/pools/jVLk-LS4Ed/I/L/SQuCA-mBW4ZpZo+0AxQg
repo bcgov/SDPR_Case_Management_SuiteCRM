@@ -1,0 +1,3 @@
+<?php //App%255CRoutes%255CLegacyHandler%255CRouteConverterHandler
+
+return [PHP_INT_MAX, []];

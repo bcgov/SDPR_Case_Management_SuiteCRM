@@ -1,0 +1,224 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+a {
+  color: $coral-pink;
+}
+
+a.clickable {
+  color: $coral-pink;
+  cursor: pointer;
+}
+
+a.clickable:hover {
+  color: $coral-pink;
+  text-decoration: underline;
+}
+
+.textarea {
+  background: #ffffff
+}
+
+ul {
+  list-style-type: square;
+  padding-inline-start: 1em;
+}
+
+ul li::marker {
+  color: $midnight-blue;
+}
+
+.text-main {
+  color: $main;
+}
+
+.text-primary {
+  color: $primary !important;
+}
+
+.text-secondary {
+  color: $secondary !important;
+}
+
+.text-danger {
+  color: $btn-danger !important;
+}
+
+.text-bigger-1 {
+  font-size: 110%;
+}
+
+.text-bigger-2 {
+  font-size: 120%;
+}
+
+.text-bigger-3 {
+  font-size: 140%;
+}
+
+.text-bigger-4 {
+  font-size: 140%;
+}
+
+
+.fill-white {
+  fill: $white;
+}
+
+.stroke-white {
+  stroke: $white;
+}
+
+
+.fill-main {
+  fill: $main;
+}
+
+.stroke-main {
+  stroke: $main;
+}
+
+.fill-hover-main:hover {
+  fill: $main;
+}
+
+.stroke-hover-main:hover {
+  stroke: $main;
+}
+
+.fill-main-light {
+  fill: $dusky-light-blue;
+}
+
+.stroke-main-light {
+  stroke: $dusky-light-blue;
+}
+
+.fill-hover-main-light:hover {
+  fill: $dusky-light-blue;
+}
+
+.stroke-hover-main-light:hover {
+  stroke: $dusky-light-blue;
+}
+
+.fill-primary {
+  fill: $primary;
+}
+
+.stroke-primary {
+  stroke: $primary;
+}
+
+.fill-secondary {
+  fill: $secondary;
+}
+
+.stroke-secondary {
+  stroke: $secondary;
+}
+
+.fill-danger {
+  fill: $danger;
+}
+
+.stroke-danger {
+  stroke: $danger;
+}
+
+.fill-hover-danger:hover {
+  fill: $danger;
+}
+
+.stroke-hover-danger:hover {
+  stroke: $danger;
+}
+
+.fill-danger-light {
+  fill: $salmon-pink;
+}
+
+.stroke-danger-light {
+  stroke: $salmon-pink;
+}
+
+.fill-hover-danger-light:hover {
+  fill: $salmon-pink;
+}
+
+.stroke-hover-danger-light:hover {
+  stroke: $salmon-pink;
+}
+
+
+.fill-complementary {
+  fill: $complementary;
+}
+
+.stroke-complementary {
+  stroke: $complementary;
+}
+
+.fill-hover-complementary:hover {
+  fill: $complementary;
+}
+
+.stroke-hover-complementary:hover {
+  stroke: $complementary;
+}
+
+.fill-complementary-light {
+  fill: $complementary-light;
+}
+
+.stroke-complementary-light {
+  stroke: $complementary-light;
+}
+
+.fill-hover-complementary-light:hover {
+  fill: $complementary-light;
+}
+
+.stroke-hover-complementary-light:hover {
+  stroke: $complementary-light;
+}
+
+.shadow-md {
+  box-shadow: .1rem .15rem .2rem rgba(0, 0, 0, .25) !important;
+}
+
+.shadow-sm-2 {
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1) !important;
+}
+
+.line-height-initial {
+  line-height: initial;
+}
+
+.lh-100 {
+  line-height: 100%;
+}

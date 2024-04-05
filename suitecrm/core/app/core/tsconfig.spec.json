@@ -1,0 +1,27 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../out-tsc/spec",
+    "types": [
+      "jasmine"
+    ],
+    "paths": {
+      "common": [
+        "dist/common/common",
+        "dist/common"
+      ],
+      "core": [
+        "dist/core/core",
+        "dist/core"
+      ]
+    }
+  },
+  "files": [
+    "src/test.ts"
+  ],
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts"
+  ]
+}

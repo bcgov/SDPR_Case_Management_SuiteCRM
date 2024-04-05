@@ -1,0 +1,3 @@
+<?php //App%255CViewDefinitions%255CLegacyHandler%255CListView%255CBulkActions%255CMassUpdateBulkActionMapper
+
+return [PHP_INT_MAX, []];

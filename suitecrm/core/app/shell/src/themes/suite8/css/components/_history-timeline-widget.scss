@@ -1,0 +1,144 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+.history-timeline-viewport {
+  height: 45em;
+}
+
+.history-timeline-viewport-no-data {
+  height: 100px;
+}
+
+.history-timeline .card {
+  border: 0.17em solid;
+}
+
+.history-timeline .circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.17em solid;
+}
+
+.history-timeline .history-timeline-image svg {
+  font-size: x-large;
+}
+
+.history-timeline {
+  font-size: small;
+  font-weight: bold;
+
+  .history-timeline-entry-title {
+  }
+
+  .history-timeline-entry-user {
+    border-top-style: double;
+  }
+}
+
+.history-timeline .history-timeline-entry-description {
+  white-space: pre;
+}
+
+.history-timeline .history-timeline-entry-description {
+  white-space: pre;
+}
+
+.history-timeline .connector {
+  height: 0.5rem;
+  width: 0.6rem;
+  border-top: 0.17em solid;
+  border-bottom: 0.17em solid;
+}
+
+.history-timeline .history-timeline-entry.entry-yellow {
+  color: $dark-yellow;
+  border-color: $dark-yellow;
+}
+
+.history-timeline .entry-yellow .card {
+  background: $light-yellow;
+}
+
+.history-timeline .history-timeline-entry.entry-yellow svg {
+  fill: $dark-yellow;
+  stroke: $dark-yellow;
+}
+
+.history-timeline .history-timeline-entry.entry-purple {
+  color: $dark-purple;
+  border-color: $dark-purple;
+}
+
+.history-timeline .history-timeline-entry.entry-purple svg {
+  fill: $dark-purple;
+  stroke: $dark-purple;
+}
+
+.history-timeline .entry-purple .card {
+  background: $light-purple;
+}
+
+.history-timeline .history-timeline-entry.entry-blue {
+  color: $mild-blue;
+  border-color: $mild-blue;
+}
+
+.history-timeline .history-timeline-entry.entry-blue svg {
+  fill: $mild-blue;
+  stroke: $mild-blue;
+}
+
+.history-timeline .entry-blue .card {
+  background: $light-blue;
+}
+
+.history-timeline .history-timeline-entry.entry-orange {
+  color: $thick-orange;
+  border-color: $thick-orange;
+}
+
+.history-timeline .history-timeline-entry.entry-orange svg {
+  fill: $thick-orange;
+  stroke: $thick-orange;
+}
+
+.history-timeline .entry-orange .card {
+  background: $very-lighter-orange;
+}
+
+.history-timeline .history-timeline-entry.entry-green {
+  color: $thick-green;
+  border-color: $thick-green;
+}
+
+.history-timeline .history-timeline-entry.entry-green svg {
+  fill: $thick-green;
+  stroke: $thick-green;
+}
+
+.history-timeline .entry-green .card {
+  background: $lighter-green;
+}

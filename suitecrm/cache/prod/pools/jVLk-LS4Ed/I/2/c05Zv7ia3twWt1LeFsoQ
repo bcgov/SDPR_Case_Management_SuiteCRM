@@ -1,0 +1,3 @@
+<?php //App%255CModule%255CProspects%255CService%255CMassUpdate%255CProspectsEmailOptoutMapper
+
+return [PHP_INT_MAX, []];

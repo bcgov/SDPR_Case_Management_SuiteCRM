@@ -1,0 +1,3 @@
+<?php //App%255CViewDefinitions%255CService%255CSubPanelDefinitionProviderInterface
+
+return [PHP_INT_MAX, []];

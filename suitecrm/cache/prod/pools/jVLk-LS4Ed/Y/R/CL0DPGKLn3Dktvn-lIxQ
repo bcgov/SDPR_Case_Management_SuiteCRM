@@ -1,0 +1,3 @@
+<?php //App%255CStatistics%255CResolver%255CBatchedStatisticsItemResolver
+
+return [PHP_INT_MAX, []];

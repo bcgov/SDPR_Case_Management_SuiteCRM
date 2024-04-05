@@ -1,0 +1,57 @@
+<?php //App%255CData%255CEntity%255CRecordList
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                [],
+            ],
+            'graphql' => [
+                [
+                    'get' => [
+                        'item_query' => 'App\\Data\\Resolver\\RecordListResolver',
+                        'args' => [
+                            'module' => [
+                                'type' => 'String!',
+                            ],
+                            'limit' => [
+                                'type' => 'Int',
+                            ],
+                            'offset' => [
+                                'type' => 'Int',
+                            ],
+                            'criteria' => [
+                                'type' => 'Iterable',
+                                'description' => 'search criteria',
+                            ],
+                            'sort' => [
+                                'type' => 'Iterable',
+                                'description' => 'sort',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'path' => '/record-list/{id}',
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'security' => 'is_granted(\'ROLE_USER\')',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

@@ -1,0 +1,3 @@
+<?php //App%255CAuthentication%255CLegacyHandler%255CAuthentication
+
+return [PHP_INT_MAX, []];

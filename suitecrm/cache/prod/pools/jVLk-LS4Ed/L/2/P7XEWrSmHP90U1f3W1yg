@@ -1,0 +1,101 @@
+<?php //App%255CStatistics%255CEntity%255CBatchedStatistics
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                [],
+            ],
+            'graphql' => [
+                [
+                    'get' => [
+                        'item_query' => 'App\\Statistics\\Resolver\\BatchedStatisticsItemResolver',
+                        'args' => [
+                            'module' => [
+                                'type' => 'String!',
+                            ],
+                            'queries' => [
+                                'type' => 'Iterable',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'openapi_context' => [
+                            'parameters' => [
+                                [
+                                    'name' => 'id',
+                                    'in' => 'path',
+                                    'description' => 'module name',
+                                    'required' => true,
+                                ],
+                                [
+                                    'name' => 'queries',
+                                    'in' => 'query',
+                                    'description' => 'queries',
+                                    'required' => true,
+                                    'style' => 'simple',
+                                    'schema' => [
+                                        'type' => 'object',
+                                        'additionalProperties' => [
+                                            'type' => 'object',
+                                            'properties' => [
+                                                'key' => [
+                                                    'type' => 'string',
+                                                ],
+                                                'context' => [
+                                                    'type' => 'object',
+                                                    'properties' => [
+                                                        'module' => [
+                                                            'type' => 'string',
+                                                            'required' => false,
+                                                        ],
+                                                        'id' => [
+                                                            'type' => 'string',
+                                                            'required' => false,
+                                                        ],
+                                                        'criteria' => [
+                                                            'type' => 'object',
+                                                            'required' => false,
+                                                            'additionalProperties' => true,
+                                                        ],
+                                                        'sort' => [
+                                                            'type' => 'object',
+                                                            'required' => false,
+                                                            'additionalProperties' => true,
+                                                        ],
+                                                    ],
+                                                ],
+                                                'params' => [
+                                                    'type' => 'object',
+                                                    'required' => false,
+                                                    'additionalProperties' => true,
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'security' => 'is_granted(\'ROLE_USER\')',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+    ],
+    []
+); }];

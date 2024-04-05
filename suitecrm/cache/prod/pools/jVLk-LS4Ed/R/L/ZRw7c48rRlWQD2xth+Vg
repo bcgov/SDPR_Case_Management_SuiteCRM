@@ -1,0 +1,3 @@
+<?php //App%255CLanguages%255CLegacyHandler%255CAppListStringsProviderInterface
+
+return [PHP_INT_MAX, []];

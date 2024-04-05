@@ -1,0 +1,98 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+/**
+ * Override main button color and outline main button
+ */
+
+.btn-outline-main {
+  color: $main !important;
+  border-color: $main !important;
+}
+
+.btn-outline-main:hover {
+  color: $white !important;
+  background-color: $main !important;
+  border-color: $main !important;
+}
+
+.btn-outline-main:focus, .btn-outline-main.focus {
+  box-shadow: 0 0 0 0.2rem rgba(83, 77, 100, 0.5);
+}
+
+.btn-outline-main.disabled, .btn-outline-main:disabled {
+  color: $main !important;
+  background-color: transparent !important;
+}
+
+.btn-outline-main:not(:disabled):not(.disabled):active, .btn-outline-main:not(:disabled):not(.disabled).active,
+.show > .btn-outline-main.dropdown-toggle {
+  color: $white !important;
+  background-color: $main !important;
+  border-color: $main !important;
+}
+
+.btn-outline-main:not(:disabled):not(.disabled):active:focus, .btn-outline-main:not(:disabled):not(.disabled).active:focus,
+.show > .btn-outline-main.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(83, 77, 100, 0.5);
+}
+
+.btn-main {
+  color: $white !important;
+  background-color: $main !important;
+  border-color: $main !important;
+}
+
+.btn-main:hover {
+  color: $white !important;
+  background-color: $bright-orange !important;
+  border-color: $bright-orange !important;
+}
+
+.btn-main:focus, .btn-main.focus {
+  color: $white !important;
+  background-color: $main !important;
+  border-color: $main !important;
+  box-shadow: 0 0 0 0.2rem rgba(83, 77, 100, 0.5);
+}
+
+.btn-main.disabled, .btn-main:disabled {
+  color: $white !important;
+  background-color: $main !important;
+  border-color: $main !important;
+}
+
+.btn-main:not(:disabled):not(.disabled):active, .btn-main:not(:disabled):not(.disabled).active,
+.show > .btn-main.dropdown-toggle {
+  color: $white !important;
+  background-color: $bright-orange !important;
+  border-color: $bright-orange !important;
+}
+
+.btn-main:not(:disabled):not(.disabled):active:focus, .btn-main:not(:disabled):not(.disabled).active:focus,
+.show > .btn-main.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(83, 77, 100, 0.5);
+}

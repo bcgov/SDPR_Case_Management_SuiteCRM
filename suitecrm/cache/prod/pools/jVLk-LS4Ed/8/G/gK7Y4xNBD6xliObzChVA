@@ -1,0 +1,3 @@
+<?php //App%255CViewDefinitions%255CLegacyHandler%255CListViewDefinitionHandler
+
+return [PHP_INT_MAX, []];

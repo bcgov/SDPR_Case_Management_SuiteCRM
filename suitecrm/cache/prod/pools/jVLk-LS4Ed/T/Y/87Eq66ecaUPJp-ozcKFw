@@ -1,0 +1,3 @@
+<?php //App%255CProcess%255CLegacyHandler%255CAddRecordsToTargetListBulkActionHandler
+
+return [PHP_INT_MAX, []];

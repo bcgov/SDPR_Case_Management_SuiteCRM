@@ -1,0 +1,3 @@
+<?php //App%255CModule%255CContacts%255CStatistics%255CContactLastTouchPoint
+
+return [PHP_INT_MAX, []];

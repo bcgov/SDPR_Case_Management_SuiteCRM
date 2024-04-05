@@ -1,0 +1,3 @@
+<?php //App%255CStatistics%255CEntity%255CBatchedStatistics%2523getId
+
+return [PHP_INT_MAX, []];

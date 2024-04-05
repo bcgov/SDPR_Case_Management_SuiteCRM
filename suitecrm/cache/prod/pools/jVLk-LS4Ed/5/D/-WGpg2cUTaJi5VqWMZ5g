@@ -1,0 +1,3 @@
+<?php //App%255CLanguages%255CDataProvider%255CModStringsItemDataProvider
+
+return [PHP_INT_MAX, []];

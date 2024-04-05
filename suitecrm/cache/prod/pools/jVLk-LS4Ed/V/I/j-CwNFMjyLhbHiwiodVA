@@ -1,0 +1,72 @@
+<?php //App%255CModule%255CUsers%255CEntity%255CUser
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Index'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Index')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                [],
+            ],
+            'graphql' => [
+                [
+                    'item_query',
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get',
+                ],
+            ],
+            'attributes' => [
+                [
+                    'security' => 'is_granted(\'ROLE_USER\')',
+                ],
+            ],
+            'name' => [
+                1 => 'users',
+                'idx_user_name',
+            ],
+            'indexes' => [
+                1 => [
+                    $o[2],
+                ],
+            ],
+            'columns' => [
+                2 => [
+                    'user_name',
+                    'is_group',
+                    'status',
+                    'last_name',
+                    'first_name',
+                    'id',
+                ],
+            ],
+            'options' => [
+                2 => [
+                    'lengths' => [
+                        null,
+                        null,
+                        null,
+                        30,
+                        30,
+                    ],
+                ],
+            ],
+            'repositoryClass' => [
+                3 => 'App\\Module\\Users\\Repository\\UserRepository',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[3],
+    ],
+    []
+); }];

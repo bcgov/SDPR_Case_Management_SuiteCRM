@@ -1,0 +1,3 @@
+<?php //App%255CData%255CLegacyHandler%255CRecordListHandler
+
+return [PHP_INT_MAX, []];
