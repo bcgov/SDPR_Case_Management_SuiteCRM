@@ -48,6 +48,7 @@ RUN sudo adduser www-data root
 # Change to the SuiteCRM direcotry and clear the cache
 
 RUN cd /suitecrm
+RUN ls -al
 RUN ./bin/console cache:clear
 
 # Set permissions for the root group and www-data on the suitecrm folder
