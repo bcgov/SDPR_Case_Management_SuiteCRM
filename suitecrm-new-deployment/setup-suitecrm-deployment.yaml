@@ -89,12 +89,12 @@ spec:
                 value: rediscluster
               - name: SESSION_SAVE_PATH
                 value: 'seed[]=tcp://redis:6379&timeout=2&read_timeout=2'
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          imagePullPolicy: IfNotPresent
-          volumeMounts:
-            - name: shared-uploads
-              mountPath: /suitecrm/public/legacy/upload
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+              - name: shared-uploads
+                mountPath: /suitecrm/public/legacy/upload
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       dnsPolicy: ClusterFirst
