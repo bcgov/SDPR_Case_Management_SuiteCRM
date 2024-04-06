@@ -1,3 +1,0 @@
-<?php //App%255CRoutes%255CEventListener%255CLegacyRedirectListener
-
-return [PHP_INT_MAX, []];

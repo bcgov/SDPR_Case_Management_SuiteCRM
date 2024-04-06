@@ -1,3 +1,0 @@
-<?php //App%255CInstall%255CService%255CCache%255CCacheBridge
-
-return [PHP_INT_MAX, []];

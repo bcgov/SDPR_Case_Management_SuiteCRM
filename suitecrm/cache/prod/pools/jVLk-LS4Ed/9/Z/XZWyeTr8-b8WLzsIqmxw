@@ -1,3 +1,0 @@
-<?php //App%255CModule%255CCases%255CStatistics%255CCaseDaysOpen
-
-return [PHP_INT_MAX, []];

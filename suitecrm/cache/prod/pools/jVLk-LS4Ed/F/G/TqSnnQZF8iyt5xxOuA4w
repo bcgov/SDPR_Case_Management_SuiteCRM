@@ -1,3 +1,0 @@
-<?php //App%255CRoutes%255CEventSubscriber%255CRequestSubscriber
-
-return [PHP_INT_MAX, []];

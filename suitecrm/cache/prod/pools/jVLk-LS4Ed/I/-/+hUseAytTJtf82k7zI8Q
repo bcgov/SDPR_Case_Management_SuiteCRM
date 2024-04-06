@@ -1,3 +1,0 @@
-<?php //App%255CMetadata%255CDataProvider%255CAppMetadataItemDataProvider
-
-return [PHP_INT_MAX, []];

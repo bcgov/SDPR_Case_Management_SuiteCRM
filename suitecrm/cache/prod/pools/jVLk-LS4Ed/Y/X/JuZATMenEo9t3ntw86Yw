@@ -1,3 +1,0 @@
-<?php //App%255CSecurity%255CCSRFTokenManager
-
-return [PHP_INT_MAX, []];

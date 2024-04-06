@@ -1,3 +1,0 @@
-<?php //App%255CModule%255CHistory%255CStatistics%255CSubpanels%255CSubPanelHistoryLastDate
-
-return [PHP_INT_MAX, []];

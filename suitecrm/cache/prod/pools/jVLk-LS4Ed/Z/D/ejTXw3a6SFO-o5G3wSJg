@@ -1,3 +1,0 @@
-<?php //App%255CSecurity%255CException%255CUserDeletedException
-
-return [PHP_INT_MAX, []];

@@ -1,3 +1,0 @@
-<?php //App%255CSecurity%255CLegacySessionDenyAccessListener
-
-return [PHP_INT_MAX, []];

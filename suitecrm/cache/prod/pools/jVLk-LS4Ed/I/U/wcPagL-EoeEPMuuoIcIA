@@ -1,3 +1,0 @@
-<?php //App%255CMigrations%255CVersion20221003150202
-
-return [PHP_INT_MAX, []];

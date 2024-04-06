@@ -1,3 +1,0 @@
-<?php //App%255CInstall%255CCommand%255CSetupLegacyMigrationCommand
-
-return [PHP_INT_MAX, []];

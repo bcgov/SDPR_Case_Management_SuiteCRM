@@ -1,3 +1,0 @@
-<?php //App%255CEngine%255CService%255CActionAvailabilityChecker%255CCheckers%255CMassUpdateActionChecker
-
-return [PHP_INT_MAX, []];

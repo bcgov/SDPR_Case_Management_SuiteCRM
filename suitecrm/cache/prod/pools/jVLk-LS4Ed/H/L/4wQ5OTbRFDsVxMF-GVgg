@@ -1,3 +1,0 @@
-<?php //App%255CModule%255CTasks%255CStatistics%255CSubpanels%255CSubPanelTasksHistoryCount
-
-return [PHP_INT_MAX, []];
