@@ -57,7 +57,8 @@ RUN cd /suitecrm \
 && find . ! -user www-data -exec chown www-data:root {} \; \
 # Change group to root and then mod folder for the root group
 && chgrp -R root /suitecrm \
-&& chmod -R g+rwx /suitecrm
+&& chmod -R g+rwx /suitecrm \
+&& rm -r /suitecrm/cache/prod/*
 
 
 
