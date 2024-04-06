@@ -6,12 +6,6 @@ metadata:
   labels:
     app: cbsuitecrm
     deployment: cbsuitecrm
-    app.kubernetes.io/component: cbsuitecrm
-    app.kubernetes.io/instance: cbsuitecrm
-    app.kubernetes.io/name: cbsuitecrm
-    app.kubernetes.io/part-of: cbsuitecrm-app
-    app.openshift.io/runtime: apache
-    app.openshift.io/runtime-namespace: d1f241-dev
 spec:
   replicas: 1
   selector:
@@ -33,69 +27,68 @@ spec:
       containers:
           - name: bcgovsuitecrm
             image: >-
-              image-registry.openshift-image-registry.svc:5000/d1f241-tools/bcgovsuitecrm@sha256:4e4de0c18af55cca9ff6b431f8e5a5290213332df2c8f22188677f60171f1363
-          ports:
-            - containerPort: 8181
-              protocol: TCP
-          env:
-            - name: SAML_IDP_ENTITY_ID
-              value: 'https://dev.loginproxy.gov.bc.ca/auth/realms/standard'
-            - name: SAML_ISP_SSO_URL
-              value: >-
-                https://dev.loginproxy.gov.bc.ca/auth/realms/standard/protocol/saml
-            - name: SAML_IDP_LOGOUT_URL
-              value: >-
-                https://dev.loginproxy.gov.bc.ca/auth/realms/standard/protocol/saml
-            - name: SAML_IDP_X509
-              valueFrom:
-                secretKeyRef:
-                  name: suitecrm-secrets
-                  key: SAML_IDP_X509
-            - name: SAML_SP_ENTITY_ID
-              value: suite-crm-po-c-5317
-            - name: SAML_SP_ASSERTION_URL
-              value: >-
-                https://cbsuitecrm-d1f241-dev.apps.gold.devops.gov.bc.ca/saml/acs
-            - name: SAML_SP_SINGLE_LOGOUT
-              value: >-
-                https://cbsuitecrm-d1f241-dev.apps.gold.devops.gov.bc.ca/saml/logout
-            - name: SAML_SP_BASE_URL
-              value: 'https://cbsuitecrm-d1f241-dev.apps.gold.devops.gov.bc.ca/saml'
-            - name: AUTH_TYPE
-              value: saml
-            - name: SAML_AUTO_CREATE
-              value: disabled
-            - name: SAML_USERNAME_ATTRIBUTE
-              value: idir_username
-            - name: SAML_USE_ATTRIBUTE_FRIENDLY_NAME
-              value: 'false'
-            - name: SAML_SP_PRIVATE_KEY
-              value: placeholder-value
-            - name: SAML_SP_X509
-              value: placeholder-value
-            - name: SUITE_DB_HOST
-              value: mariadb-mariadb-galera
-            - name: SUITE_DB_USER
-              value: cbsuite_adm
-            - name: SUITE_DB_PASSW
-              valueFrom:
-                secretKeyRef:
-                  name: suitecrm-secrets
-                  key: SUITE_DB_PASSW
-            - name: SUITE_DB_NAME
-              value: cb_suitecrm
-            - name: SUITE_DB_PORT
-              value: '3306'
-            - name: DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: suitecrm-secrets
-                  key: DATABASE_URL
-            - name: SESSION_SAVE_HANDLER
-              value: rediscluster
-            - name: SESSION_SAVE_PATH
-              value: 'seed[]=tcp://redis:6379&timeout=2&read_timeout=2'
-          resources: {}
+              image-registry.openshift-image-registry.svc:5000/d1f241-tools/bcgovsuitecrm:latest
+            ports:
+              - containerPort: 8181
+                protocol: TCP
+            env:
+              - name: SAML_IDP_ENTITY_ID
+                value: 'https://dev.loginproxy.gov.bc.ca/auth/realms/standard'
+              - name: SAML_ISP_SSO_URL
+                value: >-
+                  https://dev.loginproxy.gov.bc.ca/auth/realms/standard/protocol/saml
+              - name: SAML_IDP_LOGOUT_URL
+                value: >-
+                  https://dev.loginproxy.gov.bc.ca/auth/realms/standard/protocol/saml
+              - name: SAML_IDP_X509
+                valueFrom:
+                  secretKeyRef:
+                    name: suitecrm-secrets
+                    key: SAML_IDP_X509
+              - name: SAML_SP_ENTITY_ID
+                value: suite-crm-po-c-5317
+              - name: SAML_SP_ASSERTION_URL
+                value: >-
+                  https://cbsuitecrm-d1f241-dev.apps.gold.devops.gov.bc.ca/saml/acs
+              - name: SAML_SP_SINGLE_LOGOUT
+                value: >-
+                  https://cbsuitecrm-d1f241-dev.apps.gold.devops.gov.bc.ca/saml/logout
+              - name: SAML_SP_BASE_URL
+                value: 'https://cbsuitecrm-d1f241-dev.apps.gold.devops.gov.bc.ca/saml'
+              - name: AUTH_TYPE
+                value: saml
+              - name: SAML_AUTO_CREATE
+                value: disabled
+              - name: SAML_USERNAME_ATTRIBUTE
+                value: idir_username
+              - name: SAML_USE_ATTRIBUTE_FRIENDLY_NAME
+                value: 'false'
+              - name: SAML_SP_PRIVATE_KEY
+                value: placeholder-value
+              - name: SAML_SP_X509
+                value: placeholder-value
+              - name: SUITE_DB_HOST
+                value: mariadb-mariadb-galera
+              - name: SUITE_DB_USER
+                value: cbsuite_adm
+              - name: SUITE_DB_PASSW
+                valueFrom:
+                  secretKeyRef:
+                    name: suitecrm-secrets
+                    key: SUITE_DB_PASSW
+              - name: SUITE_DB_NAME
+                value: cb_suitecrm
+              - name: SUITE_DB_PORT
+                value: '3306'
+              - name: DATABASE_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: suitecrm-secrets
+                    key: DATABASE_URL
+              - name: SESSION_SAVE_HANDLER
+                value: rediscluster
+              - name: SESSION_SAVE_PATH
+                value: 'seed[]=tcp://redis:6379&timeout=2&read_timeout=2'
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           imagePullPolicy: IfNotPresent
