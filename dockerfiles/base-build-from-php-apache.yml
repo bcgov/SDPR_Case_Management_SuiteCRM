@@ -58,7 +58,7 @@ RUN cd /suitecrm \
 # Change group to root and then mod folder for the root group
 && chgrp -R root /suitecrm \
 && chmod -R g+rwx /suitecrm \
-&& rm -r /suitecrm/cache/prod/*
+&& rm -r /suitecrm/cache
 
 
 
