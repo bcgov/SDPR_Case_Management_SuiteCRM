@@ -22,7 +22,7 @@ RUN git clone https://github.com/bcgov/SDPR_Case_Management_SuiteCRM /tmp/repo\
 # RUN service cron start
 # && sudo rm -rf /etc/localtime \
 # && sudo ln -s /usr/share/zoneinfo/America/Vancouver /etc/localtime \
-&& install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip \
+&& install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip redis \
 # Enable mod rewrite for Apache
 && sudo a2enmod rewrite \
 # Enable ssl for Apache
