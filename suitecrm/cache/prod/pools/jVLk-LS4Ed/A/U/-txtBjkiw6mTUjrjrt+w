@@ -1,3 +1,0 @@
-<?php //App%255CProcess%255CService%255CActionDefinitionProvider
-
-return [PHP_INT_MAX, []];

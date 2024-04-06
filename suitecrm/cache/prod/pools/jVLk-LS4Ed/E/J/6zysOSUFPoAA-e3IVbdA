@@ -1,3 +1,0 @@
-<?php //App%255CModule%255CQuotes%255CStatistics%255CSubpanels%255CSubPanelQuotesTotal
-
-return [PHP_INT_MAX, []];

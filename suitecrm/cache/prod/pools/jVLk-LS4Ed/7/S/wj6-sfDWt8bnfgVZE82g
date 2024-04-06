@@ -1,3 +1,0 @@
-<?php //App%255CProcess%255CDataPersister%255CRecordDataPersister
-
-return [PHP_INT_MAX, []];

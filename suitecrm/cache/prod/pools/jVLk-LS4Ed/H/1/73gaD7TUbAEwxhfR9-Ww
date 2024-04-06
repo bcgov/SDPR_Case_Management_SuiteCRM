@@ -1,3 +1,0 @@
-<?php //App%255CSecurity%255CLegacySessionSecurityStage
-
-return [PHP_INT_MAX, []];

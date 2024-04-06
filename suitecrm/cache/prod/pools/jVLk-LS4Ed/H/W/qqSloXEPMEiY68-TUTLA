@@ -1,3 +1,0 @@
-<?php //App%255CMigrations%255CBaseMigration
-
-return [PHP_INT_MAX, []];

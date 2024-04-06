@@ -1,3 +1,0 @@
-<?php //App%255CModule%255CAccounts%255CStatistics%255CSeries%255CAccountsNewByMonth
-
-return [PHP_INT_MAX, []];

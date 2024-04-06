@@ -1,3 +1,0 @@
-<?php //App%255CSecurity%255CLegacyPasswordEncoder
-
-return [PHP_INT_MAX, []];

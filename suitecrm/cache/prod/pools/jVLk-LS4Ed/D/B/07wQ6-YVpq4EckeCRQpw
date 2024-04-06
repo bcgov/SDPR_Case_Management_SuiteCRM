@@ -1,3 +1,0 @@
-<?php //App%255CInstall%255CService%255CInstallation%255CSteps%255CCreateEnv
-
-return [PHP_INT_MAX, []];

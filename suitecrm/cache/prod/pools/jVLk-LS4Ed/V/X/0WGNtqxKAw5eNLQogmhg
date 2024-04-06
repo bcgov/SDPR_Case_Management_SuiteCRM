@@ -1,3 +1,0 @@
-<?php //App%255CStatistics%255CEntity%255CStatistic%2523setOptions
-
-return [PHP_INT_MAX, []];

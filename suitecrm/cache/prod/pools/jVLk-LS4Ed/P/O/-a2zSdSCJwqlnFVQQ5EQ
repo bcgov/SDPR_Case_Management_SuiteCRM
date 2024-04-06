@@ -1,3 +1,0 @@
-<?php //App%255CUserPreferences%255CDataProvider%255CUserPreferenceItemDataProvider
-
-return [PHP_INT_MAX, []];

@@ -1,3 +1,0 @@
-<?php //App%255CSecurity%255CLdap%255CAppLdapUserProvider
-
-return [PHP_INT_MAX, []];

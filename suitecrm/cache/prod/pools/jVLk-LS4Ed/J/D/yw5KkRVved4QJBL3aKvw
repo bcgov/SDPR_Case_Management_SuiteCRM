@@ -1,3 +1,0 @@
-<?php //App%255CModule%255CTasks%255CStatistics%255CDaysUntilDueTask
-
-return [PHP_INT_MAX, []];

@@ -1,3 +1,0 @@
-<?php //App%255CModule%255CLegacyHandler%255CFavorites%255CFavoritesHandler
-
-return [PHP_INT_MAX, []];

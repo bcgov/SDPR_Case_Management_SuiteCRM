@@ -1,3 +1,0 @@
-<?php //App%255CInstall%255CService%255CMigrations%255CMigrationBridge
-
-return [PHP_INT_MAX, []];

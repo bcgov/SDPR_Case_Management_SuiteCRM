@@ -1,3 +1,0 @@
-<?php //App%255CSystemConfig%255CService%255CSystemConfigProviderInterface
-
-return [PHP_INT_MAX, []];

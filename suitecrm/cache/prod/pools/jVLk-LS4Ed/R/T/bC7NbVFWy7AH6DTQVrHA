@@ -1,3 +1,0 @@
-<?php //App%255CStatistics%255CModel%255CChartOptions
-
-return [PHP_INT_MAX, []];
