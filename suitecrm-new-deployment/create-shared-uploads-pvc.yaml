@@ -11,3 +11,18 @@ spec:
       storage: 2Gi
   storageClassName: netapp-file-standard
   volumeMode: Filesystem
+
+
+
+oc debug container-name
+
+
+
+oc project d1f241-tools 
+
+oc get is
+
+image streams 
+
+there is way to look inside the image stream
+
