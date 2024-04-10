@@ -1,0 +1,9 @@
+dependencies:
+- name: mariadb-galera
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.3.2
+- name: redis-cluster
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.0.1
+digest: sha256:2cbaf715f4daab517f9219c0703c0e97962539e01a6f5bd739f057788f8c1109
+generated: "2024-04-06T00:03:53.764016493-07:00"

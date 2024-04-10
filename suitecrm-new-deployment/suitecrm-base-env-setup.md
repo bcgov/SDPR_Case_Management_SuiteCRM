@@ -1,96 +1,54 @@
 # BCGov SuiteCRM OpenShift Installation Instructions
 
-These instructions will setup the required resources to run an instance of SuiteCRM within the BC Governmetn OpenShift cluster.
+These instructions will setup the required resources to run an instance of SuiteCRM within the BC Government OpenShift cluster.
+
+Features:
+- Highly Available with session sharing between pods
+- SAML support for authentication
 
 ## Requirements
 
 These instructions require that the parent project be provisioned with at least 16GB of storage space, at least 1 CPU and 4GB of RAM. 
 
+- Helm
+- SAML client information - supports https://digital.gov.bc.ca/bcgov-common-components/pathfinder-sso/
+
+To install, we have created a Helm Chart that includes the two following dependencies:
+
+Dependencies:
+1. Mariadb Galera Helm - https://github.com/bitnami/charts/tree/main/bitnami/mariadb-galera/
+2. Redis Cluster Helm - https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
+
 ## Setup Instructions
+
+### 1. Create Image in openshift
+- Install buildconfig.yaml and imagestream.yaml in your tools area
+- Run build to create image used by helm installation
+
+### 2. Install SuiteCRM using Helm
 
 Follow these instructions in sequence. If something does not work, ensure that all resources have been removed before trying again or you will run into resource issues.
 
-### Setup Secrets
+Create a values_dev.yaml file with your specific updates.  See exmaple in repo.
 
-Subsequent scripts and eviornment variables assume that secrets have been created. 
+> helm dependency update ./suitecrm
 
-1. Change the values in the create-suitecrm-secrets.yaml file and deploy to the project.
+> helm install suitecrm ./suitecrm  -f values_dev.yaml
 
-### Setup Bitnami Maria DB Helm Chart
+### One time Initial Creation of SuiteCRM Database
 
-1. Edit the values in the mariadb-helm-values.yaml as needed. Ensure that the username and password matches the values created in the secrets above.
+Initial setup requires you to seed the database.  At this time, this isn't automated.  Pull request to add this feature welcomed.
 
-2. Login to the OpenShift CLI. Ensure you are in the correct project and then enter
+At this point, prior to launching SuiteCRM, remote shell into the newly created suite crm pod and run these commands:
 
-> helm install mariadb oci://registry-1.docker.io/bitnamicharts/mariadb-galera -f mariadb-helm-values.yaml
+> sed -i "s/'installer_locked' => true,/'installer_locked' => false,/g" /suitecrm/public/legacy/config.php
 
-3. Wait for all three replicas to be created before proceeding.
+> /suitecrm/bin/console suitecrm:app:install -u suiteadmin -p $SUITECRM_ADMIN_PWD -U $SUITE_DB_USER -P $SUITE_DB_PASSW -H $SUITE_DB_HOST -N $SUITE_DB_NAME -S "https://$SUITECRM_URL/" -d "no"
 
-### Import SuiteCRM Database
+And then run those two commands again. Not sure why but it is needed.
 
-SuiteCRM password fields in the database are enrypted. Nevertheless you should still change the cbsuitecrm username and password, or just the password, after first login.
+Once successful, you will need to create your first SAML supported user by logging into SuiteCRM and bypassing SAML authentication.  This is done by 
 
-No other sensitive, private or personal information is stored in the shell database.
-
-1. Login to the terminal of the 0 node of the MariaDB Galera cluster.
-
-2. Create a directory for the import
-
-> mkdir /bitnami/mariadb/import
-
-3. Return to the OpenShift CLI and upload the database sql file to the host. See example below
-
-> oc rsync /home/agonistes/export mariadb-mariadb-galera-0:/bitnami/mariadb/import
-
-4. Return to the Galera cluster pod terminal and run command to import database.
-
-> mysql -u cbsuite_adm -p < /bitnami/mariadb/import/export/export/bcgov-suite-newest.sql
-
-You will need to enter the password that was entered for the MariaDB cluster.
-
-### Setup Redis
-
-Redis is required in order to persist sessions and connections to SuiteCRM even if the pod that a client is connected to is destoryed.
-
-1. Return to the OpenShift CLI and enter the following command.
-
-> oc apply -f https://raw.githubusercontent.com/bcgov/EDUC-INFRA-COMMON/master/openshift/redis/redis-ha.dc.yaml
-
-2. Wait for all six of the pods to start and enter the following command
-
-> oc get pods -l app=redis -o jsonpath='{range.items[*]}{.status.podIP}:6379 '
-
-3. Copy the output of the command, which should be six ip addresses and ports. Ignore the ' :6379' at the end of the string.
-
-4. Append that output to the following command
-
-> oc exec -it redis-0 -- redis-cli --cluster create --cluster-replicas 1 <APPEND_HERE>
-
-5. When prompted, type yes to accept the setup of the cluster
-
-### Setup SuiteCRM
-
-We have heavily modified the SuiteCRM configuration to make use within OpenShift much easier.
-
-1. Edit the setup-suitecrm-deployment.yaml file. Change all of the environment variables to values that are correct for your environment.
-
-If you do not want to use SAML for logins, you can change the AUTH_TYPE to native. If you are not using SAML you can replace all of the environment variables with placeholder values. All of the variables are required to run.
-
-2. Import the YAML file into your OpenShift project. 
-
-3. Wait until deployment completes and then test the application.
-
-### Setup Service
-
-1. Edit the create-suitecrm-service.yaml file and ensure that the project namespace is set correctly.
-
-2. Import the YAML file into your OpenShift project.
-
-### Setup Route
-
-1. Edit the create-suitecrm-route.yaml file and ensure the project namespace is set correctly.
-
-2. Import the YAML file into your OpenShift project.
-
-
-
+1. Go to https://<_suitecrm url>/auth
+2. User name is: suiteadmin
+3. Password  can be found in your values_custom_file
