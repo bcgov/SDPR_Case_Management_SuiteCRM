@@ -1,6 +1,6 @@
 # SDPR_Case_Management_SuiteCRM
 
-Proof of Concept for SuiteCRM installation
+Proof of Concept for highly available and replicatable SuiteCRM installation in BC Government OpenShift environment. The solution uses SuiteCRM Core 8.5 with a php8.2:apache image built on Ubuntu 20.04. App HA is acheived with Redis Cluster and DB HA is acheived with MariaDB Galera cluster. SuiteCRM has been modified to use environment variables and run with Redis Cluster. 
 
 ## Contents
 
