@@ -27,7 +27,7 @@ https://docs.suitecrm.com/8.x/admin/installation-guide/running-the-cli-installer
 
 This was installed and extracted locally. We then went through the directories and removed all files that contain passwords or other sensitive information. All URLs and configurations were instead made to use environment variables.
 
-Every file that was modified for this is contained in the suitecrm-modified-files directory for reference. 
+Every file that was modified for this is contained in the suitecrm-modified-files directory for reference. This includes files used by Apache and by php. The folder structure matches the folder structure created but the dockerfile build, and is there for reference.
 
 The current dockerfiles in use install and configure all of the dependencies for the SuiteCRM installer. If you wish to run the installer again from within the dockerfile, just ensure that it runs after the isntallation of all of the php dependencies and before all of the chmod commands a the end of the file.
 
