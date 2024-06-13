@@ -44,10 +44,8 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:core \
 && yarn run build:shell
 
-USER root
-
-RUN rm -f /var/run/apache2/apache2.pid
-
 # Exposed ports
 EXPOSE 8181
 EXPOSE 8143
+
+CMD ["apache2ctl", "-D", "FOREGROUND"]
