@@ -1,5 +1,5 @@
 <?php
-// created: 2024-06-13 18:28:45
+// created: 2024-06-10 22:07:23
 $sugar_config = array (
   'addAjaxBannedModules' => 
   array (
@@ -41,11 +41,11 @@ $sugar_config = array (
   'aop' => 
   array (
     'distribution_method' => 'roundRobin',
-    'case_closure_email_template_id' => '8100f226-a355-a126-50b3-666b3ae60bcf',
-    'joomla_account_creation_email_template_id' => '8403c326-a810-300d-f185-666b3a7a73fd',
-    'case_creation_email_template_id' => '87307cad-2597-5b3f-c17e-666b3a99ddf0',
-    'contact_email_template_id' => '8d900595-2587-0d30-7821-666b3a965e1e',
-    'user_email_template_id' => '913f433c-b6f8-e620-316e-666b3a505c44',
+    'case_closure_email_template_id' => 'a6be2227-ee6f-b429-272c-66677935675b',
+    'joomla_account_creation_email_template_id' => 'aac2eee6-3ba5-05db-cafb-666779f3847c',
+    'case_creation_email_template_id' => 'ae228f84-23e9-5897-961a-6667791a80be',
+    'contact_email_template_id' => 'b641384a-6954-aa11-3b83-666779aa8954',
+    'user_email_template_id' => 'ba05a2d0-8044-eeb8-4584-666779198cd1',
   ),
   'aos' => 
   array (
@@ -122,13 +122,13 @@ $sugar_config = array (
   'dbUSRData' => 'same',
   'dbconfig' => 
   array (
-    'db_host_name' => 'mariadb-galera',
+    'db_host_name' => getenv('SUITE_DB_HOST'),
     'db_host_instance' => '',
-    'db_user_name' => 'bn_suitecrm',
-    'db_password' => 'bitnami123',
-    'db_name' => 'bitnami_suitecrm',
+    'db_user_name' => getenv('SUITE_DB_USER'),
+    'db_password' => getenv('SUITE_DB_PASSW'),
+    'db_name' => getenv('SUITE_DB_NAME'),
     'db_type' => 'mysql',
-    'db_port' => '',
+    'db_port' => getenv('SUITE_DB_PORT'),
     'db_manager' => 'MysqliManager',
     'collation' => NULL,
     'charset' => NULL,
@@ -190,7 +190,7 @@ $sugar_config = array (
   'display_inbound_email_buttons' => false,
   'dump_slow_queries' => false,
   'email_address_separator' => ',',
-  'email_confirm_opt_in_email_template_id' => 'e17fcbfa-8376-0bf0-5d52-666b3a0296a7',
+  'email_confirm_opt_in_email_template_id' => 'db733190-75b0-35c2-3015-6667790305af',
   'email_default_client' => 'sugar',
   'email_default_delete_attachments' => true,
   'email_default_editor' => 'html',
@@ -300,13 +300,13 @@ $sugar_config = array (
     'l s f' => 'l s f',
     'l f s' => 'l f s',
   ),
-  'oauth2_encryption_key' => 'QzyFCrtJfEBiovq9kUkqmxeze8m3VabP9XZpnFc6Blg=',
+  'oauth2_encryption_key' => getenv('OAUTH_KEY'),
   'passwordsetting' => 
   array (
     'SystemGeneratedPasswordON' => '',
-    'generatepasswordtmpl' => '30956570-a892-bfea-37fa-666b3aae01e7',
-    'lostpasswordtmpl' => '34e6287f-2b51-857c-90fc-666b3a7e7fe8',
-    'factoremailtmpl' => '3819895e-7810-d814-f5d6-666b3aaf9505',
+    'generatepasswordtmpl' => '58ad037f-6ebd-74c5-a766-666779825d7f',
+    'lostpasswordtmpl' => '5c4ecdb3-97f5-11df-e658-666779ac823e',
+    'factoremailtmpl' => '5fc72ba5-f65e-4abb-93bc-666779d022ea',
     'forgotpasswordON' => false,
     'linkexpiration' => '1',
     'linkexpirationtime' => '30',
@@ -354,7 +354,7 @@ $sugar_config = array (
       'host' => 'localhost',
       'user' => '',
       'pass' => '',
-      'index' => 'b350cc936d4e80bdcaa8b2faad87bb41',
+      'index' => 'd7f2343a3bbb28fdb7a9162b887a7aa9',
       'search_wildcard_char' => '%',
       'search_wildcard_infront' => true,
     ),
@@ -393,7 +393,7 @@ $sugar_config = array (
   'suitecrm_version' => '8.6.0',
   'system_email_templates' => 
   array (
-    'confirm_opt_in_template_id' => 'e17fcbfa-8376-0bf0-5d52-666b3a0296a7',
+    'confirm_opt_in_template_id' => 'db733190-75b0-35c2-3015-6667790305af',
   ),
   'system_name' => 'SuiteCRM',
   'time_formats' => 
@@ -413,7 +413,7 @@ $sugar_config = array (
   'tmp_dir' => 'cache/xml/',
   'tracker_max_display_length' => 15,
   'translation_string_prefix' => false,
-  'unique_key' => 'b350cc936d4e80bdcaa8b2faad87bb41',
+  'unique_key' => 'd7f2343a3bbb28fdb7a9162b887a7aa9',
   'upload_badext' => 
   array (
     0 => 'php',

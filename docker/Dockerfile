@@ -20,8 +20,8 @@ RUN a2enmod rewrite \
 COPY ./build/suitecrm /suitecrm
 COPY ./build/apache2 /etc/apache2
 COPY ./build/php/php.ini /usr/local/etc/php/php.ini
-COPY ./suitecrm-modified-files-builder/suitecrm/public/legacy/config_override.php /suitecrm/public/legacy/config_override.php
-COPY ./suitecrm-modified-files-builder/suitecrm/public/legacy/config.php /suitecrm/public/legacy/config.php
+# COPY ./suitecrm-modified-files-builder/suitecrm/public/legacy/config_override.php /suitecrm/public/legacy/config_override.php
+# COPY ./suitecrm-modified-files-builder/suitecrm/public/legacy/config.php /suitecrm/public/legacy/config.php
 
 # Removing .env.local file
 RUN rm /suitecrm/.env.local
