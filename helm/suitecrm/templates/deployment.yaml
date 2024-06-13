@@ -32,6 +32,8 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           env:
+            - name: APACHE_RUN_USER
+              value: root
             - name: SAML_IDP_ENTITY_ID
               value: https://{{.Values.Secrets.sso_domain}}/auth/realms/{{.Values.Secrets.sso_realm}}
             - name: SAML_ISP_SSO_URL
