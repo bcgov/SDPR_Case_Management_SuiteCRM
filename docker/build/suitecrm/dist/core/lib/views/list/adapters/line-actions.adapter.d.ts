@@ -1,0 +1,32 @@
+import { Action, ActionContext, Record, ViewMode } from 'common';
+import { Observable } from 'rxjs';
+import { AsyncActionService } from '../../../services/process/processes/async-action/async-action';
+import { MessageService } from '../../../services/message/message.service';
+import { Process } from '../../../services/process/process.service';
+import { ListViewStore } from '../store/list-view/list-view.store';
+import { LineActionActionManager } from '../../../components/table/line-actions/line-action-manager.service';
+import { BaseLineActionsAdapter } from '../../../components/table/adapters/base-line-actions.adapter';
+import { ConfirmationModalService } from '../../../services/modals/confirmation-modal.service';
+import { LanguageStore } from '../../../store/language/language.store';
+import { SelectModalService } from '../../../services/modals/select-modal.service';
+import { MetadataStore } from '../../../store/metadata/metadata.store.service';
+import { AppMetadataStore } from "../../../store/app-metadata/app-metadata.store.service";
+import * as i0 from "@angular/core";
+export declare class LineActionsAdapter extends BaseLineActionsAdapter {
+    protected store: ListViewStore;
+    protected actionManager: LineActionActionManager;
+    protected asyncActionService: AsyncActionService;
+    protected message: MessageService;
+    protected confirmation: ConfirmationModalService;
+    protected language: LanguageStore;
+    protected selectModalService: SelectModalService;
+    protected metadata: MetadataStore;
+    protected appMetadataStore: AppMetadataStore;
+    constructor(store: ListViewStore, actionManager: LineActionActionManager, asyncActionService: AsyncActionService, message: MessageService, confirmation: ConfirmationModalService, language: LanguageStore, selectModalService: SelectModalService, metadata: MetadataStore, appMetadataStore: AppMetadataStore);
+    getActions(context?: ActionContext): Observable<Action[]>;
+    protected getModuleName(record?: Record): string;
+    protected reload(action: Action, process: Process, record?: Record): void;
+    protected getMode(): ViewMode;
+    static ɵfac: i0.ɵɵFactoryDeclaration<LineActionsAdapter, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<LineActionsAdapter>;
+}

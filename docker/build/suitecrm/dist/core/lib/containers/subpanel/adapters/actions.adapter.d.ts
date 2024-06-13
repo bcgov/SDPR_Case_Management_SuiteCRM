@@ -1,0 +1,34 @@
+import { Action, ActionContext, ViewMode } from 'common';
+import { Observable } from 'rxjs';
+import { AsyncActionService } from '../../../services/process/processes/async-action/async-action';
+import { LanguageStore } from '../../../store/language/language.store';
+import { MessageService } from '../../../services/message/message.service';
+import { Process } from '../../../services/process/process.service';
+import { ConfirmationModalService } from '../../../services/modals/confirmation-modal.service';
+import { BaseRecordActionsAdapter } from '../../../services/actions/base-record-action.adapter';
+import { SelectModalService } from "../../../services/modals/select-modal.service";
+import { MetadataStore } from '../../../store/metadata/metadata.store.service';
+import { SubpanelActionManager } from "../components/subpanel/action-manager.service";
+import { SubpanelActionData } from "../actions/subpanel.action";
+import { SubpanelStore } from "../store/subpanel/subpanel.store";
+import { AppMetadataStore } from "../../../store/app-metadata/app-metadata.store.service";
+import * as i0 from "@angular/core";
+export declare class SubpanelActionsAdapter extends BaseRecordActionsAdapter<SubpanelActionData> {
+    protected store: SubpanelStore;
+    protected language: LanguageStore;
+    protected actionManager: SubpanelActionManager;
+    protected asyncActionService: AsyncActionService;
+    protected message: MessageService;
+    protected confirmation: ConfirmationModalService;
+    protected selectModalService: SelectModalService;
+    protected metadata: MetadataStore;
+    protected appMetadataStore: AppMetadataStore;
+    constructor(store: SubpanelStore, language: LanguageStore, actionManager: SubpanelActionManager, asyncActionService: AsyncActionService, message: MessageService, confirmation: ConfirmationModalService, selectModalService: SelectModalService, metadata: MetadataStore, appMetadataStore: AppMetadataStore);
+    getActions(context?: ActionContext): Observable<Action[]>;
+    protected buildActionData(action: Action, context?: ActionContext): SubpanelActionData;
+    protected getMode(): ViewMode;
+    protected getModuleName(context?: ActionContext): string;
+    protected reload(action: Action, process: Process, context?: ActionContext): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SubpanelActionsAdapter, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SubpanelActionsAdapter>;
+}

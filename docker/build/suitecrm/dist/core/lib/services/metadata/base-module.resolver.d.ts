@@ -1,0 +1,33 @@
+import { ActivatedRouteSnapshot } from '@angular/router';
+import { BaseMetadataResolver } from './base-metadata.resolver';
+import { ModuleNameMapper } from '../navigation/module-name-mapper/module-name-mapper.service';
+import { SystemConfigStore } from '../../store/system-config/system-config.store';
+import { LanguageStore } from '../../store/language/language.store';
+import { NavigationStore } from '../../store/navigation/navigation.store';
+import { UserPreferenceStore } from '../../store/user-preference/user-preference.store';
+import { ThemeImagesStore } from '../../store/theme-images/theme-images.store';
+import { AppStateStore } from '../../store/app-state/app-state.store';
+import { MetadataStore } from '../../store/metadata/metadata.store.service';
+import { MessageService } from '../message/message.service';
+import { RouteConverter } from "../navigation/route-converter/route-converter.service";
+import { AppMetadataStore } from '../../store/app-metadata/app-metadata.store.service';
+import { AuthService } from '../auth/auth.service';
+import * as i0 from "@angular/core";
+export declare class BaseModuleResolver extends BaseMetadataResolver {
+    protected systemConfigStore: SystemConfigStore;
+    protected languageStore: LanguageStore;
+    protected navigationStore: NavigationStore;
+    protected userPreferenceStore: UserPreferenceStore;
+    protected themeImagesStore: ThemeImagesStore;
+    protected moduleNameMapper: ModuleNameMapper;
+    protected appStateStore: AppStateStore;
+    protected metadataStore: MetadataStore;
+    protected messageService: MessageService;
+    protected routeConverter: RouteConverter;
+    protected appMetadata: AppMetadataStore;
+    protected auth: AuthService;
+    constructor(systemConfigStore: SystemConfigStore, languageStore: LanguageStore, navigationStore: NavigationStore, userPreferenceStore: UserPreferenceStore, themeImagesStore: ThemeImagesStore, moduleNameMapper: ModuleNameMapper, appStateStore: AppStateStore, metadataStore: MetadataStore, messageService: MessageService, routeConverter: RouteConverter, appMetadata: AppMetadataStore, auth: AuthService);
+    resolve(route: ActivatedRouteSnapshot): any;
+    static ɵfac: i0.ɵɵFactoryDeclaration<BaseModuleResolver, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<BaseModuleResolver>;
+}

@@ -1,0 +1,76 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<scrm-panel *ngIf="(vm$ | async) as vm"
+            [showHeader]="config.displayHeader"
+            [close]="store.closeButton"
+            [isCollapsed$]="store.isCollapsed$"
+            [mode]="store.panelMode"
+            klass="filter-panel m-0 {{ (config && config.klass) || ''}}"
+            [titleKey]="'LBL_BASIC_FILTER'"
+>
+
+    <div *ngIf="store.myFilterButton" panel-header-button>
+        <scrm-dropdown-button [config]="store.myFilterButton"></scrm-dropdown-button>
+    </div>
+
+    <div class="p-2 filter-body" panel-body>
+
+        <scrm-field-grid *ngIf="store.displayFields && store.displayFields.length"
+                         [actions]="true"
+                         [appendActions]="false"
+                         [fieldMode]="store.mode"
+                         [fields]="store.displayFields"
+                         [record]="vm"
+                         [special]="store.special.length > 0"
+                         (click)="onFocusSearch()"
+        >
+
+            <div *ngIf="store.special.length > 0" class="float-right mt-4" field-grid-special>
+
+                <div *ngFor="let item of store.special " class="d-inline-block form-check mb-2 mr-sm-2">
+
+                    <input class="form-check-input" type="checkbox" [value]="item.value">
+
+                    <label class="form-check-label">
+                        <scrm-label [labelKey]="item.labelKey"></scrm-label>
+                    </label>
+
+                </div>
+            </div>
+
+            <div *ngIf="store.gridButtons" class="mt-4 align-self-end" field-grid-actions>
+                <scrm-button *ngFor="let button of store.gridButtons" [config]="button"></scrm-button>
+            </div>
+        </scrm-field-grid>
+
+        <ng-container *ngIf="config && config.savedFilterEdit && store.filterStore.getMode() !== 'detail'">
+            <scrm-record-grid [config]="gridConfig" (click)="onFocusSave()"></scrm-record-grid>
+        </ng-container>
+    </div>
+
+</scrm-panel>

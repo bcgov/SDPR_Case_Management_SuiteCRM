@@ -1,0 +1,206 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+// Core variables and mixins
+@import "color-palette";
+@import "variables";
+@import "icons";
+@import "../bootstrap/mixins";
+
+// Reset and dependencies
+@import "../bootstrap/normalize";
+@import "../bootstrap/print";
+@import "../bootstrap/glyphicons";
+
+// Core CSS
+@import "../bootstrap/scaffolding";
+@import "../bootstrap/type";
+@import "../bootstrap/code";
+@import "../bootstrap/grid";
+@import "../bootstrap/tables";
+@import "../bootstrap/forms";
+@import "../bootstrap/buttons";
+
+// Components
+@import "../bootstrap/component-animations";
+@import "../bootstrap/dropdowns";
+@import "../bootstrap/button-groups";
+@import "../bootstrap/input-groups";
+@import "../bootstrap/navs";
+@import "../bootstrap/navbar";
+@import "../bootstrap/breadcrumbs";
+@import "../bootstrap/pager";
+@import "../bootstrap/labels";
+@import "../bootstrap/badges";
+@import "../bootstrap/jumbotron";
+@import "../bootstrap/thumbnails";
+@import "../bootstrap/alerts";
+@import "../bootstrap/progress-bars";
+@import "../bootstrap/media";
+@import "../bootstrap/list-group";
+@import "../bootstrap/panels";
+@import "../bootstrap/responsive-embed";
+@import "../bootstrap/wells";
+@import "../bootstrap/close";
+
+// Components w/ JavaScript
+@import "../bootstrap/modals";
+@import "../bootstrap/tooltip";
+@import "../bootstrap/popovers";
+@import "../bootstrap/carousel";
+
+// Utility classes
+@import "../bootstrap/utilities";
+@import "../bootstrap/responsive-utilities";
+
+// Generated Glyphs
+@import '../suitep-base/suitepicon-glyphs';
+// Font fixes
+@import '../suitep-base/suitepicon';
+
+/**suite8 Theme Base Styles**/
+@import '../suitep-base/mixins';
+@import '../suitep-base/main';
+@import '../suitep-base/aor';
+@import '../suitep-base/aow';
+@import '../suitep-base/sidebar';
+@import '../suitep-base/navbar';
+@import '../suitep-base/login';
+@import '../suitep-base/forms';
+@import '../suitep-base/dashboard';
+@import '../suitep-base/dashboard-mobile';
+@import '../suitep-base/listview';
+@import '../suitep-base/listview-mobile';
+@import '../suitep-base/detailview';
+@import '../suitep-base/editview';
+@import '../suitep-base/tabs';
+@import '../suitep-base/tabs-mobile';
+@import '../suitep-base/panels';
+@import '../suitep-base/admin';
+@import '../suitep-base/campaigns';
+@import '../suitep-base/yui';
+@import '../suitep-base/cases';
+@import '../suitep-base/convertlead';
+@import '../suitep-base/calendar';
+@import '../suitep-base/email';
+@import '../suitep-base/modal';
+@import '../suitep-base/popup';
+@import '../suitep-base/studio';
+@import '../suitep-base/tinemce.scss';
+@import '../suitep-base/jstree';
+@import '../suitep-base/search';
+@import '../suitep-base/inbound-email';
+@import '../suitep-base/userprofile';
+@import '../suitep-base/system-settings';
+@import '../suitep-base/project-resource';
+@import '../suitep-base/dashboard_settingsmodal';
+@import '../suitep-base/roles-management';
+@import '../suitep-base/email-settings';
+@import '../suitep-base/email-sendmail';
+@import '../suitep-base/currency-view';
+@import '../suitep-base/password-management';
+@import '../suitep-base/role-create';
+@import '../suitep-base/admin-locale';
+@import '../suitep-base/iframe-modal';
+@import '../suitep-base/aos-settings';
+@import '../suitep-base/business-hours';
+@import '../suitep-base/input-form';
+@import '../suitep-base/aop-settings';
+@import '../suitep-base/role-list';
+@import '../suitep-base/homepage-dashlet-modal';
+@import '../suitep-base/security-suite-setting';
+@import '../suitep-base/admin-diagnostic';
+@import '../suitep-base/theme-setting';
+@import '../suitep-base/admin-language';
+@import '../suitep-base/activity-stream';
+@import '../suitep-base/campaign-email';
+@import '../suitep-base/display-module';
+@import '../suitep-base/rename-modules';
+@import '../suitep-base/configure-menu-module';
+@import '../suitep-base/scrollbar';
+@import '../suitep-base/history-subpanel';
+@import '../suitep-base/admin-release';
+@import '../suitep-base/admin-oauth';
+@import '../suitep-base/maps';
+@import '../suitep-base/reports';
+@import '../suitep-base/user-setup';
+@import '../suitep-base/meetings';
+@import '../suitep-base/userprofile-settings-modal.scss';
+@import '../suitep-base/forgot-password.scss';
+@import '../suitep-base/scheduler.scss';
+@import '../suitep-base/admin-backup.scss';
+@import '../suitep-base/admin-import.scss';
+@import '../suitep-base/oauth-consumer-key.scss';
+@import '../suitep-base/connector.scss';
+@import '../suitep-base/admin-google-maps.scss';
+@import '../suitep-base/email-queue.scss';
+@import '../suitep-base/module-builder.scss';
+@import '../suitep-base/calls.scss';
+@import '../suitep-base/notes.scss';
+@import '../suitep-base/invoices.scss';
+@import '../suitep-base/contracts.scss';
+@import '../suitep-base/configure-settings.scss';
+@import '../suitep-base/gantt-chart.scss';
+@import '../suitep-base/event-delegates.scss';
+@import '../suitep-base/user-wizard.scss';
+@import '../suitep-base/message-box.scss';
+@import '../suitep-base/pdf-templates-modal.scss';
+@import '../suitep-base/email-templates.scss';
+@import '../suitep-base/merge-records.scss';
+@import '../suitep-base/user-wizard-mobile.scss';
+@import '../suitep-base/currency-mobile.scss';
+@import '../suitep-base/system-settings-mobile.scss';
+@import '../suitep-base/pdf-settings.scss';
+@import '../suitep-base/admin-locale-mobile.scss';
+@import '../suitep-base/search-settings.scss';
+@import '../suitep-base/elastic-search-settings.scss';
+@import '../suitep-base/sales-settings-mobile.scss';
+@import '../suitep-base/history-subpanel-mobile.scss';
+@import '../suitep-base/maps-quickradius.scss';
+@import '../suitep-base/activity-stream-mobile.scss';
+@import '../suitep-base/outbound-email.scss';
+@import '../suitep-base/case-settings-mobile.scss';
+@import '../suitep-base/business-hours-mobile.scss';
+@import '../suitep-base/connector-mobile.scss';
+@import '../suitep-base/admin-language-mobile.scss';
+@import '../suitep-base/outbound-dialog.scss';
+@import '../suitep-base/display-modules-mobile.scss';
+@import '../suitep-base/Duplicates.scss';
+@import '../suitep-base/surveys.scss';
+@import '../suitep-base/outboundemail-mobile.scss';
+@import '../suitep-base/importvcard.scss';
+@import '../suitep-base/campaign-mobile.scss';
+@import '../suitep-base/inboundemail-mobile.scss';
+@import '../suitep-base/email-queue-mobile.scss';
+@import '../suitep-base/aos-product.scss';
+@import '../suitep-base/editview-actionbtn.scss';
+@import '../suitep-base/listview-filter.scss';
+@import '../suitep-base/listview-columnchooser.scss';
+@import '../suitep-base/email-compose.scss';
+@import '../suitep-base/reminders-panel.scss';
+@import '../suitep-base/editviewbutton-mobile.scss';
+@import '../suitep-base/flex.scss';
+@import '../suitep-base/unified-search.scss';
+//

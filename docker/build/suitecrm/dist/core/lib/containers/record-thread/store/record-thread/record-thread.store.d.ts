@@ -1,0 +1,34 @@
+import { RecordListStoreFactory } from '../../../../store/record-list/record-list.store.factory';
+import { RecordStoreList } from './base-record-thread.store';
+import { Observable } from 'rxjs';
+import { ActionContext, Record, SearchCriteria } from 'common';
+import { RecordThreadItemStoreFactory } from './record-thread-item.store.factory';
+import { RecordThreadItemMetadata } from './record-thread-item.store.model';
+import { RecordThreadItemStore } from './record-thread-item.store';
+import { RecordThreadListMetadata } from "./record-thread-list.store.model";
+import * as i0 from "@angular/core";
+export declare class RecordThreadStore extends RecordStoreList<RecordThreadItemStore, RecordThreadItemMetadata> {
+    protected listStoreFactory: RecordListStoreFactory;
+    protected recordStoreFactory: RecordThreadItemStoreFactory;
+    itemMetadata: RecordThreadItemMetadata;
+    listMetadata: RecordThreadListMetadata;
+    $loading: Observable<boolean>;
+    autoRefreshEnabled: boolean;
+    constructor(listStoreFactory: RecordListStoreFactory, recordStoreFactory: RecordThreadItemStoreFactory);
+    init(module: string, load?: boolean, pageSize?: number): void;
+    setFilters(filters: SearchCriteria): Observable<Record[]>;
+    getItemMetadata(): RecordThreadItemMetadata;
+    getListMetadata(): RecordThreadListMetadata;
+    setItemMetadata(meta: RecordThreadItemMetadata): RecordThreadItemMetadata;
+    setListMetadata(meta: RecordThreadListMetadata): RecordThreadListMetadata;
+    allLoaded(): boolean;
+    loadMore(jump?: number): void;
+    reload(): void;
+    getViewContext(): ActionContext;
+    initAutoRefresh(autoRefreshFrequency: number, min: number, max: number, onRefresh: Function): Observable<number>;
+    disableAutoRefresh(): void;
+    getAutoRefreshTime(autoRefreshFrequency: number, min: number, max: number): number;
+    getRandomDeviation(min: any, max: any): number;
+    static ɵfac: i0.ɵɵFactoryDeclaration<RecordThreadStore, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<RecordThreadStore>;
+}
