@@ -1,5 +1,8 @@
 FROM php:8.2-apache AS builder
 
+ENV APACHE_RUN_USER=www-data
+ENV APACHE_RUN_GROUP=root
+
 WORKDIR /
 
 # Update and upgrade and install required packages
