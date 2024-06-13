@@ -1,0 +1,21 @@
+Thu Jun 13 18:28:26 2024 [30][-none-][FATAL] Mysqli_query failed.
+Thu Jun 13 18:28:26 2024 [30][-none-][FATAL]  Query Failed: SELECT id, name, symbol, conversion_rate FROM currencies WHERE status = 'Active' and deleted = 0: MySQL error 1146: Table 'bitnami_suitecrm.currencies' doesn't exist
+Thu Jun 13 18:28:26 2024 [30][-none-][FATAL] Mysqli_query failed.
+Thu Jun 13 18:28:26 2024 [30][-none-][FATAL]  Query Failed: SELECT * FROM fields_meta_data WHERE  custom_module='Users' AND  deleted = 0: MySQL error 1146: Table 'bitnami_suitecrm.fields_meta_data' doesn't exist
+Thu Jun 13 18:28:26 2024 [30][-none-][FATAL] Mysqli_query failed.
+Thu Jun 13 18:28:26 2024 [30][-none-][FATAL]  Query Failed: SELECT * FROM fields_meta_data WHERE  custom_module='Employees' AND  deleted = 0: MySQL error 1146: Table 'bitnami_suitecrm.fields_meta_data' doesn't exist
+Thu Jun 13 18:28:27 2024 [30][-none-][FATAL] Mysqli_query failed.
+Thu Jun 13 18:28:27 2024 [30][-none-][FATAL]  Query Failed: SELECT * FROM fields_meta_data WHERE  custom_module='UserPreferences' AND  deleted = 0: MySQL error 1146: Table 'bitnami_suitecrm.fields_meta_data' doesn't exist
+Thu Jun 13 18:28:27 2024 [30][-none-][FATAL] Mysqli_query failed.
+Thu Jun 13 18:28:27 2024 [30][-none-][FATAL]  Query Failed: SELECT * FROM fields_meta_data WHERE  custom_module='Administration' AND  deleted = 0: MySQL error 1146: Table 'bitnami_suitecrm.fields_meta_data' doesn't exist
+Thu Jun 13 18:28:27 2024 [30][-none-][FATAL] Mysqli_query failed.
+Thu Jun 13 18:28:27 2024 [30][-none-][FATAL] Unable to retrieve system settings Query Failed: SELECT category, name, value FROM config: MySQL error 1146: Table 'bitnami_suitecrm.config' doesn't exist
+Thu Jun 13 18:28:38 2024 [33][1][SECURITY] OutboundEmail::checkSavePermissions - not logged in - skipping check
+Thu Jun 13 18:28:38 2024 [33][1][FATAL] User update error: Temp User is not retrieved at ID 1, boolean given
+Thu Jun 13 18:28:39 2024 [33][1][FATAL] Email address save error
+Thu Jun 13 18:28:45 2024 [33][1][SECURITY] Invalid ext  logger_file_ext : ''.
+Thu Jun 13 18:28:45 2024 [33][1][SECURITY] Setting logger_file_ext to '.log'.
+Thu Jun 13 18:28:45 2024 [33][1][SECURITY] Setting logger_file_name to ''.
+Thu Jun 13 18:28:45 2024 [33][1][SECURITY] Log file extension can't be blank.
+Thu Jun 13 18:28:45 2024 [33][1][SECURITY] Setting logger_file_name to ''.
+Thu Jun 13 18:28:45 2024 [33][1][SECURITY] Log file extension can't be blank.

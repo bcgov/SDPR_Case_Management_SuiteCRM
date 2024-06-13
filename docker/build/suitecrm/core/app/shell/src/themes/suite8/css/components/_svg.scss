@@ -1,0 +1,304 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+/* --------- SVG SECTION ---------- */
+
+.home-nav-link svg {
+  fill: rgba(255, 255, 255, 0.8);
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.2em;
+  height: 1.5em;
+  margin-top: -0.2em;
+}
+
+.home-nav-link .sicon svg {
+  width: 1.2em;
+  height: 1.5em;
+}
+
+.action-link svg,
+.action-link svg path,
+.action-link svg polygon {
+  fill: $white;
+  margin: 0 0.8em 0 0;
+}
+
+.action-link:hover svg,
+.action-link:hover svg path,
+.action-link:hover svg polygon {
+  fill: $salmon-pink;
+}
+
+.nav-link {
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+.action_btn_alert .dropdown-menu svg,
+.action_btn_favourite .dropdown-menu svg,
+.action_btn_new .dropdown-menu svg {
+  margin: 0 0.3em 0 0;
+}
+
+.action_btn_alert .dropdown-menu svg path {
+  fill: $burnt-red;
+}
+
+.action_btn_favourite .dropdown-menu svg path {
+  fill: $mellow-yellow;
+}
+
+.action_btn_new .dropdown-menu svg polygon {
+  fill: $sky-blue;
+}
+
+.line-action-item {
+  padding: 0.2em;
+  background: none;
+}
+
+.line-action svg polygon {
+  fill: $sky-blue;
+}
+
+.line-action svg {
+  fill: $sky-blue;
+}
+
+.line-action:hover svg {
+  fill: $bright-purple;
+}
+
+
+.back-to-top svg {
+  width: 1em;
+  height: 1em;
+  margin: 0 0.5em;
+}
+
+.back-to-top svg polygon {
+  fill: $midnight-grey;
+}
+
+.back-to-top svg polygon {
+  fill: $midnight-grey;
+}
+
+.sicon svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.sicon-xs svg {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+.sicon-2x svg {
+  width: 1.9em;
+  height: 1.9em;
+}
+
+.sicon-3x svg {
+  width: 3.8em;
+  height: 3.8em;
+}
+
+.sicon-4x svg {
+  width: 7.5em;
+  height: 7.5em;
+}
+
+.sicon-5x svg {
+  width: 15em;
+  height: 15em;
+}
+
+.recent-link scrm-svg-icon > svg {
+  margin: 0.3em 0.8em 0.8em 0;
+}
+
+.action-btn-icon {
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+  }
+}
+
+.search-mobile-view svg {
+  fill: $white;
+}
+
+.action-link.primary-global-link svg path {
+  fill: $white;
+}
+
+.action-new .dropdown-menu svg polygon {
+  fill: $complementary;
+}
+
+.action-history .dropdown-menu svg g {
+  fill: $complementary;
+}
+
+.navbar-toggler:hover svg path {
+  stroke: $salmon-pink;
+}
+
+.back-to-top svg {
+  width: 1em;
+  height: 1em;
+  margin: 0 0.5em;
+}
+
+.back-to-top svg polygon {
+  fill: $midnight-grey;
+}
+
+.login-form {
+  svg {
+    width: 1.2em;
+    height: 1.2em;
+    margin: 1em;
+
+    path,
+    polygon,
+    rect {
+      fill: $powdered-blue;
+    }
+  }
+}
+
+.list-view-settings svg {
+  fill: $white;
+  margin: 0 0.5em 0 0;
+}
+
+.record-view-actions svg {
+  fill: $white;
+  margin: 0 0.5em 0 0;
+}
+
+.sort-icon {
+  fill: $light-grey;
+  margin: 0 0.2em;
+}
+
+.pagination-icons {
+  fill: $white;
+  margin: 0;
+  svg {
+    vertical-align: bottom;
+    width: 1.7em;
+    height: 1.7em;
+  }
+}
+
+.widget-close-icon svg {
+  fill: $white;
+  cursor: pointer;
+}
+
+.widget-button-icon {
+  fill: $white;
+  margin: 0 0.5em 0 0;
+  vertical-align: middle;
+}
+
+.remove-button svg {
+  fill: $sky-blue;
+}
+
+.expand-table-row svg {
+  fill: $sky-blue;
+}
+
+.modal .close svg {
+  fill: $white;
+}
+
+.info-icon {
+  margin: 0 0 0 0.5em;
+}
+
+.info-icon svg circle {
+  fill: $white;
+}
+
+.info-icon svg path {
+  fill: $dusty-grey;
+}
+
+.create-popup-arrow svg {
+  width: 1.2em;
+}
+
+.create-popup-cross svg {
+  width: 0.75em;
+  height: 0.75em;
+}
+
+.create-popup-arrow svg polygon,
+.create-popup-cross svg polygon,
+.create-popup-calendar svg * {
+  fill: #c3c1c9;
+}
+
+.list-data-icon {
+  margin: 0;
+  padding: 0;
+}
+
+.list-data-icon svg {
+  fill: #aa9dcc;
+  margin: 0;
+  padding: 0;
+}
+
+.back-top-icon {
+  margin: 0;
+  padding: 0;
+}
+
+.responsive-menu-toggler svg path {
+  fill: $off-white;
+}
+
+.mobile-nav-icon {
+  svg{
+    fill: $off-white;
+    stroke: $off-white;
+    width: 1.4em;
+    height: 1.4em;
+  }
+  svg polygon {
+    vertical-align: middle;
+    fill: $off-white;
+  }
+}

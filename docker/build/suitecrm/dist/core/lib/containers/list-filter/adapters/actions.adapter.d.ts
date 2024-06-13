@@ -1,0 +1,40 @@
+import { Action, ActionContext, ViewMode } from 'common';
+import { Observable } from 'rxjs';
+import { AsyncActionService } from '../../../services/process/processes/async-action/async-action';
+import { LanguageStore } from '../../../store/language/language.store';
+import { MessageService } from '../../../services/message/message.service';
+import { Process } from '../../../services/process/process.service';
+import { SavedFilterStore } from '../store/saved-filter/saved-filter.store';
+import { SavedFilterActionManager } from '../actions/saved-filter-action-manager.service';
+import { SavedFilterActionData } from '../actions/saved-filter.action';
+import { ListFilterStore } from '../store/list-filter/list-filter.store';
+import { ConfirmationModalService } from '../../../services/modals/confirmation-modal.service';
+import { BaseRecordActionsAdapter } from '../../../services/actions/base-record-action.adapter';
+import { SelectModalService } from "../../../services/modals/select-modal.service";
+import { MetadataStore } from '../../../store/metadata/metadata.store.service';
+import { AppMetadataStore } from "../../../store/app-metadata/app-metadata.store.service";
+import * as i0 from "@angular/core";
+export declare class SavedFilterActionsAdapter extends BaseRecordActionsAdapter<SavedFilterActionData> {
+    protected store: SavedFilterStore;
+    protected listFilterStore: ListFilterStore;
+    protected language: LanguageStore;
+    protected actionManager: SavedFilterActionManager;
+    protected asyncActionService: AsyncActionService;
+    protected message: MessageService;
+    protected confirmation: ConfirmationModalService;
+    protected selectModalService: SelectModalService;
+    protected metadata: MetadataStore;
+    protected appMetadataStore: AppMetadataStore;
+    actions: {
+        [key: string]: Action;
+    };
+    constructor(store: SavedFilterStore, listFilterStore: ListFilterStore, language: LanguageStore, actionManager: SavedFilterActionManager, asyncActionService: AsyncActionService, message: MessageService, confirmation: ConfirmationModalService, selectModalService: SelectModalService, metadata: MetadataStore, appMetadataStore: AppMetadataStore);
+    getActions(context?: ActionContext): Observable<Action[]>;
+    run(actionKey: string): void;
+    protected buildActionData(action: Action, context?: ActionContext): SavedFilterActionData;
+    protected getMode(): ViewMode;
+    protected getModuleName(context?: ActionContext): string;
+    protected reload(action: Action, process: Process, context?: ActionContext): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SavedFilterActionsAdapter, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SavedFilterActionsAdapter>;
+}

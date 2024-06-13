@@ -1,0 +1,37 @@
+import { Action, ActionContext, ViewMode } from 'common';
+import { Observable } from 'rxjs';
+import { AsyncActionService } from '../../../services/process/processes/async-action/async-action';
+import { LanguageStore } from '../../../store/language/language.store';
+import { MessageService } from '../../../services/message/message.service';
+import { Process } from '../../../services/process/process.service';
+import { ConfirmationModalService } from '../../../services/modals/confirmation-modal.service';
+import { BaseRecordActionsAdapter } from '../../../services/actions/base-record-action.adapter';
+import { RecordPanelActionData } from '../../../containers/record-panel/components/record-panel/record-panel.model';
+import { RecordPanelStore } from '../../../containers/record-panel/store/record-panel/record-panel.store';
+import { RecordPanelActionManager } from '../actions/record-panel/record-panel-action-manager.service';
+import { ListViewStore } from '../store/list-view/list-view.store';
+import { SelectModalService } from '../../../services/modals/select-modal.service';
+import { MetadataStore } from '../../../store/metadata/metadata.store.service';
+import { AppMetadataStore } from "../../../store/app-metadata/app-metadata.store.service";
+import * as i0 from "@angular/core";
+export declare class ListViewRecordPanelActionsAdapter extends BaseRecordActionsAdapter<RecordPanelActionData> {
+    protected store: RecordPanelStore;
+    protected listStore: ListViewStore;
+    protected language: LanguageStore;
+    protected actionManager: RecordPanelActionManager;
+    protected asyncActionService: AsyncActionService;
+    protected message: MessageService;
+    protected confirmation: ConfirmationModalService;
+    protected selectModalService: SelectModalService;
+    protected metadata: MetadataStore;
+    protected appMetadataStore: AppMetadataStore;
+    collapseButtons: boolean;
+    constructor(store: RecordPanelStore, listStore: ListViewStore, language: LanguageStore, actionManager: RecordPanelActionManager, asyncActionService: AsyncActionService, message: MessageService, confirmation: ConfirmationModalService, selectModalService: SelectModalService, metadata: MetadataStore, appMetadataStore: AppMetadataStore);
+    getActions(context?: ActionContext): Observable<Action[]>;
+    protected buildActionData(action: Action, context?: ActionContext): RecordPanelActionData;
+    protected getMode(): ViewMode;
+    protected getModuleName(context?: ActionContext): string;
+    protected reload(action: Action, process: Process, context?: ActionContext): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ListViewRecordPanelActionsAdapter, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ListViewRecordPanelActionsAdapter>;
+}
