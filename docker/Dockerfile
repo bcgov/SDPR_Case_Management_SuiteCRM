@@ -33,7 +33,8 @@ RUN adduser www-data root \
 && find . -type d -not -perm 2775 -exec chmod 2775 {} \; \
 && find . -type f -not -perm 0644 -exec chmod 0644 {} \; \
 && find . ! -user www-data -exec chown www-data:root {} \; \
-&& chmod -R g+rwx /suitecrm
+&& chmod -R g+rwx /suitecrm \
+&& rm /var/run/apache2/apache2.pid
 
 # Bundling and building SuiteCRM theme modifications
 RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/suite8/css/Dawn/style.css --style compressed \ 
@@ -42,6 +43,10 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:common \
 && yarn run build:core \
 && yarn run build:shell
+
+USER root
+
+RUN rm -f /var/run/apache2/apache2.pid
 
 # Exposed ports
 EXPOSE 8181
