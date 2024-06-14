@@ -1,8 +1,5 @@
 FROM php:8.2-apache AS builder
 
-ENV APACHE_RUN_USER=www-data
-ENV APACHE_RUN_GROUP=root
-
 WORKDIR /
 
 # Update and upgrade and install required packages
@@ -46,8 +43,8 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:core \
 && yarn run build:shell
 
+USER root
+
 # Exposed ports
 EXPOSE 8181
 EXPOSE 8143
-
-CMD ["apache2ctl", "-D", "FOREGROUND"]
