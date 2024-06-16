@@ -72,14 +72,14 @@ spec:
             - name: SUITE_DB_HOST
               value: suitecrm-mariadb-galera
             - name: SUITE_DB_USER
-              value: {{.Values.Secrets.mariadbuser}}
+              value: {{ index (index (index .Values "mariadb-galera") "db") "user" }}
             - name: SUITE_DB_PASSW
               valueFrom:
                 secretKeyRef:
                   name: suitecrm-mariadb-galera
                   key: mariadb-password
             - name: SUITE_DB_NAME
-              value: {{.Values.Secrets.mariadbname}}
+              value: {{ index (index (index .Values "mariadb-galera") "db") "name" }}
             - name: SUITE_DB_PORT
               value: '3306'
             - name: DATABASE_URL
