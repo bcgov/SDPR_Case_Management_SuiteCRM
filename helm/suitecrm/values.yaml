@@ -39,21 +39,21 @@ mariadb-galera:
   enabled: true
   galera:
     mariabackup:
-      password: {{tpl .Values.Secrets.mariabackuppwd .}}
+      password: "{{tpl .Values.Secrets.mariabackuppwd .}}"
   rootUser:
-    password: {{tpl .Values.Secrets.mariarootpwd .}}
+    password: "{{tpl .Values.Secrets.mariarootpwd .}}"
   db:
     ## @param db.user Username of new user to create
     ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-user-on-first-run
     ##
-    user: {{tpl .Values.Secrets.mariadbuser .}}
+    user: "{{tpl .Values.Secrets.mariadbuser .}}"
     ## @param db.password Password for the new user. Ignored if existing secret is provided.
     ##
-    password: {{tpl .Values.Secrets.mariadbpwd .}}
+    password: "{{tpl .Values.Secrets.mariadbpwd .}}"
     ## @param db.name Name for new database to create
     ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-on-first-run
     ##
-    name: {{tpl .Values.Secrets.mariadbname .}}
+    name: "{{tpl .Values.Secrets.mariadbname .}}"
   podSecurityContext:
     enabled: false
   containerSecurityContext:
