@@ -3,11 +3,6 @@
 ## To generate a new one, run on any host> php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'
 
 Secrets:
-  mariabackuppwd: "changeme"
-  mariarootpwd: "changeme"
-  mariadbuser: "changeme"
-  mariadbpwd: "changeme"
-  mariadbname: "changeme"
   suitecrmadminpwd: "changeme"
   suitecrmhost: "suitecrmdemo-dev.apps.gold.devops.gov.bc.ca"
   sso_domain: "keycloakservername"
@@ -39,21 +34,21 @@ mariadb-galera:
   enabled: true
   galera:
     mariabackup:
-      password: {{tpl .Values.Secrets.mariabackuppwd .}}
+      password: changeme
   rootUser:
-    password: {{tpl .Values.Secrets.mariarootpwd .}}
+    password: changeme
   db:
     ## @param db.user Username of new user to create
     ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-user-on-first-run
     ##
-    user: {{tpl .Values.Secrets.mariadbuser .}}
+    user: changeme
     ## @param db.password Password for the new user. Ignored if existing secret is provided.
     ##
-    password: {{tpl .Values.Secrets.mariadbpwd .}}
+    password: changeme
     ## @param db.name Name for new database to create
     ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-on-first-run
     ##
-    name: {{tpl .Values.Secrets.mariadbname .}}
+    name: changeme
   podSecurityContext:
     enabled: false
   containerSecurityContext:
