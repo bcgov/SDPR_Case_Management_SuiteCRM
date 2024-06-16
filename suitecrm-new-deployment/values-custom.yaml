@@ -1,0 +1,147 @@
+## helm dependency update ./suitecrm
+## helm install suitecrm ./suitecrm/ -f <customfile.yaml>
+## To generate a new one, run on any host> php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'
+
+Secrets:
+  mariabackuppwd: "changeme"
+  mariarootpwd: "changeme"
+  mariadbuser: "changeme"
+  mariadbpwd: "changeme"
+  mariadbname: "changeme"
+  suitecrmadminpwd: "changeme"
+  suitecrmhost: "suitecrmdemo-dev.apps.gold.devops.gov.bc.ca"
+  sso_domain: "keycloakservername"
+  sso_realm: "standard"
+  sso_clientid: "keycloakclientid"
+  sso_idp_x509: "getfromsso"
+  oauthkey:  "changeme"
+
+## Dependency Redis Cluster
+redis-cluster:
+  persistence:
+    size: 100Mi
+  redis:
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "50Mi"
+      limits:
+        cpu: "50m"
+        memory: "250Mi"
+  global:
+    redis:
+      password: "changeme"
+  usePassword: false
+
+## Dependency HA DB
+
+mariadb-galera:
+  enabled: true
+  galera:
+    mariabackup:
+      password: {{tpl .Values.Secrets.mariabackuppwd .}}
+  rootUser:
+    password: {{tpl .Values.Secrets.mariarootpwd .}}
+  db:
+    ## @param db.user Username of new user to create
+    ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-user-on-first-run
+    ##
+    user: {{tpl .Values.Secrets.mariadbuser .}}
+    ## @param db.password Password for the new user. Ignored if existing secret is provided.
+    ##
+    password: {{tpl .Values.Secrets.mariadbpwd .}}
+    ## @param db.name Name for new database to create
+    ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-on-first-run
+    ##
+    name: {{tpl .Values.Secrets.mariadbname .}}
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+  replicaCount: 1
+  persistence:
+    size: 2G
+
+# Default values for suitecrm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/bcgovsuitecrm
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+
+ingress:
+  ingressClassName: "openshift-default"
+  annotations:
+  enabled: true # create an ingress for this component
+  hostname: "{{tpl .Values.Secrets.suitecrmhost .}}"
+  port: 8181
+  tls: true
+  selfSigned: false
+  extraTls:
+    - {}
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# Additional volumes on the output Deployment definition.
+volumes:
+  - name: shared-uploads
+    persistentVolumeClaim:
+      claimName: cbsuitecrm-uploads-shared
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: 
+  - name: shared-uploads
+    mountPath: /suitecrm/public/legacy/upload
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
+persistence:
+  enabled: true
+  accessModes: 
+    - ReadWriteMany
+  size: 1G
+nodeSelector: {}
+tolerations: []
+affinity: {}
