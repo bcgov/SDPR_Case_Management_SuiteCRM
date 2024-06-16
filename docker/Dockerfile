@@ -43,8 +43,6 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:core \
 && yarn run build:shell
 
-USER root
-
 # Exposed ports
 EXPOSE 8181
 EXPOSE 8143
