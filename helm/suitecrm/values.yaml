@@ -5,7 +5,9 @@
 Secrets:
   mariabackuppwd: "changeme"
   mariarootpwd: "changeme"
+  mariadbuser: "changeme"
   mariadbpwd: "changeme"
+  mariadbname: "changeme"
   suitecrmadminpwd: "changeme"
   suitecrmhost: "suitecrmdemo-dev.apps.gold.devops.gov.bc.ca"
   sso_domain: "keycloakservername"
@@ -37,21 +39,21 @@ mariadb-galera:
   enabled: true
   galera:
     mariabackup:
-      password: changeme
+      password: {{tpl .Values.Secrets.mariabackuppwd .}}
   rootUser:
-    password: changeme
+    password: {{tpl .Values.Secrets.mariarootpwd .}}
   db:
     ## @param db.user Username of new user to create
     ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-user-on-first-run
     ##
-    user: "cbsuite_adm"
+    user: {{tpl .Values.Secrets.mariadbuser .}}
     ## @param db.password Password for the new user. Ignored if existing secret is provided.
     ##
-    password: changeme
+    password: {{tpl .Values.Secrets.mariadbpwd .}}
     ## @param db.name Name for new database to create
     ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-on-first-run
     ##
-    name: cb_suitecrm
+    name: {{tpl .Values.Secrets.mariadbname .}}
   podSecurityContext:
     enabled: false
   containerSecurityContext:
@@ -67,7 +69,7 @@ mariadb-galera:
 replicaCount: 1
 
 image:
-  repository: image-registry.openshift-image-registry.svc:5000/d1f241-tools/bcgovsuitecrm
+  repository: image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/bcgovsuitecrm
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
