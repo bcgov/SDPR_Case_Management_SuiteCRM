@@ -1,25 +1,26 @@
 hslavich_onelogin_saml:
   # Basic settings
   idp:
-    entityId: 'https://id.example.com/saml2/idp/metadata.php'
+    entityId: '%env(SAML_IDP_ENTITY_ID)%'
     singleSignOnService:
-      url: 'https://id.example.com/saml2/idp/SSOService.php'
-      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
-    singleLogoutService:
-      url: 'https://id.example.com/saml2/idp/SingleLogoutService.php'
-      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
-    x509cert: 'MIIC...'
-  sp:
-    entityId: 'https://myapp.com/saml/metadata'
-    assertionConsumerService:
-      url: 'https://myapp.com/saml/acs'
+      url: '%env(SAML_ISP_SSO_URL)%'
       binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
     singleLogoutService:
-      url: 'https://myapp.com/saml/logout'
+      url: '%env(SAML_IDP_LOGOUT_URL)%'
       binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
-    privateKey: '/var/www/html/docroot/certs/key.pem'
+    x509cert: '%env(SAML_IDP_X509)%'
+  sp:
+    entityId: '%env(SAML_SP_ENTITY_ID)%'
+    assertionConsumerService:
+      url: '%env(SAML_SP_ASSERTION_URL)%'
+      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
+    singleLogoutService:
+      url: '%env(SAML_SP_SINGLE_LOGOUT)%'
+      binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+    privateKey: '%env(SAML_SP_PRIVATE_KEY)%'
+    x509cert: '%env(SAML_SP_X509)%'
   # Optional settings
-  baseurl: 'https://myapp.com/saml/'
+  baseurl: '%env(SAML_SP_BASE_URL)%'
   strict: true
   debug: true
   security:
