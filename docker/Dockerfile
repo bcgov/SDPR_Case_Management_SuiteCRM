@@ -34,7 +34,7 @@ RUN adduser www-data root \
 && find . -type f -not -perm 0644 -exec chmod 0644 {} \; \
 && find . ! -user www-data -exec chown www-data:root {} \; \
 && chmod -R g+rwx /suitecrm \
-&& chmod -R 777
+&& chmod -R 777 /var/run/apache2
 
 # Bundling and building SuiteCRM theme modifications
 RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/suite8/css/Dawn/style.css --style compressed \ 
