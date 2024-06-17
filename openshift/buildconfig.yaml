@@ -7,7 +7,7 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'bcgovsuitecrm:latest'
+      name: 'bcgovsuitecrm:test'
   resources:
     limits:
       cpu: '1'
