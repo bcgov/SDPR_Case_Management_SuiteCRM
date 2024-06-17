@@ -8,9 +8,9 @@ $dictionary['Case']['fields']['advocase_call_log_c']['labelValue']='Call Log';
 
  
 
- // created: 2024-05-18 00:13:44
+ // created: 2024-06-14 18:39:29
 $dictionary['Case']['fields']['advocase_case_other_issue_c']['inline_edit']='1';
-$dictionary['Case']['fields']['advocase_case_other_issue_c']['labelValue']='Other issue';
+$dictionary['Case']['fields']['advocase_case_other_issue_c']['labelValue']='If other, please specify';
 
  
 
@@ -23,6 +23,12 @@ $dictionary['Case']['fields']['advocase_case_issues_c']['labelValue']='Issue(s)'
  // created: 2024-06-01 00:51:31
 $dictionary['Case']['fields']['advocase_case_status_c']['inline_edit']='1';
 $dictionary['Case']['fields']['advocase_case_status_c']['labelValue']='Status';
+
+ 
+
+ // created: 2024-06-14 18:37:51
+$dictionary['Case']['fields']['advocase_case_issue_2_c']['inline_edit']='1';
+$dictionary['Case']['fields']['advocase_case_issue_2_c']['labelValue']='Issue 2';
 
  
 
@@ -80,6 +86,30 @@ $dictionary['Case']['fields']['advocase_case_action_date_c']['labelValue']='Acti
  // created: 2024-05-17 23:42:31
 $dictionary['Case']['fields']['advocase_communication_type_c']['inline_edit']='1';
 $dictionary['Case']['fields']['advocase_communication_type_c']['labelValue']='Type of Communication';
+
+ 
+
+ // created: 2024-06-14 18:37:19
+$dictionary['Case']['fields']['advocase_case_issue_1_c']['inline_edit']='1';
+$dictionary['Case']['fields']['advocase_case_issue_1_c']['labelValue']='Issue 1';
+
+ 
+
+ // created: 2024-06-14 18:38:47
+$dictionary['Case']['fields']['advocase_case_issue_4_c']['inline_edit']='1';
+$dictionary['Case']['fields']['advocase_case_issue_4_c']['labelValue']='Issue 4';
+
+ 
+
+ // created: 2024-06-14 18:39:10
+$dictionary['Case']['fields']['advocase_case_issue_5_c']['inline_edit']='1';
+$dictionary['Case']['fields']['advocase_case_issue_5_c']['labelValue']='Issue 5';
+
+ 
+
+ // created: 2024-06-14 18:38:26
+$dictionary['Case']['fields']['advocase_case_issue_3_c']['inline_edit']='1';
+$dictionary['Case']['fields']['advocase_case_issue_3_c']['labelValue']='Issue 3';
 
  
 

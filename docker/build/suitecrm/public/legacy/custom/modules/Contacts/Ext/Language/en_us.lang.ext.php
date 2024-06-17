@@ -2,7 +2,7 @@
 // WARNING: The contents of this file are auto-generated
 
 
-// created: 2024-05-31 18:53:47
+// created: 2024-06-14 19:58:14
 $mod_strings['LBL_ADVOCASE_CONTACT_TYPE'] = 'Type of Contact';
 $mod_strings['LBL_ADVOCASE_LAST_NAME'] = 'Advocase Last Name';
 $mod_strings['LBL_ADVOCASE_FIRST_NAME'] = 'Advocase First Name';
@@ -23,4 +23,6 @@ $mod_strings['LBL_EDITVIEW_PANEL3'] = 'New Panel 3';
 $mod_strings['LBL_ADVOCASE_OTHER_CONTACT_TYPE'] = 'Other';
 $mod_strings['LBL_LAST_NAME'] = 'Last Name:';
 $mod_strings['LBL_MEETINGS'] = 'Communications';
+$mod_strings['LBL_ANY_EMAIL'] = 'Email';
+$mod_strings['LBL_ANY_PHONE'] = 'Phone Number';
 

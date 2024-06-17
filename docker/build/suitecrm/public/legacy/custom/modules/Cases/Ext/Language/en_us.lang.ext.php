@@ -2,7 +2,7 @@
 // WARNING: The contents of this file are auto-generated
 
 
-// created: 2024-06-01 00:51:31
+// created: 2024-06-14 18:39:29
 $mod_strings['LBL_ADVOCASE_COMMUNICATION_DATE'] = 'Date of Communication';
 $mod_strings['LBL_ADVOCASE_COMMUNICATION_TYPE'] = 'Type of Communication';
 $mod_strings['LBL_ADVOCASE_OTHER_COMM_TYPE'] = 'Other Communication';
@@ -12,7 +12,7 @@ $mod_strings['LBL_ADVOCASE_OASQ_AWARENESS'] = 'How did the contact hear about th
 $mod_strings['LBL_ADVOCASE_CASE_CITY'] = 'City for Case';
 $mod_strings['LBL_ADVOCASE_CASE_REGION'] = 'Region of Case';
 $mod_strings['LBL_ADVOCASE_CASE_ISSUES'] = 'Issue(s)';
-$mod_strings['LBL_ADVOCASE_CASE_OTHER_ISSUE'] = 'Other issue';
+$mod_strings['LBL_ADVOCASE_CASE_OTHER_ISSUE'] = 'If other, please specify';
 $mod_strings['LBL_ADOVCASE_CASE_AGENCIES'] = 'Other Agencies engaged';
 $mod_strings['LBL_ADVOCASE_CASE_OTHER_NONE'] = 'Other/None';
 $mod_strings['LBL_ADVOCASE_CASE_ACTION_DATE'] = 'Action Taken date';
@@ -21,4 +21,9 @@ $mod_strings['LBL_CONTACTS_SUBPANEL_TITLE'] = 'Contacts';
 $mod_strings['LBL_EDITVIEW_PANEL1'] = 'New Panel 1';
 $mod_strings['LBL_MEETINGS'] = 'Communications';
 $mod_strings['LBL_ADVOCASE_CASE_STATUS'] = 'Status';
+$mod_strings['LBL_ADVOCASE_CASE_ISSUE_1'] = 'Issue 1';
+$mod_strings['LBL_ADVOCASE_CASE_ISSUE_2'] = 'Issue 2';
+$mod_strings['LBL_ADVOCASE_CASE_ISSUE_3'] = 'Issue 3';
+$mod_strings['LBL_ADVOCASE_CASE_ISSUE_4'] = 'Issue 4';
+$mod_strings['LBL_ADVOCASE_CASE_ISSUE_5'] = 'Issue 5';
 
