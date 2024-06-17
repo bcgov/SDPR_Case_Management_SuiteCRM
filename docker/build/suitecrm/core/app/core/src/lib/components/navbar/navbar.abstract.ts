@@ -276,7 +276,7 @@ export class NavbarAbstract implements NavbarModel {
             return;
         }
 
-        this.current = this.buildTabMenuItem(module, navigation.modules[module]);
+        // this.current = this.buildTabMenuItem(module, navigation.modules[module]);
     }
 
     /**
@@ -308,11 +308,13 @@ export class NavbarAbstract implements NavbarModel {
 
             const item = this.buildTabMenuItem(module, modules[module]);
 
-            if (module === 'home' || this.appState.getModule() === module || count >= threshold) {
-                moreItems.push(item);
-            } else {
-                navItems.push(item);
-            }
+            // if (module === 'home' || this.appState.getModule() === module || count >= threshold) {
+            //     moreItems.push(item);
+            // } else {
+            //     navItems.push(item);
+            // }
+
+            navItems.push(item);
 
             count++;
         });
@@ -324,7 +326,7 @@ export class NavbarAbstract implements NavbarModel {
 
 
         this.menu = navItems;
-        this.all.modules = moreItems;
+        // this.all.modules = moreItems;
     }
 
     /**
