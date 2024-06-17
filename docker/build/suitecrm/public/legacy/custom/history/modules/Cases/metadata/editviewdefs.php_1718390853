@@ -200,7 +200,10 @@ array (
             'comment' => 'Free-form text used to denote activities of interest',
             'label' => 'LBL_WORK_LOG',
           ),
-          1 => 'assigned_user_name',
+        ),
+        11 => 
+        array (
+          0 => 'assigned_user_name',
         ),
       ),
     ),

@@ -62,12 +62,7 @@ array (
             array (
             ),
           ),
-          1 => 
-          array (
-            'name' => 'advocase_case_issue_1_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_CASE_ISSUE_1',
-          ),
+          1 => '',
         ),
         1 => 
         array (
@@ -77,12 +72,7 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_ADVOCASE_CASE_STATUS',
           ),
-          1 => 
-          array (
-            'name' => 'advocase_case_issue_2_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_CASE_ISSUE_2',
-          ),
+          1 => '',
         ),
         2 => 
         array (
@@ -90,12 +80,6 @@ array (
           array (
             'name' => 'advocase_communication_date_c',
             'label' => 'LBL_ADVOCASE_COMMUNICATION_DATE',
-          ),
-          1 => 
-          array (
-            'name' => 'advocase_case_issue_3_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_CASE_ISSUE_3',
           ),
         ),
         3 => 
@@ -106,12 +90,6 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_ADVOCASE_COMMUNICATION_TYPE',
           ),
-          1 => 
-          array (
-            'name' => 'advocase_case_issue_4_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_CASE_ISSUE_4',
-          ),
         ),
         4 => 
         array (
@@ -120,56 +98,8 @@ array (
             'name' => 'advocase_other_comm_type_c',
             'label' => 'LBL_ADVOCASE_OTHER_COMM_TYPE',
           ),
-          1 => 
-          array (
-            'name' => 'advocase_case_issue_5_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_CASE_ISSUE_5',
-          ),
         ),
         5 => 
-        array (
-          0 => 
-          array (
-            'name' => 'adovcase_case_agencies_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADOVCASE_CASE_AGENCIES',
-          ),
-          1 => 
-          array (
-            'name' => 'advocase_case_other_issue_c',
-            'label' => 'LBL_ADVOCASE_CASE_OTHER_ISSUE',
-          ),
-        ),
-        6 => 
-        array (
-          0 => 
-          array (
-            'name' => 'advocase_case_other_none_c',
-            'label' => 'LBL_ADVOCASE_CASE_OTHER_NONE',
-          ),
-          1 => 
-          array (
-            'name' => 'advocase_oasq_mandate_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_OASQ_MANDATE',
-          ),
-        ),
-        7 => 
-        array (
-          0 => 
-          array (
-            'name' => 'advocase_case_city_c',
-            'label' => 'LBL_ADVOCASE_CASE_CITY',
-          ),
-          1 => 
-          array (
-            'name' => 'advocase_case_region_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_CASE_REGION',
-          ),
-        ),
-        8 => 
         array (
           0 => 
           array (
@@ -177,13 +107,17 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_ADVOCASE_ASQ_ACTION',
           ),
-          1 => 
+        ),
+        6 => 
+        array (
+          0 => 
           array (
-            'name' => 'advocase_case_action_date_c',
-            'label' => 'LBL_ADVOCASE_CASE_ACTION_DATE',
+            'name' => 'work_log',
+            'comment' => 'Free-form text used to denote activities of interest',
+            'label' => 'LBL_WORK_LOG',
           ),
         ),
-        9 => 
+        7 => 
         array (
           0 => 
           array (
@@ -192,15 +126,77 @@ array (
             'label' => 'LBL_ADVOCASE_OASQ_AWARENESS',
           ),
         ),
+        8 => 
+        array (
+          0 => 
+          array (
+            'name' => 'advocase_oasq_mandate_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADVOCASE_OASQ_MANDATE',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
+            'name' => 'advocase_case_city_c',
+            'label' => 'LBL_ADVOCASE_CASE_CITY',
+          ),
+        ),
         10 => 
         array (
           0 => 
           array (
-            'name' => 'work_log',
-            'comment' => 'Free-form text used to denote activities of interest',
-            'label' => 'LBL_WORK_LOG',
+            'name' => 'advocase_case_region_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADVOCASE_CASE_REGION',
           ),
-          1 => 'assigned_user_name',
+        ),
+        11 => 
+        array (
+          0 => 
+          array (
+            'name' => 'advocase_case_issues_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADVOCASE_CASE_ISSUES',
+          ),
+        ),
+        12 => 
+        array (
+          0 => 
+          array (
+            'name' => 'advocase_case_other_issue_c',
+            'label' => 'LBL_ADVOCASE_CASE_OTHER_ISSUE',
+          ),
+        ),
+        13 => 
+        array (
+          0 => 
+          array (
+            'name' => 'adovcase_case_agencies_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADOVCASE_CASE_AGENCIES',
+          ),
+        ),
+        14 => 
+        array (
+          0 => 
+          array (
+            'name' => 'advocase_case_other_none_c',
+            'label' => 'LBL_ADVOCASE_CASE_OTHER_NONE',
+          ),
+        ),
+        15 => 
+        array (
+          0 => 
+          array (
+            'name' => 'advocase_case_action_date_c',
+            'label' => 'LBL_ADVOCASE_CASE_ACTION_DATE',
+          ),
+        ),
+        16 => 
+        array (
+          0 => 'assigned_user_name',
         ),
       ),
     ),

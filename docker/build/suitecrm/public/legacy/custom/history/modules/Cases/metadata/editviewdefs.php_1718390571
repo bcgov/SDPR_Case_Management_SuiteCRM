@@ -173,14 +173,9 @@ array (
         array (
           0 => 
           array (
-            'name' => 'advocase_asq_action_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_ASQ_ACTION',
-          ),
-          1 => 
-          array (
-            'name' => 'advocase_case_action_date_c',
-            'label' => 'LBL_ADVOCASE_CASE_ACTION_DATE',
+            'name' => 'work_log',
+            'comment' => 'Free-form text used to denote activities of interest',
+            'label' => 'LBL_WORK_LOG',
           ),
         ),
         9 => 
@@ -196,11 +191,19 @@ array (
         array (
           0 => 
           array (
-            'name' => 'work_log',
-            'comment' => 'Free-form text used to denote activities of interest',
-            'label' => 'LBL_WORK_LOG',
+            'name' => 'advocase_asq_action_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADVOCASE_ASQ_ACTION',
           ),
-          1 => 'assigned_user_name',
+          1 => 
+          array (
+            'name' => 'advocase_case_action_date_c',
+            'label' => 'LBL_ADVOCASE_CASE_ACTION_DATE',
+          ),
+        ),
+        11 => 
+        array (
+          0 => 'assigned_user_name',
         ),
       ),
     ),

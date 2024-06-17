@@ -173,6 +173,15 @@ array (
         array (
           0 => 
           array (
+            'name' => 'advocase_oasq_awareness_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADVOCASE_OASQ_AWARENESS',
+          ),
+        ),
+        9 => 
+        array (
+          0 => 
+          array (
             'name' => 'advocase_asq_action_c',
             'studio' => 'visible',
             'label' => 'LBL_ADVOCASE_ASQ_ACTION',
@@ -183,15 +192,6 @@ array (
             'label' => 'LBL_ADVOCASE_CASE_ACTION_DATE',
           ),
         ),
-        9 => 
-        array (
-          0 => 
-          array (
-            'name' => 'advocase_oasq_awareness_c',
-            'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_OASQ_AWARENESS',
-          ),
-        ),
         10 => 
         array (
           0 => 
@@ -200,7 +200,10 @@ array (
             'comment' => 'Free-form text used to denote activities of interest',
             'label' => 'LBL_WORK_LOG',
           ),
-          1 => 'assigned_user_name',
+        ),
+        11 => 
+        array (
+          0 => 'assigned_user_name',
         ),
       ),
     ),
