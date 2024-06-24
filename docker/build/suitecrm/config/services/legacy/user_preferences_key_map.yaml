@@ -1,4 +1,0 @@
-parameters:
-  legacy.user_preferences_key_map:
-    datef: 'date_format'
-    timef: 'time_format'
