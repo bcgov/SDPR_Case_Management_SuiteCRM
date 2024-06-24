@@ -1,0 +1,368 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+/* The checkbox container */
+.checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.3em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox-container .checkmark {
+  position: absolute;
+  top: -0.3em;
+  left: 0;
+  background-color: $white;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  border: 0.05em solid $midnight-blue;
+  padding: 0.50em 0.51em 0.50em 0.51em;
+}
+
+.checkbox-container input:disabled ~ .checkmark {
+  cursor: not-allowed;
+  background: $white;
+  opacity: 0.4;
+}
+
+.checkbox-container input:indeterminate ~ .checkmark:after {
+  display: block;
+}
+
+.checkbox-container input:indeterminate ~ .checkmark:after {
+  left: 0.45em;
+  top: 0.47em;
+  width: 0.9em;
+  background: url($cross-background-url) no-repeat right;
+}
+
+.list-view-table .checkbox-container .checkmark {
+  background-color: $off-white;
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox-container:hover input ~ .checkmark {
+  background-color: $light-grey;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox-container input:checked ~ .checkmark {
+  background-color: $white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox-container .checkmark:after {
+  background: url($cross-background-url) no-repeat right;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  left: 0.45em;
+  width: 0.9em;
+  height: 0.8em;
+}
+
+/* Modal Checboxes */
+
+@media all and (min-width: $breakpoint-xlarge) {
+  /* The checkbox container */
+  .modal-checkbox-container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.3em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0.5em 0 0 0;
+  }
+}
+
+
+
+@media all and (min-width: $breakpoint-xsmall) and (max-width: $breakpoint-xlarge) {
+  .modal-checkbox-container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.3em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0.5em;
+  }
+}
+
+/* Hide the browser's default checkbox */
+.modal-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.modal-checkbox-container .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0.9em;
+  width: 0.9em;
+  background-color: $dusty-grey;
+  -webkit-border-radius: 0.15em;
+  -moz-border-radius: 0.15em;
+  border-radius: 0.15em;
+  border: 0.05em solid $white;
+}
+
+/* On mouse-over, add a grey background color */
+.modal-checkbox-container:hover input ~ .checkmark {
+  background-color: $dusty-grey;
+}
+
+/* When the checkbox is checked, add a blue background */
+.modal-checkbox-container input:checked ~ .checkmark {
+  background-color: $dusty-grey;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.bulk-action-selected-number {
+  margin-left: 1.8em;
+}
+
+/* Show the checkmark when checked */
+.modal-checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.modal-checkbox-container .checkmark:after {
+  left: 0.28em;
+  top: 0.1em;
+  width: 0.28em;
+  height: 0.55em;
+  border: solid $white;
+  border-width: 0 0.13em 0.13em 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.create-popup-checkbox {
+  margin: 0 0 2.5em 0;
+}
+
+/* The checkbox container */
+.select-action-group .checkbox-container {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select-action-group .bulk-action-button {
+  min-width: auto;
+  padding-left: 0.3em;
+}
+
+/* Hide the browser's default checkbox */
+.select-action-group .checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+@media all and (max-width: $breakpoint-medium) {
+  /* Create a custom checkbox */
+  .select-action-group .checkbox-container .checkmark {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color: $white;
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    border-radius: 0.2em;
+    border: 0.05em solid $midnight-blue;
+    margin: -0.36em 0 0 0em;
+  }
+}
+
+.list-view-table .checkbox-container .checkmark {
+  background-color: $off-white;
+}
+
+/* On mouse-over, add a grey background color */
+.select-action-group .checkbox-container:hover input ~ .checkmark {
+  background-color: $light-grey;
+}
+
+/* When the checkbox is checked, add a blue background */
+.select-action-group .checkbox-container input:checked ~ .checkmark {
+  background-color: $off-white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.select-action-group .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.select-action-group .checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.select-action-group .checkbox-container .checkmark:after {
+  width: 0.9em;
+  height: 0.8em;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  left: 0.45em;
+  top: 0.47em;
+  background: url($cross-background-url) no-repeat right;
+}
+
+/* Filter checkbox */
+
+/* The checkbox container */
+.filter-checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 1.3em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.filter-checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.filter-checkbox-container .filter-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1em;
+  width: 1em;
+  background-color: $white;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+  border: 0.05em solid $light-grey;
+  margin:1em 1em 1em 0;
+}
+
+/* On mouse-over, add a grey background color */
+.filter-checkbox-container:hover input ~ .filter-checkmark {
+  background-color: $light-grey;
+}
+
+/* When the checkbox is checked, add a blue background */
+.filter-checkbox-container input:checked ~ .filter-checkmark {
+  background-color: $off-white;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.filter-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.filter-checkbox-container input:checked ~ .filter-checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.filter-checkbox-container .filter-checkmark:after {
+  left: 0.33em;
+  top: 0.1em;
+  width: 0.3em;
+  height: 0.6em;
+  border: solid $midnight-grey;
+  border-width: 0 0.13em 0.13em 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

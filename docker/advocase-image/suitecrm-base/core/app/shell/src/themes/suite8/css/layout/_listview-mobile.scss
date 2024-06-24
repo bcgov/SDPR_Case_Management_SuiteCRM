@@ -1,0 +1,405 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2023 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+@media all and (max-width: $breakpoint-xxlarge) {
+  .list-view-settings {
+    .quick-filter-border {
+      border: none !important;
+      margin-right: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+@media all and (min-width: $breakpoint-xxlarge) {
+  .list-view-settings {
+    .quick-filter-border {
+      border-right: 1px solid rgb(108, 117, 125, 0.5) !important;
+      margin-right: 0.25rem;
+      padding-right: 0.25rem;
+    }
+  }
+}
+
+@media all and (max-width: $breakpoint-xlarge) {
+  .list-view {
+    .list-widget-container {
+      margin-left: 1.1em;
+      margin-top: 1em;
+    }
+  }
+  .list-view-widget {
+    margin: 1.5em 0;
+  }
+
+}
+
+@media all and (min-width: $breakpoint-large) {
+
+  .list-view-header {
+    .custom-col-4 {
+      flex: 0 0 33.333333%;
+      max-width: 33.333333%;
+      position: relative;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+
+    .custom-col-8 {
+      flex: 0 0 66.666667%;
+      max-width: 66.666667%;
+      justify-content: end;
+      position: relative;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
+}
+
+@media all and (max-width: $breakpoint-large) {
+  table {
+    table-layout: fixed;
+  }
+  td {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .responsive-table-row th {
+    margin: 0;
+    padding: 1em 1em 0 1em;
+  }
+
+  .responsive-table-row td {
+    margin: 0;
+    padding: 0 1em 1em 1em;
+  }
+
+  .responsive-table td {
+    border: none;
+  }
+
+  .hide-pagination-count {
+    display: none;
+  }
+
+  .responsive-table-row th,
+  .responsive-table-row td {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .list-view-table th,
+  .list-view-table td {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .hide-table-header,
+  .hide-table-rows {
+    display: none;
+  }
+
+  .show-collapsed-header,
+  .show-collapsed-rows {
+    display: none;
+  }
+
+  .expand-table-row {
+    margin: 0 2em;
+    cursor: pointer;
+  }
+
+  .table-striped .responsive-top-row,
+  .table-striped tbody tr:nth-of-type(odd).responsive-top-row {
+    background-color: $sky-blue;
+    -webkit-border-top-left-radius: 0.3em;
+    -webkit-border-top-right-radius: 0.3em;
+    -moz-border-radius-topleft: 0.3em;
+    -moz-border-radius-topright: 0.3em;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+  }
+
+  .responsive-top-row a {
+    color: $white;
+  }
+
+  .first-table-data {
+    background-color: $sky-blue;
+  }
+
+  .responsive-table-row td,
+  .responsive-table-row th {
+    background-color: #edecf0;
+    color: $midnight-blue;
+  }
+
+  .responsive-table th {
+    background-image: linear-gradient(to right, $midnight-grey 10%, rgba(255, 255, 255, 0) 0%);
+    background-position: top;
+    background-size: 5px 1px;
+    background-repeat: repeat-x;
+  }
+
+  tr.responsive-table-row {
+    background-color: #edecf0;
+  }
+
+  .primary-table-header {
+    background-color: $nepal-grey;
+    color: $white;
+  }
+
+  .list-view-table thead th {
+    border: none;
+  }
+
+  .display-block-table th,
+  .display-block-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .responsive-table-toggler {
+    text-align: right;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .table td {
+    border: none;
+  }
+
+  td.list-group-icon {
+    margin: 0;
+    padding: 0.75rem 0;
+    display: inline;
+  }
+
+  .list-view-table .row {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  .list-view-header .row {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0.9em;
+    margin-right: 0.9em;
+  }
+
+  .list-view-header .col {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .checkbox-container {
+    padding: 0 0.25rem;
+  }
+
+  th.show-table-rows {
+    padding: 0 1rem;
+  }
+
+  .list-view {
+    .list-view-header {
+      .container-fluid {
+        .row {
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+
+      .list-view-title {
+        margin: 0;
+      }
+    }
+
+    .list-widget-container {
+      margin-top: 1em;
+      margin-left: 1.1em;
+    }
+  }
+}
+
+@media all and (min-width: $breakpoint-medium) {
+  .bulk-action {
+    margin-left: 0;
+  }
+
+  .select-action-group {
+    margin: 0;
+  }
+}
+
+@media all and (max-width: $breakpoint-medium) {
+  .line-action-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .line-action-position {
+      position: absolute;
+      right: 0;
+    }
+  }
+  .cdk-column-line-actions {
+    position: relative;
+
+    .line-action .more-button svg {
+      font-size: 1.2em;
+    }
+  }
+
+  .list-view-tableactions {
+    .bulk-action-button {
+      min-width: 0;
+    }
+
+    .bulk-action-button:after {
+      margin-left: 0;
+    }
+    .select-action-group {
+      margin: 0;
+
+      .checkbox-container .checkmark {
+        top: 1px;
+      }
+    }
+  }
+
+  .listview-actions {
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &.active {
+      background-color: #fff;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, .2);
+
+      .icon-bar {
+        display: flex;
+        overflow: hidden;
+        transition: 0.8s;
+        width: 200px;
+        margin-left: 0.7em;
+
+        .icon-bar-block {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(50px, 1fr));
+
+          .line-action-item {
+            font-size: 1.2em;
+
+            &:focus {
+              outline: none;
+              border-radius: 50px;
+              background-color: rgba(232, 234, 237, 0.4);
+            }
+          }
+        }
+      }
+    }
+
+    .icon-bar {
+      display: flex;
+      width: 0;
+      overflow: hidden;
+      transition: 0.5s;
+
+      .icon-bar-block {
+        display: none;
+      }
+    }
+
+    .more-button {
+      display: inline-block;
+      background-color: transparent;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+@media all and (max-width: $breakpoint-small) {
+  .list-view {
+
+    .list-view-table.table {
+      td {
+        padding: 0.5rem 0.45em;
+        font-size: .85rem;
+      }
+
+    }
+
+    .pagination-count {
+      display: none;
+    }
+
+    .chart-sidebar-widget {
+      .login-form {
+        right: 0.4em;
+        width: 95% !important;
+        left: 0.4em;
+      }
+
+      .chart-widget {
+        margin-top: 3rem !important;
+      }
+    }
+
+    .list-widget-container {
+      margin-left: 1.1em;
+    }
+
+    .line-action-item {
+      padding: 0;
+      font-size: 1.2em;
+      margin: 0;
+    }
+  }
+  .list-view-header .row {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0 !important;
+  }
+  .table-pagination-wrapper {
+    flex-basis: auto;
+    display: flex;
+    padding-left: 1em !important;
+  }
+}

@@ -1,0 +1,254 @@
+parameters:
+  legacy.module_routing:
+    home:
+      index: false
+      list: false
+      record: false
+    saved-search:
+      index: true
+      list: true
+      record: false
+    calls-reschedule:
+      index: true
+      list: true
+      record: false
+    calls:
+      index: true
+      list: true
+      record: false
+    tasks:
+      index: true
+      list: true
+      record: true
+    meetings:
+      index: true
+      list: true
+      record: false
+    notes:
+      index: true
+      list: true
+      record: false
+    leads:
+      index: true
+      list: true
+      record: true
+    contacts:
+      index: true
+      list: true
+      record: true
+    accounts:
+      index: true
+      list: true
+      record: true
+    opportunities:
+      index: true
+      list: true
+      record: true
+    email-templates:
+      index: true
+      list: true
+      record: false
+    campaigns:
+      index: true
+      list: true
+      record: false
+    prospects:
+      index: true
+      list: true
+      record: true
+    prospect-lists:
+      index: true
+      list: true
+      record: true
+    documents:
+      index: true
+      list: true
+      record: false
+    cases:
+      index: true
+      list: true
+      record: true
+    project:
+      index: true
+      list: true
+      record: false
+    project-task:
+      index: true
+      list: true
+      record: false
+    bugs:
+      index: true
+      list: true
+      record: true
+    business-hours:
+      index: true
+      list: true
+      record: false
+    roles:
+      index: true
+      list: true
+      record: false
+    users:
+      index: true
+      list: true
+      record: false
+    employees:
+      index: true
+      list: true
+      record: false
+    template-section-line:
+      index: true
+      list: true
+      record: false
+    surveys:
+      index: true
+      list: true
+      record: false
+    survey-responses:
+      index: true
+      list: true
+      record: false
+    survey-question-responses:
+      index: true
+      list: true
+      record: false
+    survey-questions:
+      index: true
+      list: true
+      record: false
+    survey-question-options:
+      index: true
+      list: true
+      record: false
+    project-templates:
+      index: true
+      list: true
+      record: false
+    task-templates:
+      index: true
+      list: true
+      record: true
+    knowledge-base-categories:
+      index: true
+      list: true
+      record: true
+    knowledge-base:
+      index: true
+      list: true
+      record: true
+    events:
+      index: true
+      list: true
+      record: false
+    event-locations:
+      index: true
+      list: true
+      record: false
+    contracts:
+      index: true
+      list: true
+      record: false
+    invoices:
+      index: true
+      list: true
+      record: false
+    pdf-templates:
+      index: true
+      list: true
+      record: false
+    product-categories:
+      index: true
+      list: true
+      record: true
+    products:
+      index: true
+      list: true
+      record: false
+    quotes:
+      index: true
+      list: true
+      record: false
+    products-quotes:
+      index: true
+      list: true
+      record: false
+    maps:
+      index: false
+      list: false
+      record: false
+    markers:
+      index: true
+      list: true
+      record: false
+    areas:
+      index: true
+      list: true
+      record: false
+    address-cache:
+      index: true
+      list: true
+      record: false
+    case-events:
+      index: true
+      list: true
+      record: false
+    case-updates:
+      index: true
+      list: true
+      record: false
+    reports:
+      index: true
+      list: true
+      record: false
+    scheduled-reports:
+      index: true
+      list: true
+      record: false
+    workflow:
+      index: true
+      list: true
+      record: false
+    workflow-processed:
+      index: false
+      list: false
+      record: false
+    security-groups:
+      index: false
+      list: false
+      record: false
+    acl-roles:
+      index: true
+      list: true
+      record: false
+    schedulers:
+      index: false
+      list: false
+      record: false
+    oauth-keys:
+      index: false
+      list: false
+      record: false
+    outbound-email-accounts:
+      index: true
+      list: true
+      record: false
+    inbound-email:
+      index: true
+      list: true
+      record: false
+    external-oauth-provider:
+      index: true
+      list: true
+      record: false
+    external-oauth-connection:
+      index: true
+      list: true
+      record: false
+    emails:
+      index: false
+      list: false
+      record: false
+    calendar:
+      index: false
+      list: false
+      record: false

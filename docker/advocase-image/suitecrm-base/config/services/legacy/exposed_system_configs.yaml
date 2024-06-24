@@ -1,0 +1,43 @@
+parameters:
+  legacy.exposed_system_configs:
+    default_language: true
+    passwordsetting:
+      forgotpasswordON: true
+    languages: true
+    disabled_languages: true
+    default_module: true
+    default_theme: true
+    module_name_map: true
+    action_name_map: true
+    system_name: true
+    subpanel_pagination_type: true
+    listview_pagination_type: true
+    classicview_routing_exclusions: true
+    default_decimal_seperator: true
+    default_number_grouping_seperator: true
+    default_currency_significant_digits: true
+    datef: true
+    timef: true
+    snooze_alert_timer: true
+    currency: true
+    currencies: true
+    list_max_entries_per_page: true
+    list_max_entries_per_subpanel: true
+    list_max_entries_per_modal: true
+    list_max_entries_per_record_thread: true
+    record_modal_pagination_type: true
+    cache_reset_actions: true
+    navigation_tab_limits: true
+    listview_column_limits: true
+    listview_settings_limits: true
+    listview_actions_limits: true
+    listview_line_actions_limits: true
+    listview_url_query_filter_mapping: true
+    module_routing: true
+    recordview_actions_limits: true
+    subpanelview_actions_limits: true
+    ui: true
+    extensions: true
+    logout: true
+    session-expired: true
+    site_url: true

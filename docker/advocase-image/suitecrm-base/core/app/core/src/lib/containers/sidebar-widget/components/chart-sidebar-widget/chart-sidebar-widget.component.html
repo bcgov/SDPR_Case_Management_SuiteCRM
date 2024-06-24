@@ -1,0 +1,71 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<scrm-widget-panel [title]="this.title" *ngIf="(vm$ | async) as vm">
+    <div widget-body>
+        <div class="widget-background chart-sidebar-widget">
+            <div class="mb-2 ml-1 mr-1">
+                <div class="container-fluid">
+                    <div class="row" *ngIf="isConfigured && chartOptions.toggle">
+                        <div class="col pr-2 pl-2">
+                            <form class="login-form mb-0 mt-2 w-100">
+
+                                <select (ngModelChange)="onChartSelect()" [(ngModel)]="selectedChart" class="m-0 w-100"
+                                        name="chart">
+                                    <option *ngFor="let chart of configuredCharts; index as i"
+                                            [value]="getKey(chart)">
+                                        {{language.getFieldLabel(chart.labelKey)}}
+                                    </option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3 chart-widget">
+                        <div class="col pl-0 pr-0 pb-1 pt-1 d-flex justify-content-center">
+                            <div class="flex-grow-1">
+                                <ng-container *ngIf="selectedChart && !loading">
+                                    <scrm-chart *ngIf="dataSource && chartType"
+                                                [dataSource]="dataSource"
+                                                [type]="chartType">
+                                    </scrm-chart>
+                                </ng-container>
+                                <div *ngIf="loading" [class.m-5]="!dataSource" class="chart-loading">
+                                    <scrm-loading-spinner [overlay]="true"></scrm-loading-spinner>
+                                </div>
+                                <p *ngIf="!loading && (!isConfigured() || !dataSource)"
+                                   class="lead text-center pt-3">
+                                    {{language.getFieldLabel(this.messageLabelKey)}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</scrm-widget-panel>
