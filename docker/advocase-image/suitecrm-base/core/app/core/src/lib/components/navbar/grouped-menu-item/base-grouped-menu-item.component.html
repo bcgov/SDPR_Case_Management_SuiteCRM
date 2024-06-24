@@ -1,0 +1,101 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<ng-container *ngIf="hoverEnabled()">
+    <ng-container *ngTemplateOutlet="groupedMenuItem"></ng-container>
+</ng-container>
+<ng-container *ngIf="!hoverEnabled()">
+    <ng-container *ngTemplateOutlet="groupedMenuItem"></ng-container>
+</ng-container>
+
+
+<ng-template #groupedMenuItem>
+    <div class="menu-item-wrapper" #menuItemWrapper>
+        <span data-target=".navbar-collapse" data-toggle="collapse" *ngIf="!item.isGroupedMenu"
+          (click)="toggleDropdown()">
+            <a class="top-nav-link nav-link-grouped dropdown-toggle active"
+               [class]="{'nav-link-activated': showDropdown() }"
+               data-toggle="dropdown" [class.hover-enabled]="hoverEnabled()">
+                {{ item.link.label }}
+            </a>
+        </span>
+        <ul class="navbar-nav grouped" *ngIf="item.isGroupedMenu">
+
+            <li class="top-nav nav-item dropdown main-grouped active">
+                <scrm-menu-item [item]="item"></scrm-menu-item>
+            </li>
+        </ul>
+
+        <ul aria-labelledby="navbarDropdownMenuLink"
+            class="dropdown-menu main"
+            [class.show]="showDropdown()"
+            [class.hover-enabled]="hoverEnabled()"
+        >
+            <li *ngFor="let sub of item.submenu; index as i;" class="nav-item dropdown-submenu submenu">
+
+                <scrm-menu-item-link [class]="{
+                                        'sub-nav-link': true,
+                                        'nav-link': true,
+                                        'action-link': true,
+                                        'dropdown-item': sub.submenu.length,
+                                        'dropdown-toggle': sub.submenu.length,
+                                      }"
+                                     [link]="sub.link"
+                                     [config]="getConfig(sub, i)"
+                >
+                </scrm-menu-item-link>
+
+                <ul *ngIf="sub.submenu.length"
+                    (click)="hideDropdown()"
+                    [class.rounded-0]="sub.submenu && sub.submenu.length === 1"
+                    [class.active]="this.showSubDropdown[i]()"
+                    class="dropdown-menu submenu"
+                >
+
+                    <li *ngFor="let subitem of sub.submenu" class="nav-item">
+
+                        <scrm-menu-item-link (click)="hideDropdown()"
+                                             [class]="'submenu-nav-link nav-link action-link'"
+                                             [icon]="subitem.icon"
+                                             [link]="subitem.link">
+                        </scrm-menu-item-link>
+                    </li>
+                    <ng-container *ngIf="sub && sub.module">
+                        <scrm-sub-menu-recently-viewed [module]="sub.module"
+                                                       [config]="recentlyViewedConfig"
+                                                       (click)="$event.stopPropagation();" >
+                        </scrm-sub-menu-recently-viewed>
+                        <scrm-sub-menu-favorites [module]="sub.module"
+                                                 [config]="favoritesConfig"
+                                                 (click)="$event.stopPropagation()">
+                        </scrm-sub-menu-favorites>
+                    </ng-container>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</ng-template>

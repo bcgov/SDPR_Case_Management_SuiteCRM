@@ -1,0 +1,81 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<ng-container *ngIf="dataSource">
+    <div *ngIf="config && config.layout === 'panels'" class="record-content panel-layout container-fluid pl-0 pr-0">
+        <div class="row no-gutters mb-3" *ngFor="let panel of panels">
+            <div class="col">
+                <scrm-panel [title]="panel.label" [isCollapsed$]="(panel.isCollapsed | toObservable)" mode="collapsible">
+                    <div panel-body class="panel-{{panel.key}}">
+                        <scrm-field-layout [dataSource]="getLayoutDataSource(panel)"></scrm-field-layout>
+                    </div>
+                </scrm-panel>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="config && config.layout === 'tabs'" class="record-content tabs-layout container-fluid pl-0 pr-0">
+
+        <ul ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="active">
+            <ng-container *ngFor="let panel of panels; index as i;">
+                <ng-container *ngIf="(panel.display$ | async) as panelDisplay">
+                    <li class="tab" [ngbNavItem]="i+1" *ngIf="!!panelDisplay">
+                        <a class="tab-link" ngbNavLink>{{panel.label}}</a>
+                        <ng-template ngbNavContent>
+                            <div class="tab-{{panel.key}}">
+                                <scrm-field-layout [dataSource]="getLayoutDataSource(panel)"></scrm-field-layout>
+                            </div>
+                        </ng-template>
+                    </li>
+                </ng-container>
+            </ng-container>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="p-2 pt-3 rounded-right rounded-bottom"></div>
+
+
+        <ng-container *ngIf="panelsInPrevTab && panelsInPrevTab.length">
+            <ng-container *ngFor="let panel of panels; let j = index;">
+                <div *ngFor="let panel of panel.subPanels;">
+                    <ng-container *ngIf="(panel.display$ | async) as panelDisplay">
+                        <div class="row no-gutters mt-3" *ngIf="!!panelDisplay">
+                            <div class="col" *ngIf="j==active-1">
+                                <scrm-panel [title]="panel.label" [isCollapsed$]="(panel.isCollapsed | toObservable)" mode="collapsible">
+                                    <div panel-body class="panel-{{panel.key}}">
+                                        <scrm-field-layout [dataSource]="getLayoutDataSource(panel)"></scrm-field-layout>
+                                    </div>
+                                </scrm-panel>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+
+    </div>
+
+</ng-container>

@@ -1,0 +1,10 @@
+parameters:
+  themes.image_paths:
+    # Order matters, lower ones will override the above ones
+    - 'legacy/themes/default/images'
+    - 'legacy/custom/themes/default/images'
+    - 'dist/themes/default/images'
+    - 'legacy/themes/<theme>/images'
+    - 'legacy/custom/themes/<theme>/images'
+    - 'dist/themes/<theme>/images'
+    - 'dist/themes/<theme>/images/modules'

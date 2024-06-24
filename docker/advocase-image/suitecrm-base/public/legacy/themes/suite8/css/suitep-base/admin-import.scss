@@ -1,0 +1,180 @@
+.view-module-Import {
+    input[type=submit],input[type=button] {
+        background-color: $nepal-grey;
+        border-radius: 0.2em;
+        font-weight: bold;
+        height: 2.2em;
+        line-height: 1em;
+        letter-spacing: 0.05em;
+        padding: 0.3em 1em;
+        text-transform: capitalize;
+        &:hover {
+            background: $pale-blue;
+        }
+    }
+    select {
+        background: url($select-edit-background-url) no-repeat right;
+        background-size: 25px 11px;
+        border-color: $bright-grey;
+        background-color: $white !important;
+    }
+    .import_instruction {
+        margin-bottom: 1em;
+    }
+    input,input[type=text],input[type=password],input[type=email],input[type=number]{
+        background-color: $transparent-color;
+        border: 1px solid $form-border-color;
+    }
+    input[type=radio] {
+        border: none;
+    }
+    textarea {
+        background-color: $transparent-color;
+        border: 1px solid $form-border-color;
+    }
+    .list #pagination td .paginationTable .paginationChangeButtons {
+        button {
+            background-color: $transparent-color; 
+            margin:0;
+            padding: 0;
+            line-height: 26px;
+            height: 26px;
+            margin-right: 0.3em;
+        }        
+    }
+    .paginationTable button[disabled] {
+        background-color: $transparent-color;
+        margin: 0;
+        padding: 0;
+    }
+    h1,h2,h3 {
+        margin-top: 0;
+    } 
+    #toggleNotes {
+        margin-bottom: 1em;
+    }
+    .h3Row {
+        margin-top: 1em;
+    }
+    .hr {
+        background: lightgray;
+    }
+    #importOptions td {
+        padding: 1em;
+    }
+    table.view {
+        border-radius: 10px;
+        overflow: hidden;
+        tr th {
+            padding: 1em;
+        }  
+    }    
+    #dup_content {
+        .paginationChangeButtons {
+            padding: 6px 11px 7px 6px !important;
+        }
+        table.view {
+            border-radius: 0 !important;
+        }
+    }
+    #errors_content {
+        .paginationChangeButtons {
+            padding: 6px 11px 7px 6px !important;
+        }
+        table.view {
+            border-radius: 0 !important;
+        }
+    } 
+    div.confirmTable {
+        margin-top: 1em;
+    }  
+    .selectActionsDisabled {
+        background-color: transparent;
+        border: 0.09em solid #e9e9e9;
+        -webkit-border-radius: 0.15em;
+        -moz-border-radius: 0.15em;
+        min-width: 11em;
+        margin-right: 0.8em;
+        display: none;
+        label {
+            margin-top: 3px;
+        }
+        a {
+            color: $white;
+        }
+    }
+    label {
+        margin-top: 1em;
+    }
+    #enabled_div {
+        padding: 1em;
+    }
+    #disabled_div {
+        padding: 1em;
+    }
+    .yui-dt th .yui-dt-liner {
+        background: none;
+        font-weight: bold;
+        color: $shell-grey;
+        line-height: 0.6em;
+    } 
+    .importPaginationtable {
+        table.paginationTable {
+            .button {
+                background: $transparent-color;
+                padding:2px;
+                margin-right: -4px;
+            }
+        }   
+        .list thead {
+            background: $medium-grey;
+        }     
+        .list #pagination td .paginationTable .paginationActionButtons {
+            button {
+                margin: 0;
+                padding:0;
+                line-height: 26px;
+                height: 26px;
+                margin-right: 0.3em;
+            }
+            .sugar_action_button {
+                display: none;
+            }
+            background: $medium-grey;
+        } 
+        .list #pagination td .paginationTable .pageNumbers {
+            margin: -4px 4px 0 0;
+        }       
+        table.View {
+            tbody:nth-child(2) {
+                background: $nepal-grey;
+            }
+        }
+    }
+    #dup_table {
+        #dup_content {
+            table.paginationTable {
+                .button {
+                    margin-right: 3px;
+                    padding: 0;
+                }
+            }  
+        }
+    }
+    #errors_content {
+        table.paginationTable {
+            .button {
+                margin-right: 3px;                
+            }
+            .pageNumbers {
+                margin-left: 0.6em;
+            }
+        } 
+        .list tr th {
+            color: $midnight-blue;
+        }
+    }
+    .View {
+        border: none;
+    }
+}

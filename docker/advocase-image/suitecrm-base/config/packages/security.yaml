@@ -1,0 +1,13 @@
+security:
+  enable_authenticator_manager: true
+
+  encoders:
+    app_encoder:
+      id: App\Security\LegacyPasswordEncoder
+    App\Module\Users\Entity\User:
+      id: App\Security\LegacyPasswordEncoder
+
+  providers:
+    app_user_provider:
+      entity:
+        class: App\Module\Users\Entity\User

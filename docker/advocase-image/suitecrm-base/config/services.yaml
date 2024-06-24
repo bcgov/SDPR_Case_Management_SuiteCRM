@@ -1,0 +1,50 @@
+framework:
+  secret: "%secret%"
+
+parameters:
+  secret: '%env(APP_SECRET)%'
+  legacy.dir: '%kernel.project_dir%/public/legacy'
+  packages.upgrade.dir: '%kernel.project_dir%/tmp/package/upgrade'
+  legacy.path: '/legacy'
+  legacy.session_name: 'LEGACYSESSID'
+  default_session_name: 'PHPSESSID'
+  auth_type: '%env(AUTH_TYPE)%'
+
+services:
+  Symfony\Component\Ldap\Ldap:
+    arguments: [ '@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter' ]
+    tags:
+      - ldap
+  Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
+    arguments:
+      - host: '%env(LDAP_HOST)%'
+        port: '%env(LDAP_PORT)%'
+        encryption: '%env(LDAP_ENCRYPTION)%'
+        options:
+          protocol_version: '%env(LDAP_PROTOCOL_VERSION)%'
+          referrals: '%env(LDAP_REFERRALS)%'
+
+
+imports:
+  - { resource: services/**/*.yaml }
+  - { resource: ../extensions/*/config/services/*.yaml }
+  - { resource: ../extensions/*/config/services/*.php }
+  - { resource: ../extensions/*/config/services/**/*.yaml }
+  - { resource: ../extensions/*/config/services/**/*.php }
+  - { resource: ../extensions/*/config/packages/*.yaml }
+  - { resource: ../extensions/*/config/packages/*.php }
+  - { resource: ../extensions/*/config/packages/**/*.yaml }
+  - { resource: ../extensions/*/config/packages/**/*.php }
+  - { resource: ../extensions/*/config/routes/*.yaml }
+  - { resource: ../extensions/*/config/routes/*.php }
+  - { resource: ../extensions/*/config/routes/**/*.yaml }
+  - { resource: ../extensions/*/config/routes/**/*.php }
+  - { resource: ../extensions/*/config/modules/*.yaml }
+  - { resource: ../extensions/*/config/modules/*.php }
+  - { resource: ../extensions/*/config/modules/**/*.yaml }
+  - { resource: ../extensions/*/config/modules/**/*.php }
+  - { resource: core_services.yaml }
+  - { resource: ../extensions/*/config/*.yaml }
+  - { resource: ../extensions/*/config/*.php }
+  - { resource: ../extensions/**/services.yaml }
+  - { resource: ../extensions/**/services.php }

@@ -1,0 +1,7 @@
+parameters:
+  module.listview.actions_limits:
+    XSmall: 3
+    Small: 3
+    Medium: 3
+    Large: 3
+    XLarge: 4
