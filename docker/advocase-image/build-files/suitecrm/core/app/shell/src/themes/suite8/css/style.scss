@@ -1,0 +1,116 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+@import 'abstracts/functions';
+@import 'abstracts/typography';
+@import 'abstracts/variables';
+
+@import 'base/base';
+@import 'base/reset';
+
+@import 'mixin/font-size';
+@import 'mixin/fonts';
+
+@import 'components/button';
+@import 'components/button-group';
+@import 'components/button-main';
+@import 'components/button-main-light';
+@import 'components/button-primary';
+@import 'components/button-secondary';
+@import 'components/relate-field';
+@import 'components/button-danger';
+@import 'components/button-quickfilter-mobile';
+@import 'components/checkbox';
+@import 'components/dropdown';
+@import 'components/dropdown-mobile';
+@import 'components/dropdown-submenu';
+@import 'components/input';
+@import 'components/select';
+@import 'components/radio';
+@import 'components/svg';
+@import 'components/svg-mobile';
+@import 'components/message';
+@import 'components/message-mobile';
+@import 'components/charts';
+@import 'components/tabs';
+@import 'components/field-layout';
+@import 'components/subpanel';
+@import 'components/subpanel-history';
+@import 'components/subpanel-activities';
+@import 'components/shapes';
+@import 'components/history-timeline-widget';
+@import 'components/loading-spinner';
+@import 'components/inline-loading-spinner';
+@import 'components/widget';
+@import 'components/widget-bar';
+@import 'components/light-filter';
+@import 'components/light-table';
+@import 'components/chips';
+@import 'components/grid-widget';
+@import 'components/record-thread';
+@import 'components/case-updates';
+@import 'components/relatemodal-mobile';
+@import 'components/classic-view-modal';
+@import 'components/favorite';
+@import 'components/box-loading';
+@import 'components/record-content-skeleton';
+@import 'components/notifications';
+@import 'components/notifications-mobile';
+@import 'components/searchbar';
+@import 'components/searchbar-mobile';
+@import 'components/action-group-menu';
+@import 'components/popover';
+@import 'components/popover-mobile';
+@import 'components/sidebar';
+@import 'components/multiselect';
+
+@import 'layout/panel';
+@import 'layout/app';
+@import 'layout/columnchooser';
+@import 'layout/columnchooser_mobile';
+@import 'layout/common';
+@import 'layout/filter';
+@import 'layout/footer';
+@import 'layout/forms';
+@import 'layout/listview';
+@import 'layout/listview-mobile';
+@import 'layout/view';
+@import 'layout/recordview';
+@import 'layout/recordview-mobile';
+@import 'layout/modal';
+@import 'layout/navbar';
+@import 'layout/navbar-mobile';
+@import 'layout/saved-search';
+@import 'layout/install';
+@import 'layout/admin';
+@import 'layout/scrollbar';
+
+@import 'fields/email';
+@import 'fields/composite-mobile';
+@import 'fields/full-name';
+@import 'fields/icons';
+@import 'fields/relate';
+@import 'fields/multienum';
