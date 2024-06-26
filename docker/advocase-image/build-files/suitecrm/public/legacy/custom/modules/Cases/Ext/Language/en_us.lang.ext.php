@@ -2,19 +2,19 @@
 // WARNING: The contents of this file are auto-generated
 
 
-// created: 2024-06-18 21:56:19
+// created: 2024-06-19 21:06:46
 $mod_strings['LBL_ADVOCASE_COMMUNICATION_DATE'] = 'Date of Communication';
 $mod_strings['LBL_ADVOCASE_COMMUNICATION_TYPE'] = 'Type of Communication';
-$mod_strings['LBL_ADVOCASE_OTHER_COMM_TYPE'] = 'Other Communication';
+$mod_strings['LBL_ADVOCASE_OTHER_COMM_TYPE'] = 'If other, please specify';
 $mod_strings['LBL_ADVOCASE_ASQ_ACTION'] = 'ASQ Action';
 $mod_strings['LBL_ADVOCASE_CALL_LOG'] = 'Call Log';
 $mod_strings['LBL_ADVOCASE_OASQ_AWARENESS'] = 'How did the contact hear about the OASQ?';
-$mod_strings['LBL_ADVOCASE_CASE_CITY'] = 'City';
-$mod_strings['LBL_ADVOCASE_CASE_REGION'] = 'Region';
+$mod_strings['LBL_ADVOCASE_CASE_CITY'] = 'City for Case';
+$mod_strings['LBL_ADVOCASE_CASE_REGION'] = 'Region for Case';
 $mod_strings['LBL_ADVOCASE_CASE_ISSUES'] = 'Issue(s)';
 $mod_strings['LBL_ADVOCASE_CASE_OTHER_ISSUE'] = 'If other, please specify';
 $mod_strings['LBL_ADOVCASE_CASE_AGENCIES'] = 'Other Agencies engaged';
-$mod_strings['LBL_ADVOCASE_CASE_OTHER_NONE'] = 'Other/None';
+$mod_strings['LBL_ADVOCASE_CASE_OTHER_NONE'] = 'If other or None, please specify';
 $mod_strings['LBL_ADVOCASE_CASE_ACTION_DATE'] = 'Action Taken date';
 $mod_strings['LBL_ADVOCASE_OASQ_MANDATE'] = 'Within OASQ mandate';
 $mod_strings['LBL_CONTACTS_SUBPANEL_TITLE'] = 'Contacts';
@@ -26,4 +26,7 @@ $mod_strings['LBL_ADVOCASE_CASE_ISSUE_2'] = 'Issue 2';
 $mod_strings['LBL_ADVOCASE_CASE_ISSUE_3'] = 'Issue 3';
 $mod_strings['LBL_ADVOCASE_CASE_ISSUE_4'] = 'Issue 4';
 $mod_strings['LBL_ADVOCASE_CASE_ISSUE_5'] = 'Issue 5';
+$mod_strings['LBL_WORK_LOG'] = 'Initial Communication Note';
+$mod_strings['LBL_CASES_MEETINGS_1_FROM_MEETINGS_TITLE'] = 'Communications';
+$mod_strings['LBL_DOCUMENTS_SUBPANEL_TITLE'] = 'Attachments';
 
