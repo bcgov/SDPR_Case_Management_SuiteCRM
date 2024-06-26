@@ -85,7 +85,6 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           'panelDefault' => 'expanded',
         ),
       ),
-      'syncDetailEditViews' => true,
     ),
     'panels' => 
     array (
@@ -112,13 +111,23 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           ),
           1 => 
           array (
-            'name' => 'parent_name',
-            'label' => 'LBL_LIST_RELATED_TO',
+            'name' => 'date_end',
+            'type' => 'datetimecombo',
+            'displayParams' => 
+            array (
+              'required' => true,
+              'updateCallback' => 'SugarWidgetScheduler.update_time();',
+            ),
           ),
         ),
         2 => 
         array (
           0 => 
+          array (
+            'name' => 'parent_name',
+            'label' => 'LBL_LIST_RELATED_TO',
+          ),
+          1 => 
           array (
             'name' => 'duration',
             'customCode' => '
@@ -140,6 +149,11 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           ),
         ),
         3 => 
+        array (
+          0 => '',
+          1 => '',
+        ),
+        4 => 
         array (
           0 => 
           array (
