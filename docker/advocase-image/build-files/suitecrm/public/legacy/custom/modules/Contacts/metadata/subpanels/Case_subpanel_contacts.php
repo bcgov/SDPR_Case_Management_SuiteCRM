@@ -1,5 +1,5 @@
 <?php
-// created: 2024-05-28 18:52:20
+// created: 2024-06-19 17:18:57
 $subpanel_layout['list_fields'] = array (
   'name' => 
   array (
@@ -16,11 +16,19 @@ $subpanel_layout['list_fields'] = array (
     'vname' => 'LBL_ADVOCASE_CONTACT_TYPE',
     'width' => '10%',
   ),
-  'advocase_email_c' => 
+  'advocase_contact_region_c' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'vname' => 'LBL_ADVOCASE_CONTACT_REGION',
+    'width' => '10%',
+  ),
+  'advocase_contact_city_c' => 
   array (
     'type' => 'varchar',
     'default' => true,
-    'vname' => 'LBL_ADVOCASE_EMAIL',
+    'vname' => 'LBL_ADVOCASE_CONTACT_CITY',
     'width' => '10%',
   ),
   'advocase_phone_numbe_c' => 
@@ -28,6 +36,13 @@ $subpanel_layout['list_fields'] = array (
     'type' => 'phone',
     'default' => true,
     'vname' => 'LBL_ADVOCASE_PHONE_NUMBE',
+    'width' => '10%',
+  ),
+  'advocase_email_c' => 
+  array (
+    'type' => 'varchar',
+    'default' => true,
+    'vname' => 'LBL_ADVOCASE_EMAIL',
     'width' => '10%',
   ),
   'edit_button' => 

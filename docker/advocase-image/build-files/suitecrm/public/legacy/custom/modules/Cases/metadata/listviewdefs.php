@@ -9,7 +9,7 @@ array (
   ),
   'NAME' => 
   array (
-    'width' => '30%',
+    'width' => '50%',
     'label' => 'LBL_LIST_SUBJECT',
     'link' => true,
     'default' => true,
