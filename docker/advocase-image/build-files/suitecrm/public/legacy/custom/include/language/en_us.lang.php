@@ -277,3 +277,4 @@ $app_list_strings['advocase_oasq_awareness_list']=array (
   'WEBSITE' => 'Website',
   'OTHER' => 'Other',
 );
+    $app_strings['LBL_SELECT_SUBPANEL_BANNER'] = 'Subpanels';
