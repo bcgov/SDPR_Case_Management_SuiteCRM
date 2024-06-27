@@ -95,7 +95,7 @@
   font-size: 0.85em;
   padding-left: 40px;
   padding-right: 40px;
-  padding-bottom: 32px;
+  padding-bottom: 24px;
 }
 
 .list-view-hr {
@@ -137,6 +137,8 @@
 }
 
 .table-footer {
+  height: 37px;
+  margin-top: 16px;
   -webkit-border-bottom-right-radius: 0.3em;
   -webkit-border-bottom-left-radius: 0.3em;
   -moz-border-radius-bottomright: 0.3em;
@@ -188,8 +190,7 @@
 }
 
 .list-view-tableactions {
-  background-color: $cool-blue;
-  padding: 0.2em;
+  background-color: $white;
 }
 
 .list-view-table thead {
@@ -204,6 +205,10 @@
 
 .bulk-action {
   color: $white;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 8px;
 }
 
 .list-view-table a {
@@ -341,10 +346,15 @@ td {
 }
 
 .pagination-count {
-  margin: 0 0.3em;
+  color: #474543;
   font-weight: bold;
   position: relative;
-  bottom: 0.1em;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21.008px;
+  padding: 8px 16px 8px 16px;
 }
 
 .centre-pagination {
