@@ -1,7 +1,7 @@
 Feature: Create new role
 
 Scenario:
-  Given user  navigate to Role Management Screen
+  Given user navigate to Role Management Screen
   and click 'create new role'
   and fill the inputs: Role Name, Role Description
   When user click save
