@@ -189,6 +189,41 @@
   }
 }
 
+.field-name-assigned_user_name{
+  min-width: 53px;
+  min-height: 29px;
+  border: 1px solid #F8BB47;  // Border color
+  background-color: #FEF1D8; // Background color
+  gap: 10px;
+  border-radius: 4px;        // Optional rounded corners
+}
+
+.dynamic-field-name-assigned_user_name a {
+  color: #474543;            // Text color
+  &:hover {
+    color: #474543; // Text color on hover
+    text-decoration: none; // Underline text on hover
+  }
+}
+
+.dynamic-field-name-name a {
+  color: #474543;            // Text color
+  &:hover {
+    color: #474543; // Text color on hover
+    text-decoration: none; // Underline text on hover
+  }
+}
+
+.field-name-state{
+  min-width: 53px;
+  min-height: 29px;
+  border: 1px solid #42814A;  // Border color
+  color: #42814A;            // Text color
+  background-color: #F6FFF8; // Background color
+  gap: 10px;
+  border-radius: 4px;        // Optional rounded corners
+}
+
 .list-view-tableactions {
   background-color: $white;
 }
@@ -209,11 +244,6 @@
   height: 100%;
   align-items: center;
   padding: 8px;
-}
-
-.list-view-table a {
-  color: $burnt-red;
-  font-weight: bold;
 }
 
 .pipeline-chart,
