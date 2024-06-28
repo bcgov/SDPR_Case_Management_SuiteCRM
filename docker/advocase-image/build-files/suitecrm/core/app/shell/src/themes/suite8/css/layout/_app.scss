@@ -24,11 +24,6 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-/* --------- TYPOGRAPHY SECTION ---------- */
-
-html,
-body {
-  font-family: 'BC Sans', 'myriad-pro', 'adobe-garamond-pro', 'sans-serif';
-  font-weight: 400;
-  scroll-behavior: smooth;
+ .app-shell {
+  min-height: calc(100vh - 8.2em);
 }
