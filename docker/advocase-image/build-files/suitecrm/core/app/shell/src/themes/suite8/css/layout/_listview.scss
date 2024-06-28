@@ -58,7 +58,7 @@
 }
 
 .list-view-title {
-  color: #2d2d2d;
+  color: $primary-color;
   font-family: "BC Sans";
   font-size: 36px;
   font-style: normal;
@@ -192,24 +192,24 @@
 .field-name-assigned_user_name{
   min-width: 53px;
   min-height: 29px;
-  border: 1px solid #F8BB47;  // Border color
-  background-color: #FEF1D8; // Background color
+  border: 1px solid $border-warning;  // Border color
+  background-color: $surface-warning; // Background color
   gap: 10px;
   border-radius: 4px;        // Optional rounded corners
 }
 
 .dynamic-field-name-assigned_user_name a {
-  color: #474543;            // Text color
+  color: $secondary-color;            // Text color
   &:hover {
-    color: #474543; // Text color on hover
+    color: $secondary-color; // Text color on hover
     text-decoration: none; // Underline text on hover
   }
 }
 
 .dynamic-field-name-name a {
-  color: #474543;            // Text color
+  color: $secondary-color;            // Text color
   &:hover {
-    color: #474543; // Text color on hover
+    color: $secondary-color; // Text color on hover
     text-decoration: none; // Underline text on hover
   }
 }
@@ -217,9 +217,9 @@
 .field-name-state{
   min-width: 53px;
   min-height: 29px;
-  border: 1px solid #42814A;  // Border color
-  color: #42814A;            // Text color
-  background-color: #F6FFF8; // Background color
+  border: 1px solid $border-success;  // Border color
+  color: $color-success;            // Text color
+  background-color: $surface-success; // Background color
   gap: 10px;
   border-radius: 4px;        // Optional rounded corners
 }
@@ -376,7 +376,7 @@ td {
 }
 
 .pagination-count {
-  color: #474543;
+  color: $secondary-color;
   font-weight: bold;
   position: relative;
   font-family: "BC Sans";
