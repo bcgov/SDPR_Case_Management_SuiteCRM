@@ -177,7 +177,7 @@ div.widget-panel .panel-card .card-header {
       font-weight: 700;
       line-height: 1.913rem;
       width: 100%;
-      padding: 0.5rem 0 1rem;
+      padding: 0.5rem 0 0.5rem 1rem;
       color: $primary_text;
     }
   }
@@ -192,7 +192,8 @@ div.widget-panel .panel-card .card-header {
     display: flex;
     align-items: center;
     border-top: 1px solid $grey-widget;
-    padding-top: 16px;
+    padding-top: 1rem;
+    margin-top: 0.5rem;
   }
 }
 
@@ -200,15 +201,17 @@ div.widget-panel .panel-card .card-header {
   .card {
     .card-header {
       padding: .50rem 1.25rem;
-      background: $white;
-      border-top: 3px solid $midnight-blue;
+      background: $surface-color-background-blue;
+      color: $white;
+      font-size: 20px;
+      font-weight: 700;
 
       a.clickable {
-        color: $midnight-blue;
+        color: $white;
         font-weight: bold;
 
         svg {
-          fill: $midnight-blue;
+          fill: $white;
         }
       }
     }
