@@ -57,6 +57,52 @@ mariadb-galera:
   persistence:
     size: 2G
 
+## Dependecy Backup Storage
+
+backup-storage:
+  image:
+    repository: docker.io/bcgovimages/backup-container-mariadb
+    pullPolicy: Always
+    tag: latest
+
+  persistence:
+    backup:
+      claimName: db-backup-pvc
+    verification:
+      claimName: db-backup-verification-pvc
+      mountPath: /var/lib/mysql/data
+
+  db:
+    secretName: advocase-database-credentials
+    usernameKey: mariadb-galera-root-user
+    passwordKey: mariadb-root-password
+
+  env:
+    DATABASE_SERVICE_NAME:
+      value: suitecrm-mariadb-galera
+    NUM_BACKUPS:
+      value: "31"
+    DAILY_BACKUPS:
+      value: "6"
+    WEEKLY_BACKUPS:
+      value: "4"
+    MONTHLY_BACKUPS:
+      value: "1"
+    MYSQL_USER:
+      value: "user"
+    MYSQL_PASSWORD:
+      value: "user123"
+    MYSQL_DATABASE:
+      value: "advocase"
+    MYSQL_ROOT_PASSWORD:
+      value: "root"
+
+  backupConfig: |
+    suitecrm-mariadb-galera:3306/advocase
+
+    0 1 * * * default ./backup.sh -s
+    0 4 * * * default ./backup.sh -s -v all
+
 # Default values for suitecrm.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
