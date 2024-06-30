@@ -43,7 +43,7 @@ spec:
             - name: SAML_IDP_X509
               valueFrom:
                 secretKeyRef:
-                  name: suitecrm-secrets
+                  name: {{ .Values.global.secrets.suitecrmSecretName }}
                   key: sso-idp-x509
             - name: SAML_SP_ENTITY_ID
               value: {{.Values.global.ssoClientid}}
@@ -74,7 +74,7 @@ spec:
             - name: SUITE_DB_PASSW
               valueFrom:
                 secretKeyRef:
-                  name: suitecrm-database-credentials
+                  name: {{ .Values.global.secrets.databaseSecretName}}
                   key: mariadb-password
             - name: SUITE_DB_NAME
               value: {{ index (index (index .Values "mariadb-galera") "db") "name" }}
@@ -83,7 +83,7 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: suitecrm-secrets
+                  name: {{ .Values.global.secrets.suitecrmSecretName }}
                   key: database-url
             - name: SESSION_SAVE_HANDLER
               value: rediscluster
@@ -94,12 +94,12 @@ spec:
             - name: SUITECRM_ADMIN_PWD
               valueFrom:
                 secretKeyRef:
-                  name: suitecrm-secrets
+                  name: {{ .Values.global.secrets.suitecrmSecretName }}
                   key: suitecrm-admin-password
             - name: OAUTH_KEY
               valueFrom:
                 secretKeyRef:
-                  name: suitecrm-secrets
+                  name: {{ .Values.global.secrets.suitecrmSecretName }}
                   key: oauth-key
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
