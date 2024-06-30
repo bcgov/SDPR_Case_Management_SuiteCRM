@@ -74,7 +74,7 @@ spec:
             - name: SUITE_DB_PASSW
               valueFrom:
                 secretKeyRef:
-                  name: suitecrm-mariadb-galera
+                  name: suitecrm-database-credentials
                   key: mariadb-password
             - name: SUITE_DB_NAME
               value: {{ index (index (index .Values "mariadb-galera") "db") "name" }}
