@@ -3,13 +3,13 @@
 ## To generate a new one, run on any host> php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'
 
 Secrets:
-  suitecrmadminpwd: "changeme"
-  suitecrmhost: "suitecrmdemo-dev.apps.gold.devops.gov.bc.ca"
-  sso_domain: "keycloakservername"
-  sso_realm: "standard"
-  sso_clientid: "keycloakclientid"
-  sso_idp_x509: "getfromsso"
-  oauthkey:  "changeme"
+  suitecrmadminpwd: <! change me >
+  suitecrmhost: <! change me >
+  sso_domain: <! change me >
+  sso_realm: <! change me >
+  sso_clientid: <! change me >
+  sso_idp_x509: <! change me >
+  oauthkey:  <! change me >
 
 ## Dependency Redis Cluster
 redis-cluster:
@@ -25,30 +25,17 @@ redis-cluster:
         memory: "250Mi"
   global:
     redis:
-      password: "changeme"
+      password: <! change me >
   usePassword: false
 
 ## Dependency HA DB
 
 mariadb-galera:
   enabled: true
-  galera:
-    mariabackup:
-      password: changeme
-  rootUser:
-    password: changeme
+  existingSecret: advocase-database-credentials
   db:
-    ## @param db.user Username of new user to create
-    ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-user-on-first-run
-    ##
-    user: changeme
-    ## @param db.password Password for the new user. Ignored if existing secret is provided.
-    ##
-    password: changeme
-    ## @param db.name Name for new database to create
-    ## ref: https://github.com/bitnami/containers/tree/main/bitnami/mariadb-galera#creating-a-database-on-first-run
-    ##
-    name: changeme
+    user: <! change me >
+    name: <! change me >
   podSecurityContext:
     enabled: false
   containerSecurityContext:
@@ -56,6 +43,52 @@ mariadb-galera:
   replicaCount: 1
   persistence:
     size: 2G
+
+## Dependecy Backup Storage
+
+backup-storage:
+  image:
+    repository: docker.io/bcgovimages/backup-container-mariadb
+    pullPolicy: Always
+    tag: latest
+
+  persistence:
+    backup:
+      claimName: db-backup-pvc
+    verification:
+      claimName: db-backup-verification-pvc
+      mountPath: /var/lib/mysql/data
+
+  db:
+    secretName: advocase-database-credentials
+    usernameKey: mariadb-galera-root-user
+    passwordKey: mariadb-root-password
+
+  env:
+    DATABASE_SERVICE_NAME:
+      value: suitecrm-mariadb-galera
+    NUM_BACKUPS:
+      value: "31"
+    DAILY_BACKUPS:
+      value: "6"
+    WEEKLY_BACKUPS:
+      value: "4"
+    MONTHLY_BACKUPS:
+      value: "1"
+    MYSQL_USER:
+      value: "user"
+    MYSQL_PASSWORD:
+      value: "user123"
+    MYSQL_DATABASE:
+      value: "advocase"
+    MYSQL_ROOT_PASSWORD:
+      value: "root"
+
+  backupConfig: |
+    suitecrm-mariadb-galera:3306/advocase
+
+    0 1 * * * default ./backup.sh -s
+    0 4 * * * default ./backup.sh -s -v all
 
 # Default values for suitecrm.
 # This is a YAML-formatted file.
@@ -120,23 +153,21 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-# Additional volumes on the output Deployment definition.
 volumes:
   - name: shared-uploads
     persistentVolumeClaim:
       claimName: cbsuitecrm-uploads-shared
-# Additional volumeMounts on the output Deployment definition.
+
 volumeMounts: 
   - name: shared-uploads
     mountPath: /suitecrm/public/legacy/upload
-# - name: foo
-#   mountPath: "/etc/foo"
-#   readOnly: true
+
 persistence:
   enabled: true
   accessModes: 
     - ReadWriteMany
   size: 1G
+
 nodeSelector: {}
 tolerations: []
 affinity: {}
