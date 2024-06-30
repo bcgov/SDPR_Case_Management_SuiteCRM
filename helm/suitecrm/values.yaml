@@ -2,14 +2,11 @@
 ## helm install suitecrm ./suitecrm/ -f <customfile.yaml>
 ## To generate a new one, run on any host> php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'
 
-Secrets:
-  suitecrmadminpwd: <! change me >
-  suitecrmhost: <! change me >
-  sso_domain: <! change me >
-  sso_realm: <! change me >
-  sso_clientid: <! change me >
-  sso_idp_x509: <! change me >
-  oauthkey:  <! change me >
+global:
+  suitecrmHost: <! change me >
+  ssoDomain: <! change me >
+  ssoRealm: <! change me >
+  ssoClientid: <! change me >
 
 ## Dependency Redis Cluster
 redis-cluster:
