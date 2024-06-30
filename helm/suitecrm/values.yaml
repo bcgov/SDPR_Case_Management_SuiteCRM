@@ -8,6 +8,10 @@ global:
   ssoRealm: <! change me >
   ssoClientid: <! change me >
 
+  secrets:
+    suitecrmSecretName: suitecrm-secrets
+    databaseSecretName: suitecrm-database-credentials
+
 ## Dependency Redis Cluster
 redis-cluster:
   persistence:
@@ -124,7 +128,7 @@ ingress:
   ingressClassName: "openshift-default"
   annotations:
   enabled: true # create an ingress for this component
-  hostname: "{{tpl .Values.Secrets.suitecrmhost .}}"
+  hostname: "{{tpl .Values.global.suitecrmHost .}}"
   port: 8181
   tls: true
   selfSigned: false
