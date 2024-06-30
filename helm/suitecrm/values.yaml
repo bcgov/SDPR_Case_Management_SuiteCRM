@@ -33,7 +33,7 @@ redis-cluster:
 
 mariadb-galera:
   enabled: true
-  existingSecret: advocase-database-credentials
+  existingSecret: suitecrm-database-credentials
   db:
     user: <! change me >
     name: <! change me >
@@ -61,7 +61,7 @@ backup-storage:
       mountPath: /var/lib/mysql/data
 
   db:
-    secretName: advocase-database-credentials
+    secretName: suitecrm-database-credentials
     usernameKey: mariadb-galera-root-user
     passwordKey: mariadb-root-password
 
