@@ -43,8 +43,8 @@ spec:
             - name: SAML_IDP_X509
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: SAML_IDP_X509
+                  name: suitecrm-secrets
+                  key: sso-idp-x509
             - name: SAML_SP_ENTITY_ID
               value: {{.Values.Secrets.sso_clientid}}
             - name: SAML_SP_ASSERTION_URL
@@ -83,8 +83,8 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: DATABASE_URL
+                  name: suitecrm-secrets
+                  key: database-url
             - name: SESSION_SAVE_HANDLER
               value: rediscluster
             - name: SESSION_SAVE_PATH
@@ -94,13 +94,13 @@ spec:
             - name: SUITECRM_ADMIN_PWD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: SUITECRM_PASSWORD
+                  name: suitecrm-secrets
+                  key: suitecrm-admin-password
             - name: OAUTH_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: OAUTH_KEY
+                  name: suitecrm-secrets
+                  key: oauth-key
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
