@@ -125,9 +125,15 @@ $widget-border-selected: #2E5DD7;
 $widget-border: #353433;
 
 $surface-color-background-blue: #053662;
+$surface-color-primary-hover: #1E5189;
 $primary-color: #2d2d2d;
 $secondary-color: #474543;
 $color-success: #42814a;
+
+$typography-color-secondary: #474543;
+
+/* ----Filter Button -- */
+$button-secondary: #474543;
 
 /* ----Surface colors -- */
 $surface-warning: #fef1d8;
@@ -143,12 +149,6 @@ $danger: #ee8776;
 /* ----Buttons -- */
 
 $btn-danger: $danger;
-
-/* ---- CUSTOM colors -- */
-$surface-color-background-blue: #053662;
-$surface-color-primary-hover: #1E5189;
-$typography-color-secondary: #474543;
-$grey-widget: #D8D8D8;
 
 /* --------- PREDEFINED STYLES ---------- */
 
