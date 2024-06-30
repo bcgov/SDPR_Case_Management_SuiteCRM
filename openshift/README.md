@@ -25,3 +25,4 @@ echo -n 'your-string' | base64
 ```
 
 **Note 3:** Keep in mind that <ins>*base64 encoding is not encryption*</ins>. The actual secrets **MUST NOT** be stored in this repository.
+**Note 4:** The password related keys **should not be changed** as they follow the naming convention of the MariaDB Galera Helm chart. Refer to the [MariaDB Galera Helm chart documentation](https://artifacthub.io/packages/helm/bitnami/mariadb-galera) and to [MariaDB Galera Helm chart Github repository](https://github.com/bitnami/charts/tree/main/bitnami/mariadb-galera) (specifically the `templates/secrets.yaml` file) for more information. 
