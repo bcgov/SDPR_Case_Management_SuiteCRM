@@ -33,28 +33,28 @@ spec:
         - name: {{ .Chart.Name }}
           env:
             - name: SAML_IDP_ENTITY_ID
-              value: https://{{.Values.Secrets.sso_domain}}/auth/realms/{{.Values.Secrets.sso_realm}}
+              value: https://{{.Values.global.ssoDomain}}/auth/realms/{{.Values.global.ssoRealm}}
             - name: SAML_ISP_SSO_URL
               value: >-
-                https://{{.Values.Secrets.sso_domain}}/auth/realms/{{.Values.Secrets.sso_realm}}/protocol/saml
+                https://{{.Values.global.ssoDomain}}/auth/realms/{{.Values.global.ssoRealm}}/protocol/saml
             - name: SAML_IDP_LOGOUT_URL
               value: >-
-                https://{{.Values.Secrets.sso_domain}}/auth/realms/{{.Values.Secrets.sso_realm}}/protocol/saml
+                https://{{.Values.global.ssoDomain}}/auth/realms/{{.Values.global.ssoRealm}}/protocol/saml
             - name: SAML_IDP_X509
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: SAML_IDP_X509
+                  name: suitecrm-secrets
+                  key: sso-idp-x509
             - name: SAML_SP_ENTITY_ID
-              value: {{.Values.Secrets.sso_clientid}}
+              value: {{.Values.global.ssoClientid}}
             - name: SAML_SP_ASSERTION_URL
               value: >-
-                https://{{.Values.Secrets.suitecrmhost}}/saml/acs
+                https://{{.Values.global.suitecrmHost}}/saml/acs
             - name: SAML_SP_SINGLE_LOGOUT
               value: >-
-                https://{{.Values.Secrets.suitecrmhost}}/saml/logout
+                https://{{.Values.global.suitecrmHost}}/saml/logout
             - name: SAML_SP_BASE_URL
-              value: https://{{.Values.Secrets.suitecrmhost}}/saml
+              value: https://{{.Values.global.suitecrmHost}}/saml
             - name: AUTH_TYPE
               value: saml
             - name: SAML_AUTO_CREATE
@@ -74,7 +74,7 @@ spec:
             - name: SUITE_DB_PASSW
               valueFrom:
                 secretKeyRef:
-                  name: suitecrm-mariadb-galera
+                  name: suitecrm-database-credentials
                   key: mariadb-password
             - name: SUITE_DB_NAME
               value: {{ index (index (index .Values "mariadb-galera") "db") "name" }}
@@ -83,24 +83,24 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: DATABASE_URL
+                  name: suitecrm-secrets
+                  key: database-url
             - name: SESSION_SAVE_HANDLER
               value: rediscluster
             - name: SESSION_SAVE_PATH
               value: 'seed[]=tcp://suitecrm-redis-cluster-headless:6379&timeout=2&read_timeout=2'
             - name: SUITECRM_URL
-              value: {{.Values.Secrets.suitecrmhost}}
+              value: {{.Values.global.suitecrmHost}}
             - name: SUITECRM_ADMIN_PWD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: SUITECRM_PASSWORD
+                  name: suitecrm-secrets
+                  key: suitecrm-admin-password
             - name: OAUTH_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Chart.Name }}
-                  key: OAUTH_KEY
+                  name: suitecrm-secrets
+                  key: oauth-key
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
