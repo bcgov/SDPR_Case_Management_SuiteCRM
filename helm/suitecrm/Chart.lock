@@ -5,5 +5,8 @@ dependencies:
 - name: redis-cluster
   repository: https://charts.bitnami.com/bitnami
   version: 10.0.1
-digest: sha256:2cbaf715f4daab517f9219c0703c0e97962539e01a6f5bd739f057788f8c1109
-generated: "2024-04-06T00:03:53.764016493-07:00"
+- name: backup-storage
+  repository: https://bcgov.github.io/helm-charts
+  version: 0.1.13
+digest: sha256:1a4057aa451a8f9fc462dabe75194ab2a822b19f6e4413ea1a7925798fe57c10
+generated: "2024-06-30T14:10:07.01774-07:00"
