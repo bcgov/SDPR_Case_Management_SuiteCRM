@@ -1,0 +1,23 @@
+{{- range $name, $val := .Values.persistence }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-storage-cron-{{ $name }}-pvc
+  {{- with $.Values.storageAnnotations }}
+  annotations:
+  {{ toYaml . | indent 4 }}
+  {{ end }}
+  labels:
+      app: backup-storage-cron
+      chart: backup-storage-cron
+      release: {{ $.Release.Name }}
+      heritage: {{ $.Release.Service }}
+spec:
+  accessModes:
+    - {{.storageAccessMode}}
+  storageClassName: {{.storageClassName}}
+  resources:
+    requests:
+      storage: {{.size}}
+---
+{{- end }}

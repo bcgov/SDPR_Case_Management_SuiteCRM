@@ -1,0 +1,101 @@
+apiVersion: "batch/v1"
+kind: "CronJob"
+metadata:
+  name: backup-storage-cron-backup
+  labels:
+    cronjob: backup-storage-cron
+spec:
+  schedule: {{ .Values.cron.backupSchedule }}
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: {{ .Values.cron.successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ .Values.cron.failedJobsHistoryLimit }}
+  jobTemplate:
+    metadata:
+      labels:
+        cronjob: backup-storage-cron-backup-cronjob
+    spec:
+      backoffLimit: {{ .Values.cron.backoffLimit }}
+      template:
+        metadata:
+          labels:
+            app.kubernetes.io/instance: suitecrm
+            cronjob: backup-storage-cron
+        spec:
+          containers:
+            - name: backup-storage-cron-cronjob
+              image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+              command:
+                - "/bin/bash"
+                - "-c"
+                - "/backup.sh -1"
+              volumeMounts:
+                - mountPath: {{ .Values.env.BACKUP_DIR }}
+                  name: backup-storage-cron-backup-pvc
+              env:
+                - name: BACKUP_DIR
+                  value: {{ .Values.env.BACKUP_DIR }}
+                - name: BACKUP_STRATEGY
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: BACKUP_STRATEGY
+                - name: NUM_BACKUPS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: RETENTION.NUM_BACKUPS
+                      optional: true
+                - name: DAILY_BACKUPS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: RETENTION.DAILY_BACKUPS
+                      optional: true
+                - name: WEEKLY_BACKUPS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: RETENTION.WEEKLY_BACKUPS
+                      optional: true
+                - name: MONTHLY_BACKUPS
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: RETENTION.MONTHLY_BACKUPS
+                      optional: true
+                - name: DATABASE_SERVICE_NAME
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: DATABASE_SERVICE_NAME
+                - name: POSTGRESQL_PORT_NUM
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: POSTGRESQL_PORT_NUM
+                      optional: true
+                - name: POSTGRESQL_DATABASE
+                  valueFrom:
+                    configMapKeyRef:
+                      name: backup-storage-cron-config
+                      key: POSTGRESQL_DATABASE
+                - name: DATABASE_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.db.secretName }}
+                      key: {{ .Values.db.usernameKey }}
+                - name: DATABASE_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.db.secretName }}
+                      key: {{ .Values.db.passwordKey }}
+          volumes:
+            - name: backup-storage-cron-backup-pvc
+              persistentVolumeClaim:
+                claimName: backup-storage-cron-backup-pvc
+          restartPolicy: "Never"
+          terminationGracePeriodSeconds: 30
+          activeDeadlineSeconds: 1600
+          dnsPolicy: "ClusterFirst"
+          serviceAccountName: backup-storage-cron
+          serviceAccount: backup-storage-cron
