@@ -5,7 +5,7 @@ kind: CronJob
     labels:
       {{- include "suitecrm.labels" . | nindent 4 }}
   spec:
-    schedule: {{ .Values.cron.schedule }}
+    schedule: {{ .Values.global.cron.schedule }}
     concurrencyPolicy: Forbid
     successfulJobsHistoryLimit: 5
     failedJobsHistoryLimit: 2
