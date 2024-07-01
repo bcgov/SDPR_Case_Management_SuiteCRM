@@ -1,0 +1,52 @@
+kind: CronJob
+  apiVersion: batch/v1
+  metadata:
+    name: {{ include "suitecrm.fullname" . }}-cron-job
+    labels:
+      {{- include "suitecrm.labels" . | nindent 4 }}
+  spec:
+    schedule: {{ .Values.cron.schedule }}
+    concurrencyPolicy: Forbid
+    successfulJobsHistoryLimit: 5
+    failedJobsHistoryLimit: 2
+    jobTemplate:
+      metadata:
+        labels:
+          {{- include "suitecrm.labels" . | nindent 6 }}
+      spec:
+        backoffLimit: 0
+        template:
+          metadata:
+            labels:
+              {{- include "suitecrm.labels" . | nindent 8 }}
+          spec:
+            containers:
+              - name: {{ include "suitecrm.fullname" . }}-cron-job
+                image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+                command:
+                  - "/bin/bash"
+                  - "-c"
+                  - "/scripts/cron.sh"
+                env:
+                  - name: SUITE_DB_HOST
+                    value: suitecrm-mariadb-galera
+                  - name: SUITE_DB_USER
+                    value: {{ index (index (index .Values "mariadb-galera") "db") "user" }}
+                  - name: SUITE_DB_PASSW
+                    valueFrom:
+                      secretKeyRef:
+                        name: {{ .Values.global.secrets.databaseSecretName}}
+                        key: mariadb-password
+                  - name: SUITE_DB_NAME
+                    value: {{ index (index (index .Values "mariadb-galera") "db") "name" }}
+                  - name: SUITE_DB_PORT
+                    value: '3306'
+                  - name: DATABASE_URL
+                    valueFrom:
+                      secretKeyRef:
+                        name: {{ .Values.global.secrets.suitecrmSecretName }}
+                        key: database-url
+            restartPolicy: Never
+            terminationGracePeriodSeconds: 30
+            activeDeadlineSeconds: 1600
+            dnsPolicy: ClusterFirst
