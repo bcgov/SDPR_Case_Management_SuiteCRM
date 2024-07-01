@@ -10,7 +10,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "suitecrm.selectorLabels" . | nindent 6 }}
+      component: app
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -19,9 +19,8 @@ spec:
       {{- end }}
       labels:
         {{- include "suitecrm.labels" . | nindent 8 }}
-	{{- with .Values.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
+        component: app
+        route-ingress: true
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
