@@ -12,6 +12,9 @@ global:
     suitecrmSecretName: suitecrm-secrets
     databaseSecretName: suitecrm-database-credentials
 
+  cron:
+    schedule: "*/15 * * * *"
+
 ## Dependency Redis Cluster
 redis-cluster:
   persistence:
