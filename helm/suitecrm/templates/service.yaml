@@ -7,10 +7,6 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - name: 80-tcp
-      protocol: TCP
-      port: 80
-      targetPort: 80
     - name: 8143-tcp
       protocol: TCP
       port: 8143
@@ -20,6 +16,6 @@ spec:
       port: 8181
       targetPort: 8181
   selector:
-    {{- include "suitecrm.selectorLabels" . | nindent 4 }}
+    component: app
 
 

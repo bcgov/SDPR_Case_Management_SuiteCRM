@@ -19,6 +19,7 @@ spec:
         metadata:
           labels:
             {{- include "suitecrm.labels" . | nindent 12 }}
+            component: cron-job
         spec:
           containers:
             - name: {{ .Chart.Name }}-cron-job
