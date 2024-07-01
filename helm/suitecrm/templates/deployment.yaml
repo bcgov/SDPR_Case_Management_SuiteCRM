@@ -20,7 +20,7 @@ spec:
       labels:
         {{- include "suitecrm.labels" . | nindent 8 }}
         component: app
-        route-ingress: true
+        route-ingress: "true"
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
