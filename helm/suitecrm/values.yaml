@@ -24,13 +24,9 @@ redis-cluster:
       limits:
         cpu: "50m"
         memory: "250Mi"
-  global:
-    redis:
-      password: <! change me >
   usePassword: false
 
 ## Dependency HA DB
-
 mariadb-galera:
   enabled: true
   existingSecret: suitecrm-database-credentials
@@ -46,7 +42,6 @@ mariadb-galera:
     size: 2G
 
 ## Dependecy Backup Storage
-
 backup-storage:
   image:
     repository: docker.io/bcgovimages/backup-container-mariadb
