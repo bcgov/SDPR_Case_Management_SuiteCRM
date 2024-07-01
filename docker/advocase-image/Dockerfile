@@ -14,6 +14,7 @@ RUN install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip redis
 # Copying builded SuiteCRM files to container
 COPY ./suitecrm-base /suitecrm
 COPY ./build-files /tmp/build-files
+COPY ./scripts /scripts
 
 RUN a2enmod rewrite \
 && a2enmod ssl
@@ -27,6 +28,8 @@ WORKDIR /tmp
 RUN chmod +x /tmp/build-files/copy_files.sh \
 && /tmp/build-files/copy_files.sh \
 && rm -rf /tmp/*
+
+RUN chmod +x /scripts/cron.sh
 
 WORKDIR /suitecrm
 
