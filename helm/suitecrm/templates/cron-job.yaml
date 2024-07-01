@@ -3,7 +3,7 @@ kind: CronJob
   metadata:
     name: {{ include "suitecrm.fullname" . }}-cron-job
     labels:
-      {{- include "suitecrm.labels" . | nindent 4 }}
+      {{- include "suitecrm.labels" . | nindent 6 }}
   spec:
     schedule: {{ .Values.global.cron.schedule }}
     concurrencyPolicy: Forbid
@@ -12,13 +12,13 @@ kind: CronJob
     jobTemplate:
       metadata:
         labels:
-          {{- include "suitecrm.labels" . | nindent 6 }}
+          {{- include "suitecrm.labels" . | nindent 10 }}
       spec:
         backoffLimit: 0
         template:
           metadata:
             labels:
-              {{- include "suitecrm.labels" . | nindent 8 }}
+              {{- include "suitecrm.labels" . | nindent 14 }}
           spec:
             containers:
               - name: {{ include "suitecrm.fullname" . }}-cron-job
