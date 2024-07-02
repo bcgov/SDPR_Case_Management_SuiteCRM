@@ -107,30 +107,44 @@ spec:
           readinessProbe:
             exec:
               command:
-                - /bin/sh
+                - /bin/bash
                 - -c
                 - /scripts/readiness-health-check.sh
             initialDelaySeconds: 10
-            periodSeconds: 60
-            timeoutSeconds: 5
+            periodSeconds: 15
+            timeoutSeconds: 1
             successThreshold: 1
             failureThreshold: 3
           livenessProbe:
-            httpGet:
-              path: /auth
-              port: 8181
-            initialDelaySeconds: 120
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - |
+                  if [ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8181/auth)" != "200" ]
+                  then
+                    echo "SuiteCRM is not available";
+                    exit 1;
+                  fi
+            initialDelaySeconds: 10
             periodSeconds: 15
-            timeoutSeconds: 5
+            timeoutSeconds: 2
             successThreshold: 1
             failureThreshold: 3
           startupProbe:
-            httpGet:
-              path: /auth
-              port: 8181
-            initialDelaySeconds: 120
+            exec:
+              command:
+                - /bin/bash
+                - -c
+                - |
+                  if [ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8181/auth)" != "200" ]
+                  then
+                    echo "SuiteCRM is not available";
+                    exit 1;
+                  fi
+            initialDelaySeconds: 10
             periodSeconds: 15
-            timeoutSeconds: 5
+            timeoutSeconds: 2
             successThreshold: 1
             failureThreshold: 3
           ports:
