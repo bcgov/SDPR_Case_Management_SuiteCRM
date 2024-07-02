@@ -58,7 +58,7 @@ spec:
     - from:
         - podSelector:
             matchLabels:
-              component: cron
+              component: cron-job
       ports:
         - protocol: TCP
           port: 3306
