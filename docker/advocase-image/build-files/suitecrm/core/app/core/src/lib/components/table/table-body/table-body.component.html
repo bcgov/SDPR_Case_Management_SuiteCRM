@@ -99,8 +99,8 @@
 
             </ng-container>
 
-            <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns"></tr>
-            <tr cdk-row *cdkRowDef="let row; columns: vm.displayedColumns;"></tr>
+            <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns" class="table-header-row"></tr>
+            <tr cdk-row *cdkRowDef="let row; columns: vm.displayedColumns;" class="table-body-row"></tr>
 
         </table>
 
