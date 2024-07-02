@@ -224,7 +224,7 @@ a.nav-link-nongrouped.dropdown-toggle::after {
 .mobilenavbar {
   list-style: none;
   padding: 0;
-  background-color: $midnight-blue;
+  background-color: $surface-color-background-blue;
 
   .navbar-toggler.dropdown-toggle::after {
     display: none;
@@ -250,5 +250,24 @@ a.nav-link-nongrouped.dropdown-toggle::after {
         margin-left: 0.5em;
       }
     }
+  }
+}
+
+.primary-global-link.custom-create {
+  background-color: $white;
+  margin: 0.5em 0;
+  border-radius: 0.25em;
+  height: 2.1em;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & div {
+    color: $typography-color-secondary;
+  }
+
+  &:hover {
+    background-color: $secondary-button-hover;
   }
 }
