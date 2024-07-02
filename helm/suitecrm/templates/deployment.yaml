@@ -104,15 +104,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          readinessProbe:
-            exec:
-              command:
-                - /bin/bash
-                - -c
-                - /scripts/readiness-health-check.sh
-            initialDelaySeconds: 10
-            periodSeconds: 15
-            timeoutSeconds: 1
+          livenessProbe:
+            tcpSocket:
+              port: http
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
             successThreshold: 1
             failureThreshold: 3
           livenessProbe:
