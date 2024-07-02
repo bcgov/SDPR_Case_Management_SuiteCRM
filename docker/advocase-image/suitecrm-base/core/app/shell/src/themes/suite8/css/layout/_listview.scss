@@ -90,6 +90,8 @@
 
 .list-view-table {
   margin: 0;
+  padding: 0;
+  max-width: 100%;
   table-layout: auto;
 }
 
@@ -124,12 +126,10 @@
 
 .table td {
   vertical-align: middle;
-  padding: 0.45em;
 }
 
 .table th {
   border-top: 0;
-  padding: 0.5rem 0.45em;
 }
 
 .table thead th {
@@ -215,6 +215,10 @@
 .primary-table-header span:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.table-body-row {
+  border-top: 1px solid $border-default;
 }
 
 td.list-group-icon {
