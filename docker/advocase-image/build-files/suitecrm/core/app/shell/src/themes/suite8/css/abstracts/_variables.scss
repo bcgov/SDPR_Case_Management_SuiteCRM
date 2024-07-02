@@ -120,9 +120,11 @@ $btn-danger: $danger;
 $primary_text: #2D2D2D;
 $grey-widget: #D8D8D8;
 
-$widget-background: #F7F9FC;
+$widget-background-selected: #F7F9FC;
+$widget-background: $white;
 $widget-border-selected: #2E5DD7;
 $widget-border: #353433;
+$widget-icon: #255A90;
 
 $surface-color-background-blue: #053662;
 $surface-color-primary-hover: #1E5189;
