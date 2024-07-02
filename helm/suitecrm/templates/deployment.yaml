@@ -112,41 +112,29 @@ spec:
             timeoutSeconds: 5
             failureThreshold: 6
             successThreshold: 1
-            failureThreshold: 3
-          livenessProbe:
-            exec:
-              command:
-                - /bin/bash
-                - -c
-                - |
-                  if [ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8181/auth)" != "200" ]
-                  then
-                    echo "SuiteCRM is not available";
-                    exit 1;
-                  fi
-            initialDelaySeconds: 10
-            periodSeconds: 15
-            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /auth
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
             successThreshold: 1
-            failureThreshold: 3
           startupProbe:
-            exec:
-              command:
-                - /bin/bash
-                - -c
-                - |
-                  if [ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8181/auth)" != "200" ]
-                  then
-                    echo "SuiteCRM is not available";
-                    exit 1;
-                  fi
-            initialDelaySeconds: 10
-            periodSeconds: 15
-            timeoutSeconds: 2
+            httpGet:
+              scheme: HTTP
+              path: /auth
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 6
             successThreshold: 1
-            failureThreshold: 3
           ports:
-            - containerPort: 8181
+            - name: http
+              containerPort: 8181
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
