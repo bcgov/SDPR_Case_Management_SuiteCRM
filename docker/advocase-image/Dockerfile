@@ -29,7 +29,7 @@ RUN chmod +x /tmp/build-files/copy_files.sh \
 && /tmp/build-files/copy_files.sh \
 && rm -rf /tmp/*
 
-RUN chmod +x /scripts/cron.sh
+RUN chmod +x /scripts/*.sh
 
 WORKDIR /suitecrm
 
