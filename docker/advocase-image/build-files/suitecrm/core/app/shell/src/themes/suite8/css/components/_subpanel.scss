@@ -38,6 +38,7 @@
 
 .sub-panel-banner-button-active {
   border: 2px solid $widget-border-selected !important;
+  background: $widget-background-selected !important;
 }
 
 .widget-entry-icon svg {
@@ -110,8 +111,10 @@ div.widget-panel .panel-card .card-header {
 
     svg {
       font-size: 1.5em;
-      fill: $primary_text;
-      stroke: $primary_text;
+      height: 3rem;
+      width: 3rem;
+      fill: $widget-icon;
+      stroke: $widget-icon;
       grid-row: 1/2;
     }
   }
