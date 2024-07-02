@@ -100,6 +100,11 @@ a.home-nav-link {
   line-height: 3.1em;
   padding: 0.8em 1em 1em 1em;
   padding-left: 0.5em;
+  text-decoration: none;
+
+  & span {
+    margin-left: 8px;
+  }
 }
 
 .nav-item.active .home-nav-link svg {
@@ -256,12 +261,20 @@ a.nav-link-nongrouped.dropdown-toggle::after {
 .primary-global-link.custom-create {
   background-color: $white;
   margin: 0.5em 0;
+  padding: 0.5em 1em;
   border-radius: 0.25em;
-  height: 2.1em;
+  height: 32px;
   line-height: 1.5;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &.dropdown-toggle::after {
+    display: inline-block;
+    color: $typography-color-secondary;
+    margin: auto 0;
+    margin-left: 8px;
+  }
 
   & div {
     color: $typography-color-secondary;
@@ -270,4 +283,8 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   &:hover {
     background-color: $secondary-button-hover;
   }
+}
+
+.action-new .navbar-nav {
+  height: 100%;
 }
