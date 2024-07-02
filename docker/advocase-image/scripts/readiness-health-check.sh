@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Check if database is available using timeout and /dev/tcp
-timeout 5 bash -c "</dev/tcp/suitecrm-mariadb-galera/3306";
+timeout 1 bash -c "</dev/tcp/suitecrm-mariadb-galera/3306";
 if [ $? -ne 0 ];
 then
   echo "Database is not available";
   exit 1;
 fi
 # Check if redis-cluster is available using timeout and /dev/tcp
-timeout 5 bash -c "</dev/tcp/suitecrm-redis-cluster/6379";
+timeout 1 bash -c "</dev/tcp/suitecrm-redis-cluster/6379";
 if [ $? -ne 0 ];\
 then
   echo "Redis-cluster is not available";
