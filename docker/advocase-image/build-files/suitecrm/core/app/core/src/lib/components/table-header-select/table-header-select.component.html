@@ -25,24 +25,6 @@
 * the words "Supercharged by SuiteCRM".
 */
 -->
-<div class="{{ (config && config.klass) || ''}}">
-    <scrm-table-header *ngIf="showHeader()"
-                       [bulkActions]="config.bulkActions"
-                       [paginationType]="getPaginationType()"
-                       [pagination]="config.pagination"
-                       [selection]="config.selection"
-                       [tableActions]="config?.tableActions"
-    >
-    </scrm-table-header>
-    <scrm-table-body [config]="config"></scrm-table-body>
-    <scrm-table-footer *ngIf="showFooter()"
-                       [bulkActions]="config.bulkActions"
-                       [paginationType]="getPaginationType()"
-                       [pagination]="config.pagination"
-                       [selection]="config.selection"
-                       [tableActions]="config?.tableActions"
-                       [config]="config"
-    >
-    </scrm-table-footer>
+<div class="d-flex"> 
+    <p *ngIf="count > 0" class="table-header-select-count">{{count}} is selected</p>
 </div>
-
