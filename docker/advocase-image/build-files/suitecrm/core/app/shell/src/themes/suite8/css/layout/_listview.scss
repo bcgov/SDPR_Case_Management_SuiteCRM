@@ -116,12 +116,6 @@
   table-layout: auto;
 }
 
-.striped-table {
-  tbody tr:nth-of-type(odd) {
-    background-color: white;
-  }
-}
-
 .table-wrapper {
   overflow-x: auto;
   overflow-y: hidden;
@@ -279,6 +273,14 @@
 .primary-table-header span:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.table-body-row {
+  border-top: 1px solid $border-default;
+}
+
+.table-body-row:hover {
+  background-color: $surface-tertiary-hover; /* Change this to your desired hover background color */
 }
 
 td.list-group-icon {
