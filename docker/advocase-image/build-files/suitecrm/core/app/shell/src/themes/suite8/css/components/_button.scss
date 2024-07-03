@@ -173,31 +173,18 @@ button {
   border-color: $widget-border;
   border-radius: 4px;
   color: $button-secondary;
-  font-size: 16px;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 27.008px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 18px;
-}
-
-.settings-button::before {
-  content: '\25BC';
-  color: #333;
-  margin-right: 10px;
 }
 
 .settings-button:hover,
 .settings-button.btn:hover {
-  background-color: $pale-blue;
+  background-color: $surface-color-primary-hover;
+  color: $white;
 }
 
 .settings-button.active,
 .settings-button.btn.active {
-  background-color: $midnight-blue;
+  background-color: $surface-color-background-blue;
+  color: $white;
 }
 
 .settings-button.btn-outline-main,
@@ -207,26 +194,29 @@ button {
 
 .settings-button.btn-outline-main:hover,
 .settings-button.btn.btn-outline-main:hover {
-  background-color: $midnight-blue;
+  background-color: $surface-color-primary-hover;
+  color: $white;
 }
 
 .settings-button.active,
 .settings-button.btn.active {
-  background-color: $midnight-blue;
+  background-color: $surface-color-background-blue;
+  color: $white;
 }
 
 .settings-button.btn-outline-main.active,
 .settings-button.btn.btn-outline-main.active {
-  background-color: $midnight-blue;
+  background-color: $surface-color-background-blue;
+  color: $white;
 }
 
 .settings-button.btn-outline-main.active:hover,
 .settings-button.btn.btn-outline-main.active:hover {
   background-color: transparent;
   border-color: transparent;
-  color: $midnight-blue;
-  fill: $midnight-blue;
-  stroke: $midnight-blue;
+  color: $surface-color-primary-hover;
+  fill: $surface-color-primary-hover;
+  stroke: $surface-color-primary-hover;
 }
 
 .quick-filter-button {
