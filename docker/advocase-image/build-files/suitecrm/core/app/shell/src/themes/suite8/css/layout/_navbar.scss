@@ -129,11 +129,15 @@ a.home-nav-link {
   color: $off-white;
 }
 
+.sub-nav-link:hover {
+  color: $typography-color-secondary;
+}
+
 .nav-item.active .nav-link-nongrouped,
 .nav-item.active .home-nav-link {
   color: $white!important;
   border-top: 0.2em solid $white;
-  padding: 0.8em 1em 1.1em 1em;
+  padding: auto 1em auto 1em;
   text-decoration: none;
 }
 
