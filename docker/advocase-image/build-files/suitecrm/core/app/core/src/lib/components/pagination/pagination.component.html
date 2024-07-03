@@ -29,13 +29,17 @@
     <button *ngIf="allowPagination" class="pagination-button pagination-first"
             aria-label="Navigate to first page"
             (click)="first()">
-        <scrm-image class="sicon-2x pagination-icons" image="paginate_first">
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageFirst != 1" image="paginate_first">
+        </scrm-image>
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageFirst == 1" image="paginate_first_invalid">
         </scrm-image>
     </button>
     <button *ngIf="allowPagination" class="pagination-button pagination-previous"
             aria-label="Previous page"
             (click)="previous()">
-        <scrm-image class="sicon-2x pagination-icons" image="paginate_previous">
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageFirst != 1" image="paginate_previous">
+        </scrm-image>
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageFirst == 1" image="paginate_previous_invalid">
         </scrm-image>
     </button>
     <span class="pagination-count"
@@ -47,15 +51,19 @@
         - {{vm.pageCount.pageLast}} {{vm.appStrings['LBL_LIST_OF'] || ''}} {{vm.pageCount.total}}
     </span>
     <button *ngIf="allowPagination" class="pagination-button pagination-next"
-            aria-label="Navigate to last page"
+            aria-label="Navigate to next page"
             (click)="next()">
-        <scrm-image class="sicon-2x pagination-icons" image="paginate_next">
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageLast < vm.pageCount.total" image="paginate_next">
+        </scrm-image>
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageLast == vm.pageCount.total" image="paginate_next_invalid">
         </scrm-image>
     </button>
     <button *ngIf="allowPagination" class="pagination-button pagination-last"
-            aria-label="Next page"
+            aria-label="Last page"
             (click)="last()">
-        <scrm-image class="sicon-2x pagination-icons" image="paginate_last">
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageLast < vm.pageCount.total" image="paginate_last">
+        </scrm-image>
+        <scrm-image class="sicon-2x pagination-icons" *ngIf="vm.pageCount.pageLast == vm.pageCount.total" image="paginate_last_invalid">
         </scrm-image>
     </button>
 </div>
