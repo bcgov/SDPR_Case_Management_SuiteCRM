@@ -108,35 +108,9 @@ $thick-orange: #d1c369;
 $very-lighter-orange: #fffbe0;
 
 /* ----Base colors -- */
-
-$danger: #ee8776;
-
-/* ----Buttons -- */
-
-$btn-danger: $danger;
-
-// Custom
-
-$primary_text: #2D2D2D;
-$grey-widget: #D8D8D8;
-
-$widget-background-selected: #F7F9FC;
-$widget-background: $white;
-$widget-border-selected: #2E5DD7;
-$widget-border: #353433;
-$widget-icon: #255A90;
-
-$surface-color-background-blue: #053662;
-$surface-color-primary-hover: #1E5189;
-$primary-color: #2d2d2d;
-$secondary-color: #474543;
-$color-success: #42814a;
-$typography-color-disabled: #9F9D9C;
+$primary_text: #2d2d2d;
 $typography-color-secondary: #474543;
-$secondary-button-hover: #EDEBE9;
-
-/* ----Filter Button -- */
-$button-secondary: #474543;
+$color-success: #42814a;
 
 /* ----Surface colors -- */
 $surface-warning: #fef1d8;
@@ -152,6 +126,7 @@ $danger: #ee8776;
 /* ----Buttons -- */
 
 $btn-danger: $danger;
+
 
 /* --------- PREDEFINED STYLES ---------- */
 
@@ -193,4 +168,4 @@ $zindex: (
   page-low: 10,
 );
 
-$cross-background-url: "../../images/checkbox_cross.svg"
+$checkbox-background-url: "../../images/checkbox_selected.svg";
