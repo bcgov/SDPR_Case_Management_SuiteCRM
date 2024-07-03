@@ -58,7 +58,7 @@
 }
 
 .list-view-title {
-  color: $primary-color;
+  color: $primary_text;
   font-family: "BC Sans";
   font-size: 36px;
   font-style: normal;
@@ -199,17 +199,17 @@
 }
 
 .dynamic-field-name-assigned_user_name a {
-  color: $secondary-color;            // Text color
+  color: $typography-color-secondary;            // Text color
   &:hover {
-    color: $secondary-color; // Text color on hover
+    color: $typography-color-secondary; // Text color on hover
     text-decoration: none; // Underline text on hover
   }
 }
 
 .dynamic-field-name-name a {
-  color: $secondary-color;            // Text color
+  color: $typography-color-secondary;            // Text color
   &:hover {
-    color: $secondary-color; // Text color on hover
+    color: $typography-color-secondary; // Text color on hover
     text-decoration: none; // Underline text on hover
   }
 }
@@ -376,7 +376,7 @@ td {
 }
 
 .pagination-count {
-  color: $secondary-color;
+  color: $typography-color-secondary;
   font-weight: bold;
   position: relative;
   font-family: "BC Sans";
