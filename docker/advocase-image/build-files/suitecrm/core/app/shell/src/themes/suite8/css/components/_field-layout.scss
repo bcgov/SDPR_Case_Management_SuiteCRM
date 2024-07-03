@@ -27,6 +27,18 @@
 .field-layout .label-container,
 .field-layout .label-container label {
   color: $primary_text;
+  font-family: "BC Sans";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27.008px;
+}
+
+.flex-grow-1 {
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27.008px;
 }
 
 .field-layout .field-column-bordered {
