@@ -32,8 +32,7 @@ $white: #ffffff;
 $off-white: #f5f5f5;
 $black: black;
 
-$border-default: #d8d8d8;
-$light-grey: #faf9f8;
+$light-grey: #e9e9e9;
 $median-grey: #333333;
 $dark-midnight-grey: #444444;
 $midnight-grey: #666666;
@@ -108,18 +107,6 @@ $thick-orange: #d1c369;
 $very-lighter-orange: #fffbe0;
 
 /* ----Base colors -- */
-$primary_text: #2d2d2d;
-$typography-color-secondary: #474543;
-$color-success: #42814a;
-
-/* ----Surface colors -- */
-$surface-warning: #fef1d8;
-$surface-success: #f6fff8;
-
-/* ----Border colors -- */
-$border-warning: #f8bb47;
-$border-success: #42814a;
-
 
 $danger: #ee8776;
 
@@ -168,4 +155,4 @@ $zindex: (
   page-low: 10,
 );
 
-$checkbox-background-url: "../../images/checkbox_selected.svg";
+$cross-background-url: "../../images/checkbox_cross.svg"
