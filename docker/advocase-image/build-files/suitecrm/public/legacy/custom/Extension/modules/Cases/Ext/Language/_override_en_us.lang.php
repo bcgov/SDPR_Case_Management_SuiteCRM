@@ -26,3 +26,4 @@ $mod_strings['LBL_ADVOCASE_CASE_ISSUE_5'] = 'Issue 5';
 $mod_strings['LBL_WORK_LOG'] = 'Initial Communication Note';
 $mod_strings['LBL_CASES_MEETINGS_1_FROM_MEETINGS_TITLE'] = 'Communications';
 $mod_strings['LBL_DOCUMENTS_SUBPANEL_TITLE'] = 'Attachments';
+$mod_strings['LBL_MEETINGS_SUBPANEL_TITLE'] = 'Communication History';
