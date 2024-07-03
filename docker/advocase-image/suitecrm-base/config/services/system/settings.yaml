@@ -1,0 +1,5 @@
+parameters:
+  system.settings:
+    setup_wizard_route:
+      route: users/Wizard
+      queryParams:

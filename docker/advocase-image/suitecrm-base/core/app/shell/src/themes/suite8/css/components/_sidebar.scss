@@ -1,0 +1,86 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2024 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+.p-sidebar {
+  background-color: $midnight-blue;
+}
+
+.sidebar-container {
+  background-color: $midnight-blue;
+}
+
+.sidebar-container li {
+  color: $off-white;
+  margin: 0;
+  border-top: 0.13em solid #625d75;
+  list-style: none;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.sidebar-container li a {
+  display: inline-block;
+}
+
+.p-sidebar-content {
+  overflow-y: hidden;
+  padding: 0;
+}
+
+.p-sidebar-header {
+  background-color: $midnight-blue;
+  padding: 0.3em 0;
+
+  .search-bar {
+    .input-group {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+}
+
+.p-sidebar-footer {
+  display: none;
+}
+
+.mobile-menu-container {
+  height: 100vh;
+}
+
+.mobile-menu-items {
+  max-height: calc(100vh - 50px);
+  overflow-y: auto;
+
+  .mobile-menu-item-label {
+    max-width: 16rem;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

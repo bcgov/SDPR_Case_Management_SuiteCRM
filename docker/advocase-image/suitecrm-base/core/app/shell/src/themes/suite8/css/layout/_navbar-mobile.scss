@@ -1,0 +1,298 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+/* --------- NAVBAR SECTION ---------- */
+
+.mobile-navbar-active-module {
+
+  scrm-base-menu-item-link {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+
+    .top-nav-link.nav-link-nongrouped {
+      margin-top: 0;
+    }
+
+    .top-nav-link.nav-link-nongrouped:hover {
+      margin-top: 0;
+    }
+
+    .top-nav-link.nav-link-grouped,
+    .top-nav-link.nav-link-nongrouped {
+      color: $off-white;
+
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+
+      padding: 0.5em 0.3em 0.5em;
+      font-weight: bold;
+      margin-top: 0;
+    }
+  }
+
+
+}
+
+@media only screen and (max-width: $breakpoint-medium) {
+  .global-action-icon {
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+
+  .mobile-navbar-active-module {
+
+    scrm-base-menu-item-link {
+
+      .top-nav-link.nav-link-grouped,
+      .top-nav-link.nav-link-nongrouped {
+        max-width: 105px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 400px) and (max-width: 450px) {
+
+  .mobile-navbar-active-module {
+
+    scrm-base-menu-item-link {
+
+      .top-nav-link.nav-link-grouped,
+      .top-nav-link.nav-link-nongrouped {
+        max-width: 150px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 450px) and (max-width: 500px) {
+
+  .mobile-navbar-active-module {
+
+    scrm-base-menu-item-link {
+
+      .top-nav-link.nav-link-grouped,
+      .top-nav-link.nav-link-nongrouped {
+        max-width: 200px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 500px) {
+
+  .mobile-navbar-active-module {
+
+    scrm-base-menu-item-link {
+
+      .top-nav-link.nav-link-grouped,
+      .top-nav-link.nav-link-nongrouped {
+        max-width: 250px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $breakpoint-large) {
+  .navbar-1,
+  .navbar-2 {
+    padding: 0;
+    margin: 0;
+    float: left;
+    top: 0;
+    z-index: map-get($zindex, nav-high);
+  }
+
+  .navbar-header {
+    padding: 0 0.8em;
+  }
+
+  .nav-link {
+    font-size: 0.85em;
+    color: $white;
+  }
+
+  .nav-item.active .nav-link-nongrouped,
+  .nav-item.active .home-nav-link {
+    padding: 1.15em 1em 1.1em 1em;
+
+  }
+
+  .mobile-navbar-active-module {
+
+    scrm-base-menu-item-link {
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+
+      .top-nav-link.nav-link-nongrouped {
+        margin-top: 0;
+        line-height: inherit;
+      }
+
+      .top-nav-link.nav-link-nongrouped:hover {
+        margin-top: 0;
+        line-height: inherit;
+      }
+    }
+
+
+  }
+
+  .nav-link-grouped,
+  .nav-link-nongrouped {
+    max-width: 105px;
+  }
+
+  .navbar-nav,
+  .navbar-nav li {
+    border-bottom: 0.05em solid $off-white;
+  }
+
+  .navbar-nav:last-child,
+  .navbar-nav li:last-child {
+    border: none;
+  }
+
+  .global-action-icon svg {
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 0.6em 0 0;
+    fill: $white;
+  }
+
+  .global-links .nav-link {
+    font-size: 1em;
+    font-weight: bold;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .navbar-nav > li > .dropdown-menu,
+  .collapsenav .navbar-nav > li {
+    background-color: $dusky-blue;
+  }
+
+  .navbar-toggler:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+@media only screen and (min-width: $breakpoint-large) {
+  .nav-link-grouped,
+  .nav-link-nongrouped {
+    color: $off-white;
+    line-height: 3.1em;
+    padding: 0.5em 0.5em 1.1em 0.5em;
+  }
+}
+
+@media only screen and (min-width: $breakpoint-xlarge) {
+  .navbar {
+    .action-dropdown:hover .dropdown-menu {
+      display: block;
+      right: 0;
+    }
+
+    .navbar-action-group {
+      .action-link:hover svg,
+      .action-link:hover svg path,
+      .action-link:hover svg polygon {
+        fill: $salmon-pink;
+      }
+
+      .global-action-icon:hover svg,
+      .global-action-icon:hover svg path,
+      .global-action-icon:hover svg polygon {
+        fill: $salmon-pink;
+      }
+    }
+  }
+
+  .nav-link:hover svg path,
+  .nav-link:hover svg polygon {
+    fill: $salmon-pink;
+  }
+
+  .nav-link:active svg path,
+  .nav-link:active svg polygon {
+    fill: $salmon-pink;
+  }
+
+}
+
+@media only screen and (min-width: $breakpoint-xlarge) {
+  .navbar {
+
+    .navbar-action-group {
+      .action-link:hover svg,
+      .action-link:hover svg path,
+      .action-link:hover svg polygon {
+        fill: $salmon-pink;
+      }
+
+      .global-action-icon:hover svg,
+      .global-action-icon:hover svg path,
+      .global-action-icon:hover svg polygon {
+        fill: $salmon-pink;
+      }
+    }
+  }
+
+  .nav-link-grouped:active,
+  .nav-link-nongrouped:active {
+    color: $light-grey;
+    border-top: 0.2em solid $salmon-pink;
+    padding: 0.8em 0.5em 1em 0.5em;
+    text-decoration: none;
+  }
+
+  .nav-link:hover svg path,
+  .nav-link:hover svg polygon {
+    fill: $salmon-pink;
+  }
+
+  .nav-link:active svg path,
+  .nav-link:active svg polygon {
+    fill: $salmon-pink;
+  }
+
+}
+@media only screen and (max-width: $breakpoint-xsmall) {
+  .global-links .nav-link {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+  }
+}

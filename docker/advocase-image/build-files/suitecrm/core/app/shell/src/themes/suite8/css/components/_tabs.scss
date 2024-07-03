@@ -1,0 +1,89 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+ .tabs-layout .tab-content {
+  background-color: $white;
+  border-radius: 0px 0px 6px 6px;
+}
+
+.tabs-layout .nav-tabs {
+  border-bottom: 1px solid $off-white;
+}
+
+.tabs-layout .nav-tabs .tab {
+  width: 100%;
+  padding-right: 0.1em;
+}
+
+.tabs-layout .nav-tabs .tab-link {
+  background-color: $surface-color-background-blue;
+  color: $median-grey;
+  font-size: 16px;
+  border: none;
+  padding: 8px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 6px 6px 0 0;
+}
+
+.tabs-layout .nav-tabs .tab-link.active {
+  background-color: $surface-color-background-blue;
+  color: $white;
+}
+
+.tabs-layout .nav-tabs .tab {
+  background-color: $surface-color-background-blue;
+  color: $white;
+  padding-top: 3px;
+  border-radius: 6px 6px 0px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-style: normal;
+  line-height: 34px;
+  font-weight: 700;
+  font-size: 16px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.tabs-layout .nav-tabs .tab::after {
+  content: '\25BC';
+  font-size: 12px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) scaleY(-1);
+  color: white;
+  text-align: center;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 16px;
+}
