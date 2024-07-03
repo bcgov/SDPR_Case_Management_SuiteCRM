@@ -1,4 +1,4 @@
-import '../../node_modulesx/cypress-iframe'
+import 'cypress-iframe'
 
 describe('ASA 68 - Assign Roles', () => {
   describe('ASA 119 - Create role', () => {
