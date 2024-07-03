@@ -1,0 +1,229 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+/* --------- INPUT SECTION ---------- */
+
+input {
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+}
+
+::-webkit-input-placeholder {
+  /* Edge */
+  color: $powdered-blue;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer */
+  color: $powdered-blue;
+}
+
+::placeholder {
+  color: $powdered-blue;
+}
+
+.login-form {
+  select {
+    height: 2.8em;
+    border-radius: 0.2em;
+
+    /* Add down arrow - based on bootstrap custom-select */
+    background: #FFF url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 16 16'%3e%3cpath fill='#{ '%23' + substring(''+$midnight-grey, 2) }' d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 01.753 1.659l-4.796 5.48a1 1 0 01-1.506 0z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/14px 14px;
+    /* Remove default down arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+@media all and (min-width: $breakpoint-medium) {
+  .login-form {
+    input, select {
+      background-color: $white;
+      padding: 0.6em 0 0.6em 2.5em;
+      margin: 0.3em;
+      border: 0.05em solid $powdered-blue;
+      width: $breakpoint-xsmall;
+      color: $shell-grey;
+    }
+
+    select {
+      padding: 0.6em 0 0.6em 0.6em;
+    }
+  }
+}
+
+@media all and (max-width: $breakpoint-medium) {
+  .login-form {
+    input, select {
+      background-color: $white;
+      padding: 0.6em 0 0.6em 2.5em;
+      margin: 0.3em;
+      border: 0.05em solid $powdered-blue;
+      width: 18em;
+      color: $shell-grey;
+    }
+
+    select {
+      padding: 0.6em 0 0.6em 0.6em;
+    }
+  }
+}
+
+@media all and (max-width: $breakpoint-small) {
+  .input-group {
+    margin: 0.5em 0.5em 0.5em 1em;
+    padding: 0;
+    max-width: 90%;
+  }
+}
+
+.modal-label {
+  display: block;
+}
+
+.modal-input {
+  border: 0.05em solid $light-grey;
+  padding: 0.5em 0.25em 0.5em 1em;
+  margin: 0 1em 0 0;
+  color: $midnight-grey;
+  font-size: 0.8em;
+  background-color: $white;
+  width: 75%;
+}
+
+.modal-label {
+  color: #534d64;
+  font-size: 0.8em;
+  font-weight: 500;
+  margin: 1em 0 0.5em 0;
+}
+
+// Select styling
+
+.select {
+  position: relative;
+  height: 2em;
+  width: 75%;
+  background-color: $white;
+  font-size: 1em;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0.55em;
+    width: 0;
+    height: 0;
+    right: 10px;
+    bottom: 0;
+    margin: auto;
+    border-style: solid;
+    border-width: 0.55em 0.33em 0.55em 0.33em;
+    border-color: $midnight-grey transparent transparent transparent;
+    pointer-events: none;
+  }
+
+  &:before {
+    width: 1.9em;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    background-color: $white;
+    content: "";
+    pointer-events: none;
+  }
+
+  &:hover {
+    &:before {
+      background: $white;
+    }
+  }
+
+  select {
+    font-size: 0.9em;
+    // border: none;
+    // box-shadow: none;
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    padding-right: 2.2em;
+    padding-left: 1em;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid $light-grey;
+    color: $midnight-grey;
+
+    // Disable default styling on ff
+    -moz-appearance: none;
+
+    // Disable ugly ass outline on firefox
+    &:-moz-focusring {
+      color: transparent;
+      text-shadow: 0 0 0 #000;
+    }
+
+    // Disable default styling on webkit browsers
+    -webkit-appearance: none;
+
+    // Disable default arrow on IE 11+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:focus {
+      border-color: #63ffb4;
+    }
+  }
+}
+
+// IE 9 only
+@media all and (min-width: 0 \0
+) and (min-resolution: 0.001dpcm) {
+  .select {
+    select {
+      padding-right: 0;
+    }
+
+    &:after,
+    &:before {
+      display: none;
+    }
+  }
+}
+
+:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem $border-focus-blue;
+  border-color: $border-focus-blue;
+}
+
+.visually-hidden {
+  display: none;
+}

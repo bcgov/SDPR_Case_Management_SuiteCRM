@@ -1,0 +1,171 @@
+## helm dependency update ./suitecrm
+## helm install suitecrm ./suitecrm/ -f <customfile.yaml>
+## To generate a new one, run on any host> php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'
+
+global:
+  suitecrmHost: <! change me >
+  ssoDomain: <! change me >
+  ssoRealm: <! change me >
+  ssoClientid: <! change me >
+
+  secrets:
+    suitecrmSecretName: suitecrm-secrets
+    databaseSecretName: suitecrm-database-credentials
+
+  cron:
+    schedule: "* */2 * * *"
+
+## Dependency Redis Cluster
+redis-cluster:
+  persistence:
+    size: 100Mi
+  redis:
+    resources:
+      requests:
+        cpu: "10m"
+        memory: "50Mi"
+      limits:
+        cpu: "50m"
+        memory: "250Mi"
+  usePassword: false
+
+## Dependency HA DB
+mariadb-galera:
+  enabled: true
+  existingSecret: suitecrm-database-credentials
+  db:
+    user: <! change me >
+    name: <! change me >
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+  replicaCount: 1
+  persistence:
+    size: 2G
+
+## Dependecy Backup Storage
+backup-storage:
+  image:
+    repository: docker.io/bcgovimages/backup-container-mariadb
+    pullPolicy: Always
+    tag: latest
+
+  persistence:
+    backup:
+      claimName: db-backup-pvc
+    verification:
+      claimName: db-backup-verification-pvc
+      mountPath: /var/lib/mysql/data
+
+  db:
+    secretName: suitecrm-database-credentials
+    usernameKey: mariadb-galera-root-user
+    passwordKey: mariadb-root-password
+
+  env:
+    DATABASE_SERVICE_NAME:
+      value: suitecrm-mariadb-galera
+    NUM_BACKUPS:
+      value: "31"
+    DAILY_BACKUPS:
+      value: "6"
+    WEEKLY_BACKUPS:
+      value: "4"
+    MONTHLY_BACKUPS:
+      value: "1"
+    MYSQL_USER:
+      value: "user"
+    MYSQL_PASSWORD:
+      value: "user123"
+    MYSQL_DATABASE:
+      value: "advocase"
+    MYSQL_ROOT_PASSWORD:
+      value: "root"
+
+  backupConfig: |
+    suitecrm-mariadb-galera:3306/advocase
+
+    0 1 * * * default ./backup.sh -s
+    0 4 * * * default ./backup.sh -s -v all
+
+# Default values for suitecrm.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/bcgovsuitecrm
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+
+ingress:
+  ingressClassName: "openshift-default"
+  annotations:
+  enabled: true # create an ingress for this component
+  hostname: "{{tpl .Values.global.suitecrmHost .}}"
+  port: 8181
+  tls: true
+  selfSigned: false
+  extraTls:
+    - {}
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+volumes:
+  - name: shared-uploads
+    persistentVolumeClaim:
+      claimName: cbsuitecrm-uploads-shared
+
+volumeMounts: 
+  - name: shared-uploads
+    mountPath: /suitecrm/public/legacy/upload
+
+persistence:
+  enabled: true
+  accessModes: 
+    - ReadWriteMany
+  size: 1G
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

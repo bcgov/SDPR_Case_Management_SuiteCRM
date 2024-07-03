@@ -1,0 +1,342 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+    public: false       # Allows optimizing the container by removing unused services.
+    bind:
+      $projectDir: '%kernel.project_dir%'
+      $cacheDir: '%kernel.cache_dir%'
+      $upgradePackageDir: '%packages.upgrade.dir%'
+      $legacyDir: '%legacy.dir%'
+      $legacyPath: '%legacy.path%'
+      $legacySessionName: '%legacy.session_name%'
+      $defaultSessionName: '%default_session_name%'
+      $moduleRouting: '%legacy.module_routing%'
+      $exposedSystemConfigs: '%legacy.exposed_system_configs%'
+      $systemConfigKeyMap: '%legacy.system_config_key_map%'
+      $menuItemMap: '%legacy.menu_item_map%'
+      $legacyAssetPaths: '%legacy.asset_paths%'
+      $copyLegacyAssetPaths: '%legacy.copy_asset_paths%'
+      $legacyApiPaths: '%legacy.api_paths%'
+      $legacyApiPathFiles: '%legacy.api_path_files%'
+      $legacyEntrypointFiles: '%legacy.entrypoint_files%'
+      $exposedUserPreferences: '%legacy.exposed_user_preferences%'
+      $userPreferencesKeyMap: '%legacy.user_preferences_key_map%'
+      $themeImagePaths: '%themes.image_paths%'
+      $themeImageSupportedTypes: '%themes.image_supported_types%'
+      $frontendExcludedModules: '%legacy.frontend_excluded_modules%'
+      $datetimeFormatMap: '%legacy.datetime_format_map%'
+      $cacheResetActions: '%legacy.cache_reset_actions%'
+      $navigationTabLimits: '%themes.navigation_tab_limits%'
+      $baseActions: '%module.base_actions%'
+      $listViewBulkActions: '%module.listview.bulk_action%'
+      $listViewLineActions: '%module.listview.line_action%'
+      $listViewTableActions: '%module.listview.table_action%'
+      $listViewLineActionsLimits: '%module.listview.line_actions_limits%'
+      $listViewSidebarWidgets: '%module.listview.sidebar_widgets%'
+      $listViewUrlQueryFilterMapping: '%module.listview.url_query_filter_mapping%'
+      $listViewColumnLimits: '%module.listview.column_limits%'
+      $listViewSettingsLimits: '%module.listview.settings_limits%'
+      $listViewActionsLimits: '%module.listview.actions_limits%'
+      $recordViewActions: '%module.recordview.actions%'
+      $recordViewActionLimits: '%module.recordview.actions_limits%'
+      $recordViewSidebarWidgets: '%module.recordview.sidebar_widgets%'
+      $recordViewBottomWidgets: '%module.recordview.bottom_widgets%'
+      $recordViewTopWidgets: '%module.recordview.top_widgets%'
+      $subpanelViewActionLimits: '%module.subpanelview.actions_limits%'
+      $groupedFieldsTypeMap: '%record.fields.grouped_fields_type_map%'
+      $currencyFieldsTypeMap: '%record.fields.currency_fields_type_map%'
+      $legacyToFrontEndFieldsMap: '%record.fields.legacy_to_frontend_fields_map%'
+      $viewMetadataFieldAliasMap: '%record.fields.view_metadata_field_alias_map%'
+      $legacyActionResolverMap: '%legacy.action_resolver%'
+      $massupdate: '%massupdate%'
+      $uiConfigs: '%ui%'
+      $notificationsConfigs: '%notifications%'
+      $notificationsReloadActions: '%notifications_reload_actions%'
+      $systemSettings: '%system.settings%'
+      $extensions: '%extensions%'
+      $upgradeConfig: '%upgrades%'
+      $subpanelLineActions: '%module.subpanel.line_actions%'
+      $subpanelTopActions: '%module.subpanel.top_actions%'
+      $subpanelTopButtons: '%module.subpanel.top_buttons%'
+      $ldapAutoCreateExtraFieldsMap: '%ldap.autocreate.extra_fields_map%'
+      $samlAutoCreateAttributesMap: '%saml.autocreate.attributes_map%'
+      $logoutConfig: '%auth.logout%'
+      $sessionExpiredConfig: '%auth.session-expired%'
+      $adminOnlyModuleActions: '%system.admin_only_module_actions%'
+      $navbarAdministrationOverrides: '%navbar.administration_override%'
+      $quickActions: '%quick_actions%'
+      $graphqlShowDocs: '%graphql.graphql_show_docs%'
+
+  _instanceof:
+    App\Process\Service\ProcessHandlerInterface:
+      tags: [ 'app.process.handler' ]
+    App\UserPreferences\LegacyHandler\UserPreferencesMapperInterface:
+      tags: [ 'user.preferences.mapper' ]
+    App\SystemConfig\LegacyHandler\SystemConfigMapperInterface:
+      tags: [ 'system.config.mapper' ]
+    App\FieldDefinitions\LegacyHandler\FieldDefinitionMapperInterface:
+      tags: [ 'field.definition.mapper' ]
+    App\ViewDefinitions\LegacyHandler\ViewDefinitionMapperInterface:
+      tags: [ 'view.definition.mapper' ]
+    App\Data\LegacyHandler\PresetListDataHandlerInterface:
+      tags: [ 'app.data.preset.handler' ]
+    App\Engine\Service\ActionAvailabilityChecker\ActionAvailabilityCheckerInterface:
+      tags: [ 'app.engine.service.action.availability.checker' ]
+    App\Statistics\Service\StatisticsProviderInterface:
+      tags: [ 'app.data.statistics.handler' ]
+    App\ViewDefinitions\LegacyHandler\SubpanelButtonMapperInterface:
+      tags: [ 'subpanel.button.definition.mapper' ]
+    # Always instantiate new instance for implementing classes
+    App\Engine\Model\ProcessStepInterface:
+      shared: false
+    App\Install\Service\Upgrade\UpgradeStepInterface:
+      tags: [ 'app.upgrade.step' ]
+    App\Install\Service\LegacyMigration\LegacyMigrationStepInterface:
+      tags: [ 'app.legacy.migration.step' ]
+    App\Install\Service\Installation\InstallStepInterface:
+      tags: [ 'app.install.step' ]
+    App\Install\Service\Cli\CliStepInterface:
+      tags: ['cli.install.step']
+    App\ViewDefinitions\Service\MassUpdateDefinitionMapperInterface:
+      tags: [ 'massupdate.definition.mapper' ]
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\:
+    resource: '../core/backend/*'
+    exclude: '../core/backend/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+  App\Module\:
+    resource: '../core/modules/*'
+    exclude: '../core/modules/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+  # makes classes in extensions/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\Extension\:
+    resource: '../extensions/*'
+    exclude: '../extensions/**/{config,DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+
+  # controllers are imported separately to make sure services can be injected
+  # as action arguments even if you don't extend any base controller class
+  App\Authentication\Controller\:
+    resource: '../core/backend/Authentication/Controller/*'
+    tags: [ 'controller.service_arguments' ]
+
+  # controllers are imported separately to make sure services can be injected
+  # as action arguments even if you don't extend any base controller class
+  App\Engine\Controller\:
+    resource: '../core/backend/Engine/Controller/*'
+    tags: [ 'controller.service_arguments' ]
+
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+
+  App\Routes\EventListener\LegacyRedirectListener:
+    # set priority of 2050 to ensure the be the first running
+    tags: [ { name: kernel.event_listener, event: kernel.request, priority: 2050 } ]
+
+  App\Process\Service\ProcessHandlerRegistry:
+    # inject all services tagged with app.process.handler as first argument
+    # and use the value of the 'getProcessType' method to index the services
+    arguments:
+      - !tagged { tag: 'app.process.handler' }
+
+  App\Security\LegacySessionDenyAccessListener:
+    decorates: 'api_platform.security.listener.request.deny_access'
+
+  App\Security\LegacySessionSecurityStage:
+    decorates: 'api_platform.graphql.resolver.stage.security'
+
+  App\Engine\Service\Extensions\ExtensionAssetCacheWarmupDecorator:
+    decorates: 'cache_warmer'
+
+  security.authenticator.json_login:
+    class: App\Security\AppJsonLoginAuthenticator
+    abstract: true
+    arguments:
+      - '@security.http_utils'
+      - !abstract user provider
+      - !abstract authentication success handler
+      - !abstract authentication failure handler
+      - !abstract options
+      - '@?property_accessor'
+
+  security.listener.json_login_ldap.main:
+    class: App\Security\Ldap\AppCheckLdapCredentialsListener
+    tags:
+      - name: 'kernel.event_subscriber'
+        dispatcher: security.event_dispatcher.main
+    arguments:
+      - '@security.ldap_locator'
+
+  App\Security\LegacySessionLogoutHandler:
+    tags:
+      - name: 'kernel.event_listener'
+        event: 'Symfony\Component\Security\Http\Event\LogoutEvent'
+        dispatcher: security.event_dispatcher.main
+
+  App\Security\RouteMatcher:
+    class: App\Security\RouteMatcher
+    public: false
+
+  App\Security\CSRFTokenManager:
+    class: App\Security\CSRFTokenManager
+    public: false
+    arguments:
+      $tokenId: 'angular'
+
+  App\Security\CSRFCookieListener:
+    tags: [ { name: kernel.event_listener, event: kernel.response, method: onKernelResponse } ]
+    arguments:
+      $routes:
+        - path: '(/login$|/$|/auth$|/logout$|/session-status|/auth/logout|/auth/login|/auth/session-status)'
+      $cookieName: 'XSRF-TOKEN'
+      $cookieExpire: 0
+      $cookiePath: /
+      $cookieDomain: ~
+      $cookieSecure: false
+
+  App\Security\CSRFValidationListener:
+    tags: [ { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 12 } ]
+    arguments:
+      $routes:
+        - path: '/api'
+      $headerName: 'X-XSRF-TOKEN'
+
+  App\Engine\Service\FolderSync\FolderComparator:
+    shared: false
+
+  App\UserPreferences\LegacyHandler\UserPreferencesMappers:
+    # inject all services tagged with user.preferences.mapper as first argument
+    arguments:
+      - !tagged { tag: 'user.preferences.mapper' }
+
+  App\SystemConfig\LegacyHandler\SystemConfigMappers:
+    # inject all services tagged with system.config.mapper as first argument
+    arguments:
+      - !tagged { tag: 'system.config.mapper' }
+
+  App\FieldDefinitions\LegacyHandler\FieldDefinitionMappers:
+    # inject all services tagged with field.definition.mapper as first argument
+    arguments:
+      - !tagged { tag: 'field.definition.mapper' }
+
+  App\ViewDefinitions\LegacyHandler\ViewDefinitionMappers:
+    # inject all services tagged with view.definition.mapper as first argument
+    arguments:
+      - !tagged { tag: 'view.definition.mapper' }
+
+  App\Data\LegacyHandler\PresetListDataHandlers:
+    # inject all services tagged with app.data.preset.handler as first argument
+    arguments:
+      - !tagged { tag: 'app.data.preset.handler' }
+
+  App\Statistics\Service\StatisticsProviderRegistry:
+    # inject all services tagged with app.data.statistics.handler as first argument
+    arguments:
+      - !tagged { tag: 'app.data.statistics.handler' }
+
+  App\Engine\Service\ActionAvailabilityChecker\ActionAvailabilityChecker:
+    # inject all services tagged with app.engine.service.action.availability.checker as first argument
+    arguments:
+      - !tagged { tag: 'app.engine.service.action.availability.checker' }
+
+  App\ViewDefinitions\LegacyHandler\SubpanelButtonMappers:
+    # inject all services tagged with subpanel.button.definition.mapper as first argument
+    arguments:
+      - !tagged { tag: 'subpanel.button.definition.mapper' }
+
+  App\Install\Service\Upgrade\UpgradeHandler:
+    # inject all services tagged with app.upgrade.step as first argument
+    arguments:
+      - !tagged { tag: 'app.upgrade.step' }
+      - '@monolog.logger.upgrade'
+
+  App\Install\Service\Upgrade\UpgradeFinalizeHandler:
+    # inject all services tagged with app.upgrade.step as first argument
+    arguments:
+      - !tagged { tag: 'app.upgrade.step' }
+      - '@monolog.logger.upgrade'
+
+  App\Install\Service\LegacyMigration\LegacyMigrationHandler:
+    # inject all services tagged with app.legacy.migration.step as first argument
+    arguments:
+      - !tagged { tag: 'app.legacy.migration.step' }
+      - '@monolog.logger.upgrade'
+
+  App\Install\Service\Installation\InstallStepHandler:
+    # inject all services tagged with app.install.step as first argument
+    arguments:
+      - !tagged { tag: 'app.install.step' }
+      - !tagged { tag: 'cli.install.step'}
+      - '@monolog.logger.install'
+
+  Doctrine\Migrations\Version\DbalMigrationFactory: ~
+  App\Install\Service\Migrations\MigrationFactoryDecorator:
+    decorates: Doctrine\Migrations\Version\DbalMigrationFactory
+    arguments: [ '@App\Install\Service\Migrations\MigrationFactoryDecorator.inner', '@service_container' ]
+
+  App\ViewDefinitions\Service\MassUpdateDefinitionMappers:
+    # inject all services tagged with massupdate.definition.mapper as first argument
+    arguments:
+      - !tagged { tag: 'massupdate.definition.mapper' }
+
+  App\Security\Ldap\AppLdapUserProviderProxy:
+    $ldapUserProvider: '@security.user.provider.concrete.ldap_users'
+    $entityUserProvider: '@security.user.provider.concrete.app_user_provider'
+
+  saml_user_factory:
+    alias: App\Security\Saml\AppSamlUserFactory
+    public: true
+
+  legacy.route.handler:
+    alias: App\Routes\Service\LegacyRouteHandler
+    public: true
+
+  graphql.introspection_manager:
+    alias: App\Security\GraphqlIntrospectionManager
+    public: true
+
+  entity_manager:
+    alias: doctrine.orm.entity_manager
+    public: true
+
+  App\Process\Service\ActionNameMapperInterface: '@App\Engine\LegacyHandler\ActionNameMapperHandler'
+  App\Process\Service\BaseActionDefinitionProviderInterface: '@App\Process\Service\BaseActionDefinitionProvider'
+  App\Process\Service\BulkActionDefinitionProviderInterface: '@App\Process\Service\BulkActionDefinitionProvider'
+  App\FieldDefinitions\Service\FieldDefinitionsProviderInterface: '@App\FieldDefinitions\LegacyHandler\FieldDefinitionsHandler'
+  App\Filters\Service\FilterDefinitionProviderInterface: '@App\Filters\Service\FilterDefinitionProvider'
+  App\Process\Service\LineActionDefinitionProviderInterface: '@App\Process\Service\LineActionDefinitionProvider'
+  App\ViewDefinitions\Service\WidgetDefinitionProviderInterface: '@App\ViewDefinitions\LegacyHandler\WidgetDefinitionProvider'
+  App\Module\Service\ModuleNameMapperInterface: '@App\Module\LegacyHandler\ModuleNameMapperHandler'
+  App\Module\Service\ModuleRegistryInterface: '@App\Module\LegacyHandler\ModuleRegistryHandler'
+  App\Routes\Service\NavigationProviderInterface: '@App\Navbar\LegacyHandler\NavbarHandler'
+  App\Process\Service\ProcessHandlerInterface: '@App\Process\LegacyHandler\ResetPasswordHandler'
+  App\Data\Service\RecordActionDefinitionProviderInterface: '@App\Data\Service\RecordActionDefinitionProvider'
+  App\Data\Service\RecordDeletionServiceInterface: '@App\Data\LegacyHandler\RecordDeletionHandler'
+  App\Data\Service\RecordListProviderInterface: '@App\Data\LegacyHandler\RecordListHandler'
+  App\Data\Service\RecordProviderInterface: '@App\Data\LegacyHandler\RecordHandler'
+  App\Routes\Service\RouteConverterInterface: '@App\Routes\LegacyHandler\RouteConverterHandler'
+  App\ViewDefinitions\Service\SubPanelDefinitionProviderInterface: '@App\ViewDefinitions\LegacyHandler\SubPanelDefinitionHandler'
+
+  App\SystemConfig\Service\SystemConfigProviderInterface: '@App\SystemConfig\LegacyHandler\SystemConfigHandler'
+  app.system-configs:
+    alias: App\SystemConfig\Service\SystemConfigProviderInterface
+    public: true
+
+  app.version.provider:
+    alias: 'shivas_versioning.provider.version'
+    public: true
+
+  Symfony\Component\Security\Http\Logout\LogoutUrlGenerator: '@security.logout_url_generator'
+
+  App\UserPreferences\Service\UserPreferencesProviderInterface: '@App\UserPreferences\LegacyHandler\UserPreferenceHandler'
+  App\ViewDefinitions\Service\ViewDefinitionsProviderInterface: '@App\ViewDefinitions\LegacyHandler\ViewDefinitionsHandler'
+  App\Engine\Service\FolderSync\FolderComparatorInterface: '@App\Engine\Service\FolderSync\FolderComparator'
+  App\Process\Service\SubpanelLineActionDefinitionProviderInterface: '@App\Process\Service\SubpanelLineActionDefinitionProvider'
+  App\Process\Service\SubpanelTopActionDefinitionProviderInterface: '@App\Process\Service\SubpanelTopActionDefinitionProvider'
+  App\Engine\Service\Extensions\ExtensionAssetCopyInterface: '@App\Engine\Service\Extensions\ExtensionAssetCopy'
+  Doctrine\Migrations\DependencyFactory: '@doctrine.migrations.dependency_factory'
+
