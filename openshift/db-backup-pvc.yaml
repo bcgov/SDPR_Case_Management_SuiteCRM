@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-backup-pvc
+  labels:
+      app: suitecrm
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: netapp-file-standard
+  resources:
+    requests:
+      storage: 5Gi

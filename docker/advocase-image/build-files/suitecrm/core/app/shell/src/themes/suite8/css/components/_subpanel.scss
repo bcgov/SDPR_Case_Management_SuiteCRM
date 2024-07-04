@@ -1,0 +1,268 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+.sub-panel-banner {
+  color: $midnight-blue;
+}
+
+.sub-panel-banner-text {
+  margin-left: 1em;
+}
+
+.sub-panel-banner-button:hover {
+  background-color: $midnight-blue-transparent;
+}
+
+.sub-panel-banner-button-active {
+  border: 2px solid $widget-border-selected !important;
+  background: $widget-background-selected !important;
+}
+
+.widget-entry-icon svg {
+  fill: $salmon-pink;
+  stroke: $salmon-pink;
+  font-size: 1.6em;
+}
+
+.sub-panel .subpanel-icon svg {
+  font-size: x-large;
+  fill: $white;
+  stroke: $white;
+}
+
+.sub-panel div.card {
+  margin-top: 2.5rem;
+}
+
+.sub-panel .panel-buttons button.btn-outline-light {
+  scrm-image {
+    display: none;
+  }
+}
+
+.sub-panel .panel-buttons button.button-group-button.btn-outline-light.active {
+  background-color: $midnight-blue;
+  color: $white;
+  border-color: $midnight-blue;
+
+  scrm-image {
+    display: inline;
+  }
+
+  svg {
+    fill: $white;
+  }
+}
+
+.sub-panel .panel-buttons button.button-group-button.btn-outline-light.active:hover {
+  background-color: $white;
+  color: $midnight-blue;
+  border-color: $white;
+  fill: $midnight-blue;
+
+  scrm-image {
+    display: inline;
+
+    svg {
+          fill: $midnight-blue;
+    }
+  }
+}
+
+div.widget-panel .panel-card .card-header {
+  background-color: $white;
+  color: $primary_text;
+  font-weight: bold;
+  padding: 0.5rem 0.6rem;
+}
+
+.insight-panel {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1.5rem 2rem;
+
+  .border-insight {
+    margin: 4px;
+    border: 1px solid $widget-border;
+    border-radius: 4px;
+
+    svg {
+      font-size: 1.5em;
+      height: 3rem;
+      width: 3rem;
+      fill: $widget-icon;
+      stroke: $widget-icon;
+      grid-row: 1/2;
+    }
+  }
+
+  .insight-panel-card {
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    background-color: $widget-background;
+
+  }
+
+  .insight-panel-card:hover {
+    box-shadow: 0 0.25rem 0.5rem rgb(0 0 0 / 15%);
+  }
+
+  @media (min-width: 768px) {
+    .col-md-2 {
+      flex: 0 0 32.7%;
+      max-width: 33%;
+    }
+  }
+
+  .widget-entry-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .sub-panel-banner-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $primary_text;
+  }
+
+  .sub-panel-banner-tooltip {
+    width: 100%;
+
+    .widget-entry-label {
+      font-size: 0.7rem;
+      line-height: 1rem;
+      align-items: center;
+
+      label {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+  }
+
+  .sub-panel-banner-button-title {
+    width: 100%;
+
+    .widget-entry-label {
+      text-transform: uppercase;
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.913rem;
+      width: 100%;
+      padding: 0.5rem 0 0.5rem 1rem;
+      color: $primary_text;
+    }
+  }
+
+  .grid-widget {
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .sub-panel-body {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid $grey-widget;
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+  }
+}
+
+.accordion {
+  .card {
+    .card-header {
+      padding: .50rem 1.25rem;
+      background-color: $surface-color-background-blue;
+      color: $white;
+      font-size: 20px;
+      font-weight: 700;
+
+      a.clickable {
+        color: $white;
+        font-weight: bold;
+
+        svg {
+          fill: $white;
+        }
+      }
+    }
+
+    .card-body {
+      padding: 0;
+    }
+  }
+
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+
+.sub-panel {
+  table {
+    tr {
+      td:first-child,
+      th:first-child{
+        padding-left: 1.3em;
+      }
+      td:last-child,
+      th:last-child {
+        padding-right: 1.3em;
+      }
+    }
+  }
+  .table .show-more-column {
+    float: none !important;
+    width: 16px;
+
+    scrm-record-details-popup-button {
+      display: flex;
+      width: 100%;
+
+      scrm-popup-button {
+        display: flex;
+        width: 100%;
+
+        scrm-button {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
