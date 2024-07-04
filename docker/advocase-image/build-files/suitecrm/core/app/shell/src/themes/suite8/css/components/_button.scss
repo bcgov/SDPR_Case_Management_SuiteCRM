@@ -166,6 +166,20 @@ button {
   padding-right: .55rem;
 }
 
+.filter-settings-button.btn {
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27.008px;
+  font-family: "BC Sans";
+}
+
+.filter-settings-button.btn::before {
+  content: '\25BC';
+  margin-right: 5px;
+  color: $button-secondary;
+  font-size: 0.8em;
+}
+
 .settings-button,
 .settings-button.btn {
   background-color: $white;
