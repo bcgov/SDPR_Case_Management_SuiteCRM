@@ -55,8 +55,20 @@
   -moz-border-radius: 0.2em;
   border-radius: 0.2em;
   border: 0.05em solid $midnight-blue;
-  width:17.7px;
-  height:17.1px;
+  width:16px;
+  height:16px;
+}
+
+/* Create a custom checkbox */
+.checkbox-container .checkmark::after {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  background-color: $white;
+  border-radius: 0.2em;
+  border: 0.05em solid $midnight-blue;
+  width:16px;
+  height:16px;
 }
 
 .checkbox-container input:disabled ~ .checkmark {
