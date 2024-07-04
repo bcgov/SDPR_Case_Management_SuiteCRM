@@ -32,6 +32,14 @@
   color: $white;
 }
 
+.record-content .panel-title-header {
+  display: none !important;
+}
+
+.sub-panel .panel-title-upper-header {
+    display:  none !important;
+}
+
 .panel-card.collapsed .card-header {
   -webkit-border-radius: 0.3em;
   -moz-border-radius: 0.3em;
@@ -53,7 +61,7 @@
     padding: 2rem !important;
 }
 
-.panel-title {
+.panel-title-header .panel-title {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 2.25rem;
@@ -68,6 +76,16 @@
 
 .panel-title-header {
   padding: 1rem 2rem;
+}
+
+.panel-title-upper-header {
+  padding: 0.5rem .75rem;
+}
+
+.panel-title-upper-header .panel-title {
+  font-size: 1.25rem;
+  line-height: 2.125rem;
+  font-weight: 700;
 }
 
 .card-header button {
