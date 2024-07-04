@@ -1,33 +1,48 @@
 <div [class.collapsed]="isCollapsed" class="card panel-card {{klass}}">
     <div *ngIf="showHeader" class="card-header d-flex justify-content-end align-items-center">
-        <scrm-close-button *ngIf="isClosable()" [config]="getCloseButton()"></scrm-close-button>
-    </div>
+        <div
+            class="flex-grow-1 align-items-center justify-content-between d-flex panel-title-upper-header"
+            >
+            <div *ngIf="title" class="panel-title">{{title}}</div>
+            <div *ngIf="titleKey" class="pl-1 panel-title">
+                <scrm-label [labelKey]="titleKey"></scrm-label>
+            </div>
+            <div class="d-flex align-items-center">
+                <scrm-close-button *ngIf="isClosable()" [config]="getCloseButton()"></scrm-close-button>
 
-    <div class="flex-grow-1 align-items-center d-flex justify-content-between panel-title-header">
-
-            <div *ngIf="isCollapsible()" class="d-flex align-items-center">
-                <scrm-minimise-button
+                <!-- TODO FIX COLLapsible button -->
+                <!-- <scrm-minimise-button
                     *ngIf="isCollapsible()"
                     [config]="minimiseButton"
                     [status]="minimiseStatus">
-                </scrm-minimise-button>
-
-                <ng-content select="[panel-icon-area]"></ng-content>
+                </scrm-minimise-button> -->
             </div>
+        </div>
+    </div>
 
-            <div *ngIf="title" class="pl-1 panel-title">{{title}}</div>
+    <div class="flex-grow-1 align-items-center d-flex justify-content-between panel-title-header">
+        <div *ngIf="isCollapsible()" class="d-flex align-items-center">
+            <scrm-minimise-button
+                *ngIf="isCollapsible()"
+                [config]="minimiseButton"
+                [status]="minimiseStatus">
+            </scrm-minimise-button>
 
-            <div *ngIf="titleKey" class="pl-1 panel-title">
-            <scrm-label [labelKey]="titleKey"></scrm-label>
+            <ng-content select="[panel-icon-area]"></ng-content>
         </div>
 
+        <div *ngIf="title" class="pl-1 panel-title">{{title}}</div>
+
+        <div *ngIf="titleKey" class="pl-1 panel-title">
+            <scrm-label [labelKey]="titleKey"></scrm-label>
+        </div>
 
         <div class="panel-buttons float-right">
             <ng-content select="[panel-header-button]"></ng-content>
         </div>
     </div>
 
-    <div class="card-body p-{{bodyPadding}} card-body-padding" [ngbCollapse]="isCollapsed">
+    <div class="card-body card-body-padding" [ngbCollapse]="isCollapsed">
         <ng-content select="[panel-body]"></ng-content>
     </div>
 </div>
