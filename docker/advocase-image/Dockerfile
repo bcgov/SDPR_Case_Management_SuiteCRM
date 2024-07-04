@@ -3,10 +3,11 @@ FROM php:8.2-apache AS builder
 WORKDIR /
 
 # Update and upgrade and install required packages
-RUN apt update \
-&& apt upgrade -y \
-&& apt install nodejs npm -y \
-&& npm install --global yarn sass
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives && \
+    apt-get install nodejs npm -y && \
+    npm install --global yarn sass
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip redis
@@ -39,7 +40,11 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:defaultExt \
 && yarn run build:common \
 && yarn run build:core \
-&& yarn run build:shell
+&& yarn run build:shell \
+&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist \
+&& npm uninstall -g yarn sass \
+&& apt remove nodejs npm -y \
+&& apt autoremove -y
 
 # Changing permissions for SuiteCRM folder
 RUN adduser www-data root \
