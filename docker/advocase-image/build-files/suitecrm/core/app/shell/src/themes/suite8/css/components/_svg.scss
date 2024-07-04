@@ -88,7 +88,7 @@
 }
 
 .line-action svg {
-  fill: $typography-color-link;
+  fill: $sky-blue;
 }
 
 .line-action:hover svg {
@@ -207,11 +207,12 @@
 
 .sort-icon {
   fill: $light-grey;
+  margin: 0 0.2em;
 }
 
 .pagination-icons {
   width: 13px;
-  height: 14px;
+  height: 16.67px;
 }
 
 .widget-close-icon svg {
