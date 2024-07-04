@@ -3,9 +3,11 @@ FROM php:8.2-apache
 WORKDIR /
 
 # Update and upgrade and install required packages
-RUN apt update \
-&& apt upgrade -y \
-&& apt install wget unzip
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get clean && \
+    apt-get install unzip mariadb-client -y && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install php extensions
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -16,7 +18,7 @@ RUN a2enmod rewrite \
 && a2enmod ssl
 
 # Downloading and unpacking SuiteCRM
-RUN wget https://suitecrm.com/download/147/suite86/563895/suitecrm-8-6-0.zip \
+RUN curl -SsLf https://suitecrm.com/download/147/suite86/563895/suitecrm-8-6-0.zip -O \
 && unzip *.zip -d suitecrm \
 && rm *.zip
 
