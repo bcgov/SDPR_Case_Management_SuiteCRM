@@ -274,9 +274,20 @@
   .nav-link-grouped:active,
   .nav-link-nongrouped:active {
     color: $light-grey;
-    border-top: 0.2em solid $off-white;
     padding: 0.8em 0.5em 1em 0.5em;
     text-decoration: none;
+
+    &::before {
+      content: " ";
+      height: 0.25em;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border: none;
+      margin: 0;
+      background-color: $white;
+    }
   }
 
   .nav-link:hover svg path,
@@ -288,8 +299,8 @@
   .nav-link:active svg polygon {
     fill: $off-white;
   }
-
 }
+
 @media only screen and (max-width: $breakpoint-xsmall) {
   .global-links .nav-link {
     padding-left: 0.3em;
