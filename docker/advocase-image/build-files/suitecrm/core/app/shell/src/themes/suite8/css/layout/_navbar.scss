@@ -98,17 +98,24 @@
 a.home-nav-link {
   color: $white;
   line-height: 3.1em;
-  padding: 0.8em 1em 1em 1em;
   padding-left: 0.5em;
   text-decoration: none;
 
-  & span {
-    margin-left: 8px;
+  & span {display: none;}
+
+  @media all and (min-width: 1055px) {
+      & span {
+        display: inline-block;
+        margin-left: 8px;    
+      }
+    }
+    
   }
-}
 
 .nav-item.active .home-nav-link svg {
   fill: $white;
+  height: 1.25rem;
+  width: 1.25rem;
 }
 
 .recent-link scrm-svg-icon-ui > svg {
@@ -146,7 +153,7 @@ a.home-nav-link {
 }
 
 .submenu,
-.globalactions {
+.globalactions, .action-new .dropdown-menu{
   background-color: $white;
   color: $light-grey;
   margin: 0;
@@ -167,9 +174,16 @@ a.home-nav-link {
   height: 1.5em;
 }
 
-.action-btn-icon {
-  width: 1.2em;
-  height: 1.2em;
+.navbar .primary-global-link:not(.primary-global-link.custom-create){
+  padding: 0;
+}
+
+.action-btn-icon, .navbar .global-action-icon {
+  & svg {
+    width: 2em;
+    height: 2em;
+    fill: $white;
+  }
 }
 
 h4.recently-viewed-header,
@@ -215,8 +229,6 @@ h4.favorite-header {
     margin: 0.3em 0;
 
     .action-link {
-      padding: 0 0.6rem;
-
       svg {
         margin: 0;
       }
@@ -264,7 +276,7 @@ a.nav-link-nongrouped.dropdown-toggle::after {
 
 .primary-global-link.custom-create {
   background-color: $white;
-  margin: 0.5em 0;
+  margin: 0.5em 0.25em;
   padding: 0.5em 1em;
   border-radius: 0.25em;
   height: 32px;
@@ -287,8 +299,16 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   &:hover {
     background-color: $secondary-button-hover;
   }
+
+  &.show {
+    border: 1px solid $widget-border;
+  }
 }
 
-.action-new .navbar-nav {
+.navbar .action-new {
   height: 100%;
+
+  & .dropdown-menu  {
+    font-size: 0.8em;
+  }
 }
