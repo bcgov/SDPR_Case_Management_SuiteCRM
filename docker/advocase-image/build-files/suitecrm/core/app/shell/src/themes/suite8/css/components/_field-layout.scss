@@ -34,6 +34,10 @@
   padding-left: 16px;
 }
 
+.required {
+  color: $widget-bar-border;
+}
+
 .field-layout .flex-grow-1 {
   color: $primary_text;
   font-family: "BC Sans";
