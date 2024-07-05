@@ -46,7 +46,12 @@
 }
 
 .record-view-header-scrolled {
-  padding-bottom: 0.3em;
+  background-color: $white;
+  border-bottom: 1px solid $grey-widget;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  padding-left: 56px;
+  padding-right: 56px;
 }
 
 .record-view-hr {
