@@ -23,20 +23,13 @@
  * feasible for technical reasons, the Appropriate Legal Notices must display
  * the words "Supercharged by SuiteCRM".
  */
- 
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 
-import {TableHeaderSelectComponent} from './table-header-select.component';
-import { ExportButtonModule } from '../table/export-button/export-button.module';
+import {Component} from '@angular/core';
 
-@NgModule({
-    declarations: [TableHeaderSelectComponent],
-    exports: [TableHeaderSelectComponent],
-    imports: [
-        CommonModule,
-        ExportButtonModule,
-    ]
+@Component({
+    selector: 'export-button',
+    templateUrl: 'export-button.component.html',
 })
-export class TableHeaderSelectModule {
+export class ExportButtonComponent {
+
 }
