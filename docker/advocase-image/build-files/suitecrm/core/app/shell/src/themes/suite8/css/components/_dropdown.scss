@@ -66,7 +66,7 @@ ngb-datepicker-navigation {
 .action-group .dropdown-menu {
   background-color: $white;
   margin-top: 0;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .action-group h4 {
@@ -99,7 +99,7 @@ ngb-datepicker-navigation {
   .action-group {
     .dropdown-menu {
       .new-list-item {
-        font-size: 0.8em;
+        font-size: 1em;
 
         .new-list-item-label {
           max-width: 10rem;
@@ -274,7 +274,7 @@ ngb-datepicker-navigation {
     .action-link svg,
     .action-link svg path,
     .action-link svg polygon {
-      fill: $white;
+      fill: $typography-color-secondary;
     }
 
     .global-action-icon svg,
@@ -365,7 +365,7 @@ a.close-navmenu:hover {
 
 .navbar-nav .dropdown-menu .nav-item:hover a.action-link:hover,
 .navbar-nav .dropdown-menu .nav-item:hover a.action-link {
-  color: $white;
+  color: $typography-color-secondary;
 }
 
 .nav-link-grouped,
@@ -409,13 +409,14 @@ ul.main li.nav-item,
     border-bottom-left-radius: 0.375em;
     border-bottom-right-radius: 0.375em;
     box-shadow: 0px 0.3px 0.9px 0px rgba(0, 0, 0, 0.10), 0px 1.6px 3.6px 0px rgba(0, 0, 0, 0.13);
+    padding: 0.5em;
   }
   
 }
 
 .dropdown-menu .nav-item, .action-new .dropdown-menu .new-list-item {
   padding: 0.25em 0.5em;
-  margin: 0.25em 0.5em;
+  margin: 0.25em 0;
   border-radius: 0.25em;
 }
 
@@ -432,14 +433,8 @@ ul.main li.nav-item,
 ul.main li a,
 .main ul li a,
 .non-grouped .action-link {
-  font-size: 0.8em;
+  font-size: 1em;
   padding: 0.7rem;
-}
-
-.top-nav .dropdown-menu,
-.top-nav .submenu {
-  margin: 0;
-  padding: 0;
 }
 
 .top-nav, .navbar-nav, .navbar .action-new.action-dropdown, .navbar .action-new.action-dropdown.show {
@@ -580,7 +575,7 @@ ul.main li a,
 }
 
 .sectioned-dropdown-menu .dropdown-menu {
-  font-size: 0.8em;
+  font-size: 1em;
   -webkit-border-radius: 0.25em;
   -moz-border-radius: 0.25em;
   border-radius: 0.25em;
@@ -721,6 +716,7 @@ ul.main li a,
     }
   }
 }
+
 @media only screen and (min-width: 62em) {
   .navbar .action-dropdown:hover .custom-create .dropdown-menu {
     display:block;
@@ -728,7 +724,7 @@ ul.main li a,
   }
 }
 
-.dropdown-menu {
+.navbar .dropdown-menu {
   border-bottom-right-radius: 0.25em;
   border-bottom-left-radius: 0.25em;
 }
