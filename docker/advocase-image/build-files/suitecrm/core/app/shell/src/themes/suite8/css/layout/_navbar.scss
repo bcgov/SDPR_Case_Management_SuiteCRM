@@ -27,22 +27,23 @@
 /* --------- NAVBAR SECTION ---------- */
 
 .navbar {
-  height: 3.1em;
+  height: 3.75em;
   background-color: $surface-color-background-blue;
   margin: 0;
   padding: 0 1em;
 
   .navbar-action-group {
+    height: 3.75em;
     .action-link svg,
     .action-link svg path,
     .action-link svg polygon {
-      fill: rgba(255, 255, 255, 0.8);
+      fill: rgba(255, 255, 255);
     }
 
     .global-action-icon svg,
     .global-action-icon svg path,
     .global-action-icon svg polygon {
-      fill: rgba(255, 255, 255, 0.8);
+      fill: rgba(255, 255, 255);
     }
 
     .navbar-collapse {
@@ -142,10 +143,22 @@ a.home-nav-link {
 
 .nav-item.active .nav-link-nongrouped,
 .nav-item.active .home-nav-link {
-  color: $white!important;
-  border-top: 0.2em solid $white;
+  color: $white !important;
   padding: auto 1em auto 1em;
   text-decoration: none;
+  position: relative;
+
+  &::before {
+    content: " ";
+    height: 0.25em;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    margin: 0;
+    background-color: $white;
+  }
 }
 
 .global-link-item:hover {
@@ -226,7 +239,7 @@ h4.favorite-header {
     display: flex;
     flex-direction: row;
     float: right;
-    margin: 0.3em 0;
+    // margin: 0.3em 0;
 
     .action-link {
       svg {
@@ -279,11 +292,12 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   margin: 0.5em 0.25em;
   padding: 0.5em 1em;
   border-radius: 0.25em;
-  height: 32px;
+  height: 2.689em;
   line-height: 1.5;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid $widget-border;
 
   &.dropdown-toggle::after {
     display: inline-block;
@@ -299,10 +313,6 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   &:hover {
     background-color: $secondary-button-hover;
   }
-
-  &.show {
-    border: 1px solid $widget-border;
-  }
 }
 
 .navbar .action-new {
@@ -311,4 +321,8 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   & .dropdown-menu  {
     font-size: 0.8em;
   }
+}
+
+.notifications {
+  font-size: 0.8em;
 }
