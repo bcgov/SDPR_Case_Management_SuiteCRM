@@ -92,7 +92,13 @@
   .more-button {
     display: none;
   }
-}s
+}
+
+.icon-bar-block {
+  display: grid;
+  grid-template-columns: 36px 20px;
+  gap: 0;
+}
 
 .list-view-settings {
   text-align: end;
