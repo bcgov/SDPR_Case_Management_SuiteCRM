@@ -25,6 +25,10 @@
 * the words "Supercharged by SuiteCRM".
 */
 -->
-<div class="d-flex"> 
+<div class="table-header-select"> 
     <p *ngIf="count > 0" class="table-header-select-count">{{count}} is selected</p>
+
+    <div *ngIf="count > 0" class="text-nowrap">
+        <export-button></export-button>
+    </div>
 </div>
