@@ -244,6 +244,42 @@ button {
   }
 }
 
+.export-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 89px;
+  height: 35px;
+  padding: 4px 8px;
+
+  background-color: $white;
+  border: 1px solid;
+  border-color: $widget-border;
+  border-radius: 4px;
+  color: $button-secondary;
+
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27.008px; /* 168.8% */
+}
+.export-button {
+  .export-button-icon {
+    margin-right:4px;
+  }
+}
+.export-button:hover{
+  background-color: $surface-color-primary-hover;
+  color: $white;
+}
+
+.export-button.active {
+  background-color: $surface-color-background-blue;
+  color: $white;
+}
+
 .action-button.disabled, .settings-button.disabled {
   opacity: 40%;
 }

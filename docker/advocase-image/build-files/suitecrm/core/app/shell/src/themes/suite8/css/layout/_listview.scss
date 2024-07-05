@@ -57,7 +57,15 @@
   justify-self: end;
 }
 
-.list-view-title {
+.table-header-select {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.table-header-select-count {
+  margin-right: 24px;
+  margin-bottom: 0;
   color: $primary_text;
   font-family: "BC Sans";
   font-size: 36px;
