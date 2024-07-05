@@ -203,36 +203,38 @@
 .field-name-assigned_user_name{
   min-width: 53px;
   min-height: 29px;
-  border: 1px solid $border-warning;  // Border color
-  background-color: $surface-warning; // Background color
+  padding:4px 8px;
+  border: 1px solid $border-warning;
+  background-color: $surface-warning;
   gap: 10px;
-  border-radius: 4px;        // Optional rounded corners
+  border-radius: 4px;
 }
 
 .dynamic-field-name-assigned_user_name a {
-  color: $typography-color-secondary;            // Text color
+  color: $typography-color-secondary;
   &:hover {
-    color: $typography-color-secondary; // Text color on hover
-    text-decoration: none; // Underline text on hover
+    color: $typography-color-secondary;
+    text-decoration: none;
   }
 }
 
 .dynamic-field-name-name a {
-  color: $typography-color-secondary;            // Text color
+  color: $typography-color-secondary;
   &:hover {
-    color: $typography-color-secondary; // Text color on hover
-    text-decoration: none; // Underline text on hover
+    color: $typography-color-secondary;
+    text-decoration: none;
   }
 }
 
 .field-name-state{
   min-width: 53px;
   min-height: 29px;
-  border: 1px solid $border-success;  // Border color
-  color: $color-success;            // Text color
-  background-color: $surface-success; // Background color
+  padding:4px 8px;
+  border: 1px solid $border-success;
+  color: $color-success;
+  background-color: $surface-success;
   gap: 10px;
-  border-radius: 4px;        // Optional rounded corners
+  border-radius: 4px;
 }
 
 .list-view-tableactions {
