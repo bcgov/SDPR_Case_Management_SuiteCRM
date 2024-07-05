@@ -664,12 +664,26 @@ ul.main li a,
   color: $typography-color-secondary;
 }
 
-
 .dropdown-button .dropdown-menu a,
 .button-group-dropdown .dropdown-menu a,
 .bulk-action-group .dropdown-menu a,
 .select-action-group .dropdown-menu a {
   color: $white;
+}
+
+.dropdown-item-label {
+  border-radius: 4px;
+  padding: 2px;
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+.dropdown-item-label:hover {
+  background-color: $surface-color-primary-hover;
+  color: $white;
+  cursor: pointer;
 }
 
 .dropdown-button .dropdown-menu a:hover,
