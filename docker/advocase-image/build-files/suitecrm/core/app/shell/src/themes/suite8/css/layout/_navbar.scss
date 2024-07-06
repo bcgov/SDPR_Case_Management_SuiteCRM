@@ -30,7 +30,7 @@
   height: 3.75em;
   background-color: $surface-color-background-blue;
   margin: 0;
-  padding: 0 1em;
+  padding: 0 2.5em;
 
   .navbar-action-group {
     height: 3.75em;
@@ -92,15 +92,10 @@
   z-index: map-get($zindex, nav-max);
 }
 
-.home-nav {
-  line-height: 3.1em;
-}
-
 a.home-nav-link {
   color: $white;
-  line-height: 3.1em;
-  padding-left: 0.5em;
   text-decoration: none;
+  font-weight: 700;
 
   & span {display: none;}
 
@@ -139,6 +134,10 @@ a.home-nav-link {
 
 .sub-nav-link:hover {
   color: $typography-color-secondary;
+}
+
+.sub-nav-link {
+  font-weight: 400;
 }
 
 .nav-item.active .nav-link-nongrouped,
@@ -289,7 +288,7 @@ a.nav-link-nongrouped.dropdown-toggle::after {
 
 .primary-global-link.custom-create {
   background-color: $white;
-  margin: 0.5em 0.25em;
+  margin: 0.5em 0;
   padding: 0.5em 1em;
   border-radius: 0.25em;
   height: 2.689em;
@@ -317,12 +316,26 @@ a.nav-link-nongrouped.dropdown-toggle::after {
 
 .navbar .action-new {
   height: 100%;
+  margin-left: 2.5em;
 
   & .dropdown-menu  {
-    font-size: 0.8em;
+    font-size: 1em;
   }
 }
 
 .notifications {
-  font-size: 0.8em;
+  font-size: 1em;
+}
+
+
+.top-nav-link {
+  font-weight: 700;
+}
+
+.navbar .submenu .sub-nav-link {
+  color: $typography-color-secondary !important;
+
+  &.dropdown-item:hover {
+    background-color: transparent;
+  }
 }
