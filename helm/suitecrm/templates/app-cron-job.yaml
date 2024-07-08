@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ include "suitecrm.fullname" . }}-cron-job
+  name: {{ include "suitecrm.fullname" . }}-app-cron-job
   labels:
     {{- include "suitecrm.labels" . | nindent 4 }}
 spec:
