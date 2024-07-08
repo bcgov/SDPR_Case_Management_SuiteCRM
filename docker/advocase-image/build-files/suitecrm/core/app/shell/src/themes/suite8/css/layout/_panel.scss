@@ -37,7 +37,11 @@
 }
 
 .sub-panel .panel-title-upper-header {
-    display:  none !important;
+    display: none !important;
+}
+
+.sub-panel .sub-panel-flex-content {
+  justify-content: flex-end !important;
 }
 
 .panel-card.collapsed .card-header {
@@ -58,7 +62,12 @@
 }
 
 .panel-card .card-body-padding {
-    padding: 2rem !important;
+    padding: 1rem 2.5rem;
+    border-radius: 0px 0px  6px 6px;
+    border-right:  2px solid  #D8D8D8;
+    border-bottom:  2px solid #D8D8D8;
+    border-left:  2px solid #D8D8D8;
+    background: $white;
 }
 
 .panel-title-header .panel-title {
@@ -75,7 +84,7 @@
 }
 
 .panel-title-header {
-  padding: 1rem 2rem;
+  padding-bottom: 1.5rem;
 }
 
 .panel-title-upper-header {
