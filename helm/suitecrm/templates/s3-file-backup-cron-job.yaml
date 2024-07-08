@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "suitecrm.fullname" . }}-s3-file-backup-cron-job
+  labels:
+    {{- include "suitecrm.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.global.cron.files-backup.schedule | quote }}
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    metadata:
+      labels:
+        {{- include "suitecrm.labels" . | nindent 8 }}
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            {{- include "suitecrm.labels" . | nindent 12 }}
+        spec:
+          containers:
+            - name: {{ .Chart.Name }}-s3-file-backup-cron-job
+              image: public.ecr.aws/amazon/aws-cli:latest
+              imagePullPolicy: Always
+              command:
+                - "sh"
+                - "-c"
+                - "aws sync /aws/suitecrm/public/legacy/upload ${S3_URI}/${S3_BUCKET}/{{ .Values.global.env }}/upload"
+              env:
+                - name: S3_URI
+                  valueFrom:
+                    secretKeyRef:
+                      name: s3-iam
+                      key: S3URI
+                - name: S3_BUCKET
+                  valueFrom:
+                    secretKeyRef:
+                      name: s3-iam
+                      key: bucketName
+              volumeMounts:
+                - name: shared-uploads
+                  mountPath: /aws/suitecrm/public/legacy/upload
+          {{- with .Values.volumes }}
+          volumes:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: Never
+          terminationGracePeriodSeconds: 30
+          activeDeadlineSeconds: 1600
+          dnsPolicy: ClusterFirst
