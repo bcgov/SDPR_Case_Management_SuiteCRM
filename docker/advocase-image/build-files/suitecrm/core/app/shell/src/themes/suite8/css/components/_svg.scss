@@ -88,13 +88,12 @@
 }
 
 .line-action svg {
-  fill: $sky-blue;
+  fill: $typography-color-link;
 }
 
 .line-action:hover svg {
-  fill: $bright-purple;
+  fill: $typography-color-link-hover;
 }
-
 
 .back-to-top svg {
   width: 1em;
@@ -113,6 +112,11 @@
 .sicon svg {
   width: 13px;
   height: 14px;
+}
+
+.card-body .sicon svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .sicon-xs svg {
