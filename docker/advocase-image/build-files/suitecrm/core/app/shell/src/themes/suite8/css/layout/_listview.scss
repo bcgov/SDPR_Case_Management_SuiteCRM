@@ -57,6 +57,15 @@
   justify-self: end;
 }
 
+.list-view-title {
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 .table-header-select {
   display: flex;
   align-items: center;
@@ -66,15 +75,6 @@
 .table-header-select-count {
   margin-right: 24px;
   margin-bottom: 0;
-  color: $primary_text;
-  font-family: "BC Sans";
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.table-header-select-count {
   color:$primary_text;
   font-family: "BC Sans";
   font-size: 16px;
@@ -415,8 +415,6 @@ td {
 }
 
 .centre-pagination {
-  margin: 0 0.7em;
-  font-weight: bold;
   position: relative;
   top: initial;
   bottom: initial;
