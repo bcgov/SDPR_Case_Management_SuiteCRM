@@ -22,7 +22,7 @@ spec:
             component: cron-job
         spec:
           containers:
-            - name: {{ .Chart.Name }}-cron-job
+            - name: {{ .Chart.Name }}-app-cron-job
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               command:
