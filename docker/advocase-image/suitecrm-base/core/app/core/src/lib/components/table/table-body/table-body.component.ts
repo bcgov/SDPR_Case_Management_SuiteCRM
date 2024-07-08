@@ -63,6 +63,7 @@ export class TableBodyComponent implements OnInit, OnDestroy {
     vm$: Observable<TableViewModel>;
     protected loadingBuffer: LoadingBuffer;
     protected subs: Subscription[] = [];
+    caseActionLabel: string;
 
     constructor(
         protected fieldManager: FieldManager,
@@ -72,6 +73,7 @@ export class TableBodyComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
+        this.caseActionLabel = "LBL_CASE_ACTIONS";
         const selection$ = this.config.selection$ || of(null).pipe(shareReplay(1));
         let loading$ = this.initLoading();
 
