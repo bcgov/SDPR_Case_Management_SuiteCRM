@@ -15,6 +15,8 @@ global:
   cron:
     app:
       schedule: "* */2 * * *"
+    files-backup:
+      schedule: "*/15 * * * *"
 
 ## Dependency Redis Cluster
 redis-cluster:
