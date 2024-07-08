@@ -24,7 +24,7 @@
  * the words "Supercharged by SuiteCRM".
  */
 
- .list-view {
+.list-view {
   margin: 82px 56px 32px 56px;
   background-color: #ffffff;
   border: 1px solid rgba(0,0,0,.1);
@@ -75,6 +75,15 @@
 .table-header-select-count {
   margin-right: 24px;
   margin-bottom: 0;
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.table-header-select-count {
   color:$primary_text;
   font-family: "BC Sans";
   font-size: 16px;
@@ -164,14 +173,20 @@
   border-bottom-left-radius: 0.3em;
 }
 
+.card-body .table-footer {
+  margin-top: 8px;
+}
+
 .table td {
   vertical-align: middle;
   padding: 0.45em;
+  font-weight: 400;
 }
 
 .table th {
   border-top: 0;
   padding: 0.5rem 0.45em;
+  font-weight: 700;
 }
 
 .table thead th {
@@ -179,7 +194,7 @@
 }
 
 .table td, .table th {
-  font-size: 0.797rem;
+  font-size: 1rem;
   max-width: 220px;
 }
 
@@ -415,6 +430,8 @@ td {
 }
 
 .centre-pagination {
+  margin: 0 0.7em;
+  font-weight: bold;
   position: relative;
   top: initial;
   bottom: initial;
@@ -440,3 +457,4 @@ td {
 td.cdk-column-checkbox {
   min-width: 32px;
 }
+
