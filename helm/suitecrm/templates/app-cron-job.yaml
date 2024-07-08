@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "suitecrm.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.global.cron.schedule | quote }}
+  schedule: {{ .Values.global.cron.app.schedule | quote }}
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 5
   failedJobsHistoryLimit: 2
