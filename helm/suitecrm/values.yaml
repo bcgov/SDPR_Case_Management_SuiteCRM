@@ -3,6 +3,7 @@
 ## To generate a new one, run on any host> php -r 'echo base64_encode(random_bytes(32)), PHP_EOL;'
 
 global:
+  env: dev
   suitecrmHost: <! change me >
   ssoDomain: <! change me >
   ssoRealm: <! change me >
