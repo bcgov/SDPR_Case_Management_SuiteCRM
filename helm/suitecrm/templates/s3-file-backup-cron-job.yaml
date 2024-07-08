@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "suitecrm.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.global.cron.files-backup.schedule | quote }}
+  schedule: {{ .Values.global.cron.filesBackup.schedule | quote }}
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 5
   failedJobsHistoryLimit: 2
