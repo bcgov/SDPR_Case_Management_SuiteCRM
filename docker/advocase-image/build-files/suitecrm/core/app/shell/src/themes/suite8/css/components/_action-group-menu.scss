@@ -1,6 +1,6 @@
 /**
  * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
- * Copyright (C) 2021 SalesAgility Ltd.
+ * Copyright (C) 2022 SalesAgility Ltd.
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License version 3 as published by the
@@ -24,46 +24,43 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-.widget-bar {
-  background-color: $widget-bar-bg;
-  border: 1px solid $widget-bar-border;
+.action-group-menu {
+  padding-top: 10px;
 
-  width: 100%;
-  justify-content: flex-start !important;
-}
+  .inline-spinner {
+    width: 30px;
+  }
 
-.widget-bar .widget-bar-entry-label::before {
-  content: "\26A0";
-  margin-right: 10px;
-  color: $widget-bar-border;
-  font-size: 0.8em;
-}
+  .inline-confirmation {
+    width: 30px;
 
-.widget-bar .widget-bar-entry-label {
-  font-family: "BC Sans";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-}
+    .inline-confirmation-button {
+      background-color: $white;
+    }
 
-.widget-bar .widget-bar-entry-value {
-  color: $typography-color-secondary;
-  font-family: "BC Sans";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-}
+    .inline-confirmation-label {
+      background-color: $white;
+    }
 
-.widget-bar .widget-bar-entry-end-label {
-  color: $typography-color-secondary;
-  font-family: "BC Sans";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-}
+    .inline-confirmation-label > scrm-label {
+      width: max-content;
+      max-width: 120px;
+      display: block;
+      background-color: $white;
+      text-align: end;
+      box-shadow: -.8rem 0.1rem .5rem rgba($white, .9);
+      padding-left: 3px;
+    }
 
-.widget-bar .inline-spinner > div {
-  width: 0.45em;
-  height: 0.45em;
-  background-color: white;
+    .inline-confirmation-label > scrm-dynamic-label {
+      width: max-content;
+      max-width: 120px;
+      display: block;
+      background-color: $white;
+      text-align: end;
+      box-shadow: -.8rem 0.1rem .5rem rgba($white, .9);
+      padding-left: 3px;
+    }
+
+  }
 }

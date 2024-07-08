@@ -45,6 +45,25 @@
   padding-right: 56px;
 }
 
+.record-view-header .btn {
+  stroke: $typography-color-secondary;
+  padding-top: 6px;
+  scale: 1.6;
+  padding-left: 10px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.favorite-on {
+  fill: $border-warning;
+  stroke: $surface-warning;
+  padding-top: 6px;
+  scale: 1.6;
+  padding-left: 10px;
+  font-style: normal;
+  font-weight: 400;
+}
+
 .record-view-header-scrolled {
   background-color: $white;
   border-bottom: 1px solid $grey-widget;
@@ -140,14 +159,14 @@
 
 .record-view-name-label {
   margin-right: 1.8rem;
-
   color: $primary_text;
-
   font-family: "BC Sans";
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
   line-height: 42px;
+  display: flex !important;
+  padding-top: 11px;
 }
 
 .record-view-actions {
