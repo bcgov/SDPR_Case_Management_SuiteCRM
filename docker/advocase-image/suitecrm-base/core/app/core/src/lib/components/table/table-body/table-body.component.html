@@ -34,13 +34,21 @@
 
             <ng-container cdkColumnDef="checkbox" *ngIf="vm.selection">
 
-                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header"></th>
+                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header">
+                    <label class="checkbox-container">
+                        <input type="checkbox"
+                               [checked]="selectedRecord.size == latestViewModel.records.length && latestViewModel.records.length != 0"
+                               (change)="toggleSelectAll()"
+                               aria-hidden="true">
+                        <span class="checkmark"></span>
+                    </label>
+                </th>
 
                 <td cdk-cell *cdkCellDef="let record">
                     <label class="checkbox-container">
                         <input type="checkbox"
                                [checked]="(record['id'] && vm.selected[record['id']]) || allSelected(vm.selectionStatus) "
-                               (change)="toggleSelection(record['id'])"
+                               (change)="toggleSelection(record['id'],false)"
                                [disabled]="allSelected(vm.selectionStatus)"
                                aria-hidden="true">
                         <span class="checkmark"></span>
