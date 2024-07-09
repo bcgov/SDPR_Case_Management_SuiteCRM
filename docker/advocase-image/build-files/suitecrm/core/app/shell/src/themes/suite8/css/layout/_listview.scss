@@ -323,6 +323,10 @@
   background-color: $surface-tertiary-hover; /* Change this to your desired hover background color */
 }
 
+.table-body-row-checked {
+  background-color: $surface-info;
+}
+
 td.list-group-icon {
   margin: 0;
   padding: 0.75rem 0;
