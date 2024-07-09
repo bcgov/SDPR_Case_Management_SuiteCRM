@@ -64,8 +64,6 @@ export class TableBodyComponent implements OnInit, OnDestroy {
     protected loadingBuffer: LoadingBuffer;
     protected subs: Subscription[] = [];
     caseActionLabel: string;
-    latestViewModel: TableViewModel;
-    selectedRecord: Set<string>;
 
     constructor(
         protected fieldManager: FieldManager,
@@ -75,7 +73,6 @@ export class TableBodyComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.selectedRecord = new Set();
         this.caseActionLabel = "LBL_CASE_ACTIONS";
         const selection$ = this.config.selection$ || of(null).pipe(shareReplay(1));
         let loading$ = this.initLoading();
@@ -129,34 +126,14 @@ export class TableBodyComponent implements OnInit, OnDestroy {
                 };
             })
         );
-
-        this.subs.push(this.vm$.subscribe(vm => this.latestViewModel = vm));
     }
 
     ngOnDestroy() {
         this.subs.forEach(sub => sub.unsubscribe());
     }
 
-    toggleSelectAll(): void {
-        let isSelectAll = false;
-        if (this.selectedRecord.size != this.latestViewModel.records.length) {
-            isSelectAll = true;
-        }
-        for (let record of this.latestViewModel.records) {
-            this.toggleSelection(record.id, isSelectAll);
-        }
-    }
-
-    toggleSelection(id: string, selectAll: boolean): void {
-        if (!selectAll && this.selectedRecord.has(id)) {
-            this.selectedRecord.delete(id);
-            this.config.toggleRecordSelection(id);
-        } else {
-            if (!this.selectedRecord.has(id)) {
-                this.selectedRecord.add(id);
-                this.config.toggleRecordSelection(id);
-            }
-        }
+    toggleSelection(id: string): void {
+        this.config.toggleRecordSelection(id);
     }
 
     allSelected(status: SelectionStatus): boolean {
