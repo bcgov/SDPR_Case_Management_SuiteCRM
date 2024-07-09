@@ -27,20 +27,28 @@
 -->
 
 <ng-container *ngIf="(vm$ | async) as vm">
-    <div class="listView-table-body position-relative d-flex flex-column">
+    <div class="position-relative d-flex flex-column">
         <table cdk-table [dataSource]="config.dataSource" [trackBy]="trackRecord"
                aria-describedby="table-body"
                class="list-view-table striped-table table">
 
             <ng-container cdkColumnDef="checkbox" *ngIf="vm.selection">
 
-                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header"></th>
+                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header">
+                    <label class="checkbox-container">
+                        <input type="checkbox"
+                               [checked]="selectedRecord.size == latestViewModel.records.length && latestViewModel.records.length != 0"
+                               (change)="toggleSelectAll()"
+                               aria-hidden="true">
+                        <span class="checkmark"></span>
+                    </label>
+                </th>
 
                 <td cdk-cell *cdkCellDef="let record">
                     <label class="checkbox-container">
                         <input type="checkbox"
                                [checked]="(record['id'] && vm.selected[record['id']]) || allSelected(vm.selectionStatus) "
-                               (change)="toggleSelection(record['id'])"
+                               (change)="toggleSelection(record['id'],false)"
                                [disabled]="allSelected(vm.selectionStatus)"
                                aria-hidden="true">
                         <span class="checkmark"></span>
@@ -86,7 +94,9 @@
 
             <ng-container cdkColumnDef="line-actions">
 
-                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header"></th>
+                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header case-action">
+                    <scrm-label [labelKey]="caseActionLabel"></scrm-label>
+                </th>
 
                 <td cdk-cell *cdkCellDef="let record">
                     <scrm-line-action-menu *ngIf="record && config.lineActions"
@@ -99,8 +109,8 @@
 
             </ng-container>
 
-            <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns" class="table-header-row"></tr>
-            <tr cdk-row *cdkRowDef="let row; columns: vm.displayedColumns;" class="table-body-row"></tr>
+            <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns"></tr>
+            <tr cdk-row *cdkRowDef="let row; columns: vm.displayedColumns;"></tr>
 
         </table>
 
