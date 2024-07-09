@@ -41,7 +41,7 @@ import {TableConfig} from '../table.model';
 import {SortDirectionDataSource} from '../../sort-button/sort-button.model';
 import {LoadingBufferFactory} from '../../../services/ui/loading-buffer/loading-buffer.factory';
 import {LoadingBuffer} from '../../../services/ui/loading-buffer/loading-buffer.service';
-import {SelectionService} from '../../../services/ui/selectRow/selectRow.service'
+import {SelectionService} from '../../../services/ui/selectRow/selectRow.service';
 
 interface TableViewModel {
     columns: ColumnDefinition[];
