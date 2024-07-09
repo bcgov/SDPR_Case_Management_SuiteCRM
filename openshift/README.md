@@ -35,7 +35,7 @@ Fill in the following values in the `./openshift/db-secrets.yaml` file:
 Run the following command to create the secrets in your current Openshift project:
 
 ```bash
-oc create -f ./openshift/db-secrets.yaml
+oc apply -f ./openshift/db-secrets.yaml
 ```
 ### Creating SuiteCRM secrets
 
@@ -47,7 +47,7 @@ Fill in the following values in the `./openshift/suitecrm-secrets.yaml` file:
 - `oauthkey`: The SuiteCRM OAuth key
 
 ```bash
-oc create -f ./openshift/suitecrm-secrets.yaml
+oc apply -f ./openshift/suitecrm-secrets.yaml
 ```
 
 ### Creating S3 Bucket file backup secrets
@@ -56,12 +56,12 @@ Fill in the following values in the `./openshift/s3-backup-secrets.yaml` file:
 
 - `aws-access-key-id`: AWS access key ID
 - `aws-secret-access-key`: AWS secret access key
-- `aws-endpoint-url`: The AWS endpoint URL
+- `aws-endpoint-url`: The AWS endpoint URL. Don't forget the preceding `http`/`https` protocol (e.g. `https://s3.ca-central-1.amazonaws.com`)
 - `bucketName`: The S3 bucket name
 - `S3URI`: The S3 URI
 
 ```bash
-oc create -f ./openshift/s3-backup-secrets.yaml
+oc apply -f ./openshift/s3-backup-secrets.yaml
 ```
 
 **Note 1:** The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project.
@@ -80,7 +80,7 @@ The backup and backup verification volume claims are necessary for the backup an
 Run the following command to create the backup persistent volume claim in your current Openshift project:
 
 ```bash
-oc create -f ./openshift/db-backup-pvc.yaml
+oc apply -f ./openshift/db-backup-pvc.yaml
 ```
 
 ### Creating the verification volume claim
@@ -88,5 +88,5 @@ oc create -f ./openshift/db-backup-pvc.yaml
 Run the following command to create the verification persistent volume claim in your current Openshift project:
 
 ```bash
-oc create -f ./openshift/db-backup-verification-pvc.yaml
+oc apply -f ./openshift/db-backup-verification-pvc.yaml
 ```
