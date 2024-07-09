@@ -171,6 +171,14 @@ export class TableBodyComponent implements OnInit, OnDestroy {
         }
     }
 
+    isChecked(index: number) {
+        if(this.selectedRecord.has(this.latestViewModel.records[index].id)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     allSelected(status: SelectionStatus): boolean {
         return status === SelectionStatus.ALL;
     }
