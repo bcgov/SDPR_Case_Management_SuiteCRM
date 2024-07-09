@@ -22,12 +22,12 @@ spec:
         spec:
           containers:
             - name: {{ .Chart.Name }}-s3-file-backup-cron-job
-              image: public.ecr.aws/amazon/aws-cli:latest
+              image: public.ecr.aws/aws-cli/aws-cli:latest
               imagePullPolicy: Always
               command:
                 - "sh"
                 - "-c"
-                - "aws sync /aws/suitecrm/public/legacy/upload ${S3_URI}/${S3_BUCKET}/{{ .Values.global.env }}/upload"
+                - "aws s3 sync /aws/suitecrm/public/legacy/upload ${S3_URI}/${S3_BUCKET}/{{ .Values.global.env }}/upload"
               env:
                 - name: S3_URI
                   valueFrom:
