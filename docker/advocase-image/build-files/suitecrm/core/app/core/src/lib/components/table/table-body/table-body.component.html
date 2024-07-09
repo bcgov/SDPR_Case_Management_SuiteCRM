@@ -110,7 +110,9 @@
             </ng-container>
 
             <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns"></tr>
-            <tr cdk-row *cdkRowDef="let row; columns: vm.displayedColumns;" class="table-body-row"></tr>
+            <tr cdk-row *cdkRowDef="let row; let i = index; columns: vm.displayedColumns;" 
+                [ngClass]="{'table-body-row-checked': isChecked(i)}" 
+                class="table-body-row"></tr>
 
         </table>
 
