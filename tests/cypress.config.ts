@@ -9,6 +9,9 @@ export default defineConfig({
     specPattern: "**/*.cy.ts",
   },
   chromeWebSecurity: false,
+  env: {
+    scrm_UAT: "https://advocase-d0d1b5-test.apps.gold.devops.gov.bc.ca"
+  },
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here

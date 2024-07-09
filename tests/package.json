@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:chrome": "npx cypress open --browser chrome",
+    "cy:electron": "npx cypress open --browser electron",
+    "cy:run": "npx cypress run"
   },
   "author": "",
   "license": "ISC",

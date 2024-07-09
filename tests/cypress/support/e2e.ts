@@ -21,7 +21,7 @@ import './commands'
 
 // Admin login before test files 
 beforeEach(() => {
-  cy.visit('https://advocase-d0d1b5-test.apps.gold.devops.gov.bc.ca/auth#')
+  cy.visit(`${Cypress.env('scrm_UAT')}/auth#`)
 
   cy.wait(8000)
   cy.url().should('include', '/Login', { timeout: 10000 })
