@@ -32,13 +32,28 @@ spec:
                 - name: S3_URI
                   valueFrom:
                     secretKeyRef:
-                      name: s3-iam
+                      name: suitecrm-s3-backup-credentials
                       key: S3URI
                 - name: S3_BUCKET
                   valueFrom:
                     secretKeyRef:
-                      name: s3-iam
+                      name: suitecrm-s3-backup-credentials
                       key: bucketName
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: aws-access-key-id
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: aws-secret-access-key
+                - name: AWS_ENDPOINT_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: aws-endpoint-url
               volumeMounts:
                 - name: shared-uploads
                   mountPath: /aws/suitecrm/public/legacy/upload
