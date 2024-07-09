@@ -196,14 +196,12 @@ button {
 
 .settings-button:hover,
 .settings-button.btn:hover {
-  background-color: $surface-color-primary-hover;
-  color: $white;
+  background-color: $secondary-button-hover;
 }
 
 .settings-button.active,
 .settings-button.btn.active {
-  background-color: $surface-color-background-blue;
-  color: $white;
+  background-color: $secondary-button-hover;
 }
 
 .settings-button.btn-outline-main,
@@ -213,29 +211,26 @@ button {
 
 .settings-button.btn-outline-main:hover,
 .settings-button.btn.btn-outline-main:hover {
-  background-color: $surface-color-primary-hover;
-  color: $white;
+  background-color: $secondary-button-hover;
 }
 
 .settings-button.active,
 .settings-button.btn.active {
-  background-color: $surface-color-background-blue;
-  color: $white;
+  background-color: $secondary-button-hover;
 }
 
 .settings-button.btn-outline-main.active,
 .settings-button.btn.btn-outline-main.active {
-  background-color: $surface-color-background-blue;
-  color: $white;
+  background-color: $secondary-button-hover;
 }
 
 .settings-button.btn-outline-main.active:hover,
 .settings-button.btn.btn-outline-main.active:hover {
   background-color: transparent;
   border-color: transparent;
-  color: $surface-color-primary-hover;
-  fill: $surface-color-primary-hover;
-  stroke: $surface-color-primary-hover;
+  color: $secondary-button-hover;
+  fill: $secondary-button-hover;
+  stroke: $secondary-button-hover;
 }
 
 .quick-filter-button {
