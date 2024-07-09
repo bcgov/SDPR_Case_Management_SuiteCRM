@@ -76,6 +76,11 @@
   line-height: 2.25rem;
 }
 
+.panel-buttons .action-group-menu div {
+  gap: 1rem;
+  display: flex;
+}
+
 .panel-buttons button {
   border: 1px solid $surface-color-border-dark;
   font-size: 1rem;
