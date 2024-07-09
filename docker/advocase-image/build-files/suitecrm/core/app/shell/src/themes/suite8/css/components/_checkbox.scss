@@ -29,6 +29,7 @@
   display: block;
   position: relative;
   cursor: pointer;
+  margin-left: 2px;
   font-size: 1.3em;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -45,10 +46,24 @@
   width: 0;
 }
 
+.select-all-checkmark {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;
+}
+
+.select-all-checkbox-container {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;
+  margin-bottom: 16px;
+  margin-left: 2px;
+}
+
 /* Create a custom checkbox */
 .checkbox-container .checkmark {
   position: absolute;
-  top: -0.3em;
+  top: -4px;
   left: 0;
   background-color: $white;
   -webkit-border-radius: 0.2em;
