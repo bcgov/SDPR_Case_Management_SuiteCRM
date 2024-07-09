@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ include "suitecrm.fullname" . }}-cron-job
+  name: {{ include "suitecrm.fullname" . }}-app-cron-job
   labels:
     {{- include "suitecrm.labels" . | nindent 4 }}
 spec:
-  schedule: {{ .Values.global.cron.schedule | quote }}
+  schedule: {{ .Values.global.cron.app.schedule | quote }}
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 5
   failedJobsHistoryLimit: 2
@@ -22,7 +22,7 @@ spec:
             component: cron-job
         spec:
           containers:
-            - name: {{ .Chart.Name }}-cron-job
+            - name: {{ .Chart.Name }}-app-cron-job
               image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
               imagePullPolicy: {{ .Values.image.pullPolicy }}
               command:
