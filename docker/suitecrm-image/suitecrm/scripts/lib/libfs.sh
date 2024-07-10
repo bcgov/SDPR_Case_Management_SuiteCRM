@@ -36,6 +36,14 @@ function copy_files_with_source_dir_structure() {
   done
 }
 
+
+########################
+# Create directory if it does not exist
+# Arguments:
+#   $1: Directory path
+# Returns:
+#   None
+#########################
 function create_dir_if_not_exists() {
   local dir="$1"
 
