@@ -111,9 +111,11 @@
 
             <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns"></tr>
             <tr cdk-row *cdkRowDef="let row; let i = index; columns: vm.displayedColumns;" 
-                [ngClass]="{'table-body-row-checked': isChecked(i)}" 
-                class="table-body-row"></tr>
-
+                [ngClass]="{'table-body-row-checked': isChecked(i)}"
+                (click)="onRowClick(row)"
+                class="table-body-row">
+            </tr>
+            
         </table>
 
         <div *ngIf="!vm.loading && vm.records.length === 0">

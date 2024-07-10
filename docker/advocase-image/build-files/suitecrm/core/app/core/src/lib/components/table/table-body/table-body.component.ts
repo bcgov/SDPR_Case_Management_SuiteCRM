@@ -42,6 +42,7 @@ import {SortDirectionDataSource} from '../../sort-button/sort-button.model';
 import {LoadingBufferFactory} from '../../../services/ui/loading-buffer/loading-buffer.factory';
 import {LoadingBuffer} from '../../../services/ui/loading-buffer/loading-buffer.service';
 import {SelectionService} from '../../../services/ui/selectRow/selectRow.service';
+import { Router } from '@angular/router';
 
 interface TableViewModel {
     columns: ColumnDefinition[];
@@ -72,7 +73,8 @@ export class TableBodyComponent implements OnInit, OnDestroy {
     constructor(
         protected fieldManager: FieldManager,
         protected loadingBufferFactory: LoadingBufferFactory,
-        private selectionService: SelectionService // Inject the service
+        private selectionService: SelectionService,
+        private router: Router,
     ) {
         this.loadingBuffer = this.loadingBufferFactory.create('table_loading_display_delay');
     }
@@ -169,6 +171,10 @@ export class TableBodyComponent implements OnInit, OnDestroy {
                 this.config.toggleRecordSelection(id);
             }
         }
+    }
+
+    onRowClick(row: any): void {
+        this.router.navigate(['/cases/record', row.id]);
     }
 
     isChecked(index: number): boolean {
