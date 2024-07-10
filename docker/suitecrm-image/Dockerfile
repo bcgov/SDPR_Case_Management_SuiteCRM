@@ -11,7 +11,7 @@ RUN apt-get update && \
 
 # Install php extensions
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip redis
+RUN install-php-extensions intl gd mysqli pdo_mysql soap zip redis
 
 # Enable apache rewrite and ssl module
 RUN a2enmod rewrite \
@@ -23,15 +23,10 @@ RUN curl -SsLf https://suitecrm.com/download/147/suite86/563895/suitecrm-8-6-0.z
 && rm *.zip
 
 # Copying modified files to container
-COPY ./build-files /tmp/build-files
-
-# Change working directory to tmp
-WORKDIR /tmp
+COPY ./suitecrm /opt/suitecrm
 
 # Running script to copy modified files to SuiteCRM
-RUN chmod +x /tmp/build-files/copy_files.sh \
-&& /tmp/build-files/copy_files.sh \
-&& rm -rf /tmp/*
+RUN /opt/suitecrm/scripts/entrypoint.sh /opt/suitecrm/build-files
 
 # Change working directory to SuiteCRM root folder
 WORKDIR /suitecrm
