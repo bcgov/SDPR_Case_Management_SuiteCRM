@@ -251,11 +251,20 @@
   min-width: 53px;
   min-height: 29px;
   padding:4px 8px;
+  gap: 10px;
+  border-radius: 4px;
+}
+
+.field-name-state-Open{
   border: 1px solid $border-success;
   color: $color-success;
   background-color: $surface-success;
-  gap: 10px;
-  border-radius: 4px;
+}
+
+.field-name-state-Closed{
+  border: 1px solid $border-danger;
+  color: $typography-color-danger;
+  background-color: $surface-danger;
 }
 
 .list-view-tableactions {
