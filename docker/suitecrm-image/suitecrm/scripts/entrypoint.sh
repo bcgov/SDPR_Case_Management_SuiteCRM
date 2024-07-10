@@ -19,4 +19,4 @@ if [ "$#" -eq 0 ]; then
 fi
 
 info "Starting SuiteCRM entrypoint script"
-copy_files "$1" "$2"
+copy_files_with_source_dir_structure "$1" "$2"

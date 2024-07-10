@@ -12,7 +12,7 @@
 # Returns:
 #   None
 #########################
-function copy_files() {
+function copy_files_with_source_dir_structure() {
   local source_dir="$1"
 
   info "Copying files from $source_dir to $destination_dir";
