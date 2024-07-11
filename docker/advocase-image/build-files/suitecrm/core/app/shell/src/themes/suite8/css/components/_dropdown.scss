@@ -676,8 +676,8 @@ ul.main li a,
 }
 
 .dropdown-item-label:hover {
-  background-color: $surface-color-primary-hover;
-  color: $white;
+  background-color: $secondary-button-hover;
+  color: $primary_text;
   cursor: pointer;
 }
 
@@ -685,8 +685,8 @@ ul.main li a,
 .button-group-dropdown .dropdown-menu a:hover,
 .bulk-action-group .dropdown-menu a:hover,
 .select-action-group .dropdown-menu a:hover {
-  background-color: $astral-blue;
-  color: $white;
+  background-color: $white;
+  color: $primary_text;
   cursor: pointer;
 }
 

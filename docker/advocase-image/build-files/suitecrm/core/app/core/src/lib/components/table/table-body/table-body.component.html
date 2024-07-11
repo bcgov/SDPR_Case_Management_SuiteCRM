@@ -27,7 +27,7 @@
 -->
 
 <ng-container *ngIf="(vm$ | async) as vm">
-    <div class="position-relative d-flex flex-column">
+    <div class="listView-table-body position-relative d-flex flex-column">
         <table cdk-table [dataSource]="config.dataSource" [trackBy]="trackRecord"
                aria-describedby="table-body"
                class="list-view-table striped-table table">
@@ -35,12 +35,12 @@
             <ng-container cdkColumnDef="checkbox" *ngIf="vm.selection">
 
                 <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header">
-                    <label class="checkbox-container">
+                    <label class="checkbox-container select-all-checkbox-container">
                         <input type="checkbox"
                                [checked]="selectedRecord.size == latestViewModel.records.length && latestViewModel.records.length != 0"
                                (change)="toggleSelectAll()"
                                aria-hidden="true">
-                        <span class="checkmark"></span>
+                        <span class="checkmark select-all-checkmark"></span>
                     </label>
                 </th>
 
@@ -110,8 +110,12 @@
             </ng-container>
 
             <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns"></tr>
-            <tr cdk-row *cdkRowDef="let row; columns: vm.displayedColumns;"></tr>
-
+            <tr cdk-row *cdkRowDef="let row; let i = index; columns: vm.displayedColumns;" 
+                [ngClass]="{'table-body-row-checked': isChecked(i)}"
+                (click)="onRowClick(row)"
+                class="table-body-row">
+            </tr>
+            
         </table>
 
         <div *ngIf="!vm.loading && vm.records.length === 0">
