@@ -18,10 +18,9 @@ export SUITECRM_DIR
 
 function main() {
   info "Starting SuiteCRM entrypoint script"
+
   copy_files_with_source_dir_structure "/opt/suitecrm/build-files"
-
   create_suitecrm_ssl_certificates
-
   change_suitecrm_permissions
 
   # This is necessary due to a weird behaviour when
@@ -30,8 +29,8 @@ function main() {
   info "Changing /var/run/apache2 permissions"
   chmod -R 777 /var/run/apache2
 
-  # info "Restarting Apache2"
-  # /etc/init.d/apache2 reload
+  info "Enabling Apache modules"
+  a2enmod rewrite ssl
 }
 
 main "$@"
