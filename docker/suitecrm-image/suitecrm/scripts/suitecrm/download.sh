@@ -2,7 +2,7 @@
 
 # Author: Raphael Cássio de Souza (rsouza@nautilusdigital.com)
 # Description: This script contains the download functions for SuiteCRM
-# Created on: 2024-07-09
+# Created on: 2024-07-11
 
 function download_suitecrm() {
   info "Downloading SuiteCRM"
