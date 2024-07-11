@@ -13,20 +13,12 @@ RUN apt-get update && \
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN install-php-extensions intl gd mysqli pdo_mysql soap zip redis
 
-# Enable apache rewrite and ssl module
-RUN a2enmod rewrite \
-&& a2enmod ssl
-
-# Downloading and unpacking SuiteCRM
-RUN curl -SsLf https://suitecrm.com/download/147/suite86/563895/suitecrm-8-6-0.zip -O \
-&& unzip *.zip -d suitecrm \
-&& rm *.zip
 
 # Copying modified files to container
 COPY ./suitecrm /opt/suitecrm
 
-# Running script to copy modified files to SuiteCRM
-# RUN /opt/suitecrm/scripts/entrypoint.sh
+# Running script to download and unzip SuiteCRM
+RUN /opt/suitecrm/scripts/suitecrm/download.sh
 
 # Exposed ports
 EXPOSE 8181
