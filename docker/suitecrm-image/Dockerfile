@@ -26,25 +26,13 @@ RUN curl -SsLf https://suitecrm.com/download/147/suite86/563895/suitecrm-8-6-0.z
 COPY ./suitecrm /opt/suitecrm
 
 # Running script to copy modified files to SuiteCRM
-RUN /opt/suitecrm/scripts/entrypoint.sh /opt/suitecrm/build-files
-
-# Change working directory to SuiteCRM root folder
-WORKDIR /suitecrm
-
-# Changing permissions for SuiteCRM folder
-RUN adduser www-data root \
-&& chmod +x ./bin/console \
-&& find . -type d -not -perm 2775 -exec chmod 2775 {} \; \
-&& find . -type f -not -perm 0644 -exec chmod 0644 {} \; \
-&& find . ! -user www-data -exec chown www-data:root {} \; \
-&& chmod -R g+rwx /suitecrm \
-&& chmod -R 777 /var/run/apache2 \
-&& mkdir sslcerts \
-&& openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj /emailAddress=support@gov./C=CA/ST=BC/L=Victoria/O=BCGov/OU=Ministry/CN=cbsuitecrm -keyout ./sslcerts/apache-selfsigned.key -out ./sslcerts/apache-selfsigned.crt
-
-# Restarting apache
-RUN service apache2 restart
+# RUN /opt/suitecrm/scripts/entrypoint.sh
 
 # Exposed ports
 EXPOSE 8181
 EXPOSE 8143
+
+WORKDIR /suitecrm
+
+ENTRYPOINT [ "/opt/suitecrm/scripts/entrypoint.sh" ]
+CMD ["apache2-foreground"]
