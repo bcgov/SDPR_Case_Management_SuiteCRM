@@ -334,7 +334,8 @@
 }
 
 .table-body-row:hover {
-  background-color: $surface-tertiary-hover; /* Change this to your desired hover background color */
+  background-color: $surface-tertiary-hover;
+  cursor: pointer;
 }
 
 .table-body-row-checked {
