@@ -174,7 +174,7 @@ export class TableBodyComponent implements OnInit, OnDestroy {
     }
 
     onRowClick(row: any): void {
-        this.router.navigate([row.module, 'record', row.id]);
+        this.router.navigate(['/cases/record', row.id]);
     }
 
     isChecked(index: number): boolean {
