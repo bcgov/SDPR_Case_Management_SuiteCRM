@@ -15,25 +15,24 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import 'cypress-axe'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
 // Admin login before test files 
 beforeEach(() => {
-  cy.visit('https://advocase-d0d1b5-dev.apps.gold.devops.gov.bc.ca/auth#')
+  cy.visit('/auth')
+  cy.injectAxe()
+  cy.wait(4000)
 
-  cy.wait(8000)
-  cy.url().should('include', '/Login', { timeout: 10000 })
-
-  cy.get('input[name="username"]').type('gabriel')
-  cy.get('input[name="password"]').type('advocase')
-
+  cy.get('input[name="username"]').type(Cypress.env('CYPRESS_SCRM_USERNAME'))
+  cy.get('input[name="password"]').type(Cypress.env('CYPRESS_SCRM_PASSWORD'))
   cy.get('button[id="login-button"]').click()
+  // cy.get('input[type="submit"]').click()
 
   cy.location('pathname').should('eq', '/')
-
-  cy.wait(10000)
+  cy.wait(8000)
 
   cy.url().should('include', '/home')
 })

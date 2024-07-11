@@ -13,9 +13,11 @@ Cypress is a powerful, fast, and easy-to-use testing framework for web applicati
 
 To set up Cypress and install the necessary dependencies, follow these steps:
 
-1. Ensure you have Node.js v22.1.0 installed (https://nodejs.org/).
+1. Make sure the terminal is located in the correct directory
 
-2. Install dependencieas:
+2. Ensure you have Node.js v22.1.0 installed (https://nodejs.org/).
+
+3. Install dependencies:
 
 ```bash
     npm install
