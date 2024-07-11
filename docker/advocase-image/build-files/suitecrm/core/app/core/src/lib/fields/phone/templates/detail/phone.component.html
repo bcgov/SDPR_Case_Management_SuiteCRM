@@ -25,21 +25,4 @@
 * the words "Supercharged by SuiteCRM".
 */
 -->
-<!-- Start List View Table Footer Section -->
-
-<div class="list-view-tableactions table-footer"
-    [ngClass]="{'load-more-footer': !isPaginationEnabled()}">
-    <scrm-pagination *ngIf="isPaginationEnabled()"
-                      [allowPagination]="isPaginationEnabled()"
-                      [state]="pagination">
-    </scrm-pagination>
-
-    <div *ngIf="!isPaginationEnabled()"
-      class="mx-0 pl-0 load-more-style">
-        <scrm-load-more
-            [loadMoreButton]="getLoadMoreButton()">
-        </scrm-load-more>
-    </div>
-</div>
-
-<!-- End List View Table Footer Section -->
+<a [href]="getTelLink(field.value)" class="clickable">{{ field.value }}</a>
