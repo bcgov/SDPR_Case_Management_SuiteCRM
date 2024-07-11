@@ -47,7 +47,7 @@
 
 .record-view-header .btn {
   stroke: $typography-color-secondary;
-  padding-top: 6px;
+  padding-top: 7px;
   scale: 1.6;
   font-style: normal;
   font-weight: 400;
@@ -56,9 +56,8 @@
 .favorite-on {
   fill: $border-warning;
   stroke: $surface-warning;
-  padding-top: 6px;
+  padding-top: 7px;
   scale: 1.6;
-  padding-left: 10px;
   font-style: normal;
   font-weight: 400;
 }
@@ -165,7 +164,7 @@
   font-weight: 700;
   line-height: 42px;
   display: flex !important;
-  padding-top: 5px;
+  margin-top: 5px;
 }
 
 .record-view-actions {
