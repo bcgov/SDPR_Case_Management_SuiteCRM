@@ -79,8 +79,15 @@
 }
 
 .line-action-item {
+  width: 24px;
+  height: 24px;
   padding: 0.2em;
   background: none;
+}
+
+.line-action-item:hover {
+  background-color: $theme-gray-50;
+  border-radius: 6px;
 }
 
 .line-action svg polygon {
