@@ -173,6 +173,11 @@
   border-bottom-left-radius: 0.3em;
 }
 
+.load-more-footer {
+  margin-top: 14px;
+  margin-bottom: 9px;
+}
+
 .card-body .table-footer {
   margin-top: 8px;
 }
@@ -406,22 +411,29 @@ td {
   margin: 0;
 }
 
+.load-more-container {
+  display: flex;
+  justify-content: center;
+}
+
 .load-more {
-  background-color: #76858f;
+  background-color: $white;
   background-repeat: no-repeat;
-  border: 0.09em solid rgb(233, 233, 233);
+  border: 1px solid $button-secondary;
   border-image-source: initial;
   border-image-slice: initial;
   border-image-repeat: initial;
-  border-radius: 0.15em;
+  border-radius: 4px;
   cursor: pointer;
-  overflow: hidden;
+  overflow: visible;
   outline: initial none initial;
-  padding: 0.3em 0.5em;
+  padding: 8px 16px;
+  font-family: "BC Sans";
+  font-size: 16px;
+  font-style: normal;
   font-weight: 700;
-  font-size: .9em;
-  color: #fff;
-  min-width: 11em;
+  line-height: 27.008px;
+  color: $typography-color-secondary;
 }
 
 .select-action-group .dropdown-toggle::after,
