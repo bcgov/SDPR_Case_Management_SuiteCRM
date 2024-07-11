@@ -32,6 +32,12 @@
   font-weight: 700;
   font-size: 16px;
   padding-left: 12px;
+  text-transform: lowercase;
+}
+
+.field-layout .label-container,
+.field-layout .label-container label::first-letter {
+  text-transform: uppercase;
 }
 
 .required {
