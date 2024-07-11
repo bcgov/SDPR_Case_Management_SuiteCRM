@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Author: Raphael Cássio de Souza (rsouza@nautilusdigital.com)
-# Description: This script contains the copy files function used in the SuiteCRM scripts
+# Description: This script contains the permissions changes function for SuiteCRM
 # Created on: 2024-07-10
 
 ########################
