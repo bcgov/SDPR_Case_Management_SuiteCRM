@@ -47,7 +47,7 @@
 
 .record-view-header .btn {
   stroke: $typography-color-secondary;
-  padding-top: 7px;
+  padding-top: 3px;
   scale: 1.6;
   font-style: normal;
   font-weight: 400;
@@ -56,7 +56,7 @@
 .favorite-on {
   fill: $border-warning;
   stroke: $surface-warning;
-  padding-top: 7px;
+  padding-top: 3px;
   scale: 1.6;
   font-style: normal;
   font-weight: 400;
@@ -152,7 +152,7 @@
 }
 
 .record-view-name-wrapper-margin-left {
-  margin-left: 2.7em;
+  margin-left: 0;
 }
 
 .record-view-name-label {
@@ -179,6 +179,7 @@
 
 .record-view-breadcrumb-container {
   display: flex;
+  margin-left: 2px;
 }
 
 .record-view-module-breadcrumb {
@@ -203,6 +204,7 @@
   font-weight: 400;
   line-height: 21px;
   margin-right: 8px;
+  margin-left: 8px;
 }
 
 .record-view-dynamic-breadcrumb {
