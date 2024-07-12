@@ -1,11 +1,11 @@
 <?php
-$app_list_strings['advocase_legal_agreement_list']=array (
-  'FAMILIAL_RELATIONSHIP' => 'Familial relationship',
-  'GUARDIANSHIP_REPRESENTATION_AGREEMENT' => 'Guardianship representation agreement',
-  'COMMITTEE_OF_ESTATE' => 'Committee of estate',
-  'COMMITTEE_OF_PERSON' => 'Committee of person',
-  'POWER_OF_ATTORNEY' => 'Power of Attorney',
-);
+// $app_list_strings['advocase_legal_agreement_list']=array (
+//   'FAMILIAL_RELATIONSHIP' => 'Familial relationship',
+//   'GUARDIANSHIP_REPRESENTATION_AGREEMENT' => 'Guardianship representation agreement',
+//   'COMMITTEE_OF_ESTATE' => 'Committee of estate',
+//   'COMMITTEE_OF_PERSON' => 'Committee of person',
+//   'POWER_OF_ATTORNEY' => 'Power of Attorney',
+// );
 $app_list_strings['advocase_contact_region_list']=array (
   'FRASER' => 'Fraser',
   'INTERIOR' => 'Interior',
