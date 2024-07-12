@@ -164,7 +164,7 @@
   font-weight: 700;
   line-height: 42px;
   display: flex !important;
-  margin-top: 5px;
+  padding-top: 5px;
 }
 
 .record-view-actions {
@@ -175,4 +175,41 @@
 .record-view-actions-scrolled {
   margin: 0;
   text-align: end;
+}
+
+.record-view-breadcrumb-container {
+  display: flex;
+}
+
+.record-view-module-breadcrumb {
+  color: $typography-color-secondary;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  text-transform: lowercase;
+}
+
+.record-view-module-breadcrumb::first-letter {
+  text-transform: uppercase;
+}
+
+.record-view-slash-breadcrumb {
+  color: $typography-color-secondary;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  margin-right: 8px;
+}
+
+.record-view-dynamic-breadcrumb {
+  color: $typography-color-secondary;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
 }
