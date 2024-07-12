@@ -93,20 +93,15 @@
 }
 
 a.home-nav-link {
+  width: 108px;
   color: $white;
   text-decoration: none;
   font-weight: 700;
-
-  & span {display: none;}
-
-  @media all and (min-width: 1055px) {
-      & span {
-        display: inline-block;
-        margin-left: 8px;    
-      }
-    }
-    
+  & span {
+    display: inline-block;
+    margin-left: 8px;    
   }
+}
 
 .nav-item.active .home-nav-link svg {
   fill: $white;
