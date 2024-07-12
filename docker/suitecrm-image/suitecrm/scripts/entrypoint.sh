@@ -15,11 +15,17 @@ export SUITECRM_DIR
 . $RUN_DIR/lib/libfs.sh
 . $RUN_DIR/suitecrm/permissions.sh
 . $RUN_DIR/suitecrm/certificates.sh
+. $RUN_DIR/suitecrm/env-validation.sh
+. $RUN_DIR/suitecrm/install.sh
 
 function main() {
   info "Starting SuiteCRM entrypoint script"
 
   copy_files_with_source_dir_structure "/opt/suitecrm/build-files"
+
+  env_validation
+  install_suitecrm
+
   create_suitecrm_ssl_certificates
   change_suitecrm_permissions
 
