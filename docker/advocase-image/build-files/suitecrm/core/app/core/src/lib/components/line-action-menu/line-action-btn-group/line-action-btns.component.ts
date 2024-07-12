@@ -32,9 +32,9 @@ import { Router } from '@angular/router';
     templateUrl: 'line-action-btns.component.html',
 })
 export class LineActionBtnComponent {
-  @Input() module: string; // Input property to receive the parameter
+  @Input() record: any;
+  @Input() module: string;
   currentModule: string;
-  num: number;
 
   constructor(
     private router: Router
@@ -43,9 +43,6 @@ export class LineActionBtnComponent {
 
   ngOnInit(): void {
     this.currentModule = this.module;
-    this.num = 10;
-    console.log("module2: ", this.module);
-    console.log(this.module == 'contacts');
   }
 
   onClickPhone(event: MouseEvent) {
@@ -59,7 +56,24 @@ export class LineActionBtnComponent {
   }
 
   onClickPaperClip(event: MouseEvent) {
-    this.router.navigate(['']);
+    this.router.navigate(['documents/edit'], {
+      queryParams: {
+        return_module: 'Cases',
+        return_action: 'DetailView',
+        return_id: this.record.id,
+        relate_to: 'cases',
+        relate_id: this.record.id,
+        case_id: this.record.id,
+        case_name: 'DemoCase',
+        return_name: 'DemoCase',
+        documents_cases_name: 'DemoCase',
+        parent_name: 'DemoCase',
+        parent_id: this.record.id,
+        target_module: 'documents',
+        return_relationship: 'documents_cases',
+        parent_type: 'Cases'
+      }
+    });
     event.stopPropagation();
   }
 
