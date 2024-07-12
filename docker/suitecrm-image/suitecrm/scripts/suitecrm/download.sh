@@ -4,6 +4,18 @@
 # Description: This script contains the download functions for SuiteCRM
 # Created on: 2024-07-11
 
+RUN_DIR=${RUN_DIR:-"/opt/suitecrm/scripts"}
+
+# Load the libraries
+. $RUN_DIR/lib/liblog.sh
+
+########################
+# Download and extract SuiteCRM
+# Arguments:
+#   Extension list
+# Returns:
+#   None
+#########################
 function download_suitecrm() {
   info "Downloading SuiteCRM"
 
