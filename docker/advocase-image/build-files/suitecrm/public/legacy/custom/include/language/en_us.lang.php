@@ -1,11 +1,11 @@
 <?php
-// $app_list_strings['advocase_legal_agreement_list']=array (
-//   'FAMILIAL_RELATIONSHIP' => 'Familial relationship',
-//   'GUARDIANSHIP_REPRESENTATION_AGREEMENT' => 'Guardianship representation agreement',
-//   'COMMITTEE_OF_ESTATE' => 'Committee of estate',
-//   'COMMITTEE_OF_PERSON' => 'Committee of person',
-//   'POWER_OF_ATTORNEY' => 'Power of Attorney',
-// );
+$app_list_strings['advocase_legal_agreement_list']=array (
+  'FAMILIAL_RELATIONSHIP' => 'Familial relationship',
+  'GUARDIANSHIP_REPRESENTATION_AGREEMENT' => 'Representation agreement',
+  'COMMITTEE_OF_ESTATE' => 'Committee of estate',
+  'COMMITTEE_OF_PERSON' => 'Committee of person',
+  'POWER_OF_ATTORNEY' => 'Power of Attorney',
+);
 $app_list_strings['advocase_contact_region_list']=array (
   'FRASER' => 'Fraser',
   'INTERIOR' => 'Interior',
@@ -29,33 +29,33 @@ $app_list_strings['advocase_gsa_level_list']=array (
   'UNKNOWN' => 'Unknown',
 );
 
-// $app_list_strings['advocase_contact_type_list']=array (
-//   'COMMUNITY_AGENCY_BCANDS' => 'BC Aboriginal Network on Disability Society (BCANDS)',
-//   'GOVERNMENT_AGENCY_OMBUDSPERSON' => 'BC Ombudsperson',
-//   'GOVERNMENT_AGENCY_CLBC' => 'Community Living BC (CLBC)',
-//   'GOVERNMENT_AGENCY_DMO' => 'Deputy Ministers Office',
-//   'COMMUNITY_AGENCY_DABC' => 'Disability Alliance of BC (DABC)',
-//   'COMMUNITY_AGENCY_FSI' => 'Family Support Institute (FSI)',
-//   'FAMILY_MOTHER' => 'Family - Mother',
-//   'FAMILY_FATHER' => 'Family - Father',
-//   'FAMILY_SIBLING' => 'Family - Sibling',
-//   'FAMILY_OTHER' => 'Family - Other',
-//   'FRIEND' => 'Friend',
-//   'GOVERNMENT_AGENCY_HEALTH_AUTHORITY' => 'Health Authority',
-//   'COMMUNITY_AGENCY_IBC' => 'Inclusion BC (IBC)',
-//   'GOVERNMENT_AGENCY_INDIGENOUS_CHILD_FAMILY_SERVICE_AGENCY' => 'Indigenous Child and Family Service Agency',
-//   'INDIVIDUAL_PERSON_WITH_DISABILITY' => 'Individual / Person with a disability',
-//   'GOVERNMENT_AGENCY_MLA' => 'Member of the Legislative Assembly (MLA)',
-//   'GOVERNMENT_AGENCY_MCFD' => 'Ministry of Children and Family Development (MCFD)',
-//   'GOVERNMENT_AGENCY_MOH' => 'Ministry of Health (MoH)',
-//   'GOVERNMENT_AGENCY_SDPR' => 'Ministry of Social Development and Poverty Reduction (SDPR)',
-//   'GOVERNMENT_AGENCY_MO' => 'Ministers Office',
-//   'GOVERNMENT_AGENCY_PGT' => 'Public Guardian and Trustee (PGT)',
-//   'GOVERNMENT_AGENCY_OFFICE_OF_THE_SENIORS_ADVOCATE' => 'Office of the Seniors Advocate',
-//   'GOVERNMENT_AGENCY_RCY' => 'Representative for Children and Youth (RCY)',
-//   'SERVICE_PROVIDER' => 'Service provider',
-//   'OTHER' => 'Other',
-// );
+$app_list_strings['advocase_contact_type_list']=array (
+  'COMMUNITY_AGENCY_BCANDS' => 'BC Aboriginal Network on Disability Society (BCANDS)',
+  'GOVERNMENT_AGENCY_OMBUDSPERSON' => 'BC Ombudsperson',
+  'GOVERNMENT_AGENCY_CLBC' => 'Community Living BC (CLBC)',
+  'GOVERNMENT_AGENCY_DMO' => 'Deputy Ministers Office',
+  'COMMUNITY_AGENCY_DABC' => 'Disability Alliance of BC (DABC)',
+  'COMMUNITY_AGENCY_FSI' => 'Family Support Institute (FSI)',
+  'FAMILY_MOTHER' => 'Family - Mother',
+  'FAMILY_FATHER' => 'Family - Father',
+  'FAMILY_SIBLING' => 'Family - Sibling',
+  'FAMILY_OTHER' => 'Family - Other',
+  'FRIEND' => 'Friend',
+  'GOVERNMENT_AGENCY_HEALTH_AUTHORITY' => 'Health Authority',
+  'COMMUNITY_AGENCY_IBC' => 'Inclusion BC (IBC)',
+  'GOVERNMENT_AGENCY_INDIGENOUS_CHILD_FAMILY_SERVICE_AGENCY' => 'Indigenous Child and Family Service Agency',
+  'INDIVIDUAL_PERSON_WITH_DISABILITY' => 'Individual / Person with a disability',
+  'GOVERNMENT_AGENCY_MLA' => 'Member of the Legislative Assembly (MLA)',
+  'GOVERNMENT_AGENCY_MCFD' => 'Ministry of Children and Family Development (MCFD)',
+  'GOVERNMENT_AGENCY_MOH' => 'Ministry of Health (MoH)',
+  'GOVERNMENT_AGENCY_SDPR' => 'Ministry of Social Development and Poverty Reduction (SDPR)',
+  'GOVERNMENT_AGENCY_MO' => 'Ministers Office',
+  'GOVERNMENT_AGENCY_PGT' => 'Public Guardian and Trustee (PGT)',
+  'GOVERNMENT_AGENCY_OFFICE_OF_THE_SENIORS_ADVOCATE' => 'Office of the Seniors Advocate',
+  'GOVERNMENT_AGENCY_RCY' => 'Representative for Children and Youth (RCY)',
+  'SERVICE_PROVIDER' => 'Service provider',
+  'OTHER' => 'Other',
+);
 
 $app_list_strings['advocase_communication_type_list']=array (
   'PHONE_CALL' => 'Phone call',
@@ -225,4 +225,6 @@ $app_list_strings['advocase_oasq_awareness_list']=array (
   'WEBSITE' => 'Website',
   'OTHER' => 'Other',
 );
-    $app_strings['LBL_SELECT_SUBPANEL_BANNER'] = 'Subpanels';
+
+$app_strings['LBL_SELECT_SUBPANEL_BANNER'] = 'Subpanels';
+$app_strings['LBL_CASES_INSIGHT'] = '{{fields.cases.value}} / {{fields.default.value}}';
