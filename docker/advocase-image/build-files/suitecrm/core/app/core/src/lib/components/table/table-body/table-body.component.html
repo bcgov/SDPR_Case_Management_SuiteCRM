@@ -99,12 +99,7 @@
                 </th>
 
                 <td cdk-cell *cdkCellDef="let record">
-                    <scrm-line-action-menu *ngIf="record && config.lineActions"
-                                           [config]="config.lineActions"
-                                           [record]="record"
-                                           [wrapperClass]="'listview-actions'"
-                                           [klass]="'icon-bar'">
-                    </scrm-line-action-menu>
+                    <line-action-btns [module]="config.module"/>
                 </td>
 
             </ng-container>
