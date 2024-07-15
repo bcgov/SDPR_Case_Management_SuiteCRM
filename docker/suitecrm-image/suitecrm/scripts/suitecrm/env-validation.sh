@@ -5,7 +5,7 @@
 # Created on: 2024-07-12
 
 ########################
-# Install SuiteCRM
+# Validate SuiteCRM environment variables
 # Arguments:
 #   Extension list
 # Returns:
