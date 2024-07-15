@@ -292,6 +292,7 @@
   height: 100%;
   align-items: center;
   padding: 8px;
+  margin-right: 2rem;
 }
 
 .pipeline-chart,
@@ -312,6 +313,8 @@
   background-color: $white;
   border: 1px solid rgba(0,0,0,.1);
   border-radius: 6px;
+  margin-right: 2rem;
+  margin-left: 2rem;
 }
 
 .primary-table-header {
