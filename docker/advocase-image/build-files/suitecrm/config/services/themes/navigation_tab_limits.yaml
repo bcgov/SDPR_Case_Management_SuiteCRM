@@ -3,5 +3,5 @@ parameters:
     XSmall: 1
     Small: 1
     Medium: 2
-    Large: 6
-    XLarge: 8
+    Large: 4
+    XLarge: 6
