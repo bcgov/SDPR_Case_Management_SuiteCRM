@@ -334,6 +334,9 @@
 
 .table-body-row {
   border-top: 1px solid $border-default;
+  height: 45px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .table-body-row:hover {
@@ -351,11 +354,13 @@ td.list-group-icon {
 }
 
 .cdk-column-checkbox {
-  width: 2rem;
+  width: 64px;
+  padding-left: 24px !important;
 }
 
 .cdk-column-line-actions {
-  width: 6.6rem;
+  width: 134px;
+  padding-right: 24px !important;
 }
 
 .responsive-table-row.display-block-table {
