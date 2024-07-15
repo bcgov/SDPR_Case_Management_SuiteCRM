@@ -6,9 +6,11 @@
 
 RUN_DIR=${RUN_DIR:-"/opt/suitecrm/scripts"}
 SUITECRM_DIR=${SUITECRM_DIR:-"/suitecrm"}
+DEV_DEBUG=${DEV_DEBUG:-false}
 
 export RUN_DIR
 export SUITECRM_DIR
+export DEV_DEBUG
 
 # Load the libraries
 . $RUN_DIR/lib/liblog.sh
