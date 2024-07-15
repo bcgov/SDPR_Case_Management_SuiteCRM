@@ -65,10 +65,7 @@
 .record-view-header-scrolled {
   background-color: $white;
   border-bottom: 1px solid $grey-widget;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 56px;
-  padding-right: 56px;
+  padding: 24px 20px;
 }
 
 .record-view-hr {
@@ -79,8 +76,8 @@
 .record-view-hr-container {
   font-size: 0.85em;
   padding-top: 0.6em;
-  padding-left: 1.6em;
-  padding-right: 1.6em;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 @media all and (min-width: $breakpoint-large) {
