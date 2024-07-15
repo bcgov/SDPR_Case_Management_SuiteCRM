@@ -75,3 +75,22 @@ warn() {
 error() {
     log "${RED}ERROR${RESET} ==> ${*}"
 }
+
+########################
+# Log a 'debug' message
+# Globals:
+#   DEV_DEBUG
+# Arguments:
+#   None
+# Returns:
+#   None
+#########################
+debug() {
+    # 'is_boolean_yes' is defined in libvalidations.sh, but depends on this file so we cannot source it
+    local bool="${DEV_DEBUG:-false}"
+    # comparison is performed without regard to the case of alphabetic characters
+    shopt -s nocasematch
+    if [[ "$bool" = 1 || "$bool" =~ ^(yes|true)$ ]]; then
+        log "${MAGENTA}DEBUG${RESET} ==> ${*}"
+    fi
+}
