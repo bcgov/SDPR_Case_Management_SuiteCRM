@@ -82,7 +82,7 @@ $mod_strings = array(
     'LBL_SEARCH_FORM_TITLE' => 'Case Search',
     'LBL_STATUS' => 'Status:',
     'LBL_SUBJECT' => 'Subject:',
-    'LBL_LIST_ASSIGNED_TO_NAME' => 'Assigned To',
+    'LBL_LIST_ASSIGNED_TO_NAME' => 'Assigned User',
     'LBL_LIST_ACCOUNT_NAME' => 'Account Name',
     'LBL_LIST_ASSIGNED' => 'Assigned To',
     'LBL_LIST_CLOSE' => 'Close',
@@ -129,6 +129,4 @@ $mod_strings = array(
     'LBL_CONTACT_CREATED_BY' => 'Created by',
     'LBL_CASE_UPDATE_FORM' => 'Updates - Attachment form', //Form for attachments on case updates
     'LBL_UNKNOWN_CONTACT' => 'Unknown Contact',
-    'LBL_STATE' => 'Status',
-    'LBL_LIST_NAME' => 'Contact Name',
 );
