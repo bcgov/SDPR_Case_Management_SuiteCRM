@@ -30,6 +30,11 @@
   margin: 0;
 }
 
+.record-view-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
 .record-view-position-sticky {
   position: sticky;
   top: 3em;
@@ -39,10 +44,7 @@
 .record-view-header {
   background-color: $white;
   border-bottom: 1px solid $grey-widget;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  padding-left: 56px;
-  padding-right: 56px;
+  padding: 24px 20px;
 }
 
 .record-view-header .btn {
