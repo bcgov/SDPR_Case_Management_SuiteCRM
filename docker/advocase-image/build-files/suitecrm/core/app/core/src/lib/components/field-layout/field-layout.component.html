@@ -35,7 +35,7 @@
             <ng-container *ngIf="col.field && col.field.display !== 'none'">
                 <div class="label-container">
                     <strong>
-                        <label [ngClass]="labelClass">{{col.field.label | uppercase}}</label>:
+                        <label [ngClass]="labelClass">{{col.field.label}}</label>
                         <ng-container
                             *ngIf="col.field.definition.required && (['edit', 'create'].includes(config.mode))">
                             <span class="required">*</span>
