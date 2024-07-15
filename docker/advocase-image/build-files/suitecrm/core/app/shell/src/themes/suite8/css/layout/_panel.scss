@@ -62,12 +62,12 @@
 }
 
 .panel-card .card-body-padding {
-    padding: 1rem 2.5rem;
-    border-radius: 0px 0px  6px 6px;
-    border-right:  2px solid  #D8D8D8;
-    border-bottom:  2px solid #D8D8D8;
-    border-left:  2px solid #D8D8D8;
-    background: $white;
+  padding: 2rem 0rem;
+  border-radius: 0px 0px  6px 6px;
+  border-right:  2px solid  #D8D8D8;
+  border-bottom:  2px solid #D8D8D8;
+  border-left:  2px solid #D8D8D8;
+  background: $white;
 }
 
 .panel-title-header .panel-title {
@@ -90,6 +90,8 @@
 
 .panel-title-header {
   padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .panel-title-upper-header {
@@ -101,6 +103,11 @@
   font-style: normal;
   font-weight: 700;
   line-height: 34px;
+  text-transform: lowercase;
+}
+
+.panel-title-upper-header::first-letter {
+  text-transform: uppercase;
 }
 
 .panel-title-upper-header .panel-title {
