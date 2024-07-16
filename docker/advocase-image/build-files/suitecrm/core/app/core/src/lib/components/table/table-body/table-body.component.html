@@ -44,7 +44,7 @@
                     </label>
                 </th>
 
-                <td cdk-cell *cdkCellDef="let record">
+                <td cdk-cell *cdkCellDef="let record" (click)="$event.stopPropagation()">
                     <label class="checkbox-container">
                         <input type="checkbox"
                                [checked]="(record['id'] && vm.selected[record['id']]) || allSelected(vm.selectionStatus) "
@@ -61,7 +61,7 @@
 
                 <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header show-more-column"></th>
 
-                <td cdk-cell *cdkCellDef="let record" class="show-more-column">
+                <td cdk-cell *cdkCellDef="let record" class="show-more-column" (click)="$event.stopPropagation()">
                     <scrm-record-details-popup-button [record]="record" [columns]="popoverColumns"
                                                       *ngIf="popoverColumns.length"></scrm-record-details-popup-button>
                 </td>
