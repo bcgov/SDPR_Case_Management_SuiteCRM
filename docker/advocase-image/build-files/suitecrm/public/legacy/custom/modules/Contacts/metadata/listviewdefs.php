@@ -1,15 +1,15 @@
 <?php
-$listViewDefs ['Contacts'] = 
+$listViewDefs ['Contacts'] =
 array (
-  'NAME' => 
+  'NAME' =>
   array (
     'width' => '20%',
     'label' => 'LBL_LIST_NAME',
     'link' => true,
-    'contextMenu' => 
+    'contextMenu' =>
     array (
       'objectType' => 'sugarPerson',
-      'metaData' => 
+      'metaData' =>
       array (
         'contact_id' => '{$ID}',
         'module' => 'Contacts',
@@ -24,7 +24,7 @@ array (
     ),
     'orderBy' => 'name',
     'default' => true,
-    'related_fields' => 
+    'related_fields' =>
     array (
       0 => 'first_name',
       1 => 'last_name',
@@ -33,23 +33,23 @@ array (
       4 => 'account_id',
     ),
   ),
-  'TITLE' => 
+  'TITLE' =>
   array (
     'width' => '15%',
     'label' => 'LBL_LIST_TITLE',
     'default' => true,
   ),
-  'ACCOUNT_NAME' => 
+  'ACCOUNT_NAME' =>
   array (
     'width' => '34%',
     'label' => 'LBL_LIST_ACCOUNT_NAME',
     'module' => 'Accounts',
     'id' => 'ACCOUNT_ID',
     'link' => true,
-    'contextMenu' => 
+    'contextMenu' =>
     array (
       'objectType' => 'sugarAccount',
-      'metaData' => 
+      'metaData' =>
       array (
         'return_module' => 'Contacts',
         'return_action' => 'ListView',
@@ -63,12 +63,12 @@ array (
     'default' => true,
     'sortable' => true,
     'ACLTag' => 'ACCOUNT',
-    'related_fields' => 
+    'related_fields' =>
     array (
       0 => 'account_id',
     ),
   ),
-  'EMAIL1' => 
+  'EMAIL1' =>
   array (
     'width' => '15%',
     'label' => 'LBL_LIST_EMAIL_ADDRESS',
@@ -77,13 +77,13 @@ array (
     'customCode' => '{$EMAIL1_LINK}',
     'default' => true,
   ),
-  'PHONE_WORK' => 
+  'PHONE_WORK' =>
   array (
     'width' => '15%',
     'label' => 'LBL_OFFICE_PHONE',
     'default' => true,
   ),
-  'ASSIGNED_USER_NAME' => 
+  'ASSIGNED_USER_NAME' =>
   array (
     'width' => '10%',
     'label' => 'LBL_LIST_ASSIGNED_USER',
@@ -91,49 +91,49 @@ array (
     'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
-  'DATE_ENTERED' => 
+  'DATE_ENTERED' =>
   array (
     'width' => '10%',
     'label' => 'LBL_DATE_ENTERED',
     'default' => true,
   ),
-  'DEPARTMENT' => 
+  'DEPARTMENT' =>
   array (
     'width' => '10%',
     'label' => 'LBL_DEPARTMENT',
     'default' => false,
   ),
-  'DO_NOT_CALL' => 
+  'DO_NOT_CALL' =>
   array (
     'width' => '10%',
     'label' => 'LBL_DO_NOT_CALL',
     'default' => false,
   ),
-  'PHONE_HOME' => 
+  'PHONE_HOME' =>
   array (
     'width' => '10%',
     'label' => 'LBL_HOME_PHONE',
     'default' => false,
   ),
-  'PHONE_MOBILE' => 
+  'PHONE_MOBILE' =>
   array (
     'width' => '10%',
     'label' => 'LBL_MOBILE_PHONE',
     'default' => false,
   ),
-  'PHONE_OTHER' => 
+  'PHONE_OTHER' =>
   array (
     'width' => '10%',
     'label' => 'LBL_OTHER_PHONE',
     'default' => false,
   ),
-  'PHONE_FAX' => 
+  'PHONE_FAX' =>
   array (
     'width' => '10%',
     'label' => 'LBL_FAX_PHONE',
     'default' => false,
   ),
-  'EMAIL2' => 
+  'EMAIL2' =>
   array (
     'width' => '15%',
     'label' => 'LBL_LIST_EMAIL_ADDRESS',
@@ -141,73 +141,73 @@ array (
     'customCode' => '{$EMAIL2_LINK}{$EMAIL2}</a>',
     'default' => false,
   ),
-  'PRIMARY_ADDRESS_STREET' => 
+  'PRIMARY_ADDRESS_STREET' =>
   array (
     'width' => '10%',
     'label' => 'LBL_PRIMARY_ADDRESS_STREET',
     'default' => false,
   ),
-  'PRIMARY_ADDRESS_CITY' => 
+  'PRIMARY_ADDRESS_CITY' =>
   array (
     'width' => '10%',
-    'label' => 'LBL_PRIMARY_ADDRESS_CITY',
+    'label' => 'LBL_LIST_PRIMARY_ADDRESS_CITY',
     'default' => false,
   ),
-  'PRIMARY_ADDRESS_STATE' => 
+  'PRIMARY_ADDRESS_STATE' =>
   array (
     'width' => '10%',
     'label' => 'LBL_PRIMARY_ADDRESS_STATE',
     'default' => false,
   ),
-  'PRIMARY_ADDRESS_POSTALCODE' => 
+  'PRIMARY_ADDRESS_POSTALCODE' =>
   array (
     'width' => '10%',
     'label' => 'LBL_PRIMARY_ADDRESS_POSTALCODE',
     'default' => false,
   ),
-  'ALT_ADDRESS_COUNTRY' => 
+  'ALT_ADDRESS_COUNTRY' =>
   array (
     'width' => '10%',
     'label' => 'LBL_ALT_ADDRESS_COUNTRY',
     'default' => false,
   ),
-  'ALT_ADDRESS_STREET' => 
+  'ALT_ADDRESS_STREET' =>
   array (
     'width' => '10%',
     'label' => 'LBL_ALT_ADDRESS_STREET',
     'default' => false,
   ),
-  'ALT_ADDRESS_CITY' => 
+  'ALT_ADDRESS_CITY' =>
   array (
     'width' => '10%',
     'label' => 'LBL_ALT_ADDRESS_CITY',
     'default' => false,
   ),
-  'ALT_ADDRESS_STATE' => 
+  'ALT_ADDRESS_STATE' =>
   array (
     'width' => '10%',
     'label' => 'LBL_ALT_ADDRESS_STATE',
     'default' => false,
   ),
-  'ALT_ADDRESS_POSTALCODE' => 
+  'ALT_ADDRESS_POSTALCODE' =>
   array (
     'width' => '10%',
     'label' => 'LBL_ALT_ADDRESS_POSTALCODE',
     'default' => false,
   ),
-  'CREATED_BY_NAME' => 
+  'CREATED_BY_NAME' =>
   array (
     'width' => '10%',
     'label' => 'LBL_CREATED',
     'default' => false,
   ),
-  'MODIFIED_BY_NAME' => 
+  'MODIFIED_BY_NAME' =>
   array (
     'width' => '10%',
     'label' => 'LBL_MODIFIED',
     'default' => false,
   ),
-  'SYNC_CONTACT' => 
+  'SYNC_CONTACT' =>
   array (
     'type' => 'bool',
     'label' => 'LBL_SYNC_CONTACT',
