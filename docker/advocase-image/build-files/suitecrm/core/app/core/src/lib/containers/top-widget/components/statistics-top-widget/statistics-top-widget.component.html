@@ -38,7 +38,7 @@
 
                 <div *ngIf="item.value.labelKey && getLabel(item.value.labelKey)" class="pr-1 widget-bar-entry-label">
                     <ng-container *ngIf="!isValueEmpty(vm.statistics[item.key])">
-                        {{getLabel(item.value.labelKey)}}:
+                        {{getLabel(item.value.labelKey)}}
                     </ng-container>
                     <ng-container *ngIf="isValueEmpty(vm.statistics[item.key])">
                         {{getLabel(item.value.labelKey)}}
