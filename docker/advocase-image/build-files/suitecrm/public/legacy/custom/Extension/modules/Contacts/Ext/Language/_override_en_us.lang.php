@@ -1,5 +1,5 @@
 <?php
-// created: 2024-06-14 19:58:14
+// created: 2024-07-15 19:44:17
 $mod_strings['LBL_ADVOCASE_CONTACT_TYPE'] = 'Type of Contact';
 $mod_strings['LBL_ADVOCASE_LAST_NAME'] = 'Advocase Last Name';
 $mod_strings['LBL_ADVOCASE_FIRST_NAME'] = 'Advocase First Name';
@@ -22,3 +22,18 @@ $mod_strings['LBL_LAST_NAME'] = 'Last Name:';
 $mod_strings['LBL_MEETINGS'] = 'Communications';
 $mod_strings['LBL_ANY_EMAIL'] = 'Email';
 $mod_strings['LBL_ANY_PHONE'] = 'Phone Number';
+$mod_strings['LBL_TYPE_OF_CONTACT'] = 'Type of Contact';
+$mod_strings['LBL_TYPE_OF_CONTACT_OTHER'] = 'If other, please specify';
+$mod_strings['LBL_EMAIL'] = 'email';
+$mod_strings['LBL_PRIMARY_ADDRESS_CITY'] = 'Contact City';
+$mod_strings['LBL_LIST_PRIMARY_ADDRESS_CITY'] = 'City';
+$mod_strings['LBL_CONSENT_FOR_ASQ_ACTION'] = 'consent for asq action';
+$mod_strings['LBL_LEGAL_AGREEMENT_IN_PLACE'] = 'legal agreement in place';
+$mod_strings['LBL_MEETINGS_SUBPANEL_TITLE'] = 'Communication History';
+$mod_strings['LBL_DOCUMENTS_SUBPANEL_TITLE'] = 'Attachments';
+$mod_strings['LBL_CASES_SUBPANEL_TITLE'] = 'Cases';
+$mod_strings['LBL_DIRECT_REPORTS_SUBPANEL_TITLE'] = 'Contacts';
+$mod_strings['LBL_OFFICE_PHONE'] = 'Phone Number';
+$mod_strings['LBL_OTHER_PHONE'] = 'Secondary Phone Number';
+$mod_strings['LBL_ADVOCASE_CONTACT_REGION_C'] = 'Contact Region';
+$mod_strings['LBL_LIST_ADVOCASE_CONTACT_REGION_C'] = 'Region';
