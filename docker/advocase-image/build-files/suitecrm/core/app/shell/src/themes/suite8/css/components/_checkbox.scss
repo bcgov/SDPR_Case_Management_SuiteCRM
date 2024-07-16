@@ -80,8 +80,6 @@
   left: -0.5px;
   top: -0.5px;
   background: $white;
-  border-radius: 2px;
-  border: 1px solid $border-medium;
   width:16px;
   height:16px;
 }
@@ -364,8 +362,6 @@
   top: 0.1em;
   width: 0.3em;
   height: 0.6em;
-  border: solid $midnight-grey;
-  border-width: 0 0.13em 0.13em 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
