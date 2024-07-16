@@ -25,4 +25,8 @@
 * the words "Supercharged by SuiteCRM".
 */
 -->
-<a [href]="getTelLink(field.value)" class="clickable" (click)="$event.stopPropagation()">{{ field.value }}</a>
+<div class="mailto-field">
+    <a *ngIf="linkType === 'mailto'" href="mailto:{{ this.field.value }}">{{ this.field.value }}</a>
+
+    <a *ngIf="linkType === 'sugar'" class="clickable field-link" (click)="openEmail($event)">{{ this.field.value }}</a>
+</div>
