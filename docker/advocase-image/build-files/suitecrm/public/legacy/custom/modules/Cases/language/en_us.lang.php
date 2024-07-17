@@ -46,4 +46,5 @@ $mod_strings = array(
     'LBL_LIST_ASSIGNED_TO_NAME' => 'Assigned To',
     'LBL_STATE' => 'Status',
     'LBL_LIST_NAME' => 'Contact Name',
+    'LBL_LIST_STATE' => 'Status',
 );
