@@ -10,12 +10,12 @@ $subpanel_layout['list_fields'] = array (
     'width' => '23%',
     'default' => true,
   ),
-  'type_of_contact_c' =>
+  'advocase_contact_type_c' =>
   array (
     'type' => 'enum',
     'default' => true,
     'studio' => 'visible',
-    'vname' => 'LBL_TYPE_OF_CONTACT',
+    'vname' => 'LBL_ADVOCASE_CONTACT_TYPE',
     'width' => '10%',
   ),
   'primary_address_city' =>
