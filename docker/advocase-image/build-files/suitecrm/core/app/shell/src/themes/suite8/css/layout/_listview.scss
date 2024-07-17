@@ -442,6 +442,20 @@ td {
   font-weight: 700;
   line-height: 27.008px;
   color: $typography-color-secondary;
+  
+  &:hover {
+    background-color: $secondary-button-hover;
+    border-color: $border-dark;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $theme-gray-40;
+    border-color: $border-dark;
+  }
 }
 
 .select-action-group .dropdown-toggle::after,
