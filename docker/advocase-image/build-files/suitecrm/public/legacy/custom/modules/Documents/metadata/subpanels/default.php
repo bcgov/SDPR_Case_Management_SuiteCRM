@@ -46,52 +46,69 @@ if (!defined('sugarEntry') || !sugarEntry) {
 $subpanel_layout = array(
     'top_buttons' => array(
         array('widget_class' => 'SubPanelTopCreateButton'),
-        array('widget_class' => 'SubPanelTopSelectButton', 'popup_module' => 'Cases'),
+        array('widget_class' => 'SubPanelTopSelectButton', 'popup_module' => 'Documents','field_to_name_array'=>array('document_revision_id'=>'REL_ATTRIBUTE_document_revision_id')),
     ),
 
-    'insightWidget' => [
-        'rows' => [
-            [
-                'justify' => 'start',
-                'cols' => [
-                    [
-                        'icon' => 'Cases',
-                    ],
-                    [
-                        'labelKey' => '{{title_key}}',
-                        'class' => 'sub-panel-banner-button-title',
-                        'bold' => true,
-                    ]
-                ]
-            ],
-            [
-                'align' => 'center',
-                'justify' => 'start',
-                'class' => 'sub-panel-body',
-                'cols' => [
-                    [
-                        'descriptionKey' => '{{title_key}}_INSIGHT_DESCRIPTION',
-                        'class' => 'sub-panel-banner-tooltip',
-                    ],
-                    [
-                        'display' => 'hidden',
-                        'statistic' => 'cases'
-                    ],
-                    [
-                        'dynamicLabel' => 'LBL_CASES_INSIGHT',
-                        'class' => 'sub-panel-banner-value',
-                        'bold' => true,
-                    ],
-                    [
-                        'display' => 'hidden',
-                        'statistic' => 'default'
-                    ]
-                ]
-            ],
-        ]
-    ],
-
     'where' => '',
+    
+    
 
-    'fill_in_additional_fields'=>true,
+    'list_fields'=> array(
+        'date_entered' => 
+        array (
+            'type' => 'datetime',
+            'vname' => 'LBL_DATE_ENTERED',
+            'width' => '10%',
+            'default' => true,
+        ),
+        'document_name' => 
+        array (
+            'name' => 'document_name',
+            'vname' => 'LBL_LIST_DOCUMENT_NAME',
+            'widget_class' => 'SubPanelDetailViewLink',
+            'width' => '20%',
+            'default' => true,
+        ),
+        'filename' => 
+        array (
+            'name' => 'filename',
+            'vname' => 'LBL_LIST_FILENAME',
+            'width' => '20%',
+            'module' => 'Documents',
+            'sortable' => false,
+            'displayParams' => 
+            array (
+            'module' => 'Documents',
+            ),
+            'default' => true,
+        ),
+        'assigned_user_name' => 
+        array (
+            'link' => true,
+            'type' => 'relate',
+            'vname' => 'LBL_ASSIGNED_TO_NAME',
+            'id' => 'ASSIGNED_USER_ID',
+            'width' => '10%',
+            'default' => true,
+            'widget_class' => 'SubPanelDetailViewLink',
+            'target_module' => 'Users',
+            'target_record_key' => 'assigned_user_id',
+        ),
+        'edit_button' => 
+        array (
+            'vname' => 'LBL_EDIT_BUTTON',
+            'widget_class' => 'SubPanelEditButton',
+            'module' => 'Documents',
+            'width' => '5%',
+            'default' => true,
+        ),
+        'remove_button' => 
+        array (
+            'vname' => 'LBL_REMOVE',
+            'widget_class' => 'SubPanelRemoveButton',
+            'module' => 'Documents',
+            'width' => '5%',
+            'default' => true,
+        ),
+    )
 );
