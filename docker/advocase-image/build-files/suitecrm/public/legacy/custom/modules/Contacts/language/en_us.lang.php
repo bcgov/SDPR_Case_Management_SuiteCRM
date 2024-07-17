@@ -18,6 +18,7 @@ $mod_strings = array(
     'LBL_ADVOCASE_CLBL_ELIGIBLE' => 'CLBC Eligible',
     'LBL_ADVOCASE_GSA_LEVEL' => 'Individual Level of GSA',
     'LBL_LAST_NAME' => 'Last Name:',
+    'LBL_FIRST_NAME' => 'First Name:',
     'LBL_MEETINGS' => 'Communications',
     'LBL_EMAIL_ADDRESS' => 'Email',
     'LBL_MEETINGS_SUBPANEL_TITLE' => 'Communication History',

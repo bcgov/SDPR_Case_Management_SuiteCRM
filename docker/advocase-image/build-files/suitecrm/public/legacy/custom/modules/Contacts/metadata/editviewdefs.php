@@ -98,8 +98,8 @@ array (
         array (
           0 =>
           array (
-            'name' => 'email1',
-            'label' => 'LBL_EMAIL_ADDRESS',
+            'name' => 'advocase_email_c',
+            'label' => 'LBL_ADVOCASE_EMAIL_C',
           ),
           1 => 
           array (
