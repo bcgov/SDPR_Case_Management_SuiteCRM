@@ -3,6 +3,10 @@ FROM php:8.2-apache
 WORKDIR /
 
 # Update and upgrade and install required packages
+# Update and upgrade fixes the following CVEs:
+# - From docker vulnerability scan (checked on July 18th, 2024): https://hub.docker.com/layers/library/php/8.2-apache/images/sha256-2dd18816e6297162cf10c553fe19bd97af1493f30e2cf25a9a0836076ca0a5dc?context=explore
+#  - CVE-2024-38475
+#  - CVE-2024-29573
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get clean && \
