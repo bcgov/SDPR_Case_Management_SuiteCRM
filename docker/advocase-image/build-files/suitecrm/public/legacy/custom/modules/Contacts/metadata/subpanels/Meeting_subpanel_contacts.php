@@ -17,10 +17,10 @@ $subpanel_layout['list_fields'] = array (
     'width' => '23%',
     'default' => true,
   ),
-  'email1' => 
+  'advocase_email_c' => 
   array (
-    'name' => 'email1',
-    'vname' => 'LBL_LIST_EMAIL',
+    'name' => 'advocase_email_c',
+    'vname' => 'LBL_ADVOCASE_EMAIL_C',
     'widget_class' => 'SubPanelEmailLink',
     'width' => '30%',
     'sortable' => false,
