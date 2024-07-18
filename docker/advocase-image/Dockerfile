@@ -5,7 +5,6 @@ WORKDIR /
 # Update and upgrade and install required packages
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives && \
     apt-get install nodejs npm -y && \
     npm install --global yarn sass
 
