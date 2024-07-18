@@ -27,6 +27,8 @@ $mod_strings = array(
     'LBL_DIRECT_REPORTS_SUBPANEL_TITLE' => 'Contacts',
     'LBL_OFFICE_PHONE' => 'Phone Number',
     'LBL_OTHER_PHONE' => 'Secondary Phone Number',
+    'LBL_ADVOCASE_CONTACT_REGION' => 'Contact Region',
     'LBL_ADVOCASE_CONTACT_REGION_C' => 'Contact Region',
     'LBL_LIST_ADVOCASE_CONTACT_REGION_C' => 'Region',
+    'LBL_ADVOCASE_EMAIL_C' => 'Email',
 );

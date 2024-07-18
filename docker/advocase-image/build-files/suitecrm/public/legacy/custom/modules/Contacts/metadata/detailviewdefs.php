@@ -220,7 +220,7 @@ array (
         array (
           0 =>
           array (
-            'name' => 'type_of_contact_cadvocase_contact_type_c',
+            'name' => 'advocase_contact_type_c',
             'studio' => 'visible',
             'label' => 'LBL_ADVOCASE_CONTACT_TYPE',
           ),
