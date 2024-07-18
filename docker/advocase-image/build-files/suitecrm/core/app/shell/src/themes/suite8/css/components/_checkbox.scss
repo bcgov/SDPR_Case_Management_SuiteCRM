@@ -29,6 +29,7 @@
   display: block;
   position: relative;
   cursor: pointer;
+  margin-left: 2px;
   font-size: 1.3em;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -45,18 +46,42 @@
   width: 0;
 }
 
+.select-all-checkmark {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;
+}
+
+.select-all-checkbox-container {
+  display: flex;
+  justify-content: center; /* Horizontally center */
+  align-items: center;
+  margin-bottom: 16px;
+  margin-left: 2px;
+}
+
 /* Create a custom checkbox */
 .checkbox-container .checkmark {
   position: absolute;
-  top: -0.3em;
+  top: -4px;
   left: 0;
-  background-color: $white;
+  background: $white;
   -webkit-border-radius: 0.2em;
   -moz-border-radius: 0.2em;
-  border-radius: 0.2em;
-  border: 0.05em solid $midnight-blue;
-  width:17.7px;
-  height:17.1px;
+  border-radius: 2px;
+  border: 1px solid $border-medium;
+  width:16px;
+  height:16px;
+}
+
+/* Create a custom checkbox */
+.checkbox-container .checkmark::after {
+  position: absolute;
+  left: -0.5px;
+  top: -0.5px;
+  background: $white;
+  width:16px;
+  height:16px;
 }
 
 .checkbox-container input:disabled ~ .checkmark {
@@ -76,12 +101,12 @@
 }
 
 .list-view-table .checkbox-container .checkmark {
-  background-color: $off-white;
+  background-color: $white;
 }
 
 /* On mouse-over, add a grey background color */
 .checkbox-container:hover input ~ .checkmark {
-  background-color: $light-grey;
+  background-color: $secondary-button-hover;
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -232,24 +257,24 @@
     background-color: $white;
     -webkit-border-radius: 0.2em;
     -moz-border-radius: 0.2em;
-    border-radius: 0.2em;
-    border: 0.05em solid $midnight-blue;
+    border-radius: 2px;
+    border: 1px solid $border-medium;
     margin: -0.36em 0 0 0em;
   }
 }
 
 .list-view-table .checkbox-container .checkmark {
-  background-color: $off-white;
+  background-color: $white;
 }
 
 /* On mouse-over, add a grey background color */
 .select-action-group .checkbox-container:hover input ~ .checkmark {
-  background-color: $light-grey;
+  background-color: $secondary-button-hover;
 }
 
 /* When the checkbox is checked, add a blue background */
 .select-action-group .checkbox-container input:checked ~ .checkmark {
-  background-color: $off-white;
+  background-color: $white;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -304,19 +329,19 @@
   background-color: $white;
   -webkit-border-radius: 0.2em;
   -moz-border-radius: 0.2em;
-  border-radius: 0.2em;
-  border: 0.05em solid $light-grey;
+  border-radius: 2px;
+  border: 1px solid $border-medium;
   margin:1em 1em 1em 0;
 }
 
 /* On mouse-over, add a grey background color */
 .filter-checkbox-container:hover input ~ .filter-checkmark {
-  background-color: $light-grey;
+  background-color: $secondary-button-hover;
 }
 
 /* When the checkbox is checked, add a blue background */
 .filter-checkbox-container input:checked ~ .filter-checkmark {
-  background-color: $off-white;
+  background-color: $white;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -337,8 +362,6 @@
   top: 0.1em;
   width: 0.3em;
   height: 0.6em;
-  border: solid $midnight-grey;
-  border-width: 0 0.13em 0.13em 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);

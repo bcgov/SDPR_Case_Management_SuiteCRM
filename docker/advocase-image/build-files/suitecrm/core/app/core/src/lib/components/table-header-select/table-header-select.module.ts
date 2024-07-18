@@ -28,12 +28,14 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {TableHeaderSelectComponent} from './table-header-select.component';
+import { ExportButtonModule } from '../table/export-button/export-button.module';
 
 @NgModule({
     declarations: [TableHeaderSelectComponent],
     exports: [TableHeaderSelectComponent],
     imports: [
         CommonModule,
+        ExportButtonModule,
     ]
 })
 export class TableHeaderSelectModule {

@@ -24,7 +24,7 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-.search-bar-global {
+ .search-bar-global {
   max-width: 14em;
   min-width: 7em;
 }
@@ -151,6 +151,7 @@
 .navbar .search-bar .input-group.dropdown {
   background-color: $white;
   border-radius: 0.25em;
+  border: 1px solid $border-default;
 
   & .form-control, &:hover ::placeholder {
     color: $typography-color-disabled;
@@ -160,4 +161,3 @@
     fill: $typography-color-disabled;
   }
 }
-

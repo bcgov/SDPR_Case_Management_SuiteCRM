@@ -37,10 +37,10 @@ array (
     'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
-  'STATUS' => 
+  'STATE' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_LIST_STATUS',
+    'label' => 'LBL_LIST_STATE',
     'default' => true,
   ),
 );

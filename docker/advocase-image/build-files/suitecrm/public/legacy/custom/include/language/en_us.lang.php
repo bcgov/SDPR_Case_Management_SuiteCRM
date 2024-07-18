@@ -1,7 +1,7 @@
 <?php
 $app_list_strings['advocase_legal_agreement_list']=array (
   'FAMILIAL_RELATIONSHIP' => 'Familial relationship',
-  'GUARDIANSHIP_REPRESENTATION_AGREEMENT' => 'Guardianship representation agreement',
+  'GUARDIANSHIP_REPRESENTATION_AGREEMENT' => 'Representation agreement',
   'COMMITTEE_OF_ESTATE' => 'Committee of estate',
   'COMMITTEE_OF_PERSON' => 'Committee of person',
   'POWER_OF_ATTORNEY' => 'Power of Attorney',
@@ -30,34 +30,33 @@ $app_list_strings['advocase_gsa_level_list']=array (
 );
 
 $app_list_strings['advocase_contact_type_list']=array (
-  'INDIVIDUAL_PERSON_WITH_DISABILITY' => 'Individual / Person with a disability',
+  'COMMUNITY_AGENCY_BCANDS' => 'BC Aboriginal Network on Disability Society (BCANDS)',
+  'GOVERNMENT_AGENCY_OMBUDSPERSON' => 'BC Ombudsperson',
+  'GOVERNMENT_AGENCY_CLBC' => 'Community Living BC (CLBC)',
+  'GOVERNMENT_AGENCY_DMO' => 'Deputy Ministers Office',
+  'COMMUNITY_AGENCY_DABC' => 'Disability Alliance of BC (DABC)',
+  'COMMUNITY_AGENCY_FSI' => 'Family Support Institute (FSI)',
   'FAMILY_MOTHER' => 'Family - Mother',
   'FAMILY_FATHER' => 'Family - Father',
   'FAMILY_SIBLING' => 'Family - Sibling',
   'FAMILY_OTHER' => 'Family - Other',
-  'SERVICE_PROVIDER' => 'Service provider',
-  'COMMUNITY_AGENCY_FSI' => 'Community Agency - FSI',
-  'COMMUNITY_AGENCY_IBC' => 'Community Agency - IBC',
-  'COMMUNITY_AGENCY_DABC' => 'Community Agency - DABC',
-  'COMMUNITY_AGENCY_BCANDS' => 'Community Agency - BCANDS',
-  'COMMUNITY_AGENCY_OTHER' => 'Community Agency - Other',
-  'GOVERNMENT_AGENCY_CLBC' => 'Government Agency - CLBC',
-  'GOVERNMENT_AGENCY_MCFD' => 'Government Agency - MCFD',
-  'GOVERNMENT_AGENCY_SDPR' => 'Government Agency - SDPR',
-  'GOVERNMENT_AGENCY_RCY' => 'Government Agency - RCY',
-  'GOVERNMENT_AGENCY_PGT' => 'Government Agency - PGT',
-  'GOVERNMENT_AGENCY_HEALTH_AUTHORITY' => 'Government Agency - Health Authority',
-  'GOVERNMENT_AGENCY_MOH' => 'Government Agency - MoH',
-  'GOVERNMENT_AGENCY_OFFICE_OF_THE_SENIORS_ADVOCATE' => 'Government Agency - Office of the Senior\'s Advocate',
-  'GOVERNMENT_AGENCY_OMBUDSPERSON' => 'Government Agency - Ombudsperson',
-  'GOVERNMENT_AGENCY_DMO' => 'Government Agency - DMO',
-  'GOVERNMENT_AGENCY_MO' => 'Government Agency - MO',
-  'GOVERNMENT_AGENCY_MLA' => 'Government Agency - MLA',
-  'GOVERNMENT_AGENCY_INDIGENOUS_CHILD_FAMILY_SERVICE_AGENCY' => 'Government Agency _ Indigenous Child and Family Service Agency',
-  'GOVERNMENT_AGENCY_OTHER' => 'Government Agency - Other',
   'FRIEND' => 'Friend',
+  'GOVERNMENT_AGENCY_HEALTH_AUTHORITY' => 'Health Authority',
+  'COMMUNITY_AGENCY_IBC' => 'Inclusion BC (IBC)',
+  'GOVERNMENT_AGENCY_INDIGENOUS_CHILD_FAMILY_SERVICE_AGENCY' => 'Indigenous Child and Family Service Agency',
+  'INDIVIDUAL_PERSON_WITH_DISABILITY' => 'Individual / Person with a disability',
+  'GOVERNMENT_AGENCY_MLA' => 'Member of the Legislative Assembly (MLA)',
+  'GOVERNMENT_AGENCY_MCFD' => 'Ministry of Children and Family Development (MCFD)',
+  'GOVERNMENT_AGENCY_MOH' => 'Ministry of Health (MoH)',
+  'GOVERNMENT_AGENCY_SDPR' => 'Ministry of Social Development and Poverty Reduction (SDPR)',
+  'GOVERNMENT_AGENCY_MO' => 'Ministers Office',
+  'GOVERNMENT_AGENCY_PGT' => 'Public Guardian and Trustee (PGT)',
+  'GOVERNMENT_AGENCY_OFFICE_OF_THE_SENIORS_ADVOCATE' => 'Office of the Seniors Advocate',
+  'GOVERNMENT_AGENCY_RCY' => 'Representative for Children and Youth (RCY)',
+  'SERVICE_PROVIDER' => 'Service provider',
   'OTHER' => 'Other',
 );
+
 $app_list_strings['advocase_communication_type_list']=array (
   'PHONE_CALL' => 'Phone call',
   'EMAIL' => 'Email',
@@ -111,33 +110,7 @@ $app_list_strings['advocase_case_issues_list']=array (
   'YOUTH_TRANSITIONING' => 'Youth transitioning',
   'OTHER' => 'Other',
 );
-$app_list_strings['adovcase_case_agencies_list']=array (
-  'CLBC' => 'CLBC',
-  'FAMILY' => 'Family',
-  'SERVICE_PROVIDER' => 'Service provider',
-  'COMMUNITY_AGENCY_FSI' => 'Community agency - FSI',
-  'COMMUNITY_AGENCY_IBC' => 'Community agency - IBC',
-  'COMMUNITY_AGENCY_DABC' => 'Community agency - DABC',
-  'COMMUNITY_AGENCY_BCANDS' => 'Community agency - BCANDS',
-  'COMMUNITY_AGENCY_OTHER' => 'Community agency - Other',
-  'GOVERNMENT_AGENCY_CLBC' => 'Government agency - CLBC',
-  'GOVERNMENT_AGENCY_MCFD' => 'Government agency - MCFD',
-  'GOVERNMENT_AGENCY_SDPR' => 'Government agency - SDPR',
-  'GOVERNMENT_AGENCY_RCY' => 'Government agency - RCY',
-  'GOVERNMENT_AGENCY_PGT' => 'Government agency - PGT',
-  'GOVERNMENT_AGENCY_HEALTH_AUTHORITY' => 'Government agency - Health Authority',
-  'GOVERNMENT_AGENCY_MOH' => 'Government agency - MoH',
-  'GOVERNMENT_AGENCY_SENIOR_ADVOCACY_OFFICE' => 'Government agency - Office of the Senior\'s Advocate',
-  'GOVERNMENT_AGENCY_OMBUDSPERSON' => 'Government agency - Ombudsperson',
-  'GOVERNMENT_AGENCY_DMO' => 'Government agency - DMO',
-  'GOVERNMENT_AGENCY_MO' => 'Government agency - MO',
-  'GOVERNMENT_AGENCY_MLA' => 'Government agency - MLA',
-  'GOVERNMENT_AGENCY_INDIGENOUS_CHILD_FAMILY_SERVICE' => 'Government agency - Indigenous Child and Family Service Agency',
-  'GOVERNMENT_AGENCY_OTHER' => 'Government agency - Other',
-  'FIRST_NATION_METIS_INUIT' => 'First Nation(s)/Metis/Inuit',
-  'OTHER' => 'Other',
-  'NONE' => 'None',
-);
+
 $app_list_strings['advocase_communication_type_0']=array (
   'PHONE_CALL' => 'Phone call',
   'EMAIL' => 'Email',
@@ -177,32 +150,7 @@ $app_list_strings['advocase_advocate_kownledge_list']=array (
   'OASQ_WEBSITE' => 'OASQ website',
   'OTHER' => 'Other',
 );
-$app_list_strings['adovcase_case_agencies_list']=array (
-  'CLBC' => 'CLBC',
-  'FAMILY' => 'Family',
-  'SERVICE_PROVIDER' => 'Service provider',
-  'COMMUNITY_AGENCY_FSI' => 'Community agency - FSI',
-  'COMMUNITY_AGENCY_IBC' => 'Community agency - IBC',
-  'COMMUNITY_AGENCY_DABC' => 'Community agency - DABC',
-  'COMMUNITY_AGENCY_BCANDS' => 'Community agency - BCANDS',
-  'COMMUNITY_AGENCY_OTHER' => 'Community agency - Other',
-  'GOVERNMENT_AGENCY_MCFD' => 'Government agency - MCFD',
-  'GOVERNMENT_AGENCY_SDPR' => 'Government agency - SDPR',
-  'GOVERNMENT_AGENCY_RCY' => 'Government agency - RCY',
-  'GOVERNMENT_AGENCY_PGT' => 'Government agency - PGT',
-  'GOVERNMENT_AGENCY_HEALTH_AUTHORITY' => 'Government agency - Health Authority',
-  'GOVERNMENT_AGENCY_MOH' => 'Government agency - MoH',
-  'GOVERNMENT_AGENCY_SENIOR_ADVOCACY_OFFICE' => 'Government agency - Office of the Senior\'s Advocate',
-  'GOVERNMENT_AGENCY_OMBUDSPERSON' => 'Government agency - Ombudsperson',
-  'GOVERNMENT_AGENCY_DMO' => 'Government agency - DMO',
-  'GOVERNMENT_AGENCY_MO' => 'Government agency - MO',
-  'GOVERNMENT_AGENCY_MLA' => 'Government agency - MLA',
-  'GOVERNMENT_AGENCY_INDIGENOUS_CHILD_FAMILY_SERVICE' => 'Government agency - Indigenous Child and Family Service Agency',
-  'GOVERNMENT_AGENCY_OTHER' => 'Government agency - Other',
-  'FIRST_NATION_METIS_INUIT' => 'First Nation(s)/Metis/Inuit',
-  'OTHER' => 'Other',
-  'NONE' => 'None',
-);
+
 $app_list_strings['advocase_oasq_mandate_list']=array (
   'YES' => 'Yes',
   'NO' => 'No',
@@ -277,4 +225,8 @@ $app_list_strings['advocase_oasq_awareness_list']=array (
   'WEBSITE' => 'Website',
   'OTHER' => 'Other',
 );
-    $app_strings['LBL_SELECT_SUBPANEL_BANNER'] = 'Subpanels';
+
+$app_strings['LBL_SELECT_SUBPANEL_BANNER'] = 'Subpanels';
+$app_strings['LBL_OPEN_CASES_COUNT'] = 'Total Open Cases';
+$app_strings['LBL_MEETINGS_LAST_DATE'] = 'Last Updated';
+$app_strings['LBL_CASES_INSIGHT'] = '{{fields.cases.value}} / {{fields.default.value}}';

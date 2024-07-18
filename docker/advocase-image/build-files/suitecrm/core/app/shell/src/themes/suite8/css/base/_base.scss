@@ -29,12 +29,12 @@ a {
 }
 
 a.clickable {
-  color: $coral-pink;
+  color: $typography-color-link;
   cursor: pointer;
 }
 
 a.clickable:hover {
-  color: $coral-pink;
+  color: $typography-color-link;
   text-decoration: underline;
 }
 

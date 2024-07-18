@@ -32,6 +32,18 @@
   color: $white;
 }
 
+.record-content .panel-title-header {
+  display: none !important;
+}
+
+.sub-panel .panel-title-upper-header {
+    display: none !important;
+}
+
+.sub-panel .sub-panel-flex-content {
+  justify-content: flex-end !important;
+}
+
 .panel-card.collapsed .card-header {
   -webkit-border-radius: 0.3em;
   -moz-border-radius: 0.3em;
@@ -50,13 +62,23 @@
 }
 
 .panel-card .card-body-padding {
-    padding: 2rem !important;
+  padding: 1rem 2.5rem;
+  border-radius: 0px 0px  6px 6px;
+  border-right:  2px solid  #D8D8D8;
+  border-bottom:  2px solid #D8D8D8;
+  border-left:  2px solid #D8D8D8;
+  background: $white;
 }
 
-.panel-title {
+.panel-title-header .panel-title {
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 2.25rem;
+}
+
+.panel-buttons .action-group-menu div {
+  gap: 1rem;
+  display: flex;
 }
 
 .panel-buttons button {
@@ -67,7 +89,31 @@
 }
 
 .panel-title-header {
-  padding: 1rem 2rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.panel-title-upper-header {
+  padding: 0.5rem .75rem;
+  color: $white;
+  text-align: center;
+  font-family: "BC Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 34px;
+  text-transform: lowercase;
+}
+
+.panel-title-upper-header::first-letter {
+  text-transform: uppercase;
+}
+
+.panel-title-upper-header .panel-title {
+  font-size: 1.25rem;
+  line-height: 2.125rem;
+  font-weight: 700;
 }
 
 .card-header button {

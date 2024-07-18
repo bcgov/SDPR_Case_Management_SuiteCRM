@@ -34,13 +34,21 @@
 
             <ng-container cdkColumnDef="checkbox" *ngIf="vm.selection">
 
-                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header"></th>
+                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header">
+                    <label class="checkbox-container select-all-checkbox-container">
+                        <input type="checkbox"
+                               [checked]="selectedRecord.size == latestViewModel.records.length && latestViewModel.records.length != 0"
+                               (change)="toggleSelectAll()"
+                               aria-hidden="true">
+                        <span class="checkmark select-all-checkmark"></span>
+                    </label>
+                </th>
 
-                <td cdk-cell *cdkCellDef="let record">
+                <td cdk-cell *cdkCellDef="let record" (click)="$event.stopPropagation()">
                     <label class="checkbox-container">
                         <input type="checkbox"
                                [checked]="(record['id'] && vm.selected[record['id']]) || allSelected(vm.selectionStatus) "
-                               (change)="toggleSelection(record['id'])"
+                               (change)="toggleSelection(record['id'],false)"
                                [disabled]="allSelected(vm.selectionStatus)"
                                aria-hidden="true">
                         <span class="checkmark"></span>
@@ -53,7 +61,7 @@
 
                 <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header show-more-column"></th>
 
-                <td cdk-cell *cdkCellDef="let record" class="show-more-column">
+                <td cdk-cell *cdkCellDef="let record" class="show-more-column" (click)="$event.stopPropagation()">
                     <scrm-record-details-popup-button [record]="record" [columns]="popoverColumns"
                                                       *ngIf="popoverColumns.length"></scrm-record-details-popup-button>
                 </td>
@@ -86,22 +94,23 @@
 
             <ng-container cdkColumnDef="line-actions">
 
-                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header"></th>
+                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header case-action">
+                    <scrm-label [labelKey]="caseActionLabel"></scrm-label>
+                </th>
 
                 <td cdk-cell *cdkCellDef="let record">
-                    <scrm-line-action-menu *ngIf="record && config.lineActions"
-                                           [config]="config.lineActions"
-                                           [record]="record"
-                                           [wrapperClass]="'listview-actions'"
-                                           [klass]="'icon-bar'">
-                    </scrm-line-action-menu>
+                    <line-action-btns [module]="config.module" [record]="record"/>
                 </td>
 
             </ng-container>
 
-            <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns" class="table-header-row"></tr>
-            <tr cdk-row *cdkRowDef="let row; columns: vm.displayedColumns;" class="table-body-row"></tr>
-
+            <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns"></tr>
+            <tr cdk-row *cdkRowDef="let row; let i = index; columns: vm.displayedColumns;" 
+                [ngClass]="{'table-body-row-checked': isChecked(i)}"
+                (click)="onRowClick(row)"
+                class="table-body-row">
+            </tr>
+            
         </table>
 
         <div *ngIf="!vm.loading && vm.records.length === 0">

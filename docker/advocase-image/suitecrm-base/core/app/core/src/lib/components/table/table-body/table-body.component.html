@@ -86,7 +86,9 @@
 
             <ng-container cdkColumnDef="line-actions">
 
-                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header"></th>
+                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header case-action">
+                    <scrm-label [labelKey]="caseActionLabel"></scrm-label>
+                </th>
 
                 <td cdk-cell *cdkCellDef="let record">
                     <scrm-line-action-menu *ngIf="record && config.lineActions"

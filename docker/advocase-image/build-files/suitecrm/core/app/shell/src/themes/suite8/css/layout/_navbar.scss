@@ -27,22 +27,23 @@
 /* --------- NAVBAR SECTION ---------- */
 
 .navbar {
-  height: 3.1em;
+  height: 3.75em;
   background-color: $surface-color-background-blue;
   margin: 0;
-  padding: 0 1em;
+  padding: 0 2.5em;
 
   .navbar-action-group {
+    height: 3.75em;
     .action-link svg,
     .action-link svg path,
     .action-link svg polygon {
-      fill: rgba(255, 255, 255, 0.8);
+      fill: rgba(255, 255, 255);
     }
 
     .global-action-icon svg,
     .global-action-icon svg path,
     .global-action-icon svg polygon {
-      fill: rgba(255, 255, 255, 0.8);
+      fill: rgba(255, 255, 255);
     }
 
     .navbar-collapse {
@@ -91,26 +92,16 @@
   z-index: map-get($zindex, nav-max);
 }
 
-.home-nav {
-  line-height: 3.1em;
-}
-
 a.home-nav-link {
+  width: 108px;
   color: $white;
-  line-height: 3.1em;
-  padding-left: 0.5em;
   text-decoration: none;
-
-  & span {display: none;}
-
-  @media all and (min-width: 1055px) {
-      & span {
-        display: inline-block;
-        margin-left: 8px;    
-      }
-    }
-    
+  font-weight: 700;
+  & span {
+    display: inline-block;
+    margin-left: 8px;    
   }
+}
 
 .nav-item.active .home-nav-link svg {
   fill: $white;
@@ -140,12 +131,28 @@ a.home-nav-link {
   color: $typography-color-secondary;
 }
 
+.sub-nav-link {
+  font-weight: 400;
+}
+
 .nav-item.active .nav-link-nongrouped,
 .nav-item.active .home-nav-link {
-  color: $white!important;
-  border-top: 0.2em solid $white;
+  color: $white !important;
   padding: auto 1em auto 1em;
   text-decoration: none;
+  position: relative;
+
+  &::before {
+    content: " ";
+    height: 0.25em;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: none;
+    margin: 0;
+    background-color: $white;
+  }
 }
 
 .global-link-item:hover {
@@ -226,7 +233,7 @@ h4.favorite-header {
     display: flex;
     flex-direction: row;
     float: right;
-    margin: 0.3em 0;
+    // margin: 0.3em 0;
 
     .action-link {
       svg {
@@ -275,15 +282,17 @@ a.nav-link-nongrouped.dropdown-toggle::after {
 }
 
 .primary-global-link.custom-create {
+  width: 113px;
   background-color: $white;
-  margin: 0.5em 0.25em;
+  margin: 0.5em 0;
   padding: 0.5em 1em;
   border-radius: 0.25em;
-  height: 32px;
+  height: 2.689em;
   line-height: 1.5;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid $widget-border;
 
   &.dropdown-toggle::after {
     display: inline-block;
@@ -299,16 +308,30 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   &:hover {
     background-color: $secondary-button-hover;
   }
-
-  &.show {
-    border: 1px solid $widget-border;
-  }
 }
 
 .navbar .action-new {
   height: 100%;
+  margin-left: 2.5em;
 
   & .dropdown-menu  {
-    font-size: 0.8em;
+    font-size: 1em;
+  }
+}
+
+.notifications {
+  font-size: 1em;
+}
+
+
+.top-nav-link {
+  font-weight: 700;
+}
+
+.navbar .submenu .sub-nav-link {
+  color: $typography-color-secondary !important;
+
+  &.dropdown-item:hover {
+    background-color: transparent;
   }
 }

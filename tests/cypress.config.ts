@@ -9,9 +9,26 @@ export default defineConfig({
     specPattern: "**/*.cy.ts",
   },
   chromeWebSecurity: false,
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+  env: {
+    username: 'gabriel',
+    password: 'advocase'
   },
+  video: true,
+  e2e: {
+    baseUrl: "https://advocase-d0d1b5-test.apps.gold.devops.gov.bc.ca/",
+    setupNodeEvents(on) {
+      on('task', {
+        log(message) {
+          console.log(message)
+
+          return null
+        },
+        table(message) {
+          console.table(message)
+
+          return null
+        }
+      })
+    },
+  }
 });

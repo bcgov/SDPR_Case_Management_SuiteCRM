@@ -55,6 +55,7 @@
 
 .sub-panel div.card {
   margin-top: 2.5rem;
+  border-radius: 6px;
 }
 
 .sub-panel .panel-buttons button.btn-outline-light {
@@ -107,10 +108,10 @@ div.widget-panel .panel-card .card-header {
   .border-insight {
     margin: 4px;
     border: 1px solid $widget-border;
-    border-radius: 4px;
+    border-radius: 6px;
 
     svg {
-      font-size: 1.5em;
+      font-size: 1rem;
       height: 3rem;
       width: 3rem;
       fill: $widget-icon;
@@ -120,7 +121,7 @@ div.widget-panel .panel-card .card-header {
   }
 
   .insight-panel-card {
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 2rem;
     cursor: pointer;
     background-color: $widget-background;
 
@@ -132,7 +133,7 @@ div.widget-panel .panel-card .card-header {
 
   @media (min-width: 768px) {
     .col-md-2 {
-      flex: 0 0 32.7%;
+      flex-grow: 2;
       max-width: 33%;
     }
   }
@@ -156,8 +157,9 @@ div.widget-panel .panel-card .card-header {
     width: 100%;
 
     .widget-entry-label {
-      font-size: 0.7rem;
-      line-height: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.313rem;
+      font-weight: 400;
       align-items: center;
 
       label {
@@ -175,7 +177,7 @@ div.widget-panel .panel-card .card-header {
     width: 100%;
 
     .widget-entry-label {
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-size: 1.125rem;
       font-weight: 700;
       line-height: 1.913rem;
@@ -196,15 +198,20 @@ div.widget-panel .panel-card .card-header {
     align-items: center;
     border-top: 1px solid $grey-widget;
     padding-top: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
   }
+}
+
+.insight-panel-row {
+  gap: 24px;
 }
 
 .accordion {
   .card {
+    border-radius: 6px;
     .card-header {
       padding: .50rem 1.25rem;
-      background-color: $surface-color-background-blue;
+      background: $surface-color-background-blue;
       color: $white;
       font-size: 20px;
       font-weight: 700;
@@ -220,7 +227,7 @@ div.widget-panel .panel-card .card-header {
     }
 
     .card-body {
-      padding: 0;
+      padding: 2rem;
     }
   }
 
@@ -231,20 +238,20 @@ div.widget-panel .panel-card .card-header {
   }
 }
 
-
 .sub-panel {
   table {
     tr {
       td:first-child,
       th:first-child{
-        padding-left: 1.3em;
+        padding-left: 1.5rem;
       }
       td:last-child,
       th:last-child {
-        padding-right: 1.3em;
+        padding-right: 1.5rem;
       }
     }
   }
+
   .table .show-more-column {
     float: none !important;
     width: 16px;
