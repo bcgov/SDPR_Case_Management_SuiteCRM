@@ -31,4 +31,5 @@ $mod_strings = array(
     'LBL_ADVOCASE_CONTACT_REGION_C' => 'Contact Region',
     'LBL_LIST_ADVOCASE_CONTACT_REGION_C' => 'Region',
     'LBL_ADVOCASE_EMAIL_C' => 'Email',
+    'LBL_BIRTHDATE' => 'Individual Birth Date',
 );
