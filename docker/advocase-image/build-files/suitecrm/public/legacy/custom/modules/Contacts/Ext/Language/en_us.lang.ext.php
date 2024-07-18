@@ -25,4 +25,5 @@ $mod_strings['LBL_LAST_NAME'] = 'Last Name:';
 $mod_strings['LBL_MEETINGS'] = 'Communications';
 $mod_strings['LBL_ANY_EMAIL'] = 'Email';
 $mod_strings['LBL_ANY_PHONE'] = 'Phone Number';
-
+$mod_strings['LBL_PRIMARY_ADDRESS_CITY'] = 'Contact City';
+$mod_strings['LBL_LIST_PRIMARY_ADDRESS_CITY'] = 'City';

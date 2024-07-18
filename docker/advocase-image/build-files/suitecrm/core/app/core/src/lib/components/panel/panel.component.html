@@ -1,10 +1,55 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+
 <div [class.collapsed]="isCollapsed" class="card panel-card {{klass}}">
     <div *ngIf="showHeader" class="card-header d-flex justify-content-end align-items-center">
-        <scrm-close-button *ngIf="isClosable()" [config]="getCloseButton()"></scrm-close-button>
+        <div
+            class="flex-grow-1 align-items-center justify-content-between sub-panel-flex-content d-flex"
+            >
+            <div *ngIf="title" class="panel-title panel-title-upper-header">{{title}}</div>
+            <div *ngIf="titleKey" class="pl-1 panel-title panel-title-upper-header">
+                <scrm-label [labelKey]="titleKey"></scrm-label>
+            </div>
+            <div class="d-flex align-items-center">
+                <scrm-close-button *ngIf="isClosable()" [config]="getCloseButton()"></scrm-close-button>
+
+                <!-- TODO FIX COLLapsible button -->
+                <!-- <scrm-minimise-button
+                    *ngIf="isCollapsible()"
+                    [config]="minimiseButton"
+                    [status]="minimiseStatus">
+                </scrm-minimise-button> -->
+            </div>
+        </div>
     </div>
+    <div class="card-body card-body-padding" [ngbCollapse]="isCollapsed">
 
-    <div class="flex-grow-1 align-items-center d-flex justify-content-between panel-title-header">
-
+        <div class="flex-grow-1 align-items-center d-flex justify-content-between panel-title-header">
             <div *ngIf="isCollapsible()" class="d-flex align-items-center">
                 <scrm-minimise-button
                     *ngIf="isCollapsible()"
@@ -18,16 +63,14 @@
             <div *ngIf="title" class="pl-1 panel-title">{{title}}</div>
 
             <div *ngIf="titleKey" class="pl-1 panel-title">
-            <scrm-label [labelKey]="titleKey"></scrm-label>
+                <scrm-label [labelKey]="titleKey"></scrm-label>
+            </div>
+
+            <div class="panel-buttons float-right">
+                <ng-content select="[panel-header-button]"></ng-content>
+            </div>
         </div>
 
-
-        <div class="panel-buttons float-right">
-            <ng-content select="[panel-header-button]"></ng-content>
-        </div>
-    </div>
-
-    <div class="card-body p-{{bodyPadding}} card-body-padding" [ngbCollapse]="isCollapsed">
         <ng-content select="[panel-body]"></ng-content>
     </div>
 </div>

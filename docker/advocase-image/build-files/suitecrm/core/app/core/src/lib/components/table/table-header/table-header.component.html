@@ -28,14 +28,10 @@
 <!-- Start List View Table Header Section -->
 
 <div class="list-view-tableactions table-header">
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="d-flex">
-            <scrm-table-header-select *ngIf="selection && bulkActions"
-                                   [selectionSource]="selection"
-                                   [actionSource]="bulkActions">
-            </scrm-table-header-select>
-        </div>
-    </div>
+    <scrm-table-header-select *ngIf="selection && bulkActions"
+                            [selectionSource]="selection"
+                            [actionSource]="bulkActions">
+    </scrm-table-header-select>
 </div>
 
 <!-- End List View Table Header Section -->

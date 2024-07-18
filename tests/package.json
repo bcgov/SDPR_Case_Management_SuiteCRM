@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:chrome": "npx cypress open --browser chrome",
+    "cy:electron": "npx cypress open --browser electron",
+    "cy:run": "npx cypress run --headless"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.12.0",
+    "axe-core": "^4.9.1",
+    "cypress": "^13.13.0",
+    "cypress-axe": "^1.5.0",
     "cypress-iframe": "^1.0.1",
     "typescript": "^5.4.5"
   }

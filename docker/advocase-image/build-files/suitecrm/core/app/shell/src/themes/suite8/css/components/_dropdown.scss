@@ -66,7 +66,7 @@ ngb-datepicker-navigation {
 .action-group .dropdown-menu {
   background-color: $white;
   margin-top: 0;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .action-group h4 {
@@ -99,7 +99,7 @@ ngb-datepicker-navigation {
   .action-group {
     .dropdown-menu {
       .new-list-item {
-        font-size: 0.8em;
+        font-size: 1em;
 
         .new-list-item-label {
           max-width: 10rem;
@@ -268,12 +268,13 @@ ngb-datepicker-navigation {
 
     svg {
       background-color: $surface-color-primary-hover;
+      border-radius: 0.285em;
     }
 
     .action-link svg,
     .action-link svg path,
     .action-link svg polygon {
-      fill: $white;
+      fill: $typography-color-secondary;
     }
 
     .global-action-icon svg,
@@ -364,7 +365,15 @@ a.close-navmenu:hover {
 
 .navbar-nav .dropdown-menu .nav-item:hover a.action-link:hover,
 .navbar-nav .dropdown-menu .nav-item:hover a.action-link {
-  color: $white;
+  color: $typography-color-secondary;
+}
+
+.nav-link-grouped,
+.nav-link-nongrouped,
+.nav-link-activated {
+  display: inline-block;
+  height: 3.75em;
+  padding: 0 inherit;
 }
 
 .nav-link-grouped:hover.hover-enabled,
@@ -373,10 +382,10 @@ a.close-navmenu:hover {
   color: $light-grey;
   text-decoration: none;
   background-color: $surface-color-primary-hover;
-  margin-top: 1em;
-  -webkit-border-radius: 0.285em;
-  -moz-border-radius: 0.285em;
-  border-radius: 0.285em;
+  // margin-top: 1em;
+  // -webkit-border-radius: 0.285em;
+  // -moz-border-radius: 0.285em;
+  // border-radius: 0.285em;
 
   .navbar-nav .nav-item.active & {
     border-top-left-radius: 0;
@@ -393,14 +402,21 @@ ul.main li.nav-item,
   padding: 0 1em;
 }
 
-.nav-item .dropdown-menu, .action-new .dropdown-menu {
-  border-radius: 0.375rem;
-  box-shadow: 0px 0.3px 0.9px 0px rgba(0, 0, 0, 0.10), 0px 1.6px 3.6px 0px rgba(0, 0, 0, 0.13);
+.nav-item, .action-new, .action-alert, .navbar .global-links {
+  & .dropdown-menu {
+    border: none;
+    border-radius: 0;
+    border-bottom-left-radius: 0.375em;
+    border-bottom-right-radius: 0.375em;
+    box-shadow: 0px 0.3px 0.9px 0px rgba(0, 0, 0, 0.10), 0px 1.6px 3.6px 0px rgba(0, 0, 0, 0.13);
+    padding: 0.5em;
+  }
+  
 }
 
 .dropdown-menu .nav-item, .action-new .dropdown-menu .new-list-item {
   padding: 0.25em 0.5em;
-  margin: 0.25em 0.5em;
+  margin: 0.25em 0;
   border-radius: 0.25em;
 }
 
@@ -417,14 +433,8 @@ ul.main li.nav-item,
 ul.main li a,
 .main ul li a,
 .non-grouped .action-link {
-  font-size: 0.8em;
+  font-size: 1em;
   padding: 0.7rem;
-}
-
-.top-nav .dropdown-menu,
-.top-nav .submenu {
-  margin: 0;
-  padding: 0;
 }
 
 .top-nav, .navbar-nav, .navbar .action-new.action-dropdown, .navbar .action-new.action-dropdown.show {
@@ -436,7 +446,6 @@ ul.main li a,
 
 .global-links-dropdown {
   margin: 0;
-  margin-top: -5px;
   right: 0;
   position: absolute;
   width: 240px;
@@ -453,7 +462,7 @@ ul.main li a,
     display: block;
     padding: 0.4em 0.8em 0 1.5em;
     font-size: .9em;
-    color: $complementary;
+    color: $surface-color-background-blue;
     font-weight: bold;
   }
 }
@@ -496,7 +505,7 @@ ul.main li a,
 }
 
 .global-links svg path {
-  fill: rgba(255, 255, 255, 0.8);
+  fill: rgba(255, 255, 255);
 }
 
 .global-link-item .nav-link {
@@ -566,7 +575,7 @@ ul.main li a,
 }
 
 .sectioned-dropdown-menu .dropdown-menu {
-  font-size: 0.8em;
+  font-size: 1em;
   -webkit-border-radius: 0.25em;
   -moz-border-radius: 0.25em;
   border-radius: 0.25em;
@@ -650,20 +659,34 @@ ul.main li a,
   color: $typography-color-secondary;
 }
 
-
 .dropdown-button .dropdown-menu a,
 .button-group-dropdown .dropdown-menu a,
 .bulk-action-group .dropdown-menu a,
 .select-action-group .dropdown-menu a {
-  color: $typography-color-secondary;
+  color: $white;
+}
+
+.dropdown-item-label {
+  border-radius: 4px;
+  padding: 2px;
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-style: normal;
+  font-weight: 400;
+}
+
+.dropdown-item-label:hover {
+  background-color: $secondary-button-hover;
+  color: $primary_text;
+  cursor: pointer;
 }
 
 .dropdown-button .dropdown-menu a:hover,
 .button-group-dropdown .dropdown-menu a:hover,
 .bulk-action-group .dropdown-menu a:hover,
 .select-action-group .dropdown-menu a:hover {
-  background-color: $astral-blue;
-  color: $white;
+  background-color: $white;
+  color: $primary_text;
   cursor: pointer;
 }
 
@@ -689,6 +712,7 @@ ul.main li a,
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 
 
   & .global-link-item {
@@ -706,9 +730,15 @@ ul.main li a,
     }
   }
 }
+
 @media only screen and (min-width: 62em) {
   .navbar .action-dropdown:hover .custom-create .dropdown-menu {
     display:block;
     left: 0 !important;
   }
+}
+
+.navbar .dropdown-menu {
+  border-bottom-right-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
 }

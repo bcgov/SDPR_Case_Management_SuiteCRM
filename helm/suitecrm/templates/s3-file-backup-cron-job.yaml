@@ -1,0 +1,67 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "suitecrm.fullname" . }}-s3-file-backup-cron-job
+  labels:
+    {{- include "suitecrm.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.global.cron.filesBackup.schedule | quote }}
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 2
+  jobTemplate:
+    metadata:
+      labels:
+        {{- include "suitecrm.labels" . | nindent 8 }}
+    spec:
+      backoffLimit: 0
+      template:
+        metadata:
+          labels:
+            {{- include "suitecrm.labels" . | nindent 12 }}
+        spec:
+          containers:
+            - name: {{ .Chart.Name }}-s3-file-backup-cron-job
+              image: public.ecr.aws/aws-cli/aws-cli:latest
+              imagePullPolicy: Always
+              command:
+                - "sh"
+                - "-c"
+                - "aws s3 sync /aws/suitecrm/public/legacy/upload s3://${S3_BUCKET}/{{ .Values.global.env }}/upload"
+              env:
+                - name: S3_URI
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: S3URI
+                - name: S3_BUCKET
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: bucketName
+                - name: AWS_ACCESS_KEY_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: aws-access-key-id
+                - name: AWS_SECRET_ACCESS_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: aws-secret-access-key
+                - name: AWS_ENDPOINT_URL
+                  valueFrom:
+                    secretKeyRef:
+                      name: suitecrm-s3-backup-credentials
+                      key: aws-endpoint-url
+              volumeMounts:
+                - name: shared-uploads
+                  mountPath: /aws/suitecrm/public/legacy/upload
+          {{- with .Values.volumes }}
+          volumes:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          restartPolicy: Never
+          terminationGracePeriodSeconds: 30
+          activeDeadlineSeconds: 1600
+          dnsPolicy: ClusterFirst
