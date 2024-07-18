@@ -68,10 +68,10 @@ array (
       0 => 'account_id',
     ),
   ),
-  'EMAIL1' =>
+  'ADVOCASE_EMAIL_C' =>
   array (
     'width' => '15%',
-    'label' => 'LBL_LIST_EMAIL_ADDRESS',
+    'label' => 'LBL_ADVOCASE_EMAIL_C',
     'sortable' => false,
     'link' => true,
     'customCode' => '{$EMAIL1_LINK}',
