@@ -85,6 +85,7 @@ array (
           0 =>
           array (
             'name' => 'first_name',
+            'readonly' => false,
           ),
 
           1 => 
