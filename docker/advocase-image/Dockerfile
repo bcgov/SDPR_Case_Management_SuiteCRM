@@ -1,6 +1,4 @@
-FROM php:8.2-apache AS builder
-
-WORKDIR /
+FROM rcsouz/bc-gov-suitecrm AS builder
 
 # Update and upgrade and install required packages
 RUN apt-get update && apt-get upgrade -y && \
@@ -8,28 +6,12 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install nodejs npm -y && \
     npm install --global yarn sass
 
-ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN install-php-extensions intl gd mbstring mysqli pdo_mysql soap zip redis
-
 # Copying builded SuiteCRM files to container
-COPY ./suitecrm-base /suitecrm
 COPY ./build-files /tmp/build-files
-COPY ./scripts /scripts
-
-RUN a2enmod rewrite \
-&& a2enmod ssl
-
-# Removing .env.local file
-RUN rm /suitecrm/.env.local
-
-WORKDIR /tmp
+COPY ./scripts/suitecrm/copy-custom-files.sh /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 
 # Running script to copy modified files to SuiteCRM
-RUN chmod +x /tmp/build-files/copy_files.sh \
-&& /tmp/build-files/copy_files.sh \
-&& rm -rf /tmp/*
-
-RUN chmod +x /scripts/*.sh
+RUN /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 
 WORKDIR /suitecrm
 
@@ -42,20 +24,8 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:shell \
 && rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist \
 && npm uninstall -g yarn sass \
-&& apt remove nodejs npm -y \
-&& apt autoremove -y
-
-# Changing permissions for SuiteCRM folder
-RUN adduser www-data root \
-&& chmod +x ./bin/console \
-&& find . -type d -not -perm 2775 -exec chmod 2775 {} \; \
-&& find . -type f -not -perm 0644 -exec chmod 0644 {} \; \
-&& find . ! -user www-data -exec chown www-data:root {} \; \
-&& chmod -R g+rwx /suitecrm \
-&& chmod -R 777 /var/run/apache2
-
-# Restarting apache
-RUN service apache2 restart
+&& apt-get remove nodejs npm -y \
+&& apt-get autoremove -y
 
 # Exposed ports
 EXPOSE 8181
