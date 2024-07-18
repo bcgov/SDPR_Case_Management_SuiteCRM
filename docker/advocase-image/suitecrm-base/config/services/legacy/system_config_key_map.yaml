@@ -1,4 +1,0 @@
-parameters:
-  legacy.system_config_key_map:
-    datef: 'date_format'
-    timef: 'time_format'
