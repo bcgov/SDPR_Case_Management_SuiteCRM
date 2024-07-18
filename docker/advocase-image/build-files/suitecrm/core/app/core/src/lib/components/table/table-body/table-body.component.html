@@ -93,15 +93,21 @@
             </ng-container>
 
             <ng-container cdkColumnDef="line-actions">
+                <ng-container *cdkHeaderCellDef>
+                    <ng-container *ngIf="config.module == 'cases' || config.module == 'contacts'">
+                        <th cdk-header-cell scope="col" class="primary-table-header case-action">
+                            <scrm-label [labelKey]="caseActionLabel"></scrm-label>
+                        </th>
+                    </ng-container>
+                </ng-container>
 
-                <th cdk-header-cell scope="col" *cdkHeaderCellDef class="primary-table-header case-action">
-                    <scrm-label [labelKey]="caseActionLabel"></scrm-label>
-                </th>
-
-                <td cdk-cell *cdkCellDef="let record">
-                    <line-action-btns [module]="config.module" [record]="record"/>
-                </td>
-
+                <ng-container *cdkCellDef="let record">
+                    <ng-container *ngIf="config.module == 'cases' || config.module == 'contacts'">
+                      <td cdk-cell>
+                        <line-action-btns [module]="config.module" [record]="record"></line-action-btns>
+                      </td>
+                    </ng-container>
+                </ng-container>
             </ng-container>
 
             <tr cdk-header-row *cdkHeaderRowDef="vm.displayedColumns"></tr>
