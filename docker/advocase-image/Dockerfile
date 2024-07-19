@@ -26,10 +26,7 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:common \
 && yarn run build:core \
 && yarn run build:shell \
-&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist \
-&& npm uninstall -g yarn sass \
-&& apt-get remove nodejs npm -y \
-&& apt-get autoremove -y
+&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist
 
 # Exposed ports
 EXPOSE 8181
