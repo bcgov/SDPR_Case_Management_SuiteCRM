@@ -1,5 +1,4 @@
-# FROM image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/suitecrm:dev
-FROM rcsouz/bc-gov-suitecrm
+FROM image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/suitecrm:dev
 
 USER root
 
