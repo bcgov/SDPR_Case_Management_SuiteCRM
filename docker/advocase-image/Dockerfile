@@ -31,7 +31,7 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 
 RUN chgrp -R 0 /suitecrm && \
     find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} \; && \
-    find /suitecrm -type f -not -perm 0644 -exec chmod 0644 {} \; && \
+    find /suitecrm -type f -not -perm 0666 -exec chmod 0644 {} \; && \
     chown -R 1001:0 /suitecrm
 
 USER 1001:0
