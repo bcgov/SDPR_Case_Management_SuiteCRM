@@ -22,8 +22,11 @@ COPY ./suitecrm /opt/suitecrm
 
 # Running script to download and unzip SuiteCRM
 RUN /opt/suitecrm/scripts/suitecrm/download.sh
-RUN chgrp -R 0 /suitecrm && \
-    chmod -R g=u /suitecrm
+
+RUN chgrp -R 0 /opt/suitecrm && \
+    chmod -R g=u /opt/suitecrm
+
+RUN chmod -R 775 /opt/suitecrm
 
 # Exposed ports
 EXPOSE 8181
@@ -31,5 +34,5 @@ EXPOSE 8143
 
 WORKDIR /suitecrm
 
-ENTRYPOINT [ "/opt/suitecrm/scripts/entrypoint.sh" ]
+ENTRYPOINT ["/bin/bash", "-c", "/opt/suitecrm/scripts/entrypoint.sh"]
 CMD ["apache2-foreground"]
