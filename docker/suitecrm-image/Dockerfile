@@ -26,6 +26,8 @@ RUN /opt/suitecrm/scripts/suitecrm/download.sh
 RUN chgrp -R 0 /opt/suitecrm && \
     chmod -R g=u /opt/suitecrm
 
+RUN chmod -R 775 /opt/suitecrm
+
 # Exposed ports
 EXPOSE 8181
 EXPOSE 8143
