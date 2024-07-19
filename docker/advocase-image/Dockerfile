@@ -19,8 +19,6 @@ RUN /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 
 WORKDIR /suitecrm
 
-USER root
-
 # Bundling and building SuiteCRM theme modifications
 RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/suite8/css/Dawn/style.css --style compressed \ 
 && yarn install \
@@ -28,12 +26,7 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:common \
 && yarn run build:core \
 && yarn run build:shell \
-&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist \
-&& npm uninstall -g yarn sass \
-&& apt-get remove nodejs npm -y \
-&& apt-get autoremove -y
-
-USER 1001:0
+&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist
 
 # Exposed ports
 EXPOSE 8181
