@@ -23,11 +23,12 @@ COPY ./suitecrm /opt/suitecrm
 # Running script to download and unzip SuiteCRM
 RUN /opt/suitecrm/scripts/suitecrm/download.sh
 
+# Fixing permissions for backwards compatibility with OpenShift and Kubernetes
 RUN touch /usr/local/etc/php/php.ini && \
     chgrp -R 0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 /suitecrm && \
     chmod -R g=u /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 && \
     find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} \; && \
-    find /suitecrm -type f -not -perm 0666 -exec chmod 0644 {} \;
+    find /suitecrm -type f -not -perm 0664 -exec chmod 0664 {} \;
 
 RUN chmod -R 775 /opt/suitecrm
 
