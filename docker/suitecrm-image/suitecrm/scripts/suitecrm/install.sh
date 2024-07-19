@@ -127,7 +127,7 @@ EOF
   fi
 
   info "Executing Quick Repair and Rebuild script"
-  php_execute /opt/suitecrm/scripts/suitecrm/php/rebuild-suitecrm.php --instance /suitecrm/public/legacy
+  php /opt/suitecrm/scripts/suitecrm/php/rebuild-suitecrm.php --instance /suitecrm/public/legacy
 
   if [[ $? -ne 0 ]]; then
     error "Failed to run Quick Repair and Rebuild script"

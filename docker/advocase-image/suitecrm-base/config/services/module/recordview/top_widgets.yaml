@@ -1,6 +1,0 @@
-parameters:
-  module.recordview.top_widgets:
-    default:
-      widget: []
-    modules:
-

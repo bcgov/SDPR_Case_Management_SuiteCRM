@@ -1,8 +1,0 @@
-parameters:
-  notifications_reload_actions:
-    meetings:
-      - create
-      - edit
-    calls:
-      - create
-      - edit

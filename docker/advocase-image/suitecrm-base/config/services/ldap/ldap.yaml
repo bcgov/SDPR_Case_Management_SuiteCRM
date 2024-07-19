@@ -1,4 +1,0 @@
-parameters:
-  ldap.autocreate.extra_fields_map:
-
-  ldap.extra_fields: [ ]

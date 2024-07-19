@@ -28,7 +28,7 @@ spec:
               command:
                 - "/bin/bash"
                 - "-c"
-                - "/scripts/cron.sh"
+                - "/opt/suitecrm/scripts/suitecrm/cron.sh"
               env:
                 - name: SUITE_DB_HOST
                   value: suitecrm-mariadb-galera
