@@ -24,10 +24,13 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:common \
 && yarn run build:core \
 && yarn run build:shell \
-&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist
+&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist && \
+&& npm uninstall -g yarn sass \
+&& apt remove nodejs npm -y \
+&& apt autoremove -y
 
 RUN chgrp -R 0 /suitecrm && \
-    chmod -R g=u /suitecrm && \
+    chmod -R a+rwx /suitecrm && \
     chown -R 1001:0 /suitecrm
 
 USER 1001:0

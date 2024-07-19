@@ -25,7 +25,8 @@ RUN /opt/suitecrm/scripts/suitecrm/download.sh
 
 RUN touch /usr/local/etc/php/php.ini && \
     chgrp -R 0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 /suitecrm && \
-    chmod -R g=u /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 /suitecrm
+    chmod -R g=u /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 && \
+    chmod -R a+rwx /suitecrm
 
 RUN chmod -R 775 /opt/suitecrm
 
