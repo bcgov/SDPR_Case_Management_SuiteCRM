@@ -33,9 +33,6 @@ function main() {
   env_validation
   install_suitecrm
 
-  create_suitecrm_ssl_certificates
-  change_suitecrm_permissions
-
   # This is necessary due to a weird behaviour when
   # running this image in a Openshift environment
   # when the pod starts
@@ -43,7 +40,7 @@ function main() {
   chmod -R 777 /var/run/apache2
 
   info "Enabling Apache modules"
-  a2enmod rewrite ssl
+  a2enmod rewrite
 }
 
 main "$@"
