@@ -1,5 +1,7 @@
 FROM image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/suitecrm:dev
 
+USER root
+
 # Update and upgrade and install required packages
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && \
@@ -26,6 +28,8 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && npm uninstall -g yarn sass \
 && apt-get remove nodejs npm -y \
 && apt-get autoremove -y
+
+USER 1001:0
 
 # Exposed ports
 EXPOSE 8181
