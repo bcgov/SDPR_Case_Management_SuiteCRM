@@ -23,8 +23,8 @@ COPY ./suitecrm /opt/suitecrm
 # Running script to download and unzip SuiteCRM
 RUN /opt/suitecrm/scripts/suitecrm/download.sh
 
-RUN chgrp -R 0 /opt/suitecrm && \
-    chmod -R g=u /opt/suitecrm
+RUN chgrp -R 0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 && \
+    chmod -R g=u /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2
 
 RUN chmod -R 775 /opt/suitecrm
 
@@ -34,5 +34,5 @@ EXPOSE 8143
 
 WORKDIR /suitecrm
 
-ENTRYPOINT ["/bin/bash", "-c", "/opt/suitecrm/scripts/entrypoint.sh"]
+ENTRYPOINT ["/opt/suitecrm/scripts/entrypoint.sh"]
 CMD ["apache2-foreground"]
