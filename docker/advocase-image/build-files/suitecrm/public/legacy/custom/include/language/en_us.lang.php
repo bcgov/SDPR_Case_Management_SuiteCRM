@@ -230,3 +230,5 @@ $app_strings['LBL_SELECT_SUBPANEL_BANNER'] = 'Subpanels';
 $app_strings['LBL_OPEN_CASES_COUNT'] = 'Total Open Cases';
 $app_strings['LBL_MEETINGS_LAST_DATE'] = 'Last Updated';
 $app_strings['LBL_CASES_INSIGHT'] = '{{fields.cases.value}} / {{fields.default.value}}';
+$app_strings['LBL_LIST_RELATED_TO'] = 'Cases';
+$app_strings['Assigned To'] = 'Assigned To';
