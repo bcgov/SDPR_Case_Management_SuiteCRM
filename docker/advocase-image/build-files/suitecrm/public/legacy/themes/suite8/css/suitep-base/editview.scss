@@ -1347,10 +1347,19 @@ input.sqsEnabled {
 
 .pageNumbers {
   position: static;
-  font-weight: bold;
-  color: $default-btn-color;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: $primary_text;
   padding: 0 8px 0 0;
   margin: 0 0 0 0;
+}
+.page-number-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.5rem;
 }
 
 .contentBox {
@@ -1881,15 +1890,8 @@ a.tabFormAdvLink:hover {
 
 .evenListRowS1 td,
 .oddListRowS1 td {
-  color: $main-font-color;
-}
-
-.evenListRowS1 td {
-  background: $table-row-bg;
-}
-
-.oddListRowS1 td {
-  background: $table-alternate-row-bg;
+  color: $primary_text;
+  background-color: $white;
 }
 
 .detail table {
@@ -2285,8 +2287,12 @@ table.view {
   margin: 0;
   width: 100%;
   padding: 0.5rem 1.5rem;
-  border-radius: 6px;
+}
+
+.table-wrapper {
   overflow: hidden;
+  border-radius: 6px;
+  outline: 2px solid $grey-widget;
 }
 
 .evenListRowS1 {

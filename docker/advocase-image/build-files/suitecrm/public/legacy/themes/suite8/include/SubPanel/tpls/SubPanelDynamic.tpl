@@ -43,6 +43,7 @@
   * This template is now displays to the sub panel
   */
 *}
+<div class="table-wrapper">
 <table cellpadding="0" cellspacing="0" border="0" class="list view table-responsive subpanel-table" data-empty="{$APP.MSG_LIST_VIEW_NO_RESULTS_BASIC}" {literal}data-breakpoints='{ "xs": 754, "sm": 750, "md": 768, "lg": 992}'{/literal}>
     <thead>
         <tr class="footable-header">
@@ -94,8 +95,9 @@
         {counter name="rowCounter" print=false}
     {/foreach}
     </tbody>
-        <tfoot>
+    </table>
+    </div>
+    <div>
         {* TODO: Break $pagination so that it can be fully customisable *}
         {$PAGINATION}
-    </tfoot>
-</table>
+    </div>
