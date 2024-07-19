@@ -1,4 +1,5 @@
-FROM image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/suitecrm:dev
+# FROM image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/suitecrm:dev
+FROM rcsouz/bc-gov-suitecrm
 
 USER root
 
@@ -7,6 +8,8 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && \
     apt-get install nodejs npm -y && \
     npm install --global yarn sass
+
+USER 1001:0
 
 # Copying builded SuiteCRM files to container
 COPY ./build-files /tmp/build-files
@@ -28,8 +31,6 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && npm uninstall -g yarn sass \
 && apt-get remove nodejs npm -y \
 && apt-get autoremove -y
-
-USER 1001:0
 
 # Exposed ports
 EXPOSE 8181
