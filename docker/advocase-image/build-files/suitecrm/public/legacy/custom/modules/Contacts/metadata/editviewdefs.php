@@ -85,7 +85,8 @@ array (
           0 =>
           array (
             'name' => 'first_name',
-            'readonly' => false,
+            'comment' => 'First name of the contact',
+            'label' => 'LBL_FIRST_NAME',
           ),
 
           1 => 
