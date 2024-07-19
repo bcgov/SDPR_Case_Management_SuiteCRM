@@ -29,6 +29,7 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && apt remove nodejs npm -y \
 && apt autoremove -y
 
+# Fixing permissions for backwards compatibility with OpenShift and Kubernetes
 RUN chgrp -R 0 /suitecrm && \
     find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} \; && \
     find /suitecrm -type f -not -perm 0664 -exec chmod 0664 {} \; && \
