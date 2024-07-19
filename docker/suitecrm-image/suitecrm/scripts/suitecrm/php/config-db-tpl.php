@@ -1,5 +1,15 @@
 <?php
 $sugar_config = array (
+  'cron' => 
+  array (
+    'max_cron_jobs' => 10,
+    'max_cron_runtime' => 30,
+    'min_cron_interval' => 30,
+    'allowed_cron_users' => 
+    array (
+      0 => 'root_REMOVE_THIS_NOTICE_IF_YOU_REALLY_WANT_TO_ALLOW_ROOT',
+    ),
+  ),
   'dbconfig' =>
   array (
     'db_host_name' => getenv('SUITE_DB_HOST'),

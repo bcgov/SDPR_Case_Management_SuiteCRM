@@ -26,7 +26,8 @@ RUN /opt/suitecrm/scripts/suitecrm/download.sh
 RUN touch /usr/local/etc/php/php.ini && \
     chgrp -R 0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 /suitecrm && \
     chmod -R g=u /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 && \
-    chmod -R a+rwx /suitecrm
+    find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} \; && \
+    find /suitecrm -type f -not -perm 0644 -exec chmod 0644 {} \;
 
 RUN chmod -R 775 /opt/suitecrm
 
@@ -34,7 +35,6 @@ RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apach
 
 # Exposed ports
 EXPOSE 8181
-EXPOSE 8143
 
 WORKDIR /suitecrm
 
