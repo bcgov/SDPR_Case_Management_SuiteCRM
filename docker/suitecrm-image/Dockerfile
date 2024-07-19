@@ -23,7 +23,8 @@ COPY ./suitecrm /opt/suitecrm
 # Running script to download and unzip SuiteCRM
 RUN /opt/suitecrm/scripts/suitecrm/download.sh
 
-RUN chgrp -R 0 /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apache2/* && \
+RUN touch /usr/local/etc/php/php.ini && \
+    chgrp -R 0 /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apache2/* && \
     chmod -R g=u /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apache2/*
 
 RUN chmod -R 775 /opt/suitecrm
