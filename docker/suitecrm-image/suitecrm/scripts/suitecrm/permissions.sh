@@ -16,8 +16,8 @@ function change_suitecrm_permissions() {
   info "Changing SuiteCRM permissions"
 
   local suitecrm_dir="$SUITECRM_DIR"
-  local user="www-data"
-  local group="www-data"
+  local user="$APACHE_RUN_USER"
+  local group="$APACHE_RUN_GROUP"
 
   if [[ ! -d $suitecrm_dir ]]; then
     error "SuiteCRM directory not found"
