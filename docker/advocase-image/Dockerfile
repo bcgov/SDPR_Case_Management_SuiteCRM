@@ -1,4 +1,4 @@
-FROM rcsouz/bc-gov-suitecrm AS builder
+FROM image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/suitecrm:dev
 
 # Update and upgrade and install required packages
 RUN apt-get update && apt-get upgrade -y && \
