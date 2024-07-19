@@ -28,6 +28,8 @@ RUN chgrp -R 0 /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apac
 
 RUN chmod -R 775 /opt/suitecrm
 
+RUN chown -R 1001:0 /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apache2/* /suitecrm/*
+
 # Exposed ports
 EXPOSE 8181
 EXPOSE 8143
