@@ -8,8 +8,6 @@ RUN apt-get update && apt-get upgrade -y && \
     apt-get install nodejs npm -y && \
     npm install --global yarn sass
 
-USER 1001:0
-
 # Copying builded SuiteCRM files to container
 COPY ./build-files /tmp/build-files
 COPY ./scripts/suitecrm/copy-custom-files.sh /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
@@ -27,6 +25,12 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:core \
 && yarn run build:shell \
 && rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist
+
+RUN chgrp -R 0 /suitecrm && \
+    chmod -R g=u /suitecrm && \
+    chown -R 1001:0 /suitecrm
+
+USER 1001:0
 
 # Exposed ports
 EXPOSE 8181
