@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Author: Raphael Cássio de Souza (rsouza@nautilusdigital.com)
+# Description: Modified Docker entrypoint script for BC GOV SuiteCRM Docker image
+# Created on: 2024-07-19
+
 # Load entrypoint script
 . /opt/suitecrm/scripts/entrypoint.sh
 
