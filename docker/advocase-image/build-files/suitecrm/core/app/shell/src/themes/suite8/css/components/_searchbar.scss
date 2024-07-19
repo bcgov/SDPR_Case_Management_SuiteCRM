@@ -94,6 +94,13 @@
     .input-group-append {
       margin-left: 0;
     }
+
+    .input-group-append .btn {
+      border-left: 1px $white;
+      border-right: 1px $typography-color-secondary;
+      border-top: 1px $typography-color-secondary;
+      border-bottom: 1px $typography-color-secondary;
+    }
   }
 
   .search-focused {
