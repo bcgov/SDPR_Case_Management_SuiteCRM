@@ -6,7 +6,8 @@
   "scripts": {
     "cy:chrome": "npx cypress open --browser chrome",
     "cy:electron": "npx cypress open --browser electron",
-    "cy:run": "npx cypress run --headless"
+    "cy:run": "npx cypress run --headless",
+    "cy:accessibility": "npx cypress run --headless --spec ./cypress/e2e/Accessibility/**/*.cy.ts"
   },
   "author": "",
   "license": "ISC",
