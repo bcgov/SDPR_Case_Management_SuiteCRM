@@ -200,6 +200,7 @@ tr#pagination {
   }
   &:last-child {
     border-bottom-right-radius: 3px;
+    background: $white;
   }
 }
 
@@ -449,12 +450,12 @@ a.listViewTdToolsS1 {
 
 .list-view-rounded-corners {
   margin: 16px 0 16px 0;
-  .evenListRowS1 td {
-    background: $table-alternate-row-bg;
-  }
-  .oddListRowS1 td {
-    background: $table-row-bg;
-  }
+  // .evenListRowS1 td {
+  //   background: $table-alternate-row-bg;
+  // }
+  // .oddListRowS1 td {
+  //   background: $table-row-bg;
+  // }
 }
 
 .list-view-rounded-corners > table {
