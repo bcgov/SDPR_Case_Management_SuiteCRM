@@ -22,6 +22,8 @@ COPY ./suitecrm /opt/suitecrm
 
 # Running script to download and unzip SuiteCRM
 RUN /opt/suitecrm/scripts/suitecrm/download.sh
+RUN chgrp -R 0 /suitecrm && \
+    chmod -R g=u /suitecrm
 
 # Exposed ports
 EXPOSE 8181
