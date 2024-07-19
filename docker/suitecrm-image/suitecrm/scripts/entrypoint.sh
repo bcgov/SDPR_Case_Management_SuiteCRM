@@ -7,10 +7,15 @@
 RUN_DIR=${RUN_DIR:-"/opt/suitecrm/scripts"}
 SUITECRM_DIR=${SUITECRM_DIR:-"/suitecrm"}
 DEV_DEBUG=${DEV_DEBUG:-false}
+APACHE_RUN_USER=${APACHE_RUN_USER:-"#$(id -u)"}
+APACHE_RUN_GROUP=${APACHE_RUN_GROUP:-"#0"}
+
 
 export RUN_DIR
 export SUITECRM_DIR
 export DEV_DEBUG
+export APACHE_RUN_USER
+export APACHE_RUN_GROUP
 
 # Load the libraries
 . $RUN_DIR/lib/liblog.sh

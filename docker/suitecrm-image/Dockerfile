@@ -24,18 +24,20 @@ COPY ./suitecrm /opt/suitecrm
 RUN /opt/suitecrm/scripts/suitecrm/download.sh
 
 RUN touch /usr/local/etc/php/php.ini && \
-    chgrp -R 0 /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apache2/* && \
-    chmod -R g=u /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apache2/*
+    chgrp -R 0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 /suitecrm && \
+    chmod -R g=u /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 /suitecrm
 
 RUN chmod -R 775 /opt/suitecrm
 
-RUN chown -R 1001:0 /opt/suitecrm/* /etc/apache2/* /usr/local/etc/php/* /var/run/apache2/* /suitecrm/*
+RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2 /suitecrm
 
 # Exposed ports
 EXPOSE 8181
 EXPOSE 8143
 
 WORKDIR /suitecrm
+
+USER 1001:0
 
 ENTRYPOINT ["/opt/suitecrm/scripts/entrypoint.sh"]
 CMD ["apache2-foreground"]
