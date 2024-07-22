@@ -4,6 +4,15 @@ concurrency:
   cancel-in-progress: true
 on:
   workflow_dispatch:
+    inputs:
+      build-from:
+        description: "Building BC GOV SuiteCRM image from (branch):"
+        type: choice
+        required: true
+        options:
+          - dev
+          - test
+          - main
 
 jobs:
 
@@ -13,6 +22,7 @@ jobs:
     name: bc-gov-suitecrm-image
     uses: ./.github/workflows/reusable-build-dockerfile.yaml
     with:
+      ref: ${{ inputs.build-from }}
       push-advocase: false
       directory: docker/suitecrm-image
       image-name: bc-gov-suitecrm
