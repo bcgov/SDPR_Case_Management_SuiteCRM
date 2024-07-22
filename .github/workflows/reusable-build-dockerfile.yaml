@@ -47,8 +47,7 @@ jobs:
       with:
         ref: ${{ inputs.ref }}
 
-    - name: Login to Artifactory to Pull Images in Buildah Build
-      if: inputs.push-advocase
+    - name: Login to Artifactory to Pull/Push Images
       uses: redhat-actions/podman-login@v1
       with:
         registry: ${{ secrets.artifactory-registry }}
