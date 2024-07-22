@@ -49,6 +49,7 @@ jobs:
 
     - name: Login to Artifactory to Pull/Push Images
       uses: redhat-actions/podman-login@v1
+      if: inputs.push-advocase
       with:
         registry: ${{ secrets.artifactory-registry }}
         username: ${{ secrets.artifactory-username }}
