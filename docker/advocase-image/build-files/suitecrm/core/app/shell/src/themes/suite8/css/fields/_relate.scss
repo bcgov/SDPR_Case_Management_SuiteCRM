@@ -59,27 +59,18 @@
         display: contents;
       }
       
-      width: auto;
+      width: auto !important;
 
 
       span.p-element.p-dropdown-label.p-inputtext {
-        display: table-cell;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        width: 100%;
-
-        min-width: 53px;
-        min-height: 29px;
         padding: 4px 8px;
         border: 1px solid #f8bb47;
         background-color: #fef1d8;
-        gap: 10px;
         border-radius: 4px;
       }
 
       .p-dropdown-trigger {
-        display: table-cell;
+        display: none;
         width: 1.7rem;
       }
     }
@@ -128,4 +119,17 @@
       padding: 0.5rem 0.7rem;
     }
   }
+}
+
+.dynamic-field .dynamic-field-mode-detail .dynamic-field-name-assigned_user_name .dynamic-field-type-relate .ng-star-inserted {
+  margin-left: -9px;
+  margin-right: -9px;
+}
+
+.p-dropdown .p-dropdown-clear-icon {
+  display: none;
+}
+
+.btn-outline-secondary {
+  display: none;
 }
