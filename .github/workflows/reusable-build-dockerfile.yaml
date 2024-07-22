@@ -73,7 +73,7 @@ jobs:
     - name: Debug - Time before
       run: date
 
-    - name: Push Image to The Q
+    - name: Push Image to Artifactory
       if: inputs.push-theq
       uses: redhat-actions/push-to-registry@v2
       with:
