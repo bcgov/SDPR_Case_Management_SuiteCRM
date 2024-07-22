@@ -17,6 +17,7 @@ jobs:
       artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
       artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
     with:
+      ref: dev
       directory: docker/suitecrm-image
       image-name: bc-gov-suitecrm
       image-tags: commit-${GITHUB_SHA::7} latest
