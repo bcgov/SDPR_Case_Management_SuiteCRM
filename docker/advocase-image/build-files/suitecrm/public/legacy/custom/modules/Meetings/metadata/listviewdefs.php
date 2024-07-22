@@ -1,17 +1,11 @@
 <?php
 $listViewDefs ['Meetings'] = 
 array (
-  'SET_COMPLETE' => 
+  'DATE_ENTERED' => 
   array (
-    'width' => '1%',
-    'label' => 'LBL_LIST_CLOSE',
-    'link' => true,
-    'sortable' => false,
+    'width' => '10%',
+    'label' => 'LBL_DATE_ENTERED',
     'default' => true,
-    'related_fields' => 
-    array (
-      0 => 'status',
-    ),
   ),
   'NAME' => 
   array (
@@ -20,16 +14,7 @@ array (
     'link' => true,
     'default' => true,
   ),
-  'CONTACT_NAME' => 
-  array (
-    'width' => '20%',
-    'label' => 'LBL_LIST_CONTACT',
-    'link' => true,
-    'id' => 'CONTACT_ID',
-    'module' => 'Contacts',
-    'default' => true,
-    'ACLTag' => 'CONTACT',
-  ),
+
   'PARENT_NAME' => 
   array (
     'width' => '20%',
@@ -46,16 +31,15 @@ array (
       1 => 'parent_type',
     ),
   ),
-  'DATE_START' => 
+  'CONTACT_NAME' => 
   array (
-    'width' => '15%',
-    'label' => 'LBL_LIST_DATE',
-    'link' => false,
+    'width' => '20%',
+    'label' => 'LBL_LIST_CONTACT',
+    'link' => true,
+    'id' => 'CONTACT_ID',
+    'module' => 'Contacts',
     'default' => true,
-    'related_fields' => 
-    array (
-      0 => 'time_start',
-    ),
+    'ACLTag' => 'CONTACT',
   ),
   'ASSIGNED_USER_NAME' => 
   array (
@@ -65,12 +49,5 @@ array (
     'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
-  'DATE_ENTERED' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_DATE_ENTERED',
-    'default' => true,
-  ),
 );
-;
 ?>

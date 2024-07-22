@@ -1,0 +1,24 @@
+name: BC GOV SuiteCRM build image
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+on:
+  workflow_dispatch:
+
+jobs:
+
+  ##### BUILD ##################################################################
+
+  bc-gov-suitecrm-image:
+    name: bc-gov-suitecrm-image
+    uses: ./.github/workflows/reusable-build-dockerfile.yaml
+    with:
+      push-advocase: false
+      directory: docker/suitecrm-image
+      image-name: bc-gov-suitecrm
+      image-tags: commit-${GITHUB_SHA::7} latest
+      artifactory-repository: ad0d-suitecrm-docker
+    secrets:
+      artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+      artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+      artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}

@@ -1,9 +1,0 @@
-Mon Jun 24 20:02:18 2024 [31][1][SECURITY] OutboundEmail::checkSavePermissions - not logged in - skipping check
-Mon Jun 24 20:02:18 2024 [31][1][FATAL] User update error: Temp User is not retrieved at ID 1, boolean given
-Mon Jun 24 20:02:18 2024 [31][1][FATAL] Email address save error
-Mon Jun 24 20:02:21 2024 [31][1][SECURITY] Invalid ext  logger_file_ext : ''.
-Mon Jun 24 20:02:21 2024 [31][1][SECURITY] Setting logger_file_ext to '.log'.
-Mon Jun 24 20:02:21 2024 [31][1][SECURITY] Setting logger_file_name to ''.
-Mon Jun 24 20:02:21 2024 [31][1][SECURITY] Log file extension can't be blank.
-Mon Jun 24 20:02:21 2024 [31][1][SECURITY] Setting logger_file_name to ''.
-Mon Jun 24 20:02:21 2024 [31][1][SECURITY] Log file extension can't be blank.

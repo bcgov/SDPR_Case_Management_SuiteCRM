@@ -534,3 +534,10 @@ button.settings-button.dropdown-toggle::after {
     outline: none;
   }
 }
+
+.input-group-append .btn {
+  border-left: 1px $white;
+  border-right: 1px $typography-color-secondary;
+  border-top: 1px $typography-color-secondary;
+  border-bottom: 1px $typography-color-secondary;
+}
