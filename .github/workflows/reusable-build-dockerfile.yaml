@@ -19,6 +19,9 @@ on:
         required: false
         type: boolean
         default: true
+      artifactory-repository:
+        required: true
+        type: string
     secrets:
       artifactory-registry:
         required: true
@@ -61,6 +64,7 @@ jobs:
     # does happen.
 
     - name: Debug for errors
+      if: inputs.push-advocase
       run: cd /var/tmp; df -h .
 
     - name: Buildah Build
@@ -84,6 +88,6 @@ jobs:
         extra-args: --log-level=debug
         image: ${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
-        registry: ${{ secrets.artifactory-registry }}
+        registry: ${{ secrets.artifactory-registry }}/{{ inputs.artifactory-repository }}
         username: ${{ secrets.artifactory-username }}
         password: ${{ secrets.artifactory-password }}
