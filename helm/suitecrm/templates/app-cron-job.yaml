@@ -28,7 +28,7 @@ spec:
               command:
                 - "/bin/bash"
                 - "-c"
-                - "/scripts/cron.sh"
+                - "/opt/suitecrm/scripts/entrypoint-cron.sh"
               env:
                 - name: SUITE_DB_HOST
                   value: suitecrm-mariadb-galera
@@ -48,6 +48,13 @@ spec:
                     secretKeyRef:
                       name: {{ .Values.global.secrets.suitecrmSecretName }}
                       key: database-url
+                - name: SUITECRM_URL
+                  value: {{.Values.global.suitecrmHost}}
+                - name: SUITECRM_ADMIN_PWD
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ .Values.global.secrets.suitecrmSecretName }}
+                      key: suitecrm-admin-password
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
           activeDeadlineSeconds: 1600
