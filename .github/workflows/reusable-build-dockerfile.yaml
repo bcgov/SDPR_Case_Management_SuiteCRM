@@ -84,6 +84,6 @@ jobs:
         extra-args: --log-level=debug
         image: ${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
-        registry: ${{ secrets.artifactory-registry }}/${{ inputs.image-name }}
+        registry: ${{ secrets.artifactory-registry }}
         username: ${{ secrets.artifactory-username }}
         password: ${{ secrets.artifactory-password }}
