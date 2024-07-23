@@ -298,7 +298,7 @@ table.footable > tbody > tr.footable-empty > td {
 .detail-view-row {
   .inlineEditIcon {
     svg {
-      display: block;
+      display: none;
       width: 0.9em;
       height: 0.9em;
       opacity: 0.2;
@@ -552,7 +552,8 @@ div.detail-view-row {
   margin:0;
   min-width: 48px;
   min-height: 30px;
-  padding-left: 2rem;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
 }
 
 .detail-view-row .label {
