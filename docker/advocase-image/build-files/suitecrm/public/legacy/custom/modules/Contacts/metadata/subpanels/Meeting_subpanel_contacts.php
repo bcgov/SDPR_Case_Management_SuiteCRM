@@ -1,10 +1,10 @@
 <?php
-// created: 2024-05-31 19:28:22
+// created: 2024-07-23 19:28:22
 $subpanel_layout['list_fields'] = array (
-  'DATE_ENTERED' => 
+  'date_entered' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_DATE_ENTERED',
+    'vname' => 'LBL_DATE_ENTERED',
     'default' => true,
   ),
   'name' => 
@@ -16,10 +16,10 @@ $subpanel_layout['list_fields'] = array (
     'width' => '23%',
     'default' => true,
   ),
-  'ASSIGNED_USER_NAME' => 
+  'assigned_user_name' => 
     array (
       'width' => '10%',
-      'label' => 'LBL_ASSIGNED_TO_NAME',
+      'vname' => 'LBL_ASSIGNED_TO_NAME',
       'module' => 'Employees',
       'id' => 'ASSIGNED_USER_ID',
       'default' => true,
