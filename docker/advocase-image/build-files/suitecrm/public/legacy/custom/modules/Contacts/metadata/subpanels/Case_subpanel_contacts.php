@@ -1,47 +1,46 @@
 <?php
-// created: 2024-06-19 17:18:57
+// created: 2024-07-22 17:18:57
 $subpanel_layout['list_fields'] = array (
- array (
-  'DATE_ENTERED' => 
+  array (
+  'date_entered' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_DATE_ENTERED',
+    'vname' => 'LBL_DATE_ENTERED',
     'default' => true,
   ),
-  'NAME' => 
+  'name' => 
   array (
     'width' => '50%',
-    'label' => 'LBL_LIST_SUBJECT',
+    'vname' => 'LBL_LIST_SUBJECT',
     'link' => true,
     'default' => true,
   ),
-  'ADVOCASE_CASE_CITY_C' => 
+  'advocase_case_city_c' => 
   array (
     'type' => 'varchar',
     'default' => true,
-    'label' => 'LBL_ADVOCASE_CASE_CITY',
+    'vname' => 'LBL_ADVOCASE_CASE_CITY',
     'width' => '10%',
   ),
-  'ADVOCASE_CASE_REGION_C' => 
+  'advocase_case_region_c' => 
   array (
-    'type' => 'enum',
+    'type' => 'varchar',
     'default' => true,
-    'studio' => 'visible',
-    'label' => 'LBL_ADVOCASE_CASE_REGION',
+    'vname' => 'LBL_ADVOCASE_CASE_REGION',
     'width' => '10%',
   ),
-  'ASSIGNED_USER_NAME' => 
+  'assigned_user_name' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_ASSIGNED_TO_NAME',
+    'vname' => 'LBL_ASSIGNED_TO_NAME',
     'module' => 'Employees',
     'id' => 'ASSIGNED_USER_ID',
     'default' => true,
   ),
-  'STATE' => 
+  'state' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_LIST_STATE',
+    'vname' => 'LBL_LIST_STATE',
     'default' => true,
   ),
   'edit_button' =>
