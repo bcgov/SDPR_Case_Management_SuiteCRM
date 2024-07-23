@@ -249,6 +249,14 @@ p.msg {
   border-bottom: none;
 }
 
+#whole_subpanel_securitygroups {
+  display: none;
+}
+
+#whole_subpanel_history {
+  display: none !important;
+}
+
 #subpanel_history .evenListRowS1 td:nth-of-type(2) a {
   border-bottom: none;
 }
