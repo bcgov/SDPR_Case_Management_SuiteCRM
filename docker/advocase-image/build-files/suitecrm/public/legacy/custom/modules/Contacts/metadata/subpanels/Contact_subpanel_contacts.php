@@ -1,5 +1,5 @@
 <?php
-// created: 2024-07-17 14:50:22
+// created: 2024-07-20 14:50:22
 $subpanel_layout['list_fields'] = array (
   'name' =>
   array (
@@ -23,7 +23,6 @@ $subpanel_layout['list_fields'] = array (
     'default' => true,
     'vname' => 'LBL_LIST_ADVOCASE_CONTACT_REGION_C',
     'width' => '10%',
-    'default' => true,
   ),
   'phone_work' =>
   array (
