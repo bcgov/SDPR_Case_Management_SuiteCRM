@@ -64,15 +64,27 @@
 }
 
 .panel-default > .panel-heading > a {
-  font-weight: 500;
-  color: $panel-expanded-color;
-  padding: 0 10px 0 10px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   text-decoration: none;
+
+  padding: .5rem .75rem;
+  color: $white;
+  text-align: center;
+  font-family: "BC Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 34px;
+  text-transform: lowercase;
+
   div {
     margin-left: 0.3em;
   }
+}
+
+.panel-default > .panel-heading > a::first-letter {
+  text-transform: capitalize;
 }
 
 .sub-panel > .panel-heading {
@@ -141,6 +153,8 @@ div.panel-heading a.collapsed-override {
 }
 
 .panel-heading a:before {
+  display: none;
+
   float: left;
   border: 1px solid $outline-border-light;
   @include border-radius (0.2rem);
