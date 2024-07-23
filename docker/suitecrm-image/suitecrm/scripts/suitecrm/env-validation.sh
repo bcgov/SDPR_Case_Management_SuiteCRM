@@ -38,9 +38,4 @@ function env_validation() {
     error "SUITE_DB_NAME environment variable is required"
     exit 1
   fi
-
-  if [ -z "$SUITECRM_URL" ]; then
-    error "SUITECRM_URL environment variable is required"
-    exit 1
-  fi
 }
