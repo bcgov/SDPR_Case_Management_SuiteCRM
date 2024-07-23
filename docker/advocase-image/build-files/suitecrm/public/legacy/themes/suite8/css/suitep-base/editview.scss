@@ -619,6 +619,8 @@ slot {
   background-repeat: repeat-x;
   margin-right: 1rem;
   clear: both;
+
+  display: none;
 }
 
 .edit-view-field textarea {
@@ -4316,7 +4318,7 @@ h3 span {
 }
 
 .inlineEdit:hover .inlineEditIcon svg {
-  display: inline;
+  display: none;
   cursor: pointer;
 }
 
