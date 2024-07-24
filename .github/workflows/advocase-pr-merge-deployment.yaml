@@ -34,7 +34,7 @@ jobs:
       push-trigger: true
       directory: docker/advocase-image
       image-name: bc-gov-advocase
-      image-tags: commit-${GITHUB_SHA::7} ${{ needs.setup.outputs.environment }}
+      image-tags: commit-${GITHUB_SHA::7} {{ needs.setup.outputs.environment }}
       artifactory-repository: ad0d-advocase-docker
     secrets:
       artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
