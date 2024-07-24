@@ -88,11 +88,6 @@ array (
           'newTab' => false,
           'panelDefault' => 'expanded',
         ),
-        'LBL_PANEL_ASSIGNMENT' => 
-        array (
-          'newTab' => false,
-          'panelDefault' => 'expanded',
-        ),
       ),
       'syncDetailEditViews' => true,
     ),
@@ -106,6 +101,12 @@ array (
           array (
             'name' => 'name',
             'label' => 'LBL_SUBJECT',
+          ),
+          1 => 
+          array (
+            'name' => 'duration',
+            'customCode' => '{$fields.duration_hours.value}{$MOD.LBL_HOURS_ABBREV} {$fields.duration_minutes.value}{$MOD.LBL_MINSS_ABBREV} ',
+            'label' => 'LBL_DURATION',
           ),
         ),
         1 => 
@@ -125,26 +126,16 @@ array (
         array (
           0 => 
           array (
-            'name' => 'duration',
-            'customCode' => '{$fields.duration_hours.value}{$MOD.LBL_HOURS_ABBREV} {$fields.duration_minutes.value}{$MOD.LBL_MINSS_ABBREV} ',
-            'label' => 'LBL_DURATION',
+            'name' => 'advocase_comm_type_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADVOCASE_COMM_TYPE',
           ),
+          1 => '',
         ),
         3 => 
         array (
           0 => 'description',
           1 => '',
-        ),
-      ),
-      'LBL_PANEL_ASSIGNMENT' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO',
-          ),
         ),
       ),
     ),
