@@ -20,9 +20,9 @@ jobs:
     - name: Extract branch name
       id: parse
       run: |
-        echo "GITHUB_HEAD_REF=$GITHUB_HEAD_REF"
-        echo "GITHUB_REF=$GITHUB_REF"
+        echo "branch= ${{ github.event.inputs.ref }}"
         echo "environment=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+        echo "image-tag='commit-${GITHUB_SHA::7} ${{ github.event.inputs.ref }}'" >> $GITHUB_OUTPUT
   
   ##### BUILD ################################################################## debugin
 
@@ -34,7 +34,7 @@ jobs:
       push-trigger: true
       directory: docker/advocase-image
       image-name: bc-gov-advocase
-      image-tags: commit-${GITHUB_SHA::7} {{ needs.setup.outputs.environment }}
+      image-tags: ${{ needs.setup.outputs.image-tag }}
       artifactory-repository: ad0d-advocase-docker
     secrets:
       artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
