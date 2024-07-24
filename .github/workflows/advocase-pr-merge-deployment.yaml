@@ -42,3 +42,19 @@ jobs:
       artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
       artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
       artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+
+  ##### DEPLOY ##################################################################
+
+  deploy-advocase-image:
+    name: deploy-advocase-image
+    needs: bc-gov-advocase-image
+    uses: ./.github/workflows/reusable-import-image-to-oc.yaml
+    with:
+      image-name: bc-gov-advocase
+      image-tags: ${{ needs.setup.outputs.image-tags }}
+      artifactory-repository: ad0d-advocase-docker
+    secrets:
+      artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+      licence-plate: d0d1b5
+      openshift-api: ${{ secrets.OPENSHIFT_API }}
+      token: ${{ secrets.OPENSHIFT_TOKEN }}
