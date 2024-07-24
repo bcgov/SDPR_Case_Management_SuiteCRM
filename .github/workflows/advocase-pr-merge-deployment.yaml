@@ -21,8 +21,7 @@ jobs:
     - name: Extract branch name
       id: parse
       run: |
-        # ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-        ENVIRONMENT=$(echo ${{ github.event.inputs.namespace }})
+        ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
         echo "image-tags=$ENVIRONMENT" >> $GITHUB_OUTPUT
   
