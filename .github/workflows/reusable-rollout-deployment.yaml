@@ -17,6 +17,7 @@ jobs:
   tag:
     name: Rollout deployment
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
 
     steps:
     - name: Log in to OpenShift tools
