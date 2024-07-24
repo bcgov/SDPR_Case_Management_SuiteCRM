@@ -79,9 +79,6 @@ jobs:
     - name: Debug for errors
       run: cd /var/tmp; df -h .
 
-    - name: Debug - Time before
-      run: date
-
     - name: Push Image to Artifactory
       uses: redhat-actions/push-to-registry@v2
       with:

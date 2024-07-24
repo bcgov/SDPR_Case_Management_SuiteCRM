@@ -1,0 +1,40 @@
+name: Advocase DEV/UAT Deployment
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+on:
+  push:
+    branches:
+      - dev
+      - test
+
+jobs:
+  ##### SETUP 
+  setup:
+    name: extract-branch-name
+    runs-on: ubuntu-latest
+    outputs:
+      environment: $${{ steps.parse.outputs.environment }}
+
+    steps:
+    - name: Extract branch name
+      id: parse
+      run: |
+        echo "environment=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
+  
+  ##### BUILD ##################################################################
+
+  bc-gov-advocase-image:
+    name: bc-gov-advocase-image
+    needs: setup
+    uses: ./.github/workflows/reusable-build-dockerfile.yaml
+    with:
+      ref: ${{ needs.setup.outputs.environment }}
+      directory: docker/advocase-image
+      image-name: bc-gov-advocase
+      image-tags: commit-${GITHUB_SHA::7} ${{ needs.setup.outputs.environment }}
+      artifactory-repository: ad0d-advocase-docker
+    secrets:
+      artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+      artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+      artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}

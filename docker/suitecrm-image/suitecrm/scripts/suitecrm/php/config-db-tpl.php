@@ -28,9 +28,11 @@ $sugar_config = array (
     'debug' => 0,
     'ssl' => false,
   ),
+  'default_theme' => 'suite8',
+  'host_name' => 'localhost',
   'languages' => 
   array (
     'en_us' => 'English (US)',
   ),
-  'default_theme' => 'suite8',
+  'site_url' => 'http://localhost:8181',
 );
