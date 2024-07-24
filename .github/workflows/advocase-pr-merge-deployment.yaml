@@ -14,8 +14,8 @@ jobs:
     name: extract-branch-name
     runs-on: ubuntu-latest
     outputs:
-      environment: $${{ steps.parse.outputs.environment }}
-      image-tags: $${{ steps.parse.outputs.image-tags }}
+      environment: ${{ steps.parse.outputs.environment }}
+      image-tags: ${{ steps.parse.outputs.image-tags }}
 
     steps:
     - name: Extract branch name
