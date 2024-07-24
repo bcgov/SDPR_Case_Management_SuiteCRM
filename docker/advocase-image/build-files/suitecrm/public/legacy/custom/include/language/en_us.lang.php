@@ -40,7 +40,6 @@ $app_list_strings['advocase_contact_type_list']=array (
   'FAMILY_FATHER' => 'Family - Father',
   'FAMILY_SIBLING' => 'Family - Sibling',
   'FAMILY_OTHER' => 'Family - Other',
-  'FRIEND' => 'Friend',
   'GOVERNMENT_AGENCY_HEALTH_AUTHORITY' => 'Health Authority',
   'COMMUNITY_AGENCY_IBC' => 'Inclusion BC (IBC)',
   'GOVERNMENT_AGENCY_INDIGENOUS_CHILD_FAMILY_SERVICE_AGENCY' => 'Indigenous Child and Family Service Agency',
