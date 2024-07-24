@@ -2268,6 +2268,11 @@ table.view td {
 
 a:link {
   text-decoration: none;
+  color: $typography-color-link;
+}
+
+a:link:hover {
+  color: $typography-color-link-hover;
 }
 
 .iconed {
