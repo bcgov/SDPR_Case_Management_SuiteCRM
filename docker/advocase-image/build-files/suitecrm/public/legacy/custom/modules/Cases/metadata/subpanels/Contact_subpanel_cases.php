@@ -1,50 +1,82 @@
 <?php
-// created: 2024-07-15 17:10:57
+// created: 2024-07-24 15:13:47
 $subpanel_layout['list_fields'] = array (
   'date_entered' => 
   array (
-    'vname' => 'LBL_LIST_DATE_CREATED',
-    'width' => '15%',
+    'type' => 'datetime',
+    'vname' => 'LBL_DATE_ENTERED',
+    'width' => '10%',
     'default' => true,
   ),
   'name' => 
   array (
-    'vname' => 'LBL_LIST_SUBJECT',
+    'name' => 'name',
+    'vname' => 'LBL_LIST_NAME',
     'widget_class' => 'SubPanelDetailViewLink',
-    'width' => '40%',
+    'module' => 'Contacts',
+    'width' => '23%',
     'default' => true,
   ),
-  'assigned_user_name' => 
+  'advocase_case_city_c' => 
   array (
-    'name' => 'assigned_user_name',
-    'vname' => 'LBL_LIST_ASSIGNED_TO_NAME',
-    'widget_class' => 'SubPanelDetailViewLink',
-    'target_record_key' => 'assigned_user_id',
-    'target_module' => 'Employees',
-    'width' => '10%',
+    'type' => 'varchar',
     'default' => true,
+    'vname' => 'LBL_ADVOCASE_CASE_CITY',
+    'width' => '10%',
   ),
-  'state' => 
+  'advocase_case_region_c' => 
   array (
     'type' => 'enum',
     'default' => true,
-    'vname' => 'LBL_STATE',
+    'studio' => 'visible',
+    'vname' => 'LBL_ADVOCASE_CASE_REGION',
     'width' => '10%',
+  ),
+  'assigned_user_name' => 
+  array (
+    'link' => true,
+    'type' => 'relate',
+    'vname' => 'LBL_ASSIGNED_TO_NAME',
+    'id' => 'ASSIGNED_USER_ID',
+    'width' => '10%',
+    'default' => true,
+    'widget_class' => 'SubPanelDetailViewLink',
+    'target_module' => 'Users',
+    'target_record_key' => 'assigned_user_id',
   ),
   'edit_button' => 
   array (
     'vname' => 'LBL_EDIT_BUTTON',
     'widget_class' => 'SubPanelEditButton',
-    'module' => 'Cases',
-    'width' => '4%',
+    'module' => 'Contacts',
+    'width' => '5%',
     'default' => true,
   ),
   'remove_button' => 
   array (
     'vname' => 'LBL_REMOVE',
     'widget_class' => 'SubPanelRemoveButton',
-    'module' => 'Cases',
+    'module' => 'Contacts',
     'width' => '5%',
     'default' => true,
+  ),
+  'first_name' => 
+  array (
+    'name' => 'first_name',
+    'usage' => 'query_only',
+  ),
+  'last_name' => 
+  array (
+    'name' => 'last_name',
+    'usage' => 'query_only',
+  ),
+  'salutation' => 
+  array (
+    'name' => 'salutation',
+    'usage' => 'query_only',
+  ),
+  'contact_id' => 
+  array (
+    'usage' => 'query_only',
   ),
 );

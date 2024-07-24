@@ -249,6 +249,14 @@ p.msg {
   border-bottom: none;
 }
 
+#whole_subpanel_securitygroups {
+  display: none;
+}
+
+#whole_subpanel_history {
+  display: none !important;
+}
+
 #subpanel_history .evenListRowS1 td:nth-of-type(2) a {
   border-bottom: none;
 }
@@ -290,7 +298,7 @@ table.footable > tbody > tr.footable-empty > td {
 .detail-view-row {
   .inlineEditIcon {
     svg {
-      display: block;
+      display: none;
       width: 0.9em;
       height: 0.9em;
       opacity: 0.2;
@@ -544,24 +552,30 @@ div.detail-view-row {
   margin:0;
   min-width: 48px;
   min-height: 30px;
-  padding-left: 2rem;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
 }
 
 .detail-view-row .label {
-  font-size: 14px;
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-style: normal;
   font-weight: 700;
+  font-size: 16px;
+
   width: 98%;
   text-align: left;
   padding: 0;
   margin-top: 1.8rem;
   margin-bottom: 1rem;
-  text-transform: uppercase;
 }
 
 .detail-view-field {
-  font-size: 14px;
+  font-family: "BC Sans";
+  font-style: normal;
+  font-size: 16px;
   font-weight: 400;
-  color: $main-font-color;
+  color: $primary_text;
   padding: 0;
   border: 1px solid transparent;
   border-radius: $border-radius-base;

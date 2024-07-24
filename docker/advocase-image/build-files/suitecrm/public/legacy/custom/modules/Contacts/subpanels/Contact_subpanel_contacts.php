@@ -1,12 +1,6 @@
 <?php
-// created: 2024-05-31 19:28:22
+// created: 2024-07-24 15:14:38
 $subpanel_layout['list_fields'] = array (
-  'DATE_ENTERED' => 
-  array (
-    'width' => '10%',
-    'label' => 'LBL_DATE_ENTERED',
-    'default' => true,
-  ),
   'name' => 
   array (
     'name' => 'name',
@@ -16,14 +10,43 @@ $subpanel_layout['list_fields'] = array (
     'width' => '23%',
     'default' => true,
   ),
-  'ASSIGNED_USER_NAME' => 
-    array (
-      'width' => '10%',
-      'label' => 'LBL_ASSIGNED_TO_NAME',
-      'module' => 'Employees',
-      'id' => 'ASSIGNED_USER_ID',
-      'default' => true,
-    ),
+  'advocase_contact_type_c' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'vname' => 'LBL_ADVOCASE_CONTACT_TYPE',
+    'width' => '10%',
+  ),
+  'primary_address_city' => 
+  array (
+    'type' => 'varchar',
+    'vname' => 'LBL_PRIMARY_ADDRESS_CITY',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'advocase_contact_region_c' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'vname' => 'LBL_ADVOCASE_CONTACT_REGION',
+    'width' => '10%',
+  ),
+  'phone_work' => 
+  array (
+    'name' => 'phone_work',
+    'vname' => 'LBL_LIST_PHONE',
+    'width' => '15%',
+    'default' => true,
+  ),
+  'advocase_email_c' => 
+  array (
+    'type' => 'varchar',
+    'default' => true,
+    'vname' => 'LBL_ADVOCASE_EMAIL_C',
+    'width' => '10%',
+  ),
   'edit_button' => 
   array (
     'vname' => 'LBL_EDIT_BUTTON',
@@ -40,14 +63,6 @@ $subpanel_layout['list_fields'] = array (
     'width' => '5%',
     'default' => true,
   ),
-  'm_accept_status_fields' => 
-  array (
-    'usage' => 'query_only',
-  ),
-  'accept_status_id' => 
-  array (
-    'usage' => 'query_only',
-  ),
   'first_name' => 
   array (
     'name' => 'first_name',
@@ -63,7 +78,7 @@ $subpanel_layout['list_fields'] = array (
     'name' => 'salutation',
     'usage' => 'query_only',
   ),
-  'account_id' => 
+  'contact_id' => 
   array (
     'usage' => 'query_only',
   ),

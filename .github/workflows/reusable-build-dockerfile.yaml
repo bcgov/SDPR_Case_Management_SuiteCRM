@@ -79,15 +79,12 @@ jobs:
     - name: Debug for errors
       run: cd /var/tmp; df -h .
 
-    - name: Debug - Time before
-      run: date
-
     - name: Push Image to Artifactory
       uses: redhat-actions/push-to-registry@v2
       with:
         extra-args: --log-level=debug
         image: ${{ steps.build-image.outputs.image }}
         tags: ${{ steps.build-image.outputs.tags }}
-        registry: ${{ secrets.artifactory-registry }}/{{ inputs.artifactory-repository }}
+        registry: ${{ secrets.artifactory-registry }}/${{ inputs.artifactory-repository }}
         username: ${{ secrets.artifactory-username }}
         password: ${{ secrets.artifactory-password }}

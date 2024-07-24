@@ -1,0 +1,81 @@
+name: Advocase DEV/UAT Deployment
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+on:
+  push:
+    branches:
+      - dev
+      - test
+
+jobs:
+  ##### SETUP ##################################################################
+  setup:
+    name: extract-branch-name
+    runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.parse.outputs.environment }}
+      image-tags: ${{ steps.parse.outputs.image-tags }}
+
+    steps:
+    - name: Extract branch name
+      id: parse
+      run: |
+        ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
+        echo "image-tags=$ENVIRONMENT" >> $GITHUB_OUTPUT
+
+  approve-deploy:
+    name: Approve Deploy
+    needs: setup
+    environment: ${{ needs.setup.outputs.environment }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deployment Approval
+        run: echo Approved
+  
+  ##### BUILD ##################################################################
+
+  bc-gov-advocase-image:
+    name: bc-gov-advocase-image
+    needs: [setup, approve-deploy]
+    uses: ./.github/workflows/reusable-build-dockerfile.yaml
+    with:
+      ref: ${{ needs.setup.outputs.environment }}
+      directory: docker/advocase-image
+      image-name: bc-gov-advocase
+      image-tags: ${{ needs.setup.outputs.image-tags }}
+      artifactory-repository: ad0d-advocase-docker
+    secrets:
+      artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+      artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+      artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+
+  ##### DEPLOY ##################################################################
+
+  import-advocase-image-to-oc:
+    name: import-advocase-image-to-oc
+    needs: [setup, approve-deploy, bc-gov-advocase-image]
+    uses: ./.github/workflows/reusable-import-image-to-oc.yaml
+    with:
+      image-name: bc-gov-advocase
+      image-tags: ${{ needs.setup.outputs.image-tags }}
+      imagestream: artifactory-advocase
+      artifactory-repository: ad0d-advocase-docker
+    secrets:
+      artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+      licence-plate: d0d1b5
+      openshift-api: ${{ secrets.OPENSHIFT_API }}
+      token: ${{ secrets.OPENSHIFT_TOOLS_TOKEN }}
+
+  rollout-advocase-deployment:
+    name: rollout-advocase-deployment
+    needs: [setup, approve-deploy, import-advocase-image-to-oc]
+    uses: ./.github/workflows/reusable-rollout-deployment.yaml
+    with:
+      namespace: ${{ needs.setup.outputs.environment }}
+    secrets:
+      licence-plate: d0d1b5
+      openshift-api: ${{ secrets.OPENSHIFT_API }}
+      token: ${{ secrets.OPENSHIFT_TOKEN }}
