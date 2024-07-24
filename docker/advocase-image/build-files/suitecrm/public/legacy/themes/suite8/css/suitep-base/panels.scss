@@ -84,13 +84,10 @@
   font-weight: 700;
   line-height: 34px;
   text-transform: lowercase;
-  div {
-    margin-left: 0.3em;
-  }
 }
 
 .panel-default > .panel-heading > a::first-letter {
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .sub-panel > .panel-heading {
@@ -159,7 +156,7 @@ div.panel-heading a.collapsed-override {
 }
 
 .panel-heading a:before {
-  display: none;
+  display: none !important;
 
   float: left;
   border: 1px solid $outline-border-light;
