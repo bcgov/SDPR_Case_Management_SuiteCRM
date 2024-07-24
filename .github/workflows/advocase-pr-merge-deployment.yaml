@@ -74,7 +74,7 @@ jobs:
     needs: [setup, approve-deploy, import-advocase-image-to-oc]
     uses: ./.github/workflows/reusable-rollout-deployment.yaml
     with:
-      env: ${{ needs.setup.outputs.environment }}
+      namespace: ${{ needs.setup.outputs.environment }}
     secrets:
       licence-plate: d0d1b5
       openshift-api: ${{ secrets.OPENSHIFT_API }}
