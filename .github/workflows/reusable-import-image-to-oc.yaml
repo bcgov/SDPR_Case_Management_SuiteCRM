@@ -8,6 +8,9 @@ on:
       image-tags:
         required: true
         type: string
+      imagestream:
+        required: true
+        type: string
       artifactory-repository:
         required: true
         type: string
@@ -36,4 +39,4 @@ jobs:
 
     - name: Import image to OpenShift
       run: |
-        oc import-image ${{ inputs.image-name }}:${{ inputs.image-tags }} --from=${{ secrets.artifactory-registry }}/${{ inputs.artifactory-repository }}/${{ inputs.image-name }}:${{ inputs.image-tags }} --confirm
+        oc import-image ${{ inputs.imagestream }}:${{ inputs.image-tags }} --from=${{ secrets.artifactory-registry }}/${{ inputs.artifactory-repository }}/${{ inputs.image-name }}:${{ inputs.image-tags }} --confirm

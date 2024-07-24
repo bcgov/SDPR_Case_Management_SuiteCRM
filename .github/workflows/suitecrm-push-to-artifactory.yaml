@@ -28,6 +28,7 @@ jobs:
       directory: docker/suitecrm-image
       image-name: bc-gov-suitecrm
       image-tags: commit-${GITHUB_SHA::7} latest
+      imagestream: artifactory-advocase
       artifactory-repository: ad0d-suitecrm-docker
     secrets:
       artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
