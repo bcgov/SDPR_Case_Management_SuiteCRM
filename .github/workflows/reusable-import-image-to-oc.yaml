@@ -23,7 +23,7 @@ on:
 
 jobs:
   tag:
-    name: Import ${{ image-name }}:${{ image-tags }} to OpenShift
+    name: Import ${{ inputs.image-name }}:${{ inputs.image-tags }} to OpenShift
     runs-on: ubuntu-latest
 
     steps:
