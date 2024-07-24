@@ -44,12 +44,20 @@
   padding: 0.5rem 1.5rem;
 }
 
-.panel-default > .panel-heading > div {
-  font-size: 20px ;
+.communication-panel-title {
+  font-family: "BC Sans";
+  font-size: 20px;
+  font-style: normal;
   font-weight: 700;
-  background-color: $panel-expanded-bg;
-  color: $panel-expanded-color;
-  vertical-align: middle;
+  line-height: 34px;
+  padding: 0.5rem .75rem;
+  color: $white;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.communication-panel-title:first-letter {
+  text-transform: uppercase;
 }
 
 .collapse, .collapsing, .collapse.in {
