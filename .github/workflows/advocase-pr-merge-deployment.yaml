@@ -23,7 +23,7 @@ jobs:
       run: |
         ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
-        echo "image-tags=$(echo commit-${GITHUB_SHA::7} $ENVIRONMENT)" >> $GITHUB_OUTPUT
+        echo "image-tags=$ENVIRONMENT" >> $GITHUB_OUTPUT
   
   ##### BUILD ##################################################################
 
