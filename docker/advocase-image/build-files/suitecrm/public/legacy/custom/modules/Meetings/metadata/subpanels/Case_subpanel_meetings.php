@@ -1,5 +1,5 @@
 <?php
-// created: 2024-06-19 21:20:54
+// created: 2024-07-23 21:16:04
 $subpanel_layout['list_fields'] = array (
   'date_entered' => 
   array (
@@ -8,25 +8,12 @@ $subpanel_layout['list_fields'] = array (
     'width' => '10%',
     'default' => true,
   ),
-  'document_name' => 
+  'name' => 
   array (
-    'name' => 'document_name',
-    'vname' => 'LBL_LIST_DOCUMENT_NAME',
+    'name' => 'name',
+    'vname' => 'LBL_LIST_SUBJECT',
     'widget_class' => 'SubPanelDetailViewLink',
-    'width' => '20%',
-    'default' => true,
-  ),
-  'filename' => 
-  array (
-    'name' => 'filename',
-    'vname' => 'LBL_LIST_FILENAME',
-    'width' => '20%',
-    'module' => 'Documents',
-    'sortable' => false,
-    'displayParams' => 
-    array (
-      'module' => 'Documents',
-    ),
+    'width' => '50%',
     'default' => true,
   ),
   'assigned_user_name' => 
@@ -45,21 +32,18 @@ $subpanel_layout['list_fields'] = array (
   array (
     'vname' => 'LBL_EDIT_BUTTON',
     'widget_class' => 'SubPanelEditButton',
-    'module' => 'Documents',
-    'width' => '5%',
+    'width' => '2%',
     'default' => true,
   ),
   'remove_button' => 
   array (
     'vname' => 'LBL_REMOVE',
     'widget_class' => 'SubPanelRemoveButton',
-    'module' => 'Documents',
-    'width' => '5%',
+    'width' => '2%',
     'default' => true,
   ),
-  'document_revision_id' => 
+  'recurring_source' => 
   array (
-    'name' => 'document_revision_id',
     'usage' => 'query_only',
   ),
 );

@@ -2268,6 +2268,11 @@ table.view td {
 
 a:link {
   text-decoration: none;
+  color: $typography-color-link;
+}
+
+a:link:hover {
+  color: $typography-color-link-hover;
 }
 
 .iconed {
@@ -2357,6 +2362,7 @@ span.crumbLink {
   font-size: 16px;
   font-weight: 400;
   line-height: 27px;
+  border: 1px solid $grey-widget;
 }
 
 #mbfooter .yui-layout-hd td {

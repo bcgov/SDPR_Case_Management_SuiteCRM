@@ -79,11 +79,6 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           'newTab' => false,
           'panelDefault' => 'expanded',
         ),
-        'LBL_PANEL_ASSIGNMENT' => 
-        array (
-          'newTab' => false,
-          'panelDefault' => 'expanded',
-        ),
       ),
     ),
     'panels' => 
@@ -95,6 +90,16 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           0 => 
           array (
             'name' => 'name',
+          ),
+          1 => 
+          array (
+            'name' => 'date_end',
+            'type' => 'datetimecombo',
+            'displayParams' => 
+            array (
+              'required' => true,
+              'updateCallback' => 'SugarWidgetScheduler.update_time();',
+            ),
           ),
         ),
         1 => 
@@ -108,24 +113,6 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
               'required' => true,
               'updateCallback' => 'SugarWidgetScheduler.update_time();',
             ),
-          ),
-          1 => 
-          array (
-            'name' => 'date_end',
-            'type' => 'datetimecombo',
-            'displayParams' => 
-            array (
-              'required' => true,
-              'updateCallback' => 'SugarWidgetScheduler.update_time();',
-            ),
-          ),
-        ),
-        2 => 
-        array (
-          0 => 
-          array (
-            'name' => 'parent_name',
-            'label' => 'LBL_LIST_RELATED_TO',
           ),
           1 => 
           array (
@@ -148,9 +135,23 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
             'customCodeReadOnly' => '{$fields.duration_hours.value}{$MOD.LBL_HOURS_ABBREV} {$fields.duration_minutes.value}{$MOD.LBL_MINSS_ABBREV} ',
           ),
         ),
+        2 => 
+        array (
+          0 => 
+          array (
+            'name' => 'advocase_comm_type_c',
+            'studio' => 'visible',
+            'label' => 'LBL_ADVOCASE_COMM_TYPE',
+          ),
+          1 => '',
+        ),
         3 => 
         array (
-          0 => '',
+          0 => 
+          array (
+            'name' => 'parent_name',
+            'label' => 'LBL_LIST_RELATED_TO',
+          ),
           1 => '',
         ),
         4 => 
@@ -161,17 +162,7 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
             'comment' => 'Full text of the note',
             'label' => 'LBL_DESCRIPTION',
           ),
-        ),
-      ),
-      'LBL_PANEL_ASSIGNMENT' => 
-      array (
-        0 => 
-        array (
-          0 => 
-          array (
-            'name' => 'assigned_user_name',
-            'label' => 'LBL_ASSIGNED_TO_NAME',
-          ),
+          1 => '',
         ),
       ),
     ),

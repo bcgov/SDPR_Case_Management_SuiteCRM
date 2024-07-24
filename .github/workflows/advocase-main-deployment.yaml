@@ -1,0 +1,62 @@
+name: Advocase Production Deployment
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+on:
+  workflow_dispatch:
+
+jobs:
+  ##### SETUP ##################################################################
+  approve-deploy:
+    name: Approve Deploy
+    environment: prod
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deployment Approval
+        run: echo Approved
+  
+  ##### BUILD ##################################################################
+
+  bc-gov-advocase-image:
+    name: bc-gov-advocase-image
+    needs: [approve-deploy]
+    uses: ./.github/workflows/reusable-build-dockerfile.yaml
+    with:
+      ref: main
+      directory: docker/advocase-image
+      image-name: bc-gov-advocase
+      image-tags: latest
+      artifactory-repository: ad0d-advocase-docker
+    secrets:
+      artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+      artifactory-username: ${{ secrets.ARTIFACTORY_USERNAME }}
+      artifactory-password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+
+  ##### DEPLOY ##################################################################
+
+  import-advocase-image-to-oc:
+    name: import-advocase-image-to-oc
+    needs: [approve-deploy, bc-gov-advocase-image]
+    uses: ./.github/workflows/reusable-import-image-to-oc.yaml
+    with:
+      image-name: bc-gov-advocase
+      image-tags: latest
+      imagestream: artifactory-advocase
+      artifactory-repository: ad0d-advocase-docker
+    secrets:
+      artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
+      licence-plate: d0d1b5
+      openshift-api: ${{ secrets.OPENSHIFT_API }}
+      token: ${{ secrets.OPENSHIFT_TOOLS_TOKEN }}
+
+  rollout-advocase-deployment:
+    name: rollout-advocase-deployment
+    needs: [approve-deploy, import-advocase-image-to-oc]
+    uses: ./.github/workflows/reusable-rollout-deployment.yaml
+    with:
+      namespace: prod
+    secrets:
+      licence-plate: d0d1b5
+      openshift-api: ${{ secrets.OPENSHIFT_API }}
+      token: ${{ secrets.OPENSHIFT_TOKEN }}
