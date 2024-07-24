@@ -8,6 +8,7 @@ Table of Contents
 - [Creating database backup and verification volume claims](#creating-database-backup-and-verification-volume-claims)
   - [Creating the backup volume claim](#creating-the-backup-volume-claim)
   - [Creating the verification volume claim](#creating-the-verification-volume-claim)
+  - [Creating Github Actions service account](#creating-github-actions-service-account)
 
 ## Secrets
 
@@ -89,4 +90,12 @@ Run the following command to create the verification persistent volume claim in 
 
 ```bash
 oc apply -f ./openshift/db-backup-verification-pvc.yaml
+```
+
+### Creating Github Actions service account
+
+Run the following command to create the Github Actions service account in your current Openshift project:
+
+```bash
+oc process -f ./openshift/github-actions-sa.yaml | oc apply -f -
 ```
