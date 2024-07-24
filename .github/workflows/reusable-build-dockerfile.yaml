@@ -6,6 +6,10 @@ on:
         required: false
         type: string
         default: main
+      push-trigger:
+        required: false
+        type: boolean
+        default: false
       directory:
         required: true
         type: string
@@ -47,8 +51,15 @@ jobs:
 
     - name: Check out
       uses: actions/checkout@v2
+      if: ${{ inputs.push-trigger == false }}
       with:
         ref: ${{ inputs.ref }}
+
+    - name: Check out
+      uses: actions/checkout@v2
+      if: ${{ inputs.push-trigger == true }}
+      with:
+        ref: ${{ github.event.inputs.ref }}
 
     - name: Login to Artifactory to Pull/Push Images
       uses: redhat-actions/podman-login@v1
