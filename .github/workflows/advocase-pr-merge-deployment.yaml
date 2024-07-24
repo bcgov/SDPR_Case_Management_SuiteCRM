@@ -46,7 +46,7 @@ jobs:
 
   deploy-advocase-image:
     name: deploy-advocase-image
-    needs: bc-gov-advocase-image
+    needs: [setup, bc-gov-advocase-image]
     uses: ./.github/workflows/reusable-import-image-to-oc.yaml
     with:
       image-name: bc-gov-advocase
