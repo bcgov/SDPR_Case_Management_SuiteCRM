@@ -9,12 +9,13 @@ on:
       - test
 
 jobs:
-  ##### SETUP 
+  ##### SETUP ##################################################################
   setup:
     name: extract-branch-name
     runs-on: ubuntu-latest
     outputs:
       environment: $${{ steps.parse.outputs.environment }}
+      image-tags: $${{ steps.parse.outputs.image-tags }}
 
     steps:
     - name: Extract branch name
@@ -24,17 +25,18 @@ jobs:
         echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
         echo "image-tags=$(echo commit-${GITHUB_SHA::7} $ENVIRONMENT)" >> $GITHUB_OUTPUT
   
-  ##### BUILD ################################################################## debugin
+  ##### BUILD ##################################################################
 
   bc-gov-advocase-image:
     name: bc-gov-advocase-image
     needs: setup
     uses: ./.github/workflows/reusable-build-dockerfile.yaml
     with:
+      ref: ${{ needs.setup.outputs.environment }}
       push-trigger: true
       directory: docker/advocase-image
       image-name: bc-gov-advocase
-      image-tags: ${{ needs.setup.outputs.image-tag }}
+      image-tags: ${{ needs.setup.outputs.image-tags }}
       artifactory-repository: ad0d-advocase-docker
     secrets:
       artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
