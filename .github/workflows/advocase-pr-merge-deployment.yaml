@@ -33,7 +33,6 @@ jobs:
     uses: ./.github/workflows/reusable-build-dockerfile.yaml
     with:
       ref: ${{ needs.setup.outputs.environment }}
-      push-trigger: true
       directory: docker/advocase-image
       image-name: bc-gov-advocase
       image-tags: ${{ needs.setup.outputs.image-tags }}
