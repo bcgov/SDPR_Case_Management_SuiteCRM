@@ -21,7 +21,8 @@ jobs:
     - name: Extract branch name
       id: parse
       run: |
-        ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        # ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        ENVIRONMENT=$(echo ${{ github.event.inputs.namespace }})
         echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
         echo "image-tags=$ENVIRONMENT" >> $GITHUB_OUTPUT
   
@@ -57,7 +58,7 @@ jobs:
       artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
       licence-plate: d0d1b5
       openshift-api: ${{ secrets.OPENSHIFT_API }}
-      token: ${{ secrets.OPENSHIFT_TOKEN }}
+      token: ${{ secrets.OPENSHIFT_TOOLS_TOKEN }}
 
   rollout-advocase-deployment:
     name: rollout-advocase-deployment
