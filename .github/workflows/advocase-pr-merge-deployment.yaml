@@ -20,9 +20,9 @@ jobs:
     - name: Extract branch name
       id: parse
       run: |
-        echo branch=${{ github.event.inputs.ref }}
-        echo environment=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}} >> $GITHUB_OUTPUT
-        echo image-tag=$(echo commit-${GITHUB_SHA::7} ${{ github.event.inputs.ref }}) >> $GITHUB_OUTPUT
+        ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
+        echo "image-tags=$(echo commit-${GITHUB_SHA::7} $ENVIRONMENT)" >> $GITHUB_OUTPUT
   
   ##### BUILD ################################################################## debugin
 
