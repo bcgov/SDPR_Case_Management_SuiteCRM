@@ -67,7 +67,6 @@
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   text-decoration: none;
-
   padding: .5rem .75rem;
   color: $white;
   text-align: center;
@@ -77,7 +76,6 @@
   font-weight: 700;
   line-height: 34px;
   text-transform: lowercase;
-
   div {
     margin-left: 0.3em;
   }
@@ -126,7 +124,7 @@
 }
 
 .panel-default > .panel-body {
-  padding: 1rem 0;
+  padding: 24px 40px 16px;
 }
 
 .panel-heading a.collapsed {
