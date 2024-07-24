@@ -43,7 +43,7 @@
 <div class="edit-border-bottom"></div>
 {{sugar_include type="smarty" file=$headerTpl}}
 {sugar_include include=$includes}
-<div id="EditView_tabs1">
+<div id="EditView_tabs">
     {*display tabs*}
     {{counter name="tabCount" start=-1 print=false assign="tabCount"}}
     <ul class="nav nav-tabs">
