@@ -94,8 +94,8 @@ oc apply -f ./openshift/db-backup-verification-pvc.yaml
 
 ### Creating Github Actions service account
 
-Run the following command to create the Github Actions service account in your current Openshift project:
+Run the following command in all namespaces (-tools, -dev, -test, -prod) to create the Github Actions service account in your current Openshift project:
 
 ```bash
-oc process -f ./openshift/github-actions-sa.yaml | oc apply -f -
+oc process -f ./openshift/github-actions-sa.yaml | oc -n <license plate>-<namespace> apply -f -
 ```
