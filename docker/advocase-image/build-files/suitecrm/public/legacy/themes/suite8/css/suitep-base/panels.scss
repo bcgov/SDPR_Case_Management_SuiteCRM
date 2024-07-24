@@ -38,12 +38,6 @@
   visibility: collapse;
 }
 
-.panel-default > .panel-heading {
-  background: $panel-default-bg;
-  color: $panel-expanded-color;
-  padding: 0.5rem 1.5rem;
-}
-
 .communication-panel-title {
   font-family: "BC Sans";
   font-size: 20px;
@@ -68,7 +62,12 @@
 .panel-default > .panel-heading {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 1.5rem;
+  background: $panel-default-bg;
+  color: $panel-expanded-color;
+  height: 50px;
+  align-items: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .panel-default > .panel-heading > a {
@@ -130,6 +129,11 @@
 
 .panel-default > .panel-body {
   padding: 24px 40px 16px;
+  border-radius: 0 0 6px 6px;
+  border-right: 2px solid $border-default;
+  border-bottom: 2px solid $border-default;
+  border-left: 2px solid $border-default;
+  background: $white;
 }
 
 .panel-heading a.collapsed {
@@ -591,4 +595,9 @@ table.subpanelTabForm {
 .clickMenu li a.disabled {
   color: $disabled-btn-color;
   cursor: default ;
+}
+
+#EditView_tabs {
+  padding-left: 40px;
+  padding-right: 40px;
 }
