@@ -51,6 +51,7 @@ jobs:
     with:
       image-name: bc-gov-advocase
       image-tags: ${{ needs.setup.outputs.image-tags }}
+      imagestream: artifactory-advocase
       artifactory-repository: ad0d-advocase-docker
     secrets:
       artifactory-registry: ${{ secrets.ARTIFACTORY_REGISTRY }}
