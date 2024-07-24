@@ -11,9 +11,9 @@ objects:
   - apiGroups:
       - image.openshift.io
     resources:
-      - imagestreamtags
+      - imagestreams
     verbs:
-      - update
+      - get
 - apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
   metadata:
