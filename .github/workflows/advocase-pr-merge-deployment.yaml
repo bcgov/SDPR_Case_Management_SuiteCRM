@@ -20,6 +20,8 @@ jobs:
     - name: Extract branch name
       id: parse
       run: |
+        echo "GITHUB_HEAD_REF=$GITHUB_HEAD_REF"
+        echo "GITHUB_REF=$GITHUB_REF"
         echo "environment=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
   
   ##### BUILD ##################################################################
