@@ -24,6 +24,16 @@ jobs:
         ENVIRONMENT=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
         echo "image-tags=$ENVIRONMENT" >> $GITHUB_OUTPUT
+
+  approve-qms-test:
+    name: Approve Deploy
+    needs: setup
+    environment: ${{ needs.setup.outputs.environment }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deployment Approval
+        run: echo Approved
   
   ##### BUILD ##################################################################
 

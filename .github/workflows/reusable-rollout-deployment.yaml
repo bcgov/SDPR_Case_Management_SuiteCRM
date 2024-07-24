@@ -1,4 +1,4 @@
-name: Import Image to OpenShift
+name: Rollout deployment
 on:
   workflow_call:
     inputs:
@@ -15,7 +15,7 @@ on:
 
 jobs:
   tag:
-    name: Import ${{ inputs.image-name }}:${{ inputs.image-tags }} to OpenShift
+    name: Rollout deployment
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,6 @@ jobs:
         openshift_server_url: ${{ secrets.openshift-api }}
         openshift_token: ${{ secrets.token }}
 
-    - name: Import image to OpenShift
+    - name: Rollout deployment
       run: |
         oc rollout restart deployment/suitecrm
