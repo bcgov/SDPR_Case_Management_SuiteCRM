@@ -724,7 +724,6 @@ slot {
 select {
   font-weight: normal;
   color: $main-font-color;
-  max-width: 90%;
   background-color: $white !important;
 }
 
@@ -1354,6 +1353,8 @@ table.dateTime {
 
 #parent_name {
   display: inline-block;
+  width: 78%;
+  height: 43px;
   margin-top: 8px;
   margin-right: 8px;
   clear: both;
@@ -3524,10 +3525,12 @@ select#sales_stage_advanced {
 
   .col-sm-8 .edit-view-field input[type="text"] {
     width: 100%;
+    height: 43px;
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
     width: 100%;
+    height: 43px;
   }
 
   [type="date"] img {
@@ -3737,7 +3740,8 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    width: 95%;
+    height: 43px;
   }
 
   .email-address-options-container {
@@ -3788,7 +3792,8 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    width: 95%;
+    height: 43px;
   }
 
 
@@ -5802,4 +5807,19 @@ body.popupBody {
     background-size: 25px 11px;
     border-color: $bright-grey;
   }
+}
+
+select#duration {
+  width: 95%;
+  height: 43px;
+}
+
+select#parent_type {
+  width: 15%;
+  height: 43px;
+}
+
+select#advocase_comm_type_c {
+  width: 95%;
+  height: 43px;
 }
