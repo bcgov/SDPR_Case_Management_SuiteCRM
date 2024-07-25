@@ -72,6 +72,8 @@
     letter-spacing: 0.05em;
     font-size: 16px;
     font-family: "BC Sans";
+    color: $typography-color-secondary;
+    border: 1px $surface-color-border-dark;
     &:hover {
         background: $secondary-button-hover;
     }
