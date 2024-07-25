@@ -153,11 +153,11 @@ div#searchResults {
 
 #create-invitees {
   background-color: $panel-bg;
-  color: $main-font-color;
-  padding: 20px 20px 10px 20px;
-  margin-top: 5px;
-  border: 1px solid $panel-border-bg;
-  border-radius: $border-radius-base;
+  color: $primary_text;
+  padding: 32px 40px;
+  margin-top: 32px;
+  border: 2px solid $surface-color-border-default;
+  border-radius: 6px;
   text-align: left;
   width: 100%;
   border-collapse: collapse;
@@ -175,20 +175,23 @@ div#searchResults {
   border-collapse: collapse;
 }
 
-#create_invitee_as_lead, #create_invitee_as_contact {
-  margin: 0.2em;
-  font-weight: bold;
-  height: 2.2em;
+#create_invitee_as_lead {
+  display: none;
+}
+
+#create_invitee_as_contact {
+  font-weight: 700;
+  font-size: 16px;
   line-height: 1.1em;
-  background-color: rgb(147, 164, 179);
+  background-color: $white;
   text-transform: capitalize;
-  border-radius: 0.2em;
-  padding: 0.3em 1em;
-  letter-spacing: 0.05em;
-  border: none;
-  color: $white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid $surface-color-border-dark;
+  color: $typography-color-secondary;
+
   &:hover {
-      background: $btn-hover-bg-color;
+      background: $secondary-button-hover;
   }
 }
 
@@ -2268,11 +2271,6 @@ table.view td {
 
 a:link {
   text-decoration: none;
-  color: $typography-color-link;
-}
-
-a:link:hover {
-  color: $typography-color-link-hover;
 }
 
 .iconed {
@@ -3349,7 +3347,6 @@ table legend {
 
 .ui-widget-content a {
   color: #F08377;
-  background: green;
 }
 
 .ui-widget-content a:hover {
