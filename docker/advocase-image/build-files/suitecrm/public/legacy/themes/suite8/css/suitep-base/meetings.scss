@@ -1,7 +1,13 @@
+#EditView_tabs .panel  {
+  padding: 24px 40px 0px;
+}
 .view-module-Meetings {
+    margin-top: 32px;
+
   #EditView .buttons, .action_buttons {
       bottom: 0.8em;
   }
+
   .schedulerInvitees {
       margin-top: 1em;
       border-bottom: 1px solid $panel-border-bg;
@@ -13,12 +19,22 @@
       }
   }
   #create-invitees {
-      padding-top:0;
-      margin-top: 1em;
       h3 {
-          font-size: 16px;
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 32px;
+          margin: 0px 0px 24px;
       }
   }
+
+  #EditView_tabs .panel-default > .panel-body {
+    padding: 0 0 16px;
+      }
+
+  .meeting-scheduler {
+    padding: 0 40px;
+  }
+
   #scheduler .schedulerDiv {
       padding-top: 0;
       margin-top: 1em;
