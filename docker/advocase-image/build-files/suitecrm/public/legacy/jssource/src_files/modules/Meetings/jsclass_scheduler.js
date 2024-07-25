@@ -59,8 +59,8 @@ SugarWidgetListView.prototype.load = function(parentNode) {
 	this.display();
 }
 
+// TABLE for search results for add contact
 SugarWidgetListView.prototype.display = function() {
-
 	if(typeof GLOBAL_REGISTRY['result_list'] == 'undefined') {
 		this.display_loading();
 		return;
@@ -286,8 +286,8 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     cell23.appendChild(input3);
 
     var cell24 = row2.insertCell(3);
-    cell24.setAttribute('valign', 'center');
-    cell24.style.paddingLeft = '24px'; // Add padding to create space between columns
+    cell24.setAttribute('valign', 'bottom');
+    cell24.style.paddingLeft = '24px'
 
     var input3 = document.createElement("input");
     input3.setAttribute('class', 'button');
@@ -299,8 +299,13 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     form.appendChild(table2);
     cell1.appendChild(form);
     html.appendChild(table1);
+    console.log('🚀 ~ html:', html);
+    var divBorder = document.createElement('div');
+    divBorder.setAttribute('class', 'invitees-hr');
+    html.appendChild(divBorder);
 
-    this.parentNode.appendChild(html);
+    // this.parentNode.insertBefore(divBorder, this.parentNode.firstChild);
+    this.parentNode.insertBefore(html, this.parentNode.firstChild);
 
     var div = document.createElement('div');
     div.setAttribute('id', 'list_div_win');
@@ -362,14 +367,14 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     table3.setAttribute('class', 'edit view');
     table3.setAttribute('cellpadding', '0');
     table3.setAttribute('cellspacing', '0');
-    table3.setAttribute('width', '100%'); // Set width to 100%
+    table3.setAttribute('width', '100%');
 
     var row3 = table3.insertRow(0);
 
     var cell31 = row3.insertCell(0);
     cell31.setAttribute('valign', 'top');
     cell31.setAttribute('width', '33%');
-    cell31.style.paddingRight = '24px'; // Add padding to create space between columns
+    cell31.style.paddingRight = '24px';
 
     var label4 = document.createElement("label");
     label4.setAttribute('for', 'first_name');
@@ -388,7 +393,7 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     var cell32 = row3.insertCell(1);
     cell32.setAttribute('valign', 'top');
     cell32.setAttribute('width', '33%');
-    cell32.style.paddingRight = '24px'; // Add padding to create space between columns
+    cell32.style.paddingRight = '24px';
 
     var label5 = document.createElement("label");
     label5.setAttribute('for', 'last_name');
@@ -911,12 +916,12 @@ SugarWidgetSchedulerAttendees.prototype.display = function() {
 		form_name = "EditView";
 	else if(typeof document.CalendarEditView != 'undefined')
 		form_name = "CalendarEditView";
-	else
-		return;
+    else
+    return;
 
 	var dtstart = GLOBAL_REGISTRY.focus.fields.datetime_start;
 	var top_date = SugarDateTime.getFormattedDate(dtstart);
-	var html = '<h3>'+GLOBAL_REGISTRY['meeting_strings']['LBL_SCHEDULING_FORM_TITLE']+'</h3><table id ="schedulerTable">';
+	var html = '<table id ="schedulerTable">';
 	html += '<tr class="schedulerTopRow">';
 	html += '<th colspan="'+((this.hours*this.segments)+2)+'"><h4>'+ top_date +'</h4></th>';
 	html += '</tr>';
@@ -958,7 +963,7 @@ SugarWidgetSchedulerAttendees.prototype.display = function() {
 	html += '</tr>';
 	html += '</table>';
     if ( this.parentNode.childNodes.length < 1 )
-        this.parentNode.innerHTML += '<div class="schedulerDiv">' + html + '</div>';
+        this.parentNode.innerHTML += '<div id="scheduler-Div" class="schedulerDiv">' + html + '</div>';
     else
         this.parentNode.childNodes[0].innerHTML = html;
 
@@ -1025,6 +1030,7 @@ SugarWidgetScheduleRow.prototype.load = function (thetableid) {
 	}
 }
 
+// Attendee Rows FOR SCHEDULING TABLE
 SugarWidgetScheduleRow.prototype.display = function() {
 	SUGAR.util.doWhen("document.getElementById('" + this.thetableid + "') != null", function(){
         var tr;

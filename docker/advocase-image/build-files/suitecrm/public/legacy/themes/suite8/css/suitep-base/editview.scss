@@ -58,21 +58,28 @@ div#searchResults {
 
 /** Schedule Bar **/
 #scheduler {
-  margin-top: 5px;
+  color: $primary_text;
 }
 
 #scheduler .schedulerDiv {
-  background-color: $panel-bg;
-  color: $main-font-color;
-  padding: 20px 20px 20px 20px;
-  border: 1px solid $panel-border-bg;
-  border-radius: $border-radius-base;
+  background-color: $white;
+  color: $primary_text;
+  border: 2px solid #d8d8d8;
+  border-top: none;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   text-align: left;
   width: 100%;
   border-collapse: collapse;
 
   overflow-y: auto;
   display: block;
+}
+
+#scheduler h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
 }
 
 #scheduler .schedulerDiv table {
@@ -166,7 +173,7 @@ div#searchResults {
 .schedulerInvitees {
   background-color: $panel-bg;
   color: $main-font-color;
-  padding: 20px 20px 10px 20px;
+  padding: 32px 40px;
   margin-top: 5px;
   border: 1px solid $panel-border-bg;
   border-radius: $border-radius-base;
@@ -698,7 +705,8 @@ slot {
 
 #EditView .edit tr td {
   font-weight: 700;
-  color: $main-font-color;
+  color: $primary_text;
+  vertical-align: bottom;
 }
 
 #EditView .edit input:not([type=button]) {
@@ -724,6 +732,7 @@ slot {
 select {
   font-weight: normal;
   color: $main-font-color;
+  max-width: 90%;
   background-color: $white !important;
 }
 
@@ -1353,8 +1362,6 @@ table.dateTime {
 
 #parent_name {
   display: inline-block;
-  width: 78%;
-  height: 43px;
   margin-top: 8px;
   margin-right: 8px;
   clear: both;
@@ -2355,7 +2362,6 @@ table.view {
   height: auto;
 }
 
-
 .iconed_dull {
   opacity: 0.6;
 }
@@ -2380,7 +2386,7 @@ span.crumbLink {
   line-height: 27px;
   border: 1px solid $grey-widget;
 }
-
+#scheduler .view tr,
 #createInviteeForm .view tr {
   border: none;
 }
@@ -3792,8 +3798,7 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 95%;
-    height: 43px;
+    width: 90%;
   }
 
 
