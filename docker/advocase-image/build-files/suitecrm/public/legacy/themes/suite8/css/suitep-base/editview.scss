@@ -200,20 +200,37 @@ div#searchResults {
   line-height: $input-line-height;
 }
 
-#create-invitee-edit button {
-  margin: 0.2em;
-  font-weight: bold;
-  height: 2.2em;
+#cancel-create-invitee-btn {
+  font-weight: 700;
+  font-size: 16px;
   line-height: 1.1em;
-  background-color: rgb(147, 164, 179);
+  background-color: $white;
   text-transform: capitalize;
-  border-radius: 0.2em;
-  padding: 0.3em 1em;
-  letter-spacing: 0.05em;
-  border: none;
-  color: $white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid $surface-color-border-dark;
+  color: $typography-color-secondary;
+  margin: 0 16px 0 0;
+
   &:hover {
-      background: $btn-hover-bg-color;
+      background: $secondary-button-hover;
+  }
+}
+
+#create-invitee-btn {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1em;
+  background-color: $surface-color-primary-button-default;
+  text-transform: capitalize;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid $surface-color-primary-button-default;
+  color: $white;
+  margin: 0;
+
+  &:hover {
+      background: $surface-color-primary-hover;
   }
 }
 
