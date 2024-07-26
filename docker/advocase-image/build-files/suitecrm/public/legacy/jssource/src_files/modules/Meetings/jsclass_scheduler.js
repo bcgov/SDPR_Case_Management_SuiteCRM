@@ -44,86 +44,80 @@
 //
 //////////////////////////////////////////////////
 
-SugarClass.inherit("SugarWidgetListView","SugarClass");
+SugarClass.inherit("SugarWidgetListView", "SugarClass");
 
 function SugarWidgetListView() {
-	this.init();
+    this.init();
 }
 
-SugarWidgetListView.prototype.init = function() {
+SugarWidgetListView.prototype.init = function () {
 
 }
 
-SugarWidgetListView.prototype.load = function(parentNode) {
-	this.parentNode = parentNode;
-	this.display();
+SugarWidgetListView.prototype.load = function (parentNode) {
+    this.parentNode = parentNode;
+    this.display();
 }
 
 // TABLE for search results for add contact
-SugarWidgetListView.prototype.display = function() {
-	if(typeof GLOBAL_REGISTRY['result_list'] == 'undefined') {
-		this.display_loading();
-		return;
-	}
+SugarWidgetListView.prototype.display = function () {
+    if (typeof GLOBAL_REGISTRY['result_list'] == 'undefined') {
+        this.display_loading();
+        return;
+    }
 
-	var div = document.getElementById('list_div_win');
-	div.style.display = 'block';
-	//div.style.height='125px';
-	var html = '<table width="100%" cellpadding="0" cellspacing="0" border="0" class="list view">';
-	html += '<tr>';
-	html += '<th width="2%" nowrap="nowrap">&nbsp;</th>';
-	html += '<th width="20%" nowrap="nowrap">'+GLOBAL_REGISTRY['meeting_strings']['LBL_NAME']+'</th>';
-	html += '<th width="20%" nowrap="nowrap">'+GLOBAL_REGISTRY['meeting_strings']['LBL_EMAIL']+'</th>';
-	html += '<th width="20%" nowrap="nowrap">'+GLOBAL_REGISTRY['meeting_strings']['LBL_PHONE']+'</th>';
-	html += '<th width="18%" nowrap="nowrap">&nbsp;</th>';
-	html += '</tr>';
-	//var html = '<table width="100%" cellpadding="0" cellspacing="0">';
-	for(var i=0;i<GLOBAL_REGISTRY['result_list'].length;i++) {
-		var bean = GLOBAL_REGISTRY['result_list'][i];
-		var disabled = false;
-		var className='evenListRowS1';
+    var div = document.getElementById('list_div_win');
+    div.style.display = 'block';
+    var html = '<table width="100%" cellpadding="0" cellspacing="0" border="0" class="list view">';
+    html += '<tr>';
+    html += '<th width="20%" nowrap="nowrap">' + GLOBAL_REGISTRY['meeting_strings']['LBL_NAME'] + '</th>';
+    html += '<th width="20%" nowrap="nowrap">' + GLOBAL_REGISTRY['meeting_strings']['LBL_EMAIL'] + '</th>';
+    html += '<th width="20%" nowrap="nowrap">' + GLOBAL_REGISTRY['meeting_strings']['LBL_PHONE'] + '</th>';
+    html += '<th width="18%" nowrap="nowrap">&nbsp;</th>';
+    html += '</tr>';
+    //var html = '<table width="100%" cellpadding="0" cellspacing="0">';
+    for (var i = 0; i < GLOBAL_REGISTRY['result_list'].length; i++) {
+        var bean = GLOBAL_REGISTRY['result_list'][i];
+        var disabled = false;
+        var className = 'evenListRowS1';
 
-		if(typeof(GLOBAL_REGISTRY.focus.users_arr_hash[ bean.fields.id]) != 'undefined') {
-			disabled = true;
-		}
-		if((i%2) == 0) {
-			className='oddListRowS1';
-		} else {
-			className='evenListRowS1';
-		}
-		if(typeof (bean.fields.first_name) == 'undefined') {
-			bean.fields.first_name = '';
-		}
-		if(typeof (bean.fields.email1) == 'undefined' || bean.fields.email1 == "") {
-			bean.fields.email1 = '&nbsp;';
-		}
-		if(typeof (bean.fields.phone_work) == 'undefined' || bean.fields.phone_work == "") {
-			bean.fields.phone_work = '&nbsp;';
-		}
+        if (typeof (GLOBAL_REGISTRY.focus.users_arr_hash[bean.fields.id]) != 'undefined') {
+            disabled = true;
+        }
+        if ((i % 2) == 0) {
+            className = 'oddListRowS1';
+        } else {
+            className = 'evenListRowS1';
+        }
+        if (typeof (bean.fields.first_name) == 'undefined') {
+            bean.fields.first_name = '';
+        }
+        if (typeof (bean.fields.advocase_email_c) == 'undefined' || bean.fields.advocase_email_c == "") {
+            bean.fields.advocase_email_c = '&nbsp;';
+        }
+        if (typeof (bean.fields.phone_work) == 'undefined' || bean.fields.phone_work == "") {
+            bean.fields.phone_work = '&nbsp;';
+        }
 
-		html += '<tr class="'+className+'">';
-		html += '<td><span class="suitepicon suitepicon-module-' + bean.module.toLowerCase().replace('_', '-') + '"></span></td>';
-		html += '<td>'+bean.fields.full_name+'</td>';
-		html += '<td>'+bean.fields.email1+'</td>';
-		html += '<td>'+bean.fields.phone_work+'</td>';
-		html += '<td align="right">';
-		//	hidden = 'hidden';
-		hidden = 'visible';
-		if(!disabled) {
-			//	hidden = 'visible';
-		}
-		html += '<input type="button" id="invitees_add_'+(i+1)+'" class="button" onclick="this.disabled=true;SugarWidgetSchedulerAttendees.form_add_attendee('+i+');" value="'+GLOBAL_REGISTRY['meeting_strings']['LBL_ADD_BUTTON']+'"/ style="visibility: '+hidden+'"/>';
-		html += '</td>';
+        html += '<tr class="' + className + '">';
 
-		html += '</tr>';
-	}
-	html += '</table>';
-	//this.parentNode.innerHTML = html;
+        html += '<td>' + bean.fields.full_name + '</td>';
+        html += '<td>' + bean.fields.advocase_email_c + '</td>';
+        html += '<td>' + bean.fields.phone_work + '</td>';
+        html += '<td align="right">';
+        hidden = 'visible';
+        html += '<input type="button" id="invitees_add_' + (i + 1) + '" class="button" onclick="this.disabled=true;SugarWidgetSchedulerAttendees.form_add_attendee(' + i + ');" value="' + GLOBAL_REGISTRY['meeting_strings']['LBL_ADD_BUTTON'] + '"/ style="visibility: ' + hidden + '"/>';
+        html += '</td>';
 
-	div.innerHTML = html;
+        html += '</tr>';
+    }
+    html += '</table>';
+    //this.parentNode.innerHTML = html;
+
+    div.innerHTML = html;
 }
 
-SugarWidgetListView.prototype.display_loading = function() {
+SugarWidgetListView.prototype.display_loading = function () {
 
 }
 
@@ -133,67 +127,67 @@ SugarWidgetListView.prototype.display_loading = function() {
 //
 //////////////////////////////////////////////////
 
-SugarClass.inherit("SugarWidgetSchedulerSearch","SugarClass");
+SugarClass.inherit("SugarWidgetSchedulerSearch", "SugarClass");
 
 function SugarWidgetSchedulerSearch() {
-	this.init();
+    this.init();
 }
 
-SugarWidgetSchedulerSearch.prototype.init = function() {
-	this.form_id = 'scheduler_search';
-	GLOBAL_REGISTRY['widget_element_map'] = new Object();
-	GLOBAL_REGISTRY['widget_element_map'][this.form_id] = this;
+SugarWidgetSchedulerSearch.prototype.init = function () {
+    this.form_id = 'scheduler_search';
+    GLOBAL_REGISTRY['widget_element_map'] = new Object();
+    GLOBAL_REGISTRY['widget_element_map'][this.form_id] = this;
     GLOBAL_REGISTRY.scheduler_search_obj = this;
 }
 
-SugarWidgetSchedulerSearch.prototype.load = function(parentNode) {
-	this.parentNode = parentNode;
-	this.display();
+SugarWidgetSchedulerSearch.prototype.load = function (parentNode) {
+    this.parentNode = parentNode;
+    this.display();
 }
 
-SugarWidgetSchedulerSearch.submit = function(form) {
+SugarWidgetSchedulerSearch.submit = function (form) {
 
-	SugarWidgetSchedulerSearch.hideCreateForm();
+    SugarWidgetSchedulerSearch.hideCreateForm();
 
-	//construct query obj:
-	var conditions	= new Array();
+    //construct query obj:
+    var conditions = new Array();
 
-	if(form.search_first_name.value != '') {
-		conditions[conditions.length] = {"name":"first_name","op":"starts_with","value":form.search_first_name.value}
-	}
-	if(form.search_last_name.value != '') {
-		conditions[conditions.length] = {"name":"last_name","op":"starts_with","value":form.search_last_name.value}
-	}
-	if(form.search_email.value != '') {
-		conditions[conditions.length] = {"name":"email1","op":"starts_with","value":form.search_email.value}
-	}
+    if (form.search_first_name.value != '') {
+        conditions[conditions.length] = { "name": "first_name", "op": "starts_with", "value": form.search_first_name.value }
+    }
+    if (form.search_last_name.value != '') {
+        conditions[conditions.length] = { "name": "last_name", "op": "starts_with", "value": form.search_last_name.value }
+    }
+    if (form.search_email.value != '') {
+        conditions[conditions.length] = { "name": "advocase_email_c", "op": "starts_with", "value": form.search_email.value }
+    }
 
-	var query = {
-        "modules":["Users","Contacts","Leads"],
-        "group":"and",
-        "field_list":['id','full_name','email1','phone_work'],
-        "conditions":conditions
+    var query = {
+        "modules": ["Users", "Contacts", "Leads"],
+        "group": "and",
+        "field_list": ['id', 'full_name', 'advocase_email_c', 'phone_work'],
+        "conditions": conditions
     };
-	global_request_registry[req_count] = [this,'display'];
-	req_id = global_rpcClient.call_method('query',query);
-	global_request_registry[req_id] = [ GLOBAL_REGISTRY['widget_element_map'][form.id],'refresh_list'];
+    global_request_registry[req_count] = [this, 'display'];
+    req_id = global_rpcClient.call_method('query', query);
+    global_request_registry[req_id] = [GLOBAL_REGISTRY['widget_element_map'][form.id], 'refresh_list'];
 }
 
-SugarWidgetSchedulerSearch.prototype.refresh_list = function(rslt) {
+SugarWidgetSchedulerSearch.prototype.refresh_list = function (rslt) {
 
-	GLOBAL_REGISTRY['result_list'] = rslt['list'];
+    GLOBAL_REGISTRY['result_list'] = rslt['list'];
 
-	if (rslt['list'].length > 0) {
-		this.list_view.display();
-		document.getElementById('empty-search-message').style.display = 'none';
-	}else{
-		document.getElementById('list_div_win').style.display = 'none';
-		document.getElementById('empty-search-message').style.display = '';
-	}
+    if (rslt['list'].length > 0) {
+        this.list_view.display();
+        document.getElementById('empty-search-message').style.display = 'none';
+    } else {
+        document.getElementById('list_div_win').style.display = 'none';
+        document.getElementById('empty-search-message').style.display = '';
+    }
 
 }
 
-SugarWidgetSchedulerSearch.prototype.display = function() {
+SugarWidgetSchedulerSearch.prototype.display = function () {
     // append the list_view as the third row of the outside table
     var html = document.createElement("div");
     html.setAttribute('class', 'schedulerInvitees');
@@ -246,7 +240,7 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     var cell22 = row2.insertCell(1);
     cell22.setAttribute('scope', 'col');
     cell22.setAttribute('nowrap', 'nowrap');
-    cell22.style.paddingLeft = '24px'; // Add padding to create space between columns
+    cell22.style.paddingLeft = '24px';
 
     var label2 = document.createElement("label");
     label2.setAttribute('for', 'search_last_name');
@@ -267,7 +261,7 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     var cell23 = row2.insertCell(2);
     cell23.setAttribute('scope', 'col');
     cell23.setAttribute('nowrap', 'nowrap');
-    cell23.style.paddingLeft = '24px'; // Add padding to create space between columns
+    cell23.style.paddingLeft = '24px';
 
     var label3 = document.createElement("label");
     label3.setAttribute('for', 'search_email');
@@ -299,12 +293,14 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     form.appendChild(table2);
     cell1.appendChild(form);
     html.appendChild(table1);
-    console.log('🚀 ~ html:', html);
-    var divBorder = document.createElement('div');
-    divBorder.setAttribute('class', 'invitees-hr');
-    html.appendChild(divBorder);
 
-    // this.parentNode.insertBefore(divBorder, this.parentNode.firstChild);
+    var divBorder = document.createElement('div');
+    var divWrapper = document.createElement('div');
+    divWrapper.setAttribute('class', 'invitees-hr-wrapper');
+
+    divBorder.setAttribute('class', 'invitees-hr');
+    divWrapper.appendChild(divBorder);
+
     this.parentNode.insertBefore(html, this.parentNode.firstChild);
 
     var div = document.createElement('div');
@@ -313,7 +309,10 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     div.style.width = '100%';
     div.style.height = '100%';
     div.style.display = 'none';
-    this.parentNode.appendChild(div);
+
+    this.parentNode.insertBefore(divWrapper, this.parentNode.firstChild);
+    this.parentNode.insertBefore(div, this.parentNode.firstChild);
+    this.parentNode.insertBefore(html, this.parentNode.firstChild);
 
     var create_invitees = document.createElement("div");
     create_invitees.setAttribute('id', 'create-invitees');
@@ -414,13 +413,13 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     cell33.setAttribute('width', '33%');
 
     var label6 = document.createElement("label");
-    label6.setAttribute('for', 'email1');
+    label6.setAttribute('for', 'advocase_email_c');
     label6.innerHTML = GLOBAL_REGISTRY['meeting_strings']['LBL_EMAIL'] + ':';
     label6.style.display = 'block';
     cell33.appendChild(label6);
 
     var input7 = document.createElement("input");
-    input7.setAttribute('name', 'email1');
+    input7.setAttribute('name', 'advocase_email_c');
     input7.setAttribute('size', '19');
     input7.setAttribute('type', 'text');
     input7.style.display = 'block';
@@ -457,86 +456,86 @@ SugarWidgetSchedulerSearch.prototype.display = function() {
     this.list_view.load(div);
 };
 
-SugarWidgetSchedulerSearch.showCreateForm = function(module){
-	document.getElementById('create-invitee-edit').style.display = '';
-	document.getElementById('create-invitees-buttons').style.display = 'none';
-	document.getElementById('list_div_win').style.display = 'none';
-	document.forms['createInviteeForm'].elements['inviteeModule'].value = module;
+SugarWidgetSchedulerSearch.showCreateForm = function (module) {
+    document.getElementById('create-invitee-edit').style.display = '';
+    document.getElementById('create-invitees-buttons').style.display = 'none';
+    document.getElementById('list_div_win').style.display = 'none';
+    document.forms['createInviteeForm'].elements['inviteeModule'].value = module;
 
-	document.getElementById('empty-search-message').style.display = 'none';
+    document.getElementById('empty-search-message').style.display = 'none';
 
-	if (typeof document.createInviteeForm.first_name != 'undefined' && typeof document.schedulerwidget.search_first_name != 'undefined')
-		document.createInviteeForm.first_name.value = document.schedulerwidget.search_first_name.value;
-	if (typeof document.createInviteeForm.last_name != 'undefined' && typeof document.schedulerwidget.search_last_name != 'undefined')
-		document.createInviteeForm.last_name.value = document.schedulerwidget.search_last_name.value;
-	if (typeof document.createInviteeForm.email1 != 'undefined' && typeof document.schedulerwidget.search_email != 'undefined')
-		document.createInviteeForm.email1.value = document.schedulerwidget.search_email.value;
+    if (typeof document.createInviteeForm.first_name != 'undefined' && typeof document.schedulerwidget.search_first_name != 'undefined')
+        document.createInviteeForm.first_name.value = document.schedulerwidget.search_first_name.value;
+    if (typeof document.createInviteeForm.last_name != 'undefined' && typeof document.schedulerwidget.search_last_name != 'undefined')
+        document.createInviteeForm.last_name.value = document.schedulerwidget.search_last_name.value;
+    if (typeof document.createInviteeForm.advocase_email_c != 'undefined' && typeof document.schedulerwidget.search_email != 'undefined')
+        document.createInviteeForm.advocase_email_c.value = document.schedulerwidget.search_email.value;
 
 }
 
-SugarWidgetSchedulerSearch.hideCreateForm = function(module){
-	document.getElementById('create-invitee-edit').style.display = 'none';
-	document.getElementById('create-invitees-buttons').style.display = '';
+SugarWidgetSchedulerSearch.hideCreateForm = function (module) {
+    document.getElementById('create-invitee-edit').style.display = 'none';
+    document.getElementById('create-invitees-buttons').style.display = '';
 
-	document.forms['createInviteeForm'].reset();
+    document.forms['createInviteeForm'].reset();
 }
 
-SugarWidgetSchedulerSearch.resetSearchForm = function() {
-    if(GLOBAL_REGISTRY.scheduler_search_obj && document.forms[GLOBAL_REGISTRY.scheduler_search_obj.form_id]) {
+SugarWidgetSchedulerSearch.resetSearchForm = function () {
+    if (GLOBAL_REGISTRY.scheduler_search_obj && document.forms[GLOBAL_REGISTRY.scheduler_search_obj.form_id]) {
         //if search form is initiated, it clears the input fields.
         document.forms[GLOBAL_REGISTRY.scheduler_search_obj.form_id].reset();
     }
 }
 
-SugarWidgetSchedulerSearch.createInvitee = function(form){
-	if(!(check_form('createInviteeForm'))){
-		return false;
-	}
+SugarWidgetSchedulerSearch.createInvitee = function (form) {
+    if (!(check_form('createInviteeForm'))) {
+        return false;
+    }
 
-	document.getElementById('create-invitee-btn').setAttribute('disabled', 'disabled');
-	document.getElementById('cancel-create-invitee-btn').setAttribute('disabled', 'disabled');
+    document.getElementById('create-invitee-btn').setAttribute('disabled', 'disabled');
+    document.getElementById('cancel-create-invitee-btn').setAttribute('disabled', 'disabled');
 
-	ajaxStatus.showStatus(SUGAR.language.get('app_strings', 'LBL_SAVING'));
+    ajaxStatus.showStatus(SUGAR.language.get('app_strings', 'LBL_SAVING'));
 
-	var callback = {
-		success: function (response) {
+    var callback = {
+        success: function (response) {
 
-          SUGAR.util.globalEval("e=("+response.responseText+")");
-			var rObj = e;
+            SUGAR.util.globalEval("e=(" + response.responseText + ")");
+            var rObj = e;
 
-			ajaxStatus.hideStatus();
+            ajaxStatus.hideStatus();
 
-			if (typeof rObj.noAccess != 'undefined') {
-				var alertMsg = GLOBAL_REGISTRY['meeting_strings']['LBL_NO_ACCESS'];
-				alertMsg = alertMsg.replace("\$module", rObj.module);
-				SugarWidgetSchedulerSearch.hideCreateForm();
-				alert(alertMsg);
-				return false;
-			}
+            if (typeof rObj.noAccess != 'undefined') {
+                var alertMsg = GLOBAL_REGISTRY['meeting_strings']['LBL_NO_ACCESS'];
+                alertMsg = alertMsg.replace("\$module", rObj.module);
+                SugarWidgetSchedulerSearch.hideCreateForm();
+                alert(alertMsg);
+                return false;
+            }
 
-			GLOBAL_REGISTRY.focus.users_arr[GLOBAL_REGISTRY.focus.users_arr.length] = rObj;
-			GLOBAL_REGISTRY.scheduler_attendees_obj.display();
+            GLOBAL_REGISTRY.focus.users_arr[GLOBAL_REGISTRY.focus.users_arr.length] = rObj;
+            GLOBAL_REGISTRY.scheduler_attendees_obj.display();
 
-			SugarWidgetSchedulerSearch.hideCreateForm();
+            SugarWidgetSchedulerSearch.hideCreateForm();
             //Bug#51357: Reset the search input fields after invitee is added.
             SugarWidgetSchedulerSearch.resetSearchForm();
 
-			document.getElementById('create-invitee-btn').removeAttribute('disabled');
-			document.getElementById('cancel-create-invitee-btn').removeAttribute('disabled');
-		}
-	};
+            document.getElementById('create-invitee-btn').removeAttribute('disabled');
+            document.getElementById('cancel-create-invitee-btn').removeAttribute('disabled');
+        }
+    };
 
-	var fieldList = ['id', 'full_name', 'email1', 'phone_work'];
+    var fieldList = ['id', 'full_name', 'advocase_email_c', 'phone_work'];
 
-	var t = [];
-	for (i in fieldList) {
-		t.push("fieldList[]=" + encodeURIComponent(fieldList[i]));
-	}
-	var postData = t.join("&");
+    var t = [];
+    for (i in fieldList) {
+        t.push("fieldList[]=" + encodeURIComponent(fieldList[i]));
+    }
+    var postData = t.join("&");
 
-	var url = "index.php?module=Calendar&action=CreateInvitee&sugar_body_only=true";
-	YAHOO.util.Connect.setForm(document.forms['createInviteeForm']);
-	YAHOO.util.Connect.asyncRequest('POST', url, callback, postData);
+    var url = "index.php?module=Calendar&action=CreateInvitee&sugar_body_only=true";
+    YAHOO.util.Connect.setForm(document.forms['createInviteeForm']);
+    YAHOO.util.Connect.asyncRequest('POST', url, callback, postData);
 
 }
 
@@ -546,7 +545,7 @@ SugarWidgetSchedulerSearch.createInvitee = function(form){
 //
 //////////////////////////////////////////////////
 
-SugarClass.inherit("SugarWidgetScheduler","SugarClass");
+SugarClass.inherit("SugarWidgetScheduler", "SugarClass");
 
 SugarWidgetScheduler.popupControl = null;
 SugarWidgetScheduler.popupControlDelayTime = 600;
@@ -555,21 +554,21 @@ SugarWidgetScheduler.mouseY = 0;
 SugarWidgetScheduler.isMouseOverToolTip = false;
 
 function SugarWidgetScheduler() {
-	this.init();
+    this.init();
 }
 
-SugarWidgetScheduler.prototype.init = function() {
-	//var row = new	SugarWidgetScheduleAttendees();
-	//row.load(this);
+SugarWidgetScheduler.prototype.init = function () {
+    //var row = new	SugarWidgetScheduleAttendees();
+    //row.load(this);
 }
 
-SugarWidgetScheduler.prototype.load = function(parentNode) {
-	this.parentNode = parentNode;
-	this.display();
+SugarWidgetScheduler.prototype.load = function (parentNode) {
+    this.parentNode = parentNode;
+    this.display();
 }
 
-SugarWidgetScheduler.fill_invitees = function(form) {
-	for(var i=0;i<GLOBAL_REGISTRY.focus.users_arr.length;i++) {
+SugarWidgetScheduler.fill_invitees = function (form) {
+    for (var i = 0; i < GLOBAL_REGISTRY.focus.users_arr.length; i++) {
         if (GLOBAL_REGISTRY.focus.users_arr[i].module == 'User') {
             form.user_invitees.value += GLOBAL_REGISTRY.focus.users_arr[i].fields.id + ",";
         } else if (GLOBAL_REGISTRY.focus.users_arr[i].module == 'Contact') {
@@ -580,55 +579,55 @@ SugarWidgetScheduler.fill_invitees = function(form) {
     }
 }
 
-SugarWidgetScheduler.update_time = function() {
+SugarWidgetScheduler.update_time = function () {
 
-	var form_name;
-	if(typeof document.EditView != 'undefined')
-		form_name = "EditView";
-	else if(typeof document.CalendarEditView != 'undefined')
-		form_name = "CalendarEditView";
-	else
-		return;
+    var form_name;
+    if (typeof document.EditView != 'undefined')
+        form_name = "EditView";
+    else if (typeof document.CalendarEditView != 'undefined')
+        form_name = "CalendarEditView";
+    else
+        return;
 
-   //check for field value, we can't do anything if it doesnt exist.
-    if(typeof document.forms[form_name].date_start == 'undefined')
-		return;
+    //check for field value, we can't do anything if it doesnt exist.
+    if (typeof document.forms[form_name].date_start == 'undefined')
+        return;
 
-	var date_start = document.forms[form_name].date_start.value;
-	if(date_start.length < 16) {
-		return;
-	}
-	var hour_start = parseInt(date_start.substring(11,13), 10);
-	var minute_start = parseInt(date_start.substring(14,16), 10);
-	var has_meridiem = /am|pm/i.test(date_start);
-	if(has_meridiem) {
-	var meridiem = trim(date_start.substring(16));
-	}
+    var date_start = document.forms[form_name].date_start.value;
+    if (date_start.length < 16) {
+        return;
+    }
+    var hour_start = parseInt(date_start.substring(11, 13), 10);
+    var minute_start = parseInt(date_start.substring(14, 16), 10);
+    var has_meridiem = /am|pm/i.test(date_start);
+    if (has_meridiem) {
+        var meridiem = trim(date_start.substring(16));
+    }
 
-	GLOBAL_REGISTRY.focus.fields.date_start = date_start;
+    GLOBAL_REGISTRY.focus.fields.date_start = date_start;
 
-	if(has_meridiem) {
-		GLOBAL_REGISTRY.focus.fields.time_start = hour_start + time_separator + minute_start + meridiem;
-	} else {
-		GLOBAL_REGISTRY.focus.fields.time_start = hour_start + time_separator + minute_start;
-	}
+    if (has_meridiem) {
+        GLOBAL_REGISTRY.focus.fields.time_start = hour_start + time_separator + minute_start + meridiem;
+    } else {
+        GLOBAL_REGISTRY.focus.fields.time_start = hour_start + time_separator + minute_start;
+    }
 
-	GLOBAL_REGISTRY.focus.fields.duration_hours = document.forms[form_name].duration_hours.value;
-	GLOBAL_REGISTRY.focus.fields.duration_minutes = document.forms[form_name].duration_minutes.value;
-	GLOBAL_REGISTRY.focus.fields.datetime_start = SugarDateTime.mysql2jsDateTime(GLOBAL_REGISTRY.focus.fields.date_start,GLOBAL_REGISTRY.focus.fields.time_start);
+    GLOBAL_REGISTRY.focus.fields.duration_hours = document.forms[form_name].duration_hours.value;
+    GLOBAL_REGISTRY.focus.fields.duration_minutes = document.forms[form_name].duration_minutes.value;
+    GLOBAL_REGISTRY.focus.fields.datetime_start = SugarDateTime.mysql2jsDateTime(GLOBAL_REGISTRY.focus.fields.date_start, GLOBAL_REGISTRY.focus.fields.time_start);
 
-	GLOBAL_REGISTRY.scheduler_attendees_obj.init();
-	GLOBAL_REGISTRY.scheduler_attendees_obj.display();
+    GLOBAL_REGISTRY.scheduler_attendees_obj.init();
+    GLOBAL_REGISTRY.scheduler_attendees_obj.display();
 }
 
-SugarWidgetScheduler.prototype.display = function() {
+SugarWidgetScheduler.prototype.display = function () {
     this.parentNode.innerHTML = '';
 
-	var attendees = new SugarWidgetSchedulerAttendees();
-	attendees.load(this.parentNode);
+    var attendees = new SugarWidgetSchedulerAttendees();
+    attendees.load(this.parentNode);
 
-	var search = new SugarWidgetSchedulerSearch();
-	search.load(this.parentNode);
+    var search = new SugarWidgetSchedulerSearch();
+    search.load(this.parentNode);
 
     // Create div so that popup can be generated below it
     $('div#scheduler').append('<div id="SugarWidgetSchedulerPopup"></div>');
@@ -636,10 +635,10 @@ SugarWidgetScheduler.prototype.display = function() {
     // Hold off hiding the tool tip overlay if the mouse is over the tool tip
     // hide the tool tip if the mouse is not over the tool tip
     $('div#SugarWidgetSchedulerPopup').hover(
-        function(e) {
+        function (e) {
             SugarWidgetScheduler.isMouseOverToolTip = true;
         },
-        function(e) {
+        function (e) {
             SugarWidgetScheduler.isMouseOverToolTip = false;
             SugarWidgetScheduler.popupControl.hide();
         }
@@ -647,18 +646,18 @@ SugarWidgetScheduler.prototype.display = function() {
 }
 
 // TODO: SortStartDate
-SugarWidgetScheduler.sortByStartdate = function(a, b) {
+SugarWidgetScheduler.sortByStartdate = function (a, b) {
     //console.log(a);
     //console.log(b);
     var dateA = new Date($('<div></div>').append(a).find('span[data-field=DATE_START]').attr('data-date'));
     var dateB = new Date($('<div></div>').append(b).find('span[data-field=DATE_START]').attr('data-date'));
     //console.log(dateA);
     //console.log(dateB);
-    if(dateA < dateB) {
+    if (dateA < dateB) {
         //console.log('progress: A < B');
         return -1;
     }
-    else if(dateA > dateB) {
+    else if (dateA > dateB) {
         //console.log('progress: A > B');
         return 1;
     }
@@ -667,18 +666,18 @@ SugarWidgetScheduler.sortByStartdate = function(a, b) {
 }
 
 // TODO: SortByType
-SugarWidgetScheduler.sortByType = function(a, b) {
+SugarWidgetScheduler.sortByType = function (a, b) {
     //console.log(a);
     //console.log(b);
     var valueA = $('<div></div>').append(a).find('input[id=type]').attr('value');
     var valueB = $('<div></div>').append(b).find('input[id=type]').attr('value');
     //console.log(valueA);
     //console.log(valueB);
-    if(valueA == valueB) {
+    if (valueA == valueB) {
         //console.log('progress: A == B');
         return 0;
     }
-    else if(valueB == 'Meeting') {
+    else if (valueB == 'Meeting') {
         //console.log('progress: B = Meetings');
         return 1;
     }
@@ -696,9 +695,9 @@ SugarWidgetScheduler.sortByType = function(a, b) {
  * @returns {*|jQuery}
  */
 
-SugarWidgetScheduler.createDialog = function(elementId, body, caption, width, theme) {
+SugarWidgetScheduler.createDialog = function (elementId, body, caption, width, theme) {
 
-    caption = caption.replace( SUGAR.language.get('app_strings', 'LBL_ADDITIONAL_DETAILS'), '');
+    caption = caption.replace(SUGAR.language.get('app_strings', 'LBL_ADDITIONAL_DETAILS'), '');
 
     $(".ui-dialog").find(".open").dialog("close");
 
@@ -714,30 +713,30 @@ SugarWidgetScheduler.createDialog = function(elementId, body, caption, width, th
                 at: 'left top',
                 of: $(elementId)
             },
-            open: function() {
+            open: function () {
                 var closeBtn = $('.ui-dialog-titlebar-close');
                 closeBtn.append('<span class="ui-button-icon-primary ui-icon ui-icon-closethick"></span><span class="ui-button-text">close</span>');
             }
         });
-        //$(".ui-dialog").find('.ui-dialog-titlebar-close').css("display","none");
-        //$(".ui-dialog").find('.ui-dialog-title').css("width","100%");
-        // Remove caption buttons
-        $("a[title='Edit']").remove();
-        $("a[title='View']").remove();
+    //$(".ui-dialog").find('.ui-dialog-titlebar-close').css("display","none");
+    //$(".ui-dialog").find('.ui-dialog-title').css("width","100%");
+    // Remove caption buttons
+    $("a[title='Edit']").remove();
+    $("a[title='View']").remove();
 
-    var width = $dialog.dialog( "option", "width" );
-    var pos = $(elementId).offset({top: SugarWidgetScheduler.mouseY, left: SugarWidgetScheduler.mouseX});
+    var width = $dialog.dialog("option", "width");
+    var pos = $(elementId).offset({ top: SugarWidgetScheduler.mouseY, left: SugarWidgetScheduler.mouseX });
     var ofWidth = $(elementId).width();
 
-    if((pos.left + ofWidth) - 40 < width) {
-        $dialog.dialog("option","position",{my: 'left top',at: 'right top',of: $(elementId)})	;
+    if ((pos.left + ofWidth) - 40 < width) {
+        $dialog.dialog("option", "position", { my: 'left top', at: 'right top', of: $(elementId) });
     }
     //console.log("Dialog: open");
     $dialog.dialog('open');
 
     $(".ui-dialog").appendTo("#content");
 
-    var timeout = function() {
+    var timeout = function () {
         setTimeout(function () {
             if ($($dialog).is(":hover")) {
                 timeout();
@@ -756,7 +755,7 @@ SugarWidgetScheduler.createDialog = function(elementId, body, caption, width, th
  * Sets the position of the dialog/popup to the mouse offset position.
  */
 
-SugarWidgetScheduler.getScheduleDetails = function(beans, ids) {
+SugarWidgetScheduler.getScheduleDetails = function (beans, ids) {
     var elementId = '#SugarWidgetSchedulerPopup';
     var show_buttons = true;
     //console.log('getScheduleDetails():');
@@ -774,54 +773,54 @@ SugarWidgetScheduler.getScheduleDetails = function(beans, ids) {
         width,
         theme
     );
-    var getScheduleItems = function() {
+    var getScheduleItems = function () {
         var deffereds = [];
         $dialog.html(SUGAR.language.get('app_strings', 'LBL_LOADING'));
         body = '';
-        jQuery.each(ids, function(index, value) {
+        jQuery.each(ids, function (index, value) {
             var url = 'index.php?to_pdf=1&module=Home&action=AdditionalDetailsRetrieve&bean=' + beans[index] + '&id=' + ids[index] + '&show_buttons=true';
             //console.log('url: ' +url);
             deffereds.push(
-            $.ajax(url)
-                .done(function () {
-                    //console.log("success");
-                })
-                .fail(function () {
-                    //console.log("error");
-                })
-                .always(function () {
-                    //console.log("complete");
-                })
+                $.ajax(url)
+                    .done(function () {
+                        //console.log("success");
+                    })
+                    .fail(function () {
+                        //console.log("error");
+                    })
+                    .always(function () {
+                        //console.log("complete");
+                    })
             );
         });
         return deffereds;
     }
     // get requests
     var requests = getScheduleItems();
-  $.when.apply(null, requests).done(function () {
-    //console.log('parsing: getSchedule Items');
-    var containers = [];
-    // build results array
-    //console.log('arguments:');
-    //console.log(arguments);
-    // if just one result
-    if (typeof arguments[0] === "string") {
-      //console.log('found: single result');
-      var oldArgs = arguments;
-      arguments = new Array();
-      arguments[0] = oldArgs;
-    }
+    $.when.apply(null, requests).done(function () {
+        //console.log('parsing: getSchedule Items');
+        var containers = [];
+        // build results array
+        //console.log('arguments:');
+        //console.log(arguments);
+        // if just one result
+        if (typeof arguments[0] === "string") {
+            //console.log('found: single result');
+            var oldArgs = arguments;
+            arguments = new Array();
+            arguments[0] = oldArgs;
+        }
 
-    $.each(arguments, function (index, value) {
-      SUGAR.util.evalScript('<script>' + value[0] + '</script>');
-      var container = result.body;
-      containers.push(container);
+        $.each(arguments, function (index, value) {
+            SUGAR.util.evalScript('<script>' + value[0] + '</script>');
+            var container = result.body;
+            containers.push(container);
+        });
+        // Sort
+        containers.sort(SugarWidgetScheduler.sortByStartdate);
+        containers.sort(SugarWidgetScheduler.sortByType);
+        $dialog.html(containers);
     });
-    // Sort
-    containers.sort(SugarWidgetScheduler.sortByStartdate);
-    containers.sort(SugarWidgetScheduler.sortByType);
-    $dialog.html(containers);
-  });
 }
 //////////////////////////////////////////////////
 // class: SugarWidgetSchedulerAttendees
@@ -829,175 +828,175 @@ SugarWidgetScheduler.getScheduleDetails = function(beans, ids) {
 //
 //////////////////////////////////////////////////
 
-SugarClass.inherit("SugarWidgetSchedulerAttendees","SugarClass");
+SugarClass.inherit("SugarWidgetSchedulerAttendees", "SugarClass");
 
 function SugarWidgetSchedulerAttendees() {
-	this.init();
+    this.init();
 }
 
-SugarWidgetSchedulerAttendees.prototype.init = function() {
-	var form_name;
-	if(typeof document.EditView != 'undefined')
-		form_name = "EditView";
-	else if(typeof document.CalendarEditView != 'undefined')
-		form_name = "CalendarEditView";
-	else
-		return;
+SugarWidgetSchedulerAttendees.prototype.init = function () {
+    var form_name;
+    if (typeof document.EditView != 'undefined')
+        form_name = "EditView";
+    else if (typeof document.CalendarEditView != 'undefined')
+        form_name = "CalendarEditView";
+    else
+        return;
 
-	// this.datetime = new SugarDateTime();
-	GLOBAL_REGISTRY.scheduler_attendees_obj = this;
+    // this.datetime = new SugarDateTime();
+    GLOBAL_REGISTRY.scheduler_attendees_obj = this;
 
     var date_start = document.forms[form_name].date_start.value;
-	var hour_start = parseInt(date_start.substring(11,13), 10);
-	var minute_start = parseInt(date_start.substring(14,16), 10);
-	var has_meridiem = /am|pm/i.test(date_start);
-	if(has_meridiem) {
-	var meridiem = trim(date_start.substring(16));
-	}
+    var hour_start = parseInt(date_start.substring(11, 13), 10);
+    var minute_start = parseInt(date_start.substring(14, 16), 10);
+    var has_meridiem = /am|pm/i.test(date_start);
+    if (has_meridiem) {
+        var meridiem = trim(date_start.substring(16));
+    }
 
-	if(has_meridiem) {
-		GLOBAL_REGISTRY.focus.fields.time_start = hour_start + time_separator + minute_start + meridiem;
-	} else {
-		GLOBAL_REGISTRY.focus.fields.time_start = hour_start+time_separator+minute_start;
-		//GLOBAL_REGISTRY.focus.fields.time_start = document.forms[form_name].time_hour_start.value+time_separator+minute_start;
-	}
+    if (has_meridiem) {
+        GLOBAL_REGISTRY.focus.fields.time_start = hour_start + time_separator + minute_start + meridiem;
+    } else {
+        GLOBAL_REGISTRY.focus.fields.time_start = hour_start + time_separator + minute_start;
+        //GLOBAL_REGISTRY.focus.fields.time_start = document.forms[form_name].time_hour_start.value+time_separator+minute_start;
+    }
 
-	GLOBAL_REGISTRY.focus.fields.date_start = document.forms[form_name].date_start.value;
-	GLOBAL_REGISTRY.focus.fields.duration_hours = document.forms[form_name].duration_hours.value;
-	GLOBAL_REGISTRY.focus.fields.duration_minutes = document.forms[form_name].duration_minutes.value;
-	GLOBAL_REGISTRY.focus.fields.datetime_start = SugarDateTime.mysql2jsDateTime(GLOBAL_REGISTRY.focus.fields.date_start,GLOBAL_REGISTRY.focus.fields.time_start);
+    GLOBAL_REGISTRY.focus.fields.date_start = document.forms[form_name].date_start.value;
+    GLOBAL_REGISTRY.focus.fields.duration_hours = document.forms[form_name].duration_hours.value;
+    GLOBAL_REGISTRY.focus.fields.duration_minutes = document.forms[form_name].duration_minutes.value;
+    GLOBAL_REGISTRY.focus.fields.datetime_start = SugarDateTime.mysql2jsDateTime(GLOBAL_REGISTRY.focus.fields.date_start, GLOBAL_REGISTRY.focus.fields.time_start);
 
-	this.timeslots = new Array();
-	this.hours = 9;
-	this.segments = 4;
-	this.start_hours_before = 4;
+    this.timeslots = new Array();
+    this.hours = 9;
+    this.segments = 4;
+    this.start_hours_before = 4;
 
-	var minute_interval = 15;
-	var dtstart = GLOBAL_REGISTRY.focus.fields.datetime_start;
+    var minute_interval = 15;
+    var dtstart = GLOBAL_REGISTRY.focus.fields.datetime_start;
 
-	// initialize first date in timeslots
-	var curdate = new Date(dtstart.getFullYear(),dtstart.getMonth(),dtstart.getDate(),dtstart.getHours()-this.start_hours_before,0);
+    // initialize first date in timeslots
+    var curdate = new Date(dtstart.getFullYear(), dtstart.getMonth(), dtstart.getDate(), dtstart.getHours() - this.start_hours_before, 0);
 
-	if(typeof(GLOBAL_REGISTRY.focus.fields.duration_minutes) == 'undefined') {
-		GLOBAL_REGISTRY.focus.fields.duration_minutes = 0;
-	}
-	GLOBAL_REGISTRY.focus.fields.datetime_end = new Date(dtstart.getFullYear(),dtstart.getMonth(),dtstart.getDate(),dtstart.getHours()+parseInt(GLOBAL_REGISTRY.focus.fields.duration_hours),dtstart.getMinutes()+parseInt(GLOBAL_REGISTRY.focus.fields.duration_minutes),0);
+    if (typeof (GLOBAL_REGISTRY.focus.fields.duration_minutes) == 'undefined') {
+        GLOBAL_REGISTRY.focus.fields.duration_minutes = 0;
+    }
+    GLOBAL_REGISTRY.focus.fields.datetime_end = new Date(dtstart.getFullYear(), dtstart.getMonth(), dtstart.getDate(), dtstart.getHours() + parseInt(GLOBAL_REGISTRY.focus.fields.duration_hours), dtstart.getMinutes() + parseInt(GLOBAL_REGISTRY.focus.fields.duration_minutes), 0);
 
-	var has_start = false;
-	var has_end = false;
+    var has_start = false;
+    var has_end = false;
 
-	for(i = 0;i < this.hours * this.segments; i++) {
-		var hash = SugarDateTime.getUTCHash(curdate);
-		var obj = {"hash":hash,"date_obj":curdate};
-		if(has_start == false && GLOBAL_REGISTRY.focus.fields.datetime_start.getTime() <= curdate.getTime()) {
-			obj.is_start = true;
-			has_start = true;
-		}
-		if(has_end == false && GLOBAL_REGISTRY.focus.fields.datetime_end.getTime() <= curdate.getTime()) {
-			obj.is_end = true;
-			has_end = true;
-		}
-		this.timeslots.push(obj);
-		curdate = new Date(curdate.getFullYear(),curdate.getMonth(),curdate.getDate(),curdate.getHours(),curdate.getMinutes()+minute_interval);
-	}
+    for (i = 0; i < this.hours * this.segments; i++) {
+        var hash = SugarDateTime.getUTCHash(curdate);
+        var obj = { "hash": hash, "date_obj": curdate };
+        if (has_start == false && GLOBAL_REGISTRY.focus.fields.datetime_start.getTime() <= curdate.getTime()) {
+            obj.is_start = true;
+            has_start = true;
+        }
+        if (has_end == false && GLOBAL_REGISTRY.focus.fields.datetime_end.getTime() <= curdate.getTime()) {
+            obj.is_end = true;
+            has_end = true;
+        }
+        this.timeslots.push(obj);
+        curdate = new Date(curdate.getFullYear(), curdate.getMonth(), curdate.getDate(), curdate.getHours(), curdate.getMinutes() + minute_interval);
+    }
     //Bug#51357: Reset the search input fields after attandee popup is initiated.
     SugarWidgetSchedulerSearch.resetSearchForm();
 }
 
 SugarWidgetSchedulerAttendees.prototype.load = function (parentNode) {
-	this.parentNode = parentNode;
-	this.display();
+    this.parentNode = parentNode;
+    this.display();
 }
 
-SugarWidgetSchedulerAttendees.prototype.display = function() {
+SugarWidgetSchedulerAttendees.prototype.display = function () {
 
-	var form_name;
-	if(typeof document.EditView != 'undefined')
-		form_name = "EditView";
-	else if(typeof document.CalendarEditView != 'undefined')
-		form_name = "CalendarEditView";
+    var form_name;
+    if (typeof document.EditView != 'undefined')
+        form_name = "EditView";
+    else if (typeof document.CalendarEditView != 'undefined')
+        form_name = "CalendarEditView";
     else
-    return;
+        return;
 
-	var dtstart = GLOBAL_REGISTRY.focus.fields.datetime_start;
-	var top_date = SugarDateTime.getFormattedDate(dtstart);
-	var html = '<table id ="schedulerTable">';
-	html += '<tr class="schedulerTopRow">';
-	html += '<th colspan="'+((this.hours*this.segments)+2)+'"><h4>'+ top_date +'</h4></th>';
-	html += '</tr>';
-	html += '<tr class="schedulerTimeRow">';
-	html += '<td>&nbsp;</td>';
+    var dtstart = GLOBAL_REGISTRY.focus.fields.datetime_start;
+    var top_date = SugarDateTime.getFormattedDate(dtstart);
+    var html = '<table id ="schedulerTable">';
+    html += '<tr class="schedulerTopRow">';
+    html += '<th colspan="' + ((this.hours * this.segments) + 2) + '"><h4>' + top_date + '</h4></th>';
+    html += '</tr>';
+    html += '<tr class="schedulerTimeRow">';
+    html += '<td>&nbsp;</td>';
 
-	for(var i=0;i < (this.timeslots.length/this.segments); i++) {
-		var hours = this.timeslots[i*this.segments].date_obj.getHours();
-		var am_pm = '';
+    for (var i = 0; i < (this.timeslots.length / this.segments); i++) {
+        var hours = this.timeslots[i * this.segments].date_obj.getHours();
+        var am_pm = '';
 
-		if(time_reg_format.indexOf('A') >= 0 || time_reg_format.indexOf('a') >= 0) {
-			am_pm = "AM";
+        if (time_reg_format.indexOf('A') >= 0 || time_reg_format.indexOf('a') >= 0) {
+            am_pm = "AM";
 
-			if(hours > 12) {
-				am_pm = "PM";
-				hours -= 12;
-			}
-			if(hours == 12) {
-				am_pm = "PM";
-			}
-			if(hours == 0) {
-				hours = 12;
-				am_pm = "AM";
-			}
-			if(time_reg_format.indexOf('a') >= 0) {
-				am_pm = am_pm.toLowerCase();
-			}
-			if(hours != 0 && hours != 12 && i != 0) {
-				am_pm = "";
-			}
+            if (hours > 12) {
+                am_pm = "PM";
+                hours -= 12;
+            }
+            if (hours == 12) {
+                am_pm = "PM";
+            }
+            if (hours == 0) {
+                hours = 12;
+                am_pm = "AM";
+            }
+            if (time_reg_format.indexOf('a') >= 0) {
+                am_pm = am_pm.toLowerCase();
+            }
+            if (hours != 0 && hours != 12 && i != 0) {
+                am_pm = "";
+            }
 
-		}
+        }
 
-		var form_hours = hours+time_separator+"00";
-		html += '<th scope="col" colspan="'+this.segments+'">'+form_hours+am_pm+'</th>';
-	}
+        var form_hours = hours + time_separator + "00";
+        html += '<th scope="col" colspan="' + this.segments + '">' + form_hours + am_pm + '</th>';
+    }
 
-	html += '<td>&nbsp;</td>';
-	html += '</tr>';
-	html += '</table>';
-    if ( this.parentNode.childNodes.length < 1 )
+    html += '<td>&nbsp;</td>';
+    html += '</tr>';
+    html += '</table>';
+    if (this.parentNode.childNodes.length < 1)
         this.parentNode.innerHTML += '<div id="scheduler-Div" class="schedulerDiv">' + html + '</div>';
     else
         this.parentNode.childNodes[0].innerHTML = html;
 
-	var thetable = "schedulerTable";
+    var thetable = "schedulerTable";
 
-	if(typeof (GLOBAL_REGISTRY) == 'undefined') {
-		return;
-	}
+    if (typeof (GLOBAL_REGISTRY) == 'undefined') {
+        return;
+    }
 
-	//set the current user (as event-coordinator) so that they can be added to invitee list
-	//only IF the first removed flag has not been set AND this is a new record
-	if((typeof (GLOBAL_REGISTRY.focus.users_arr) == 'undefined' || GLOBAL_REGISTRY.focus.users_arr.length == 0)
-      && document.forms[form_name].record.value =='' && typeof(GLOBAL_REGISTRY.FIRST_REMOVE)=='undefined') {
-		GLOBAL_REGISTRY.focus.users_arr = [ GLOBAL_REGISTRY.current_user ];
-	}
+    //set the current user (as event-coordinator) so that they can be added to invitee list
+    //only IF the first removed flag has not been set AND this is a new record
+    if ((typeof (GLOBAL_REGISTRY.focus.users_arr) == 'undefined' || GLOBAL_REGISTRY.focus.users_arr.length == 0)
+        && document.forms[form_name].record.value == '' && typeof (GLOBAL_REGISTRY.FIRST_REMOVE) == 'undefined') {
+        GLOBAL_REGISTRY.focus.users_arr = [GLOBAL_REGISTRY.current_user];
+    }
 
-	if(typeof GLOBAL_REGISTRY.focus.users_arr_hash == 'undefined') {
-		GLOBAL_REGISTRY.focus.users_arr_hash = new Object();
-	}
+    if (typeof GLOBAL_REGISTRY.focus.users_arr_hash == 'undefined') {
+        GLOBAL_REGISTRY.focus.users_arr_hash = new Object();
+    }
 
-	// append attendee rows
-	for(var i=0;i < GLOBAL_REGISTRY.focus.users_arr.length;i++) {
-		var row = new SugarWidgetScheduleRow(this.timeslots);
-		row.focus_bean = GLOBAL_REGISTRY.focus.users_arr[i];
-		GLOBAL_REGISTRY.focus.users_arr_hash[ GLOBAL_REGISTRY.focus.users_arr[i]['fields']['id']] =	GLOBAL_REGISTRY.focus.users_arr[i];
-		row.load(thetable);
-	}
+    // append attendee rows
+    for (var i = 0; i < GLOBAL_REGISTRY.focus.users_arr.length; i++) {
+        var row = new SugarWidgetScheduleRow(this.timeslots);
+        row.focus_bean = GLOBAL_REGISTRY.focus.users_arr[i];
+        GLOBAL_REGISTRY.focus.users_arr_hash[GLOBAL_REGISTRY.focus.users_arr[i]['fields']['id']] = GLOBAL_REGISTRY.focus.users_arr[i];
+        row.load(thetable);
+    }
 }
 
 SugarWidgetSchedulerAttendees.form_add_attendee = function (list_row) {
-	if(typeof (GLOBAL_REGISTRY.result_list[list_row]) != 'undefined' && typeof(GLOBAL_REGISTRY.focus.users_arr_hash[ GLOBAL_REGISTRY.result_list[list_row].fields.id]) == 'undefined') {
-		GLOBAL_REGISTRY.focus.users_arr[ GLOBAL_REGISTRY.focus.users_arr.length ] = GLOBAL_REGISTRY.result_list[list_row];
-	}
-	GLOBAL_REGISTRY.scheduler_attendees_obj.display();
+    if (typeof (GLOBAL_REGISTRY.result_list[list_row]) != 'undefined' && typeof (GLOBAL_REGISTRY.focus.users_arr_hash[GLOBAL_REGISTRY.result_list[list_row].fields.id]) == 'undefined') {
+        GLOBAL_REGISTRY.focus.users_arr[GLOBAL_REGISTRY.focus.users_arr.length] = GLOBAL_REGISTRY.result_list[list_row];
+    }
+    GLOBAL_REGISTRY.scheduler_attendees_obj.display();
 }
 
 
@@ -1006,37 +1005,37 @@ SugarWidgetSchedulerAttendees.form_add_attendee = function (list_row) {
 // widget to display each row in the scheduler
 //
 //////////////////////////////////////////////////
-SugarClass.inherit("SugarWidgetScheduleRow","SugarClass");
+SugarClass.inherit("SugarWidgetScheduleRow", "SugarClass");
 
 function SugarWidgetScheduleRow(timeslots) {
-	this.init(timeslots);
+    this.init(timeslots);
 }
 
-SugarWidgetScheduleRow.prototype.init = function(timeslots) {
-	this.timeslots = timeslots;
+SugarWidgetScheduleRow.prototype.init = function (timeslots) {
+    this.timeslots = timeslots;
 }
 
 SugarWidgetScheduleRow.prototype.load = function (thetableid) {
-	this.thetableid = thetableid;
-	var self = this;
+    this.thetableid = thetableid;
+    var self = this;
 
-	vcalClient = new SugarVCalClient();
-	if(typeof (GLOBAL_REGISTRY['freebusy_adjusted']) == 'undefined' ||	typeof (GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id]) == 'undefined') {
-		global_request_registry[req_count] = [this,'display'];
-		vcalClient.load(this.focus_bean.fields.id,req_count);
-		req_count++;
-	} else {
-		this.display();
-	}
+    vcalClient = new SugarVCalClient();
+    if (typeof (GLOBAL_REGISTRY['freebusy_adjusted']) == 'undefined' || typeof (GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id]) == 'undefined') {
+        global_request_registry[req_count] = [this, 'display'];
+        vcalClient.load(this.focus_bean.fields.id, req_count);
+        req_count++;
+    } else {
+        this.display();
+    }
 }
 
 // Attendee Rows FOR SCHEDULING TABLE
-SugarWidgetScheduleRow.prototype.display = function() {
-	SUGAR.util.doWhen("document.getElementById('" + this.thetableid + "') != null", function(){
+SugarWidgetScheduleRow.prototype.display = function () {
+    SUGAR.util.doWhen("document.getElementById('" + this.thetableid + "') != null", function () {
         var tr;
         this.thetable = document.getElementById(this.thetableid);
 
-        if(typeof (this.element) != 'undefined') {
+        if (typeof (this.element) != 'undefined') {
             if (this.element.parentNode != null)
                 this.thetable.deleteRow(this.element.rowIndex);
 
@@ -1047,7 +1046,7 @@ SugarWidgetScheduleRow.prototype.display = function() {
         }
         tr.className = "schedulerAttendeeRow";
         $(tr).attr('data-id', this.focus_bean.fields.id);
-        $(tr).attr('data-module', this.focus_bean.module +'s');
+        $(tr).attr('data-module', this.focus_bean.module + 's');
         td = document.createElement('td');
         tr.appendChild(td);
         //insertCell(tr.cells.length);
@@ -1075,167 +1074,167 @@ SugarWidgetScheduleRow.prototype.display = function() {
         td.noWrap = true;
         //CCL - Remove check to disallow removal of assigned user or current user
         //if ( GLOBAL_REGISTRY.focus.fields.assigned_user_id != this.focus_bean.fields.id && GLOBAL_REGISTRY.current_user.fields.id != this.focus_bean.fields.id) {
-       td.innerHTML = '<a title="'+ GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE']
-                    + '" class="listViewTdToolsS1" style="text-decoration:none;" '
-                    + 'href="javascript:SugarWidgetScheduleRow.deleteRow(\''+this.focus_bean.fields.id+'\');">&nbsp;'
-                    + '<img src="index.php?entryPoint=getImage&themeName='+SUGAR.themes.theme_name+'&imageName=delete_inline.gif" '
-                    + 'align="absmiddle" alt="'+ GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE'] +'" border="0"> '
-                    + GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE'] +'</a>';
+        td.innerHTML = '<a title="' + GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE']
+            + '" class="listViewTdToolsS1" style="text-decoration:none;" '
+            + 'href="javascript:SugarWidgetScheduleRow.deleteRow(\'' + this.focus_bean.fields.id + '\');">&nbsp;'
+            + '<img src="index.php?entryPoint=getImage&themeName=' + SUGAR.themes.theme_name + '&imageName=delete_inline.gif" '
+            + 'align="absmiddle" alt="' + GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE'] + '" border="0"> '
+            + GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE'] + '</a>';
         //}
         this.element = tr;
         this.element_index = this.thetable.rows.length - 1;
     }, null, this);
 }
 
-SugarWidgetScheduleRow.deleteRow = function(bean_id) {
-	// can't delete organizer
-	/*
-	if(GLOBAL_REGISTRY.focus.users_arr.length == 1 || GLOBAL_REGISTRY.focus.fields.assigned_user_id == bean_id) {
-		return;
-	}
-    */
-	for(var i=0;i<GLOBAL_REGISTRY.focus.users_arr.length;i++) {
-		if(GLOBAL_REGISTRY.focus.users_arr[i]['fields']['id']==bean_id) {
-			delete GLOBAL_REGISTRY.focus.users_arr_hash[GLOBAL_REGISTRY.focus.users_arr[i]['fields']['id']];
-			GLOBAL_REGISTRY.focus.users_arr.splice(i,1);
-	     	//set first remove flag to true for processing in display() function
-			GLOBAL_REGISTRY.FIRST_REMOVE = true;
-			GLOBAL_REGISTRY.container.root_widget.display();
-		}
-	}
+SugarWidgetScheduleRow.deleteRow = function (bean_id) {
+    // can't delete organizer
+    /*
+    if(GLOBAL_REGISTRY.focus.users_arr.length == 1 || GLOBAL_REGISTRY.focus.fields.assigned_user_id == bean_id) {
+      return;
+    }
+      */
+    for (var i = 0; i < GLOBAL_REGISTRY.focus.users_arr.length; i++) {
+        if (GLOBAL_REGISTRY.focus.users_arr[i]['fields']['id'] == bean_id) {
+            delete GLOBAL_REGISTRY.focus.users_arr_hash[GLOBAL_REGISTRY.focus.users_arr[i]['fields']['id']];
+            GLOBAL_REGISTRY.focus.users_arr.splice(i, 1);
+            //set first remove flag to true for processing in display() function
+            GLOBAL_REGISTRY.FIRST_REMOVE = true;
+            GLOBAL_REGISTRY.container.root_widget.display();
+        }
+    }
 }
 
 
 function DL_GetElementLeft(eElement) {
-	/*
-	 * ifargument is invalid
-	 * (not specified, is null or is 0)
-	 * and function is a method
-	 * identify the element as the method owner
-	 */
-	if(!eElement && this) {
-		eElement = this;
-	}
+    /*
+     * ifargument is invalid
+     * (not specified, is null or is 0)
+     * and function is a method
+     * identify the element as the method owner
+     */
+    if (!eElement && this) {
+        eElement = this;
+    }
 
-	/*
-	 * initialize var to store calculations
-	 * identify first offset parent element
-	 * move up through element hierarchy
-	 * appending left offset of each parent
-	 * until no more offset parents exist
-	 */
-	var nLeftPos = eElement.offsetLeft;
-	var eParElement = eElement.offsetParent;
-	while (eParElement != null) {
-		nLeftPos += eParElement.offsetLeft;
-		eParElement = eParElement.offsetParent;
-	}
-	return nLeftPos; // return the number calculated
+    /*
+     * initialize var to store calculations
+     * identify first offset parent element
+     * move up through element hierarchy
+     * appending left offset of each parent
+     * until no more offset parents exist
+     */
+    var nLeftPos = eElement.offsetLeft;
+    var eParElement = eElement.offsetParent;
+    while (eParElement != null) {
+        nLeftPos += eParElement.offsetLeft;
+        eParElement = eParElement.offsetParent;
+    }
+    return nLeftPos; // return the number calculated
 }
 
 
 function DL_GetElementTop(eElement) {
-	if(!eElement && this) {
-		eElement = this;
-	}
+    if (!eElement && this) {
+        eElement = this;
+    }
 
-	var nTopPos = eElement.offsetTop;
-	var eParElement = eElement.offsetParent;
-	while (eParElement != null) {
-		nTopPos += eParElement.offsetTop;
-		eParElement = eParElement.offsetParent;
-	}
-	return nTopPos;
+    var nTopPos = eElement.offsetTop;
+    var eParElement = eElement.offsetParent;
+    while (eParElement != null) {
+        nTopPos += eParElement.offsetTop;
+        eParElement = eParElement.offsetParent;
+    }
+    return nTopPos;
 }
 
 
 //////////////////////////////////////////
 // adds the <td>s for freebusy display within a row
 //////////////////////////////////////////
-SugarWidgetScheduleRow.prototype.add_freebusy_nodes = function(tr, attendee) {
-	var hours = 9;
-	var segments = 4;
-	var html = '';
-	var is_loaded = false;
+SugarWidgetScheduleRow.prototype.add_freebusy_nodes = function (tr, attendee) {
+    var hours = 9;
+    var segments = 4;
+    var html = '';
+    var is_loaded = false;
 
-	if(typeof GLOBAL_REGISTRY['freebusy_adjusted'] != 'undefined' && typeof GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id] != 'undefined') {
-		is_loaded = true;
-	}
+    if (typeof GLOBAL_REGISTRY['freebusy_adjusted'] != 'undefined' && typeof GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id] != 'undefined') {
+        is_loaded = true;
+    }
 
-	for(var i=0;i < this.timeslots.length; i++) {
+    for (var i = 0; i < this.timeslots.length; i++) {
 
-		var td = document.createElement('td');
-		tr.appendChild(td);
-		//var td = tr.insertCell(tr.cells.length);
+        var td = document.createElement('td');
+        tr.appendChild(td);
+        //var td = tr.insertCell(tr.cells.length);
         td.innerHTML = '&nbsp;';
 
-		if(typeof(this.timeslots[i]['is_start']) != 'undefined') {
-			td.className = 'schedulerSlotCellStartTime';
-		}
+        if (typeof (this.timeslots[i]['is_start']) != 'undefined') {
+            td.className = 'schedulerSlotCellStartTime';
+        }
 
-        if(typeof(this.timeslots[i]['is_end']) != 'undefined') {
+        if (typeof (this.timeslots[i]['is_end']) != 'undefined') {
             td.className = 'schedulerSlotCellEndTime';
         }
 
-		if(is_loaded) {
-			// if there's a freebusy stack in this slice
-			if(	typeof(GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id][this.timeslots[i].hash]) != 'undefined') {
-				$(td).addClass('free');
+        if (is_loaded) {
+            // if there's a freebusy stack in this slice
+            if (typeof (GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id][this.timeslots[i].hash]) != 'undefined') {
+                $(td).addClass('free');
 
                 var dataid = '',
                     module = '';
-                $.each(GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id][this.timeslots[i].hash]['records'], function(index, value) {
-                    if(dataid == '')
+                $.each(GLOBAL_REGISTRY['freebusy_adjusted'][this.focus_bean.fields.id][this.timeslots[i].hash]['records'], function (index, value) {
+                    if (dataid == '')
                         dataid = index;
                     else
                         dataid += ',' + index;
 
-                    if(module == '')
-                        module = value +'s';
+                    if (module == '')
+                        module = value + 's';
                     else
-                        module += ',' + value +'s';
+                        module += ',' + value + 's';
                 });
 
                 $(td).attr('data-id', dataid);
                 $(td).attr('data-module', module);
 
-                if((dataid.split(',').length) > 1) {
-									$(td).addClass('busy');
+                if ((dataid.split(',').length) > 1) {
+                    $(td).addClass('busy');
                 }
-			}
-		}
-            // Hover Logic
-            $(td).hover(
-                function (e) {
-                    // On hover in
-                    var domElement = $(this);
-                    // Only add hover logic to the fields that need it.
-                    if($(domElement).hasClass('free') || domElement.hasClass('schedulerSlotCellStartTime')) {
-                        //
-                        // If the id is in the td:
-                        if (domElement.attr('data-id') != null) {
-                            var id = domElement.attr('data-id').split(',');
-                            var module = domElement.attr('data-module').split(',');
-                            if (module == "undefined" || module == null) {
-                                module = 'Meetings';
-                            }
-                            // Only show popup if user leaves mouse over the td
-                            setTimeout(function () {
-                                if ($(domElement).is(":hover")) {
-                                    SugarWidgetScheduler.getScheduleDetails(module, id);
-                                }
-                            }, SugarWidgetScheduler.popupControlDelayTime);
+            }
+        }
+        // Hover Logic
+        $(td).hover(
+            function (e) {
+                // On hover in
+                var domElement = $(this);
+                // Only add hover logic to the fields that need it.
+                if ($(domElement).hasClass('free') || domElement.hasClass('schedulerSlotCellStartTime')) {
+                    //
+                    // If the id is in the td:
+                    if (domElement.attr('data-id') != null) {
+                        var id = domElement.attr('data-id').split(',');
+                        var module = domElement.attr('data-module').split(',');
+                        if (module == "undefined" || module == null) {
+                            module = 'Meetings';
                         }
+                        // Only show popup if user leaves mouse over the td
+                        setTimeout(function () {
+                            if ($(domElement).is(":hover")) {
+                                SugarWidgetScheduler.getScheduleDetails(module, id);
+                            }
+                        }, SugarWidgetScheduler.popupControlDelayTime);
                     }
-                },
-                function (e) {
-                    // On hover out
                 }
-            );
-	}
+            },
+            function (e) {
+                // On hover out
+            }
+        );
+    }
 
     // Add hover logic to tr title
-    $(tr).find('td').first().hover(function(e) {
+    $(tr).find('td').first().hover(function (e) {
         var domElement = $(this);
         var module = domElement.closest('tr').attr('data-module').split(','),
             id = domElement.closest('tr').attr('data-id').split(',');
@@ -1248,11 +1247,11 @@ SugarWidgetScheduleRow.prototype.add_freebusy_nodes = function(tr, attendee) {
                 }
             }, SugarWidgetScheduler.popupControlDelayTime);
         }
-    }, function(e){});
+    }, function (e) {});
 }
 
 $().ready(function (e) {
-    $(document).on("mousemove", function(event) {
+    $(document).on("mousemove", function (event) {
         SugarWidgetScheduler.mouseX = event.pageX;
         SugarWidgetScheduler.mouseY = event.pageY;
     });

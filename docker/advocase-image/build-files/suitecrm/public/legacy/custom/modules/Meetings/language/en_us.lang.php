@@ -10,4 +10,5 @@ $mod_strings = array(
     'LBL_CREATE_INVITEE' => 'Create a New Contact',
     'LBL_CREATE_CONTACT' => 'Create a New Contact',
     'LBL_ADD_INVITEE' => 'Add Contacts',
+    'LBL_PHONE' => 'Phone Number',
 );
