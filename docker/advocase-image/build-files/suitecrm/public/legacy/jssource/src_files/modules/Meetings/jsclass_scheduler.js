@@ -918,49 +918,14 @@ SugarWidgetSchedulerAttendees.prototype.display = function () {
     else
         return;
 
-    var dtstart = GLOBAL_REGISTRY.focus.fields.datetime_start;
-    var top_date = SugarDateTime.getFormattedDate(dtstart);
     var html = '<table id ="schedulerTable">';
     html += '<tr class="schedulerTopRow">';
-    html += '<th colspan="' + ((this.hours * this.segments) + 2) + '"><h4>' + top_date + '</h4></th>';
+    html += '<th colspan="100%">Contacts Added to Communication</th>';
     html += '</tr>';
     html += '<tr class="schedulerTimeRow">';
-    html += '<td>&nbsp;</td>';
-
-    for (var i = 0; i < (this.timeslots.length / this.segments); i++) {
-        var hours = this.timeslots[i * this.segments].date_obj.getHours();
-        var am_pm = '';
-
-        if (time_reg_format.indexOf('A') >= 0 || time_reg_format.indexOf('a') >= 0) {
-            am_pm = "AM";
-
-            if (hours > 12) {
-                am_pm = "PM";
-                hours -= 12;
-            }
-            if (hours == 12) {
-                am_pm = "PM";
-            }
-            if (hours == 0) {
-                hours = 12;
-                am_pm = "AM";
-            }
-            if (time_reg_format.indexOf('a') >= 0) {
-                am_pm = am_pm.toLowerCase();
-            }
-            if (hours != 0 && hours != 12 && i != 0) {
-                am_pm = "";
-            }
-
-        }
-
-        var form_hours = hours + time_separator + "00";
-        html += '<th scope="col" colspan="' + this.segments + '">' + form_hours + am_pm + '</th>';
-    }
-
-    html += '<td>&nbsp;</td>';
     html += '</tr>';
     html += '</table>';
+
     if (this.parentNode.childNodes.length < 1)
         this.parentNode.innerHTML += '<div id="scheduler-Div" class="schedulerDiv">' + html + '</div>';
     else
@@ -1064,7 +1029,7 @@ SugarWidgetScheduleRow.prototype.display = function () {
         else
             td.innerHTML += ' ' + this.focus_bean.fields.name;
         // add freebusy tds here:
-        this.add_freebusy_nodes(tr);
+        // this.add_freebusy_nodes(tr);
 
         // delete button
         var td = document.createElement('td');

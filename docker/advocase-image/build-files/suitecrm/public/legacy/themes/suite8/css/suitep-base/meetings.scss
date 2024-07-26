@@ -1,3 +1,7 @@
+#EditView_tabs .panel  {
+    padding: 24px 40px 0px;
+}
+
 .view-module-Meetings {
     margin-top: 32px;
 
@@ -25,6 +29,10 @@
         }
     }
 
+    #EditView_tabs .panel-default > .panel-body {
+        padding: 0 0 16px;
+    }
+  
     .meeting-scheduler {
         padding: 0 40px;
     }
@@ -80,22 +88,22 @@
         letter-spacing: 0.05em;
         &:hover {
             background: $btn-hover-bg-color;
-      }
-  }
-  input[type=button] {
-    margin: 0.2em;
-    font-weight: 700;
-    height: 2.2em;
-    line-height: 1.1em;
-    background-color: $white;
-    text-transform: capitalize;
-    border-radius: 0.2em;
-    padding: 0.3em 1em;
-    letter-spacing: 0.05em;
-    font-size: 16px;
-    font-family: "BC Sans";
-    &:hover {
-        background: $secondary-button-hover;
+        }
+    }
+    input[type=button] {
+        margin: 0.2em;
+        font-weight: 700;
+        height: 2.2em;
+        line-height: 1.1em;
+        background-color: $white;
+        text-transform: capitalize;
+        border-radius: 0.2em;
+        padding: 0.3em 1em;
+        letter-spacing: 0.05em;
+        font-size: 16px;
+        font-family: "BC Sans";
+        &:hover {
+            background: $secondary-button-hover;
         }
     }
     input[type="button"][disabled] {
@@ -120,4 +128,14 @@
             padding-left: 1em;
         }
     }
+}
+
+#schedulerTable .schedulerTopRow {
+    font-family: BC Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 27.01px;
+    text-align: center;
+    background-color: $surface-background-lightGray;
+    color: $primary_text;
 }
