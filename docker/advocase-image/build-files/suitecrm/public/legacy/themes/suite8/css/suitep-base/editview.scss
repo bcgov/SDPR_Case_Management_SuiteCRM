@@ -1362,6 +1362,8 @@ table.dateTime {
 
 #parent_name {
   display: inline-block;
+  width: 71%;
+  height: 43px;
   margin-top: 8px;
   margin-right: 8px;
   clear: both;
@@ -3510,7 +3512,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 100%;
+    width: 90%;
   }
 
   .col-xs-12 [field=first_name].edit-view-field input[type="text"]#first_name {
@@ -3583,7 +3585,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 100%;
+    width: 90%;
   }
 
   .col-xs-6 input[type="text"]#first_name {
@@ -3798,6 +3800,7 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
+    height: 43px;
     width: 90%;
   }
 
@@ -5820,11 +5823,24 @@ select#duration {
 }
 
 select#parent_type {
-  width: 15%;
+  width: 17%;
   height: 43px;
+  margin-right: 1.9%;
 }
 
 select#advocase_comm_type_c {
   width: 95%;
   height: 43px;
+}
+
+span.id-ff.multiple.selectcrossbtn {
+  width: 0;
+}
+
+.col-xs-12.col-sm-8.edit-view-field.yui-ac {
+  height: 43px;
+}
+
+textarea#description {
+  height: 200px;
 }
