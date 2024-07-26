@@ -38,7 +38,7 @@
 
 // Panel contents
 .panel-body {
-  padding: $panel-body-padding;
+  padding: 0;
   @include clearfix;
 }
 
