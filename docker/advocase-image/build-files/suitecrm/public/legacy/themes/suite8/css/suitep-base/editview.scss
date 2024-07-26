@@ -258,7 +258,7 @@ div#searchResults {
 #list_div_win {
   background-color: $panel-bg;
   color: $main-font-color;
-  padding: 20px;
+  padding: 0px 40px 32px;
   margin-top: 0;
   border: 1px solid $panel-border-bg;
   border-radius: $border-radius-base;
@@ -267,8 +267,17 @@ div#searchResults {
   border-collapse: collapse;
 }
 
+div#list_div_win .view tr {
+  border: 1px solid #d8d8d8;
+}
+
 #list_div_win .list tr th {
-  color: $main-font-color;
+  color: $primary_text;
+  padding: 8px 32px;
+}
+
+#list_div_win .list tr td {
+  padding: 8px 32px;
 }
 
 #ygddfdiv {
@@ -797,6 +806,20 @@ option:checked {
   text-transform: capitalize;
   &:hover {
     background-color: $btn-hover-bg-color;
+  }
+}
+
+#list_div_win input[type="button"] {
+  padding: 4px 8px;
+  color: $surface-color-border-dark;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1em;
+  border: 1px solid $surface-color-border-dark;
+  background-color: $white;
+  text-transform: capitalize;
+  &:hover {
+    background-color: $secondary-button-hover;
   }
 }
 

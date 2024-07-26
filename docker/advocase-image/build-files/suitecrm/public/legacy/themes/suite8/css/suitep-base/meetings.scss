@@ -36,10 +36,16 @@
         padding: 0 40px;
     }
 
+    .invitees-hr-wrapper {
+        background: $white;
+        padding:  0 40px 32px;
+        border-left: 2px solid $surface-color-border-default;
+        border-right: 2px solid $surface-color-border-default;
+    }
+
     .invitees-hr {
         border-bottom: 1px solid $surface-color-border-default;
         width: 100%;
-        margin-top: 32px;
     }
 
     #scheduler .schedulerDiv {
@@ -104,9 +110,11 @@
         opacity: 0.5;
     }
     #list_div_win {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        margin-top: 0;
+        border-radius: 0;
+        border: none;
+        border-left: 2px solid #d8d8d8;
+        border-right: 2px solid #d8d8d8;
+        margin-top: -8px;
     }
     select {
         background: url($select-edit-background-url) no-repeat right;
