@@ -278,12 +278,16 @@ div#searchResults {
   border-collapse: collapse;
 }
 
-div#list_div_win .view tr {
+div#list_div_win .view tr,
+#list_subpanel_users .view tr,
+#list_subpanel_contacts .view tr {
   border: none;
   border-bottom: 1px solid #d8d8d8;
 }
 
-div#list_div_win .view tr:last-child {
+div#list_div_win .view tr:last-child,
+#list_subpanel_users .view tr:last-child,
+#list_subpanel_contacts .view tr:last-child {
   border: none;
 }
 
@@ -1232,6 +1236,10 @@ ul.noBullet {
   list-style-type: none;
 }
 
+#subpanel_list div.sub-panel{
+  margin: 0 40px;
+}
+
 li.noBullet:first-child {
   min-height: initial;
 }
@@ -1241,6 +1249,11 @@ li.noBullet {
   margin: 0;
   min-height: initial;
   list-style-type: none;
+}
+
+#subpanel_list li.noBullet {
+  margin: 0;
+  margin-top: 40px;
 }
 
 #MorePanelHandle {
@@ -2361,6 +2374,7 @@ table.view {
   overflow: hidden;
   border-radius: 6px;
   outline: 2px solid $grey-widget;
+  margin: 24px 40px 0;
 }
 
 .evenListRowS1 {
