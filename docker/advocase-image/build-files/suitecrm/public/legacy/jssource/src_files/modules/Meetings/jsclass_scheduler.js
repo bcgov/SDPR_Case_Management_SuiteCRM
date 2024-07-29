@@ -68,7 +68,7 @@ SugarWidgetListView.prototype.display = function () {
 
     var div = document.getElementById('list_div_win');
     div.style.display = 'block';
-    var html = '<table width="100%" cellpadding="0" cellspacing="0" border="0" class="list view">';
+    var html = '<div class="list-div-win-wrapper"><table width="100%" cellpadding="0" cellspacing="0" border="0" class="list view"></div>';
     html += '<tr>';
     html += '<th width="20%" nowrap="nowrap">' + GLOBAL_REGISTRY['meeting_strings']['LBL_NAME'] + '</th>';
     html += '<th width="20%" nowrap="nowrap">' + GLOBAL_REGISTRY['meeting_strings']['LBL_EMAIL'] + '</th>';
@@ -927,7 +927,7 @@ SugarWidgetSchedulerAttendees.prototype.display = function () {
     if (this.parentNode.childNodes.length < 1)
         this.parentNode.innerHTML += '<div id="scheduler-Div" class="schedulerDiv">' + html + '</div>';
     else
-        this.parentNode.childNodes[0].innerHTML = html;
+        this.parentNode.childNodes[3].innerHTML = html;
 
     var thetable = "schedulerTable";
 
@@ -1016,7 +1016,6 @@ SugarWidgetScheduleRow.prototype.display = function () {
 
         // icon + full name
         td.scope = 'row';
-
 
         td.innerHTML = td.innerHTML;
 
