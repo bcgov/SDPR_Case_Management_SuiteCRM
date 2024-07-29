@@ -761,7 +761,6 @@ slot {
 select {
   font-weight: normal;
   color: $main-font-color;
-  max-width: 90%;
   background-color: $white !important;
 }
 
@@ -1414,7 +1413,7 @@ table.dateTime {
 
 #parent_name {
   display: inline-block;
-  width: 71%;
+  width: 76%;
   height: 43px;
   margin-right: 8px;
   clear: both;
@@ -3564,7 +3563,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 90%;
+    width: 95%;
   }
 
   .col-xs-12 [field=first_name].edit-view-field input[type="text"]#first_name {
@@ -3589,7 +3588,7 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 100%;
+    width: 95%;
     height: 43px;
   }
 
@@ -3637,7 +3636,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 90%;
+    width: 95%;
   }
 
   .col-xs-6 input[type="text"]#first_name {
@@ -3697,7 +3696,7 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 100%;
+    width: 95%;
   }
 
   .email-address-options-container {
@@ -3740,7 +3739,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 90%;
+    width: 95%;
   }
 
   .col-xs-6 input[type="text"]#first_name {
@@ -3853,7 +3852,7 @@ select#sales_stage_advanced {
 
   .col-sm-6 .edit-view-field input[type="text"] {
     height: 43px;
-    width: 90%;
+    width: 95%;
   }
 
 
@@ -3913,7 +3912,7 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    width: 95%;
   }
 
 
@@ -5874,7 +5873,7 @@ body.popupBody {
 }
 
 select#duration {
-  width: 95%;
+  width: 100%;
   height: 43px;
 }
 
