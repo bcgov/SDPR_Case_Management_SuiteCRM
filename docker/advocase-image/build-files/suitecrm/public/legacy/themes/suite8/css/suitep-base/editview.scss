@@ -279,7 +279,12 @@ div#searchResults {
 }
 
 div#list_div_win .view tr {
-  border: 1px solid #d8d8d8;
+  border: none;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+div#list_div_win .view tr:last-child {
+  border: none;
 }
 
 #list_div_win .list tr th {
