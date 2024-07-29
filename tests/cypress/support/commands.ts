@@ -73,12 +73,9 @@ Cypress.Commands.add("kcLogin", () => {
     const authBaseUrl = Cypress.env("auth_base_url");
     const realm = Cypress.env("auth_realm");
     const client_id = Cypress.env("auth_client_id");
-    const redirect_uri = Cypress.config("baseUrl");
 
     const scope = "openid";
-    const state = "123456";
     const nonce = "7890";
-    const code_challenge_method = "S256";
     const kc_idp_hint = "idir";
 
     // Generate a code verifier using a random string of 43-128 characters.
@@ -88,26 +85,7 @@ Cypress.Commands.add("kcLogin", () => {
     // Make the initial request to the authentication endpoint.
     cy.request({
       method: "GET",
-      url: `${authBaseUrl}/auth/realms/${kc_idp_hint}/protocol/openid-connect/auth`,
-      qs: {
-        scope,
-        state: `${code_challenge}.${client_id}`,
-        response_type: "code",
-        client_id: `${realm}-realm`,
-        redirect_uri: `${authBaseUrl}/auth/realms/${realm}/broker/${kc_idp_hint}/endpoint&none=${nonce}`
-      },
-      // url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/auth`,
-      // qs: {
-      //   client_id,
-      //   redirect_uri,
-      //   code_challenge_method,
-      //   code_challenge,
-      //   response_type: "code",
-      //   scope,
-      //   state,
-      //   nonce,
-      //   kc_idp_hint,
-      // },
+      url: `${authBaseUrl}/auth/realms/${kc_idp_hint}/protocol/openid-connect/auth?scope=${scope}&state=${code_challenge}.${client_id}&response_type=code&client_id=${realm}-realm&redirect_uri=${authBaseUrl}/auth/realms/${realm}/broker/${kc_idp_hint}/endpoint&nonce=${nonce}`,
       followRedirect: false, // Don't follow the redirect automatically.
     }).then((response) => {
       // Extract the location header from the response to get the redirect URL.
@@ -155,7 +133,8 @@ Cypress.Commands.add("kcLogout", () => {
   const authBaseUrl = Cypress.env("auth_base_url");
   const realm = Cypress.env("auth_realm");
   cy.request({
-    url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/logout`,
+    // change `https://advocase-d0d1b5-test.apps.gold.devops.gov.bc.ca` to an environment variable
+    url: 'https://advocase-d0d1b5-test.apps.gold.devops.gov.bc.ca/saml/logout',
   });
   cy.visit(Cypress.config().baseUrl);
   cy.on("uncaught:exception", (e) => {
