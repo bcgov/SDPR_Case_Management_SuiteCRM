@@ -52,18 +52,16 @@ array (
             'studio' => 'visible',
             'label' => 'LBL_REPORT_MODULE',
           ),
-        ),
-        2 => 
-        array (
-          0 => 
+          1 => 
           array (
             'name' => 'graphs_per_row',
             'label' => 'LBL_GRAPHS_PER_ROW',
           ),
         ),
-        3 => 
+        2 => 
         array (
           0 => 'description',
+          1 => '',
         ),
       ),
     ),

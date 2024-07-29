@@ -74,7 +74,7 @@
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   text-decoration: none;
-  padding: .5rem .75rem;
+  padding: 0;
   color: $white;
   text-align: center;
   font-family: "BC Sans";
@@ -603,9 +603,4 @@ table.subpanelTabForm {
 .clickMenu li a.disabled {
   color: $disabled-btn-color;
   cursor: default ;
-}
-
-#EditView_tabs {
-  padding-left: 1%;
-  padding-right: 1%;
 }
