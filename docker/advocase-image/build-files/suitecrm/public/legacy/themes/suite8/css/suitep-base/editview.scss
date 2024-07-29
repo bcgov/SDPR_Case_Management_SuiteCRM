@@ -4387,6 +4387,8 @@ h3 span {
 }
 
 .inlineEditIcon {
+  display: none;
+
   color: #F08377;
   padding-left: 3px;
   float: right;
@@ -4395,6 +4397,8 @@ h3 span {
 }
 
 .inlineEditIcon .suitepicon {
+  display: none;
+
   line-height: inherit;
 }
 
@@ -4404,7 +4408,7 @@ h3 span {
 }
 
 .inlineEdit:hover .inlineEditIcon svg {
-  display: inline;
+  display: none;
   cursor: pointer;
 }
 
