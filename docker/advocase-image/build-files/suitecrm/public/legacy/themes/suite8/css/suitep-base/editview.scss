@@ -88,8 +88,8 @@ div#searchResults {
 }
 
 #scheduler .schedulerDiv table tr td {
-  border: 1px solid #dddddd;
-  height: 18px;
+  border: none;
+  border-bottom: 1px solid $surface-color-border-default;
 }
 
 #scheduler .schedulerDiv table tr.schedulerTimeRow td {
@@ -108,10 +108,17 @@ div#searchResults {
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td[scope=row] {
   background: transparent;
-  padding-left: 4px;
-  border-left: 0;
+  padding: 8px 24px;
   overflow: hidden;
-  width: 125px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  font-family: "BC Sans";
+}
+
+#scheduler .schedulerDiv table tr:last-child td {
+    border: none;
 }
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td.schedulerSlotCellStartTime.free {
@@ -141,8 +148,12 @@ div#searchResults {
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td.schedulerAttendeeDeleteCell {
   background: transparent;
-  padding-left: 4px;
-  border-left: 1px solid #dddddd;
+  padding: 8px 24px;
+  border-left: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 27px;
+  font-family: "BC Sans";
 }
 
 #scheduler .schedulerInvitees .tabForm {

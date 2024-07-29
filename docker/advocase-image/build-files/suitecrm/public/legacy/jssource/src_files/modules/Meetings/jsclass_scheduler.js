@@ -918,13 +918,11 @@ SugarWidgetSchedulerAttendees.prototype.display = function () {
     else
         return;
 
-    var html = '<table id ="schedulerTable">';
+    var html = '<div class="schedulerTable-wrapper"><table id ="schedulerTable">';
     html += '<tr class="schedulerTopRow">';
     html += '<th colspan="100%">Contacts Added to Communication</th>';
     html += '</tr>';
-    html += '<tr class="schedulerTimeRow">';
-    html += '</tr>';
-    html += '</table>';
+    html += '</table></div>';
 
     if (this.parentNode.childNodes.length < 1)
         this.parentNode.innerHTML += '<div id="scheduler-Div" class="schedulerDiv">' + html + '</div>';
@@ -1018,9 +1016,7 @@ SugarWidgetScheduleRow.prototype.display = function () {
 
         // icon + full name
         td.scope = 'row';
-        var img = '<span class="suitepicon suitepicon-module-' + this.focus_bean.module.toLowerCase().replace('_', '-') + '"></span>';
 
-        td.innerHTML = img;
 
         td.innerHTML = td.innerHTML;
 
@@ -1042,7 +1038,7 @@ SugarWidgetScheduleRow.prototype.display = function () {
         td.innerHTML = '<a title="' + GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE']
             + '" class="listViewTdToolsS1" style="text-decoration:none;" '
             + 'href="javascript:SugarWidgetScheduleRow.deleteRow(\'' + this.focus_bean.fields.id + '\');">&nbsp;'
-            + '<img src="index.php?entryPoint=getImage&themeName=' + SUGAR.themes.theme_name + '&imageName=delete_inline.gif" '
+            + '<img src="index.php?entryPoint=getImage&themeName=' + SUGAR.themes.theme_name + '&imageName=delete_inline.png" '
             + 'align="absmiddle" alt="' + GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE'] + '" border="0"> '
             + GLOBAL_REGISTRY['meeting_strings']['LBL_REMOVE'] + '</a>';
         //}
