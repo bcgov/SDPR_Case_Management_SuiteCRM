@@ -32,7 +32,7 @@
     #EditView_tabs .panel-default > .panel-body {
         padding: 0 0 16px;
     }
-  
+
     .meeting-scheduler {
         padding: 0 40px;
     }
@@ -76,20 +76,7 @@
             background: $surface-color-primary-hover;
         }
     }
-    input[type=button] {
-        margin: 0.2em;
-        font-weight: bold;
-        height: 2.2em;
-        line-height: 1.1em;
-        background-color: rgb(147, 164, 179);
-        text-transform: capitalize;
-        border-radius: 0.2em;
-        padding: 0.3em 1em;
-        letter-spacing: 0.05em;
-        &:hover {
-            background: $btn-hover-bg-color;
-        }
-    }
+
     input[type=button] {
         margin: 0.2em;
         font-weight: 700;
@@ -138,4 +125,16 @@
     text-align: center;
     background-color: $surface-background-lightGray;
     color: $primary_text;
+    border: none;
+    border-bottom: 1px solid $surface-color-border-default;
+}
+
+#schedulerTable .schedulerTopRow th {
+    padding: 8px 24px;
+}
+
+.schedulerTable-wrapper {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid $surface-color-border-default;
 }
