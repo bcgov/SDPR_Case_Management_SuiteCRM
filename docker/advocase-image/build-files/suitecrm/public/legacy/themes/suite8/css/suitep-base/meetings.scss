@@ -49,6 +49,12 @@
         width: 100%;
     }
 
+    .list-div-win-wrapper {
+        overflow: hidden;
+        border-radius: 6px;
+        border: 2px solid $surface-color-border-default;
+    }
+
     #scheduler .schedulerDiv {
         padding: 0 40px 32px;
 
@@ -118,7 +124,7 @@
 }
 
 #schedulerTable .schedulerTopRow {
-    font-family: BC Sans;
+    font-family: "BC Sans";
     font-size: 16px;
     font-weight: 700;
     line-height: 27.01px;
