@@ -95,6 +95,15 @@
   border-bottom-width: 0px;
 }
 
+.panel-default > .panel-heading > div {
+  font-size: 20px ;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $panel-expanded-bg;
+  color: $panel-expanded-color;
+  vertical-align: middle;
+}
+
 .subpanel-icon {
   margin: 0 4px 0 4px;
   line-height: $panel-header-height;
