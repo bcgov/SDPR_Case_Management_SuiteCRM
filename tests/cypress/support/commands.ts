@@ -70,61 +70,77 @@ Cypress.Commands.add("kcLogin", () => {
   Cypress.log({ name: "Login to Keycloak" });
 
   cy.log("Keyloak Login").then(async () => {
-    const authBaseUrl = Cypress.env("auth_base_url");
-    const realm = Cypress.env("auth_realm");
-    const client_id = Cypress.env("auth_client_id");
+    cy.visit(Cypress.config().baseUrl);
+    // cy.wait(5000);
 
-    const scope = "openid";
-    const nonce = "7890";
-    const kc_idp_hint = "idir";
+    const credentials = {
+      username: Cypress.env("keycloak_user"),
+      password: Cypress.env("keycloak_password"),
+    };
 
-    // Generate a code verifier using a random string of 43-128 characters.
-    const code_verifier = Cypress._.random(0, 1e10).toString(36) + Cypress._.random(0, 1e10).toString(36);
-    const code_challenge = base64url(await sha256(code_verifier));
+    cy.get('[name="user"]').click();
+    cy.get('[name="user"]').type(credentials.username);
+    cy.get('[name="password"]').click();
+    cy.get('[name="password"]').type(credentials.password, { log: false });
+    cy.get('[name="btnSubmit"]').click();
 
-    // Make the initial request to the authentication endpoint.
-    cy.request({
-      method: "GET",
-      url: `${authBaseUrl}/auth/realms/${kc_idp_hint}/protocol/openid-connect/auth?scope=${scope}&state=${code_challenge}.${client_id}&response_type=code&client_id=${realm}-realm&redirect_uri=${authBaseUrl}/auth/realms/${realm}/broker/${kc_idp_hint}/endpoint&nonce=${nonce}`,
-      followRedirect: false, // Don't follow the redirect automatically.
-    }).then((response) => {
-      // Extract the location header from the response to get the redirect URL.
-      const redirectUrls = response.headers.location;
-      const url = Array.isArray(redirectUrls) ? redirectUrls[0] : redirectUrls;
+    cy.wait(15000)
 
-      // Visit redirect URL.
-      const credentials = {
-        username: Cypress.env("keycloak_user"),
-        password: Cypress.env("keycloak_password"),
-        url: url,
-      };
+    // const authBaseUrl = Cypress.env("auth_base_url");
+    // const realm = Cypress.env("auth_realm");
+    // const client_id = Cypress.env("auth_client_id");
 
-      // depending on if we're running the cypress tests locally or not, we may or may not ge a CORS error.
-      // If the keycloak login URL is the same as the application URL, then simply visit the URL;
-      // otherwise, will need to use cy.origin to avoid any CORS errors.
-      if (hasSameTopLevelDomain(Cypress.env("keycloak_login_url"), Cypress.config().baseUrl)) {
-        cy.visit(url);
-        // Log in the user and obtain an authorization code.
-        cy.get('[name="user"]').click();
-        cy.get('[name="user"]').type(credentials.username);
-        cy.get('[name="password"]').click();
-        cy.get('[name="password"]').type(credentials.password, { log: false });
-        cy.get('[name="btnSubmit"]').click();
-      } else {
-        // different origin, so handle CORS errors
-        cy.origin(Cypress.env("keycloak_login_url"), { args: credentials }, ({ username, password, url }) => {
-          cy.visit(url);
-          // Log in the user and obtain an authorization code.
-          cy.get('[name="user"]').click();
-          cy.get('[name="user"]').type(username);
-          cy.get('[name="password"]').click();
-          cy.get('[name="password"]').type(password, { log: false });
-          cy.get('[name="btnSubmit"]').click();
-        }).then(() => {
-          cy.waitForSpinner();
-        });
-      }
-    });
+    // const scope = "openid";
+    // const nonce = "7890";
+    // const kc_idp_hint = "idir";
+
+    // // Generate a code verifier using a random string of 43-128 characters.
+    // const code_verifier = Cypress._.random(0, 1e10).toString(36) + Cypress._.random(0, 1e10).toString(36);
+    // const code_challenge = base64url(await sha256(code_verifier));
+
+    // // Make the initial request to the authentication endpoint.
+    // cy.request({
+    //   method: "GET",
+    //   url: `${authBaseUrl}/auth/realms/${kc_idp_hint}/protocol/openid-connect/auth?scope=${scope}&state=${code_challenge}.${client_id}&response_type=code&client_id=${realm}-realm&redirect_uri=${authBaseUrl}/auth/realms/${realm}/broker/${kc_idp_hint}/endpoint&nonce=${nonce}`,
+    //   followRedirect: false, // Don't follow the redirect automatically.
+    // }).then((response) => {
+    //   // Extract the location header from the response to get the redirect URL.
+    //   const redirectUrls = response.headers.location;
+    //   const url = Array.isArray(redirectUrls) ? redirectUrls[0] : redirectUrls;
+
+    //   // Visit redirect URL.
+    //   const credentials = {
+    //     username: Cypress.env("keycloak_user"),
+    //     password: Cypress.env("keycloak_password"),
+    //     url: url,
+    //   };
+
+    //   // depending on if we're running the cypress tests locally or not, we may or may not ge a CORS error.
+    //   // If the keycloak login URL is the same as the application URL, then simply visit the URL;
+    //   // otherwise, will need to use cy.origin to avoid any CORS errors.
+    //   if (hasSameTopLevelDomain(Cypress.env("keycloak_login_url"), Cypress.config().baseUrl)) {
+    //     cy.visit(url);
+    //     // Log in the user and obtain an authorization code.
+    //     cy.get('[name="user"]').click();
+    //     cy.get('[name="user"]').type(credentials.username);
+    //     cy.get('[name="password"]').click();
+    //     cy.get('[name="password"]').type(credentials.password, { log: false });
+    //     cy.get('[name="btnSubmit"]').click();
+    //   } else {
+    //     // different origin, so handle CORS errors
+    //     cy.origin(Cypress.env("keycloak_login_url"), { args: credentials }, ({ username, password, url }) => {
+    //       cy.visit(url);
+    //       // Log in the user and obtain an authorization code.
+    //       cy.get('[name="user"]').click();
+    //       cy.get('[name="user"]').type(username);
+    //       cy.get('[name="password"]').click();
+    //       cy.get('[name="password"]').type(password, { log: false });
+    //       cy.get('[name="btnSubmit"]').click();
+    //     }).then(() => {
+    //       cy.waitForSpinner();
+    //     });
+    //   }
+    // });
   });
 });
 
