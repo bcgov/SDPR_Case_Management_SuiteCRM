@@ -9,17 +9,20 @@
             top: -0.8em;
         }
     }
-    .panel {
-        margin-top: 0;
-    }
+
     #SAVE_FOOTER,#CANCEL_FOOTER {
         display: none;
+    }
+
+    .tab-panels-wrapper {
+    width: 100%;
     }
     select {
         background: url($select-edit-background-url) no-repeat right;
         background-size: 25px 11px;
         border-color: $bright-grey;
         height: 32px;
+        width: 100%;
     }
     input[type=text],input[type=password],input[type=email],input[type=number]{
         background-color: $transparent-color;
