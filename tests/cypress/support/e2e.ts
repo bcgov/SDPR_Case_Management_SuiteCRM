@@ -15,24 +15,11 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import 'cypress-axe'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
 // Admin login before test files 
 beforeEach(() => {
-  cy.visit('/auth')
-  cy.injectAxe()
-  cy.wait(4000)
-
-  cy.get('input[name="username"]').type(Cypress.env('CYPRESS_SCRM_USERNAME'))
-  cy.get('input[name="password"]').type(Cypress.env('CYPRESS_SCRM_PASSWORD'))
-  cy.get('button[id="login-button"]').click()
-  // cy.get('input[type="submit"]').click()
-
-  cy.location('pathname').should('eq', '/')
-  cy.wait(8000)
-
-  cy.url().should('include', '/home')
+  cy.kcLogout().kcLogin()
 })

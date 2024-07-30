@@ -96,13 +96,13 @@
                         {{$colData.field.customLabel}}
                     {{elseif isset($colData.field.label) && strpos($colData.field.label, '$')}}
                         {capture name="label" assign="label"}{{$colData.field.label}}{/capture}
-                        {$label|strip_semicolon}:
+                        {$label|strip_semicolon}
                     {{elseif isset($colData.field.label)}}
                         {capture name="label" assign="label"}{sugar_translate label='{{$colData.field.label}}' module='{{$module}}'}{/capture}
-                        {$label|strip_semicolon}:
+                        {$label|strip_semicolon}
                     {{elseif isset($fields[$colData.field.name])}}
                         {capture name="label" assign="label"}{sugar_translate label='{{$fields[$colData.field.name].vname}}' module='{{$module}}'}{/capture}
-                        {$label|strip_semicolon}:
+                        {$label|strip_semicolon}
                     {{else}}
                         &nbsp;
                     {{/if}}
