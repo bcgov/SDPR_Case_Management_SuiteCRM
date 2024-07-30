@@ -6,6 +6,7 @@ Cypress is a powerful, fast, and easy-to-use testing framework for web applicati
 ## Table of Contents
 
 - [Installation](#installation)
+- [Environment](#environment)
 - [Writing Tests](#writing-tests)
 - [Running Tests](#running-tests)
 
@@ -22,6 +23,9 @@ To set up Cypress and install the necessary dependencies, follow these steps:
 ```bash
     npm install
 ```
+
+## Environment
+Copy the .env.example file and update the variables to run the tests
 
 ## Writing Tests
 

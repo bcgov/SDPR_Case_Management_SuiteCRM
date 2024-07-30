@@ -58,15 +58,16 @@ div#searchResults {
 
 /** Schedule Bar **/
 #scheduler {
-  margin-top: 5px;
+  color: $primary_text;
 }
 
 #scheduler .schedulerDiv {
-  background-color: $panel-bg;
-  color: $main-font-color;
-  padding: 20px 20px 20px 20px;
-  border: 1px solid $panel-border-bg;
-  border-radius: $border-radius-base;
+  background-color: $white;
+  color: $primary_text;
+  border: 2px solid #d8d8d8;
+  border-top: none;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
   text-align: left;
   width: 100%;
   border-collapse: collapse;
@@ -75,14 +76,20 @@ div#searchResults {
   display: block;
 }
 
+#scheduler h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
 #scheduler .schedulerDiv table {
   width: 100%;
   border-collapse: collapse;
 }
 
 #scheduler .schedulerDiv table tr td {
-  border: 1px solid #dddddd;
-  height: 18px;
+  border: none;
+  border-bottom: 1px solid $surface-color-border-default;
 }
 
 #scheduler .schedulerDiv table tr.schedulerTimeRow td {
@@ -101,10 +108,17 @@ div#searchResults {
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td[scope=row] {
   background: transparent;
-  padding-left: 4px;
-  border-left: 0;
+  padding: 8px 24px;
   overflow: hidden;
-  width: 125px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  font-family: "BC Sans";
+}
+
+#scheduler .schedulerDiv table tr:last-child td {
+    border: none;
 }
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td.schedulerSlotCellStartTime.free {
@@ -134,8 +148,12 @@ div#searchResults {
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td.schedulerAttendeeDeleteCell {
   background: transparent;
-  padding-left: 4px;
-  border-left: 1px solid #dddddd;
+  padding: 8px 24px;
+  border-left: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 27px;
+  font-family: "BC Sans";
 }
 
 #scheduler .schedulerInvitees .tabForm {
@@ -153,11 +171,11 @@ div#searchResults {
 
 #create-invitees {
   background-color: $panel-bg;
-  color: $main-font-color;
-  padding: 20px 20px 10px 20px;
-  margin-top: 5px;
-  border: 1px solid $panel-border-bg;
-  border-radius: $border-radius-base;
+  color: $primary_text;
+  padding: 32px 40px;
+  margin-top: 32px;
+  border: 2px solid $surface-color-border-default;
+  border-radius: 6px;
   text-align: left;
   width: 100%;
   border-collapse: collapse;
@@ -166,7 +184,7 @@ div#searchResults {
 .schedulerInvitees {
   background-color: $panel-bg;
   color: $main-font-color;
-  padding: 20px 20px 10px 20px;
+  padding: 32px 40px;
   margin-top: 5px;
   border: 1px solid $panel-border-bg;
   border-radius: $border-radius-base;
@@ -175,20 +193,23 @@ div#searchResults {
   border-collapse: collapse;
 }
 
-#create_invitee_as_lead, #create_invitee_as_contact {
-  margin: 0.2em;
-  font-weight: bold;
-  height: 2.2em;
+#create_invitee_as_lead {
+  display: none;
+}
+
+#create_invitee_as_contact {
+  font-weight: 700;
+  font-size: 16px;
   line-height: 1.1em;
-  background-color: rgb(147, 164, 179);
+  background-color: $white;
   text-transform: capitalize;
-  border-radius: 0.2em;
-  padding: 0.3em 1em;
-  letter-spacing: 0.05em;
-  border: none;
-  color: $white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid $surface-color-border-dark;
+  color: $typography-color-secondary;
+
   &:hover {
-      background: $btn-hover-bg-color;
+      background: $secondary-button-hover;
   }
 }
 
@@ -197,20 +218,37 @@ div#searchResults {
   line-height: $input-line-height;
 }
 
-#create-invitee-edit button {
-  margin: 0.2em;
-  font-weight: bold;
-  height: 2.2em;
+#cancel-create-invitee-btn {
+  font-weight: 700;
+  font-size: 16px;
   line-height: 1.1em;
-  background-color: rgb(147, 164, 179);
+  background-color: $white;
   text-transform: capitalize;
-  border-radius: 0.2em;
-  padding: 0.3em 1em;
-  letter-spacing: 0.05em;
-  border: none;
-  color: $white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid $surface-color-border-dark;
+  color: $typography-color-secondary;
+  margin: 0 16px 0 0;
+
   &:hover {
-      background: $btn-hover-bg-color;
+      background: $secondary-button-hover;
+  }
+}
+
+#create-invitee-btn {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1em;
+  background-color: $surface-color-primary-button-default;
+  text-transform: capitalize;
+  border-radius: 4px;
+  padding: 8px 16px;
+  border: 1px solid $surface-color-primary-button-default;
+  color: $white;
+  margin: 0;
+
+  &:hover {
+      background: $surface-color-primary-hover;
   }
 }
 
@@ -231,7 +269,7 @@ div#searchResults {
 #list_div_win {
   background-color: $panel-bg;
   color: $main-font-color;
-  padding: 20px;
+  padding: 0px 40px 32px;
   margin-top: 0;
   border: 1px solid $panel-border-bg;
   border-radius: $border-radius-base;
@@ -240,8 +278,26 @@ div#searchResults {
   border-collapse: collapse;
 }
 
+div#list_div_win .view tr,
+#list_subpanel_users .view tr,
+#list_subpanel_contacts .view tr {
+  border: none;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+div#list_div_win .view tr:last-child,
+#list_subpanel_users .view tr:last-child,
+#list_subpanel_contacts .view tr:last-child {
+  border: none;
+}
+
 #list_div_win .list tr th {
-  color: $main-font-color;
+  color: $primary_text;
+  padding: 8px 32px;
+}
+
+#list_div_win .list tr td {
+  padding: 8px 32px;
 }
 
 #ygddfdiv {
@@ -555,8 +611,8 @@ textarea {
 .edit-view-row-item {
   min-width: 48px;
   min-height: 30px;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 0;
+  padding-right: 40px;
 }
 
 .edit-view-row .label {
@@ -568,6 +624,7 @@ textarea {
   margin-top: 1.8rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  padding-left: 40px;
 }
 
 #lineItems {
@@ -678,7 +735,8 @@ slot {
 
 #EditView .edit tr td {
   font-weight: 700;
-  color: $main-font-color;
+  color: $primary_text;
+  vertical-align: bottom;
 }
 
 #EditView .edit input:not([type=button]) {
@@ -704,7 +762,6 @@ slot {
 select {
   font-weight: normal;
   color: $main-font-color;
-  max-width: 90%;
   background-color: $white !important;
 }
 
@@ -772,6 +829,20 @@ option:checked {
   }
 }
 
+#list_div_win input[type="button"] {
+  padding: 4px 8px;
+  color: $surface-color-border-dark;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1em;
+  border: 1px solid $surface-color-border-dark;
+  background-color: $white;
+  text-transform: capitalize;
+  &:hover {
+    background-color: $secondary-button-hover;
+  }
+}
+
 #EditView input[type="submit"] {
   margin: 0.2em;
   font-weight: bold;
@@ -814,6 +885,7 @@ option:checked {
     .edit-view-field {
       width: 100%;
       padding: 0;
+      padding-left: 40px;
       margin-bottom: 0.6em;
       input[type=text] {
         background-color:$transparent-color;
@@ -1165,6 +1237,10 @@ ul.noBullet {
   list-style-type: none;
 }
 
+#subpanel_list div.sub-panel{
+  margin: 0 40px;
+}
+
 li.noBullet:first-child {
   min-height: initial;
 }
@@ -1174,6 +1250,11 @@ li.noBullet {
   margin: 0;
   min-height: initial;
   list-style-type: none;
+}
+
+#subpanel_list li.noBullet {
+  margin: 0;
+  margin-top: 40px;
 }
 
 #MorePanelHandle {
@@ -1269,6 +1350,8 @@ p.error {
 }
 
 .error {
+  display: none;
+
   border: none;
   color: $alert-danger-text-color;
   background: $error-background-color;
@@ -1334,14 +1417,14 @@ table.dateTime {
 
 #parent_name {
   display: inline-block;
-  margin-top: 8px;
-  margin-right: 8px;
+  width: 81%;
+  height: 43px;
   clear: both;
+  padding-left: 10px;
 }
 
 input.sqsEnabled {
   display: inline-block;
-  margin-right: 8px;
   clear: both;
 }
 
@@ -2268,11 +2351,6 @@ table.view td {
 
 a:link {
   text-decoration: none;
-  color: $typography-color-link;
-}
-
-a:link:hover {
-  color: $typography-color-link-hover;
 }
 
 .iconed {
@@ -2298,6 +2376,7 @@ table.view {
   overflow: hidden;
   border-radius: 6px;
   outline: 2px solid $grey-widget;
+  margin: 24px 40px 0;
 }
 
 .evenListRowS1 {
@@ -2339,7 +2418,6 @@ table.view {
   height: auto;
 }
 
-
 .iconed_dull {
   opacity: 0.6;
 }
@@ -2363,6 +2441,10 @@ span.crumbLink {
   font-weight: 400;
   line-height: 27px;
   border: 1px solid $grey-widget;
+}
+#scheduler .view tr,
+#createInviteeForm .view tr {
+  border: none;
 }
 
 #mbfooter .yui-layout-hd td {
@@ -2715,11 +2797,18 @@ input#btn_ActionLine.button[type="button"] {
 }
 
 .col-sm-6 .edit-view-field input[type="text"].datetimecombo_date {
-  width: 84px;
+  width: 100%;
+  padding-left: 10px;
+}
+
+td.dateTimeComboColumn.datecalendar {
+  width: 71%;
+  margin-right: 3%;
 }
 
 .col-sm-6 .edit-view-field .datetimecombo_time_section {
   display: inline-block;
+  width: 100%;
 }
 
 #billing_address_street{
@@ -3349,7 +3438,6 @@ table legend {
 
 .ui-widget-content a {
   color: #F08377;
-  background: green;
 }
 
 .ui-widget-content a:hover {
@@ -3506,10 +3594,13 @@ select#sales_stage_advanced {
 
   .col-sm-8 .edit-view-field input[type="text"] {
     width: 100%;
+    height: 43px;
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
     width: 100%;
+    height: 43px;
+    padding-left: 10px;
   }
 
   [type="date"] img {
@@ -3617,6 +3708,7 @@ select#sales_stage_advanced {
 
   .col-sm-6 .edit-view-field input[type="text"] {
     width: 100%;
+    padding-left: 10px;
   }
 
   .email-address-options-container {
@@ -3659,7 +3751,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 90%;
+    width: 100%;
   }
 
   .col-xs-6 input[type="text"]#first_name {
@@ -3719,7 +3811,9 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    width: 100%;
+    height: 43px;
+    padding-left: 10px;
   }
 
   .email-address-options-container {
@@ -3770,7 +3864,9 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    height: 43px;
+    width: 100%;
+    padding-left: 10px;
   }
 
 
@@ -3830,7 +3926,8 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    width: 100%;
+    padding-left: 10px;
   }
 
 
@@ -4304,6 +4401,8 @@ h3 span {
 }
 
 .inlineEditIcon {
+  display: none;
+
   color: #F08377;
   padding-left: 3px;
   float: right;
@@ -4312,6 +4411,8 @@ h3 span {
 }
 
 .inlineEditIcon .suitepicon {
+  display: none;
+
   line-height: inherit;
 }
 
@@ -4321,7 +4422,7 @@ h3 span {
 }
 
 .inlineEdit:hover .inlineEditIcon svg {
-  display: inline;
+  display: none;
   cursor: pointer;
 }
 
@@ -5783,5 +5884,42 @@ body.popupBody {
     background: url($select-edit-background-url) no-repeat right;
     background-size: 25px 11px;
     border-color: $bright-grey;
+  }
+}
+
+select#duration {
+  width: 100%;
+  height: 43px;
+  padding-left: 10px;
+}
+
+select#parent_type {
+  width: 17%;
+  height: 43px;
+  padding-left: 10px;
+  margin-right: 1.9%;
+}
+
+select#advocase_comm_type_c {
+  width: 100%;
+  height: 43px;
+  padding-left: 10px;
+}
+
+span.id-ff.multiple.selectcrossbtn {
+  width: 0;
+}
+
+.col-xs-12.col-sm-8.edit-view-field.yui-ac {
+  height: 43px;
+}
+
+textarea#description {
+  height: 200px;
+}
+
+@media (min-width: 1630px) {
+  td.dateTimeComboColumn.dateTimeSection {
+      width: 26%;
   }
 }

@@ -38,12 +38,6 @@
   visibility: collapse;
 }
 
-.panel-default > .panel-heading {
-  background: $panel-default-bg;
-  color: $panel-expanded-color;
-  padding: 0.5rem 1.5rem;
-}
-
 .communication-panel-title {
   font-family: "BC Sans";
   font-size: 20px;
@@ -68,14 +62,19 @@
 .panel-default > .panel-heading {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 1.5rem;
+  background: $panel-default-bg;
+  color: $panel-expanded-color;
+  height: 50px;
+  align-items: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 
 .panel-default > .panel-heading > a {
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   text-decoration: none;
-  padding: .5rem .75rem;
+  padding: 0;
   color: $white;
   text-align: center;
   font-family: "BC Sans";
@@ -83,7 +82,6 @@
   font-style: normal;
   font-weight: 700;
   line-height: 34px;
-  text-transform: lowercase;
 }
 
 .panel-default > .panel-heading > a::first-letter {
@@ -94,6 +92,15 @@
   background: $panel-expanded-bg;
   line-height: $panel-header-height;
   border-bottom-width: 0px;
+}
+
+.panel-default > .panel-heading > div {
+  font-size: 20px ;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $panel-expanded-bg;
+  color: $panel-expanded-color;
+  vertical-align: middle;
 }
 
 .subpanel-icon {
@@ -129,7 +136,11 @@
 }
 
 .panel-default > .panel-body {
-  padding: 24px 40px 16px;
+  border-radius: 0 0 6px 6px;
+  border-right: 2px solid $border-default;
+  border-bottom: 2px solid $border-default;
+  border-left: 2px solid $border-default;
+  background: $white;
 }
 
 .panel-heading a.collapsed {

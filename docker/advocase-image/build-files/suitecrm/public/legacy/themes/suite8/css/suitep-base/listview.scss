@@ -403,7 +403,17 @@ tr#pagination {
 }
 
 a.listViewTdToolsS1 {
-  padding: 4px;
+  color: $primary_text;
+}
+
+#scheduler a.listViewTdToolsS1 {
+  display: flex;
+  align-items: center;
+}
+
+#scheduler a.listViewTdToolsS1 img {
+  width: 24px;
+  margin-top: -5px;
 }
 
 .list td a.listViewTdToolsS1 {
@@ -556,6 +566,11 @@ a.listViewTdToolsS1 {
 
 .table-responsive.list > tbody > tr > td svg {
   width:20px;
+}
+
+.footable-last-visible {
+  width: 134px;
+  max-width: 140px;
 }
 
 #subpanel_users {
