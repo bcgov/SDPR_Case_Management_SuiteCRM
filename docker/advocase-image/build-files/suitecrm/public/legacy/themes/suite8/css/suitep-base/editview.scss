@@ -2804,7 +2804,12 @@ input#btn_ActionLine.button[type="button"] {
 
 td.dateTimeComboColumn.datecalendar {
   width: 71%;
-  margin-right: 3%;
+  margin-right: 24px;
+  flex: 1;
+}
+
+.start_end_date {
+  display: flex;
 }
 
 .col-sm-6 .edit-view-field .datetimecombo_time_section {
