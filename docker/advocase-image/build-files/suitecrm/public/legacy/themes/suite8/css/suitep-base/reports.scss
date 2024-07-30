@@ -15,7 +15,7 @@
     }
 
     .tab-panels-wrapper {
-    width: 100%;
+    width: 77%;
     }
     select {
         background: url($select-edit-background-url) no-repeat right;
@@ -23,6 +23,11 @@
         border-color: $bright-grey;
         height: 32px;
         width: 100%;
+    }
+    .field-line-wrapper {
+        border: 2px solid $surface-color-border-default;
+        border-radius: 6px;
+        overflow: hidden;
     }
     input[type=text],input[type=password],input[type=email],input[type=number]{
         background-color: $transparent-color;
@@ -59,7 +64,7 @@
         }
     }
     .aor-tab-content #fieldLines tbody tr:nth-of-type(2n) td {
-        background: $very-light-grey;
+        background: $white;
     }
     .detail {
         padding-bottom: 1em;

@@ -39,9 +39,9 @@
 }
 
 #detailpanel_fields_select {
-  border-right: 2px solid $panel-border-bg;
+  border-right: 1px solid $surface-color-border-default;
   display: inline-block;
-  padding: 8px;
+  padding: 16px 16px 16px 0;
   width: 20%;
 }
 
@@ -101,17 +101,25 @@
   }
     #fieldLines_head, #aor_conditionLines_head, #chartHead {
       td {
-        background-color: $table-header-bg;
-        color: $action-tab-color;
-        height: 32px;
+        background-color: $surface-background-lightGray;
+        color: $primary_text;
+        font-size: 16px;
+        font-family: "BC Sans";
+        line-height: 27px;
         font-weight: 700;
+        padding: 8px 24px;
+        border-bottom:  1px solid $surface-color-border-default;
+        border-top:  2px solid $surface-color-border-default;
       }
       td:first-of-type {
-        border-top-left-radius: 4px;
+        border-top-left-radius: 6px;
+        border-left:  2px solid $surface-color-border-default;
+
       }
 
       td:last-of-type {
-        border-top-right-radius: 4px;
+        border-top-right-radius: 6px;
+        border-right:  2px solid $surface-color-border-default;
       }
     }
 
@@ -121,7 +129,9 @@
         height: 64px;
 
         td {
-          background-color: $main-alternate-bg;
+          background-color: $white;
+          border-bottom: 1px solid $surface-color-border-default;
+          padding: 16px 24px;
 
           [type=text] {
             margin-right: 4px;
@@ -129,6 +139,18 @@
         }
 
         td:first-of-type {
+          border-left: 2px solid $surface-color-border-default;
+          padding-left:  4px;
+          .button {
+            padding: 6px 6px 18px 6px;
+            line-height: 10px;
+            height: 0px;
+            font-size: 32px;
+          }
+        }
+
+        td:last-of-type {
+          border-right: 2px solid $surface-color-border-default;
           padding-left:  4px;
           .button {
             padding: 6px 6px 18px 6px;
@@ -138,7 +160,19 @@
           }
         }
       }
+    tr:last-of-type {
+      td {
+        border-bottom: 2px solid $surface-color-border-default;
+      }
+      td:first-of-type {
+        border-bottom-left-radius: 6px;
+      }
+
+      td:last-of-type {
+        border-bottom-right-radius: 6px;
+      }
     }
+  }
 
     tbody:nth-of-type(2n) {
       tr {
