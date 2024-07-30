@@ -74,8 +74,8 @@ Cypress.Commands.add("kcLogin", () => {
     // cy.wait(5000);
 
     const credentials = {
-      username: Cypress.env("keycloak_user"),
-      password: Cypress.env("keycloak_password"),
+      username: Cypress.env("CYPRESS_SCRM_USERNAME"),
+      password: Cypress.env("CYPRESS_SCRM_PASSWORD"),
     };
 
     cy.get('[name="user"]').click();
