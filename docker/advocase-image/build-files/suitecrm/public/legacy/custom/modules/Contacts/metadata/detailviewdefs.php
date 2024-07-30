@@ -214,11 +214,11 @@ array (
     ),
     'panels' => 
     array (
-      'lbl_contact_information' =>
+      'lbl_contact_information' => 
       array (
-        0 =>
+        0 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'advocase_contact_type_c',
             'studio' => 'visible',
@@ -226,48 +226,49 @@ array (
           ),
           1 => '',
         ),
-        1 =>
+        1 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'advocase_other_contact_type_c',
             'label' => 'LBL_ADVOCASE_OTHER_CONTACT_TYPE',
           ),
-          1 =>
+          1 => 
           array (
             'name' => 'birthdate',
             'comment' => 'The birthdate of the contact',
             'label' => 'LBL_BIRTHDATE',
           ),
         ),
-        2 =>
+        2 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'last_name',
           ),
-          1 =>  array (
+          1 => 
+          array (
             'name' => 'advocase_individual_age_c',
             'label' => 'LBL_ADVOCASE_INDIVIDUAL_AGE',
           ),
         ),
-        3 =>
+        3 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'first_name',
-            'customCode' => '{html_options name="salutation" id="salutation" options=$fields.salutation.options selected=$fields.salutation.value}&nbsp;<input name="first_name"  id="first_name" size="25" maxlength="25" type="text" value="{$fields.first_name.value}">',
+            'comment' => 'First name of the contact',
+            'label' => 'LBL_FIRST_NAME',
           ),
-
           1 => 
           array (
             'name' => 'advocase_clbl_eligible_c',
             'label' => 'LBL_ADVOCASE_CLBL_ELIGIBLE',
           ),
         ),
-        4 =>
+        4 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'advocase_email_c',
             'label' => 'LBL_ADVOCASE_EMAIL_C',
@@ -278,58 +279,55 @@ array (
             'label' => 'LBL_ADVOCASE_GSA_LEVEL',
           ),
         ),
-        5 =>
+        5 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'phone_work',
             'comment' => 'Work phone number of the contact',
             'label' => 'LBL_OFFICE_PHONE',
           ),
         ),
-        6 =>
+        6 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'phone_other',
             'comment' => 'Other phone number for the contact',
             'label' => 'LBL_OTHER_PHONE',
           ),
-
           1 => '',
         ),
-        7 =>
+        7 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'primary_address_city',
             'comment' => 'City for primary address',
             'label' => 'LBL_PRIMARY_ADDRESS_CITY',
           ),
-          
         ),
-        8 =>
+        8 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'advocase_contact_region_c',
             'label' => 'LBL_ADVOCASE_CONTACT_REGION_C',
           ),
-          
           1 => '',
         ),
-        9 =>
+        9 => 
         array (
-          0 =>
-        array (
+          0 => 
+          array (
             'name' => 'advocase_asq_consent_c',
             'studio' => 'visible',
             'label' => 'LBL_ADVOCASE_ASQ_CONSENT',
           ),
         ),
-        10 =>
+        10 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'advocase_legal_agreement_c',
             'studio' => 'visible',
