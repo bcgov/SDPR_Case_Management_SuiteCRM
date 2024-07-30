@@ -112,9 +112,10 @@
         margin-top: -8px;
     }
     select {
+        width: 46%;
+        height: 43px;
         background: url($select-edit-background-url) no-repeat right;
         border-color: $bright-grey;
-        margin-bottom: 0.5em;
         background-position: calc(100% - 0.5em) center;
     }
     li#tab-actions {
