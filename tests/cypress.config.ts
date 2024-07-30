@@ -2,19 +2,12 @@ import { defineConfig } from "cypress";
 
 export default defineConfig({
   env: {
-    auth_base_url: "https://test.loginproxy.gov.bc.ca",
-    auth_realm: "standard",
-    auth_client_id: "advocase-5545",
-    keycloak_login_url: "https://test.loginproxy.gov.bc.ca",
-    keycloak_user: "JGCARVAL",
-    keycloak_password: "EPV2hex@kyu6emq9dny",
-
-    // auth_base_url: process.env.REACT_APP_KEYCLOAK_URL,
-    // auth_realm: process.env.REACT_APP_KEYCLOAK_REALM,
-    // auth_client_id: process.env.REACT_APP_KEYCLOAK_CLIENT_ID,
-    // keycloak_user: process.env.CYPRESS_KEYCLOAK_USER,
-    // keycloak_password: process.env.CYPRESS_KEYCLOAK_PASSWORD,
-    // keycloak_login_url: "https://test.loginproxy.gov.bc.ca"
+    auth_base_url: process.env.KEYCLOAK_AUTH_URL,
+    auth_realm: process.env.KEYCLOAK_REALM,
+    auth_client_id: process.env.KEYCLOAK_CLIENT_ID,
+    keycloak_login_url: process.env.KEYCLOAK_AUTH_URL,
+    keycloak_user: process.env.KEYCLOAK_USER,
+    keycloak_password: process.env.KEYCLOAK_PASSWORD,
   },
   component: {
     devServer: {
