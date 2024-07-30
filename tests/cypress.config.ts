@@ -26,7 +26,7 @@ export default defineConfig({
   chromeWebSecurity: false,
   video: true,
   e2e: {
-    baseUrl: "https://advocase-d0d1b5-test.apps.gold.devops.gov.bc.ca/",
+    baseUrl: "https://advocase-d0d1b5-test.apps.gold.devops.gov.bc.ca",
     setupNodeEvents(on) {
       on('task', {
         log(message) {
