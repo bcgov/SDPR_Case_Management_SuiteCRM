@@ -71,7 +71,8 @@
             vertical-align: middle;
         }
     }
-    [data-field="assigned_user_name"] [field="assigned_user_name"] {
+    .assignedChip #assigned_user_name {
+        align-items: center;
         background-color: $support-surfaceColor-warning;
         border: 1px solid $support-borderColor-warning;
         padding: 4px 8px;
@@ -79,18 +80,20 @@
         color: $typography-color-secondary;
         border-radius: 4px;
         margin: 0;
-
-        input {
-            margin: 0;
-            padding: 0;
-            height: unset;
-            border: none !important;
-            width: fit-content;
-            background: none;
-            color: $typography-color-secondary;
-            font: inherit;
-            pointer-events: none;
-            cursor: default;
-        }
+    }
+    .assignedChipContainer {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .assignedChip {
+        display: flex;
+        align-items: center;
+    }
+    .id-ff.multiple.selectcrossbtn {
+        margin-left: 5px;
+    }
+    .assignedChipContainer .userselect {
+        margin-left: auto;
     }
 }
