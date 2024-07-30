@@ -15,8 +15,6 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import 'cypress-axe'
-// import 'cypress-keycloak'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -25,7 +23,3 @@ import 'cypress-axe'
 beforeEach(() => {
   cy.kcLogout().kcLogin()
 })
-
-// afterEach(() => {
-//   cy.kcLogout()
-// });
