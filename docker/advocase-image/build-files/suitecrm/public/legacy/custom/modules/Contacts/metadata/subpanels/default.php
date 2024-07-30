@@ -1,12 +1,10 @@
 <?php
-// created: 2024-07-24 15:10:59
+// created: 2024-07-30 22:01:58
 $subpanel_layout['list_fields'] = array (
   'name' => 
   array (
     'name' => 'name',
     'vname' => 'LBL_LIST_NAME',
-    'sort_by' => 'last_name',
-    'sort_order' => 'asc',
     'widget_class' => 'SubPanelDetailViewLink',
     'module' => 'Contacts',
     'width' => '23%',
@@ -42,14 +40,12 @@ $subpanel_layout['list_fields'] = array (
     'width' => '15%',
     'default' => true,
   ),
-  'email1' => 
+  'advocase_email_c' => 
   array (
-    'name' => 'email1',
-    'vname' => 'LBL_LIST_EMAIL',
-    'widget_class' => 'SubPanelEmailLink',
-    'width' => '30%',
-    'sortable' => true,
+    'type' => 'varchar',
     'default' => true,
+    'vname' => 'LBL_ADVOCASE_EMAIL_C',
+    'width' => '10%',
   ),
   'edit_button' => 
   array (
@@ -82,7 +78,7 @@ $subpanel_layout['list_fields'] = array (
     'name' => 'salutation',
     'usage' => 'query_only',
   ),
-  'account_id' => 
+  'contact_id' => 
   array (
     'usage' => 'query_only',
   ),
