@@ -611,8 +611,8 @@ textarea {
 .edit-view-row-item {
   min-width: 48px;
   min-height: 30px;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding-left: 0;
+  padding-right: 40px;
 }
 
 .edit-view-row .label {
@@ -886,6 +886,7 @@ option:checked {
     .edit-view-field {
       width: 100%;
       padding: 0;
+      padding-left: 34px;
       margin-bottom: 0.6em;
       input[type=text] {
         background-color:$transparent-color;
