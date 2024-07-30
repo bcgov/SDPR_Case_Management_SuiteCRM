@@ -2,7 +2,7 @@ import 'cypress-iframe'
 
 describe('ASA 68 - Assign Roles', {
   env: {
-    route: '/#acl-roles'
+    route: '#acl-roles'
   }
 }, () => {
   describe('ASA 119 - Create role', () => {
