@@ -88,8 +88,8 @@ div#searchResults {
 }
 
 #scheduler .schedulerDiv table tr td {
-  border: 1px solid #dddddd;
-  height: 18px;
+  border: none;
+  border-bottom: 1px solid $surface-color-border-default;
 }
 
 #scheduler .schedulerDiv table tr.schedulerTimeRow td {
@@ -108,10 +108,17 @@ div#searchResults {
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td[scope=row] {
   background: transparent;
-  padding-left: 4px;
-  border-left: 0;
+  padding: 8px 24px;
   overflow: hidden;
-  width: 125px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  font-family: "BC Sans";
+}
+
+#scheduler .schedulerDiv table tr:last-child td {
+    border: none;
 }
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td.schedulerSlotCellStartTime.free {
@@ -141,8 +148,12 @@ div#searchResults {
 
 #scheduler .schedulerDiv table tr.schedulerAttendeeRow td.schedulerAttendeeDeleteCell {
   background: transparent;
-  padding-left: 4px;
-  border-left: 1px solid #dddddd;
+  padding: 8px 24px;
+  border-left: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 27px;
+  font-family: "BC Sans";
 }
 
 #scheduler .schedulerInvitees .tabForm {
@@ -258,7 +269,7 @@ div#searchResults {
 #list_div_win {
   background-color: $panel-bg;
   color: $main-font-color;
-  padding: 20px;
+  padding: 0px 40px 32px;
   margin-top: 0;
   border: 1px solid $panel-border-bg;
   border-radius: $border-radius-base;
@@ -267,8 +278,26 @@ div#searchResults {
   border-collapse: collapse;
 }
 
+div#list_div_win .view tr,
+#list_subpanel_users .view tr,
+#list_subpanel_contacts .view tr {
+  border: none;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+div#list_div_win .view tr:last-child,
+#list_subpanel_users .view tr:last-child,
+#list_subpanel_contacts .view tr:last-child {
+  border: none;
+}
+
 #list_div_win .list tr th {
-  color: $main-font-color;
+  color: $primary_text;
+  padding: 8px 32px;
+}
+
+#list_div_win .list tr td {
+  padding: 8px 32px;
 }
 
 #ygddfdiv {
@@ -595,6 +624,8 @@ textarea {
   margin-top: 1.8rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  padding-left: 6%;
+  padding-right: 6%;
 }
 
 #lineItems {
@@ -732,7 +763,6 @@ slot {
 select {
   font-weight: normal;
   color: $main-font-color;
-  max-width: 90%;
   background-color: $white !important;
 }
 
@@ -797,6 +827,20 @@ option:checked {
   text-transform: capitalize;
   &:hover {
     background-color: $btn-hover-bg-color;
+  }
+}
+
+#list_div_win input[type="button"] {
+  padding: 4px 8px;
+  color: $surface-color-border-dark;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.1em;
+  border: 1px solid $surface-color-border-dark;
+  background-color: $white;
+  text-transform: capitalize;
+  &:hover {
+    background-color: $secondary-button-hover;
   }
 }
 
@@ -1193,6 +1237,10 @@ ul.noBullet {
   list-style-type: none;
 }
 
+#subpanel_list div.sub-panel{
+  margin: 0 40px;
+}
+
 li.noBullet:first-child {
   min-height: initial;
 }
@@ -1202,6 +1250,11 @@ li.noBullet {
   margin: 0;
   min-height: initial;
   list-style-type: none;
+}
+
+#subpanel_list li.noBullet {
+  margin: 0;
+  margin-top: 40px;
 }
 
 #MorePanelHandle {
@@ -1362,7 +1415,8 @@ table.dateTime {
 
 #parent_name {
   display: inline-block;
-  margin-top: 8px;
+  width: 76%;
+  height: 43px;
   margin-right: 8px;
   clear: both;
 }
@@ -2321,6 +2375,7 @@ table.view {
   overflow: hidden;
   border-radius: 6px;
   outline: 2px solid $grey-widget;
+  margin: 24px 40px 0;
 }
 
 .evenListRowS1 {
@@ -2741,11 +2796,21 @@ input#btn_ActionLine.button[type="button"] {
 }
 
 .col-sm-6 .edit-view-field input[type="text"].datetimecombo_date {
-  width: 84px;
+  width: 100%;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+
+td.dateTimeComboColumn.datecalendar {
+  width: 71%;
+  margin-right: 3%;
 }
 
 .col-sm-6 .edit-view-field .datetimecombo_time_section {
   display: inline-block;
+  width: 100%;
+  padding-left: 6%;
+  padding-right: 6%;
 }
 
 #billing_address_street{
@@ -3510,7 +3575,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 100%;
+    width: 95%;
   }
 
   .col-xs-12 [field=first_name].edit-view-field input[type="text"]#first_name {
@@ -3537,6 +3602,8 @@ select#sales_stage_advanced {
   .col-sm-6 .edit-view-field input[type="text"] {
     width: 100%;
     height: 43px;
+    padding-left: 6%;
+    padding-right: 6%;
   }
 
   [type="date"] img {
@@ -3583,7 +3650,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 100%;
+    width: 95%;
   }
 
   .col-xs-6 input[type="text"]#first_name {
@@ -3644,6 +3711,8 @@ select#sales_stage_advanced {
 
   .col-sm-6 .edit-view-field input[type="text"] {
     width: 100%;
+    padding-left: 6%;
+    padding-right: 6%;
   }
 
   .email-address-options-container {
@@ -3686,7 +3755,7 @@ select#sales_stage_advanced {
   }
 
   textarea#description {
-    width: 90%;
+    width: 95%;
   }
 
   .col-xs-6 input[type="text"]#first_name {
@@ -3746,8 +3815,10 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 95%;
+    width: 100%;
     height: 43px;
+    padding-left: 6%;
+    padding-right: 6%;
   }
 
   .email-address-options-container {
@@ -3798,7 +3869,10 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    height: 43px;
+    width: 100%;
+    padding-left: 6%;
+    padding-right: 6%;
   }
 
 
@@ -3858,7 +3932,9 @@ select#sales_stage_advanced {
   }
 
   .col-sm-6 .edit-view-field input[type="text"] {
-    width: 90%;
+    width: 100%;
+    padding-left: 6%;
+    padding-right: 6%;
   }
 
 
@@ -4332,6 +4408,8 @@ h3 span {
 }
 
 .inlineEditIcon {
+  display: none;
+
   color: #F08377;
   padding-left: 3px;
   float: right;
@@ -4340,6 +4418,8 @@ h3 span {
 }
 
 .inlineEditIcon .suitepicon {
+  display: none;
+
   line-height: inherit;
 }
 
@@ -4349,7 +4429,7 @@ h3 span {
 }
 
 .inlineEdit:hover .inlineEditIcon svg {
-  display: inline;
+  display: none;
   cursor: pointer;
 }
 
@@ -5815,16 +5895,35 @@ body.popupBody {
 }
 
 select#duration {
-  width: 95%;
+  width: 100%;
   height: 43px;
 }
 
 select#parent_type {
-  width: 15%;
+  width: 17%;
   height: 43px;
+  margin-right: 1.9%;
 }
 
 select#advocase_comm_type_c {
   width: 95%;
   height: 43px;
+}
+
+span.id-ff.multiple.selectcrossbtn {
+  width: 0;
+}
+
+.col-xs-12.col-sm-8.edit-view-field.yui-ac {
+  height: 43px;
+}
+
+textarea#description {
+  height: 200px;
+}
+
+@media (min-width: 1630px) {
+  td.dateTimeComboColumn.dateTimeSection {
+      width: 26%;
+  }
 }

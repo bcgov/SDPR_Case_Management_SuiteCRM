@@ -74,7 +74,7 @@
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   text-decoration: none;
-  padding: .5rem .75rem;
+  padding: 0;
   color: $white;
   text-align: center;
   font-family: "BC Sans";
@@ -93,6 +93,15 @@
   background: $panel-expanded-bg;
   line-height: $panel-header-height;
   border-bottom-width: 0px;
+}
+
+.panel-default > .panel-heading > div {
+  font-size: 20px ;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $panel-expanded-bg;
+  color: $panel-expanded-color;
+  vertical-align: middle;
 }
 
 .subpanel-icon {
@@ -128,7 +137,6 @@
 }
 
 .panel-default > .panel-body {
-  padding: 24px 40px 16px;
   border-radius: 0 0 6px 6px;
   border-right: 2px solid $border-default;
   border-bottom: 2px solid $border-default;
@@ -595,9 +603,4 @@ table.subpanelTabForm {
 .clickMenu li a.disabled {
   color: $disabled-btn-color;
   cursor: default ;
-}
-
-#EditView_tabs {
-  padding-left: 40px;
-  padding-right: 40px;
 }

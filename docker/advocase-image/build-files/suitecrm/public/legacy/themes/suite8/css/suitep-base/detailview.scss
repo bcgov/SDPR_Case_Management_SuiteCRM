@@ -51,10 +51,16 @@ p.msg {
 
 .moduleTitle .module-title-text {
   height: auto;
-  line-height: 36px;
   margin-bottom: 0.2em;
-  color: $module-title-text-color;
+  color: $primary_text;
   word-break: break-all;
+  margin-right: 1.8rem;
+  font-family: "BC Sans";
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  display: flex !important;
 }
 
 .nav-tabs > li.tab-inline-pagination {
@@ -532,7 +538,7 @@ div.detail-view-row {
       }
     }
     .inlineEditIcon {
-      display: flex;
+      display: none;
       justify-content: flex-end;
       flex-grow: 1;
     }
@@ -633,11 +639,14 @@ table.subpanel-table .pagination li.single > a {
 }
 
 .header-module-title {
-  color: #777777;
-  font-size: 1.2em;
-  font-weight: 300;
+  color: $typography-color-secondary;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .subpanel-table {
