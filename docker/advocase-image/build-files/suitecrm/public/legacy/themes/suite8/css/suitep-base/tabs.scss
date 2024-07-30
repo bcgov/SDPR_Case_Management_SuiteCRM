@@ -88,31 +88,27 @@
   .nav-tabs > li > a,
   .nav-tabs > li > a:focus,
   .nav-tabs > li > a:hover {
-    font-size: $page-p-size;
+    font-size: 18px;
     font-weight: 400;
-    background-color: $default-tab-bg-hover;
-    color: $default-tab-color-hover;
+    background-color: $white;
+    color: $primary_text;
     cursor: pointer;
-    margin: 0 0 0 1px;
-    border-color: $active-tab-border;
-    line-height: $tab-height + 3px;
-    text-transform: uppercase;
+    margin: 0;
+    padding: 16px;
+    line-height: 30px;
+    text-transform: capitalize;
+    border: none;
+    border-bottom: 3px solid $white;
   }
 
   .nav-tabs > li.active > a,
   .nav-tabs > li.active > a:focus,
   .nav-tabs > li.active > a:hover {
-    font-size: $page-p-size;
-    font-weight: 400;
-    background-color: $active-tab-bg-hover;
-    color: $active-tab-color-hover;
+    font-weight: 700;
     cursor: pointer;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 2px;
-    margin-right: 1px;
-    border-color: $active-tab-border;
-    line-height: $tab-height + 3px;
+    padding: 16px;
+    border-bottom: 3px solid $widget-border;
+
   }
 
   .nav-tabs > li.active:nth-of-type(1) > a,
@@ -174,7 +170,7 @@
 
   #first-tab-menu-xs.dropdown-menu {
     background-color: $active-tab-bg;
-    @media (min-width: 1200px) { 
+    @media (min-width: 1200px) {
       display: none;
     }
     @media (min-width: 768px){
