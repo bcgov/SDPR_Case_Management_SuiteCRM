@@ -1,5 +1,5 @@
 <?php
-// created: 2024-07-24 15:13:47
+// created: 2024-07-30 19:07:30
 $subpanel_layout['list_fields'] = array (
   'date_entered' => 
   array (
@@ -43,6 +43,13 @@ $subpanel_layout['list_fields'] = array (
     'widget_class' => 'SubPanelDetailViewLink',
     'target_module' => 'Users',
     'target_record_key' => 'assigned_user_id',
+  ),
+  'status' => 
+  array (
+    'type' => 'dynamicenum',
+    'vname' => 'LBL_STATUS',
+    'width' => '10%',
+    'default' => true,
   ),
   'edit_button' => 
   array (
