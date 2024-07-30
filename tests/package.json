@@ -16,7 +16,6 @@
     "cypress": "^13.13.0",
     "cypress-axe": "^1.5.0",
     "cypress-iframe": "^1.0.1",
-    "cypress-keycloak": "^2.0.1",
     "typescript": "^5.4.5"
   },
   "dependencies": {
