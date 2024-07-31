@@ -134,7 +134,11 @@ array (
         ),
         4 => 
         array (
-          0 => 'description',
+          0 => 
+          array (
+            'name' => 'description',
+            'label' => 'LBL_COMMUNICATION_NOTES',
+          ),
           1 => '',
         ),
       ),
