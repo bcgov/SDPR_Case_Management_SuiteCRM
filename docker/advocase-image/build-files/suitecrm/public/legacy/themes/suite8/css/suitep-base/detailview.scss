@@ -681,3 +681,11 @@ table.subpanel-table .pagination li.single > a {
     }
   }
 }
+
+.detail-view-row {
+  .detail-view-row-item {
+    &[data-field="duration"] {
+      display: none;
+    }
+  }
+}
