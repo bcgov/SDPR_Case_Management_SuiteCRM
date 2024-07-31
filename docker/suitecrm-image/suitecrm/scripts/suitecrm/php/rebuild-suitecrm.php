@@ -93,16 +93,6 @@ $files_to_remove = array(
     'cache/modules/Teams/TeamSetCache.php'
 );
 
-// foreach ($files_to_remove as $file) {
-//     $file = SugarAutoloader::normalizeFilePath($file);
-//     if (SugarAutoloader::fileExists($file)) {
-//         SugarAutoloader::unlink($file);
-//     }
-// }
-
-// // rebuild the autoloader once first, to be aware of new files
-// SugarAutoLoader::buildCache();
-
 // repair
 $repair = new RepairAndClear();
 $repair->repairAndClearAll(array('clearAll'), array($mod_strings['LBL_ALL_MODULES']), true, false, '');
@@ -110,9 +100,6 @@ $repair->repairAndClearAll(array('clearAll'), array($mod_strings['LBL_ALL_MODULE
 // remove some stuff
 LanguageManager::removeJSLanguageFiles();
 LanguageManager::clearLanguageCache();
-
-// rebuild some stuff
-// SugarAutoLoader::buildCache();
 
 // quick load of all beans
 global $beanList;
@@ -129,9 +116,12 @@ foreach ($full_module_list as $module => $label) {
 $app_list_strings = return_app_list_strings_language($current_language);
 $app_strings = return_application_language($current_language);
 
-// load api
-// $sd = new ServiceDictionary();
-// $sd->buildAllDictionaries();
+
+echo 'Repairing JS files...' . PHP_EOL;
+
+$_REQUEST['js_admin_repair'] = 'repair';
+
+require_once('/suitecrm/public/legacy/modules/Administration/callJSRepair.php');
 
 // when the other register shutdown functionalities complete, exit this script
 register_shutdown_function(
