@@ -51,7 +51,7 @@ $layout_defs['Meetings'] = array(
             'module' => 'Contacts',
             'sort_order' => 'asc',
             'sort_by' => 'last_name, first_name',
-            'subpanel_name' => 'ForMeetings',
+            'subpanel_name' => 'default',
             'get_subpanel_data' => 'contacts',
             'title_key' => 'LBL_CONTACTS_SUBPANEL_TITLE',
         ),

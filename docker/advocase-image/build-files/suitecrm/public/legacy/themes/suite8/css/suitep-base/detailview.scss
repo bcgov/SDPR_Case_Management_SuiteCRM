@@ -280,7 +280,6 @@ p.msg {
  .listViewThLinkS1{
   svg {
     position: relative;
-    top: 0.3em;
     left: 0.4em;
   }
  }
@@ -665,7 +664,7 @@ table.subpanel-table .pagination li.single > a {
 .detail-border-bottom {
   margin-top: 0;
   margin-bottom: 0;
-  border-top: 1px solid $header-bottom-border;
+  border-top: 1px solid $surface-color-border-dark;
 }
 
 .view-action-DetailView {
@@ -679,6 +678,14 @@ table.subpanel-table .pagination li.single > a {
           margin-right: 4px;
         }
       }
+    }
+  }
+}
+
+.detail-view-row {
+  .detail-view-row-item {
+    &[data-field="duration"] {
+      display: none;
     }
   }
 }
