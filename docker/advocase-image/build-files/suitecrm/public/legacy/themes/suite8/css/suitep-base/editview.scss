@@ -5930,3 +5930,19 @@ textarea#description {
       width: 26%;
   }
 }
+
+.edit-view-row {
+  .edit-view-row-item {
+    &[data-field="duration"] {
+      display: none;
+    }
+
+    &[data-field="date_end"] {
+      display: none;
+    }
+  }
+}
+
+td.dateTimeComboColumn.dateTimeSection {
+  display: none;
+}
