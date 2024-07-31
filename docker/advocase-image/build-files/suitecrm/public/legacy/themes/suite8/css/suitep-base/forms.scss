@@ -1396,16 +1396,15 @@ select[size] {
   background-size: 52px 52px;
   overflow-y: hidden;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
+  padding: 8px 16px;
   border-color: $input-select-bg;
   border-style: solid;
   border-radius: $border-radius-base;
-  line-height: $input-line-height + 8;
   outline: 0;
-  height:100%;
+  width: 150px;
+  height: 43px;
   -webkit-appearance: none;
   appearance: none;
-  border-size: 1px;
   -moz-appearance: none;
 }
 
@@ -1414,7 +1413,7 @@ select.form-control {
   background-color: $input-select-option;
   background-size: 52px 52px;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
+  padding: 0 0 0 5px;
   border-color: $input-select-bg;
   border-style: solid;
   border-radius: $border-radius-base;
@@ -1434,7 +1433,7 @@ select {
   background-color: $input-select-option;
   background-size: 52px 52px;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
+  padding: 0 0 0 5px;
   border-color: $input-select-bg;
   border-style: solid;
   border-radius: $border-radius-base;
@@ -1506,7 +1505,7 @@ select.ui-widget-content {
   background-color: $input-select-option;
   background-size: 52px 52px;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
+  padding: 0 0 0 5px;
   border-color: $input-select-bg;
   border-style: solid;
   border-radius: $border-radius-base;
