@@ -1,182 +1,89 @@
 <?php
-if (!defined('sugarEntry') || !sugarEntry) {
-    die('Not A Valid Entry Point');
-}
-/**
- *
- * SugarCRM Community Edition is a customer relationship management program developed by
- * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
- *
- * SuiteCRM is an extension to SugarCRM Community Edition developed by SalesAgility Ltd.
- * Copyright (C) 2011 - 2018 SalesAgility Ltd.
- *
- * This program is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Affero General Public License version 3 as published by the
- * Free Software Foundation with the addition of the following permission added
- * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
- * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
- * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
- * details.
- *
- * You should have received a copy of the GNU Affero General Public License along with
- * this program; if not, see http://www.gnu.org/licenses or write to the Free
- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA.
- *
- * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
- * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
- *
- * The interactive user interfaces in modified source and object code versions
- * of this program must display Appropriate Legal Notices, as required under
- * Section 5 of the GNU Affero General Public License version 3.
- *
- * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
- * these Appropriate Legal Notices must retain the display of the "Powered by
- * SugarCRM" logo and "Supercharged by SuiteCRM" logo. If the display of the logos is not
- * reasonably feasible for technical reasons, the Appropriate Legal Notices must
- * display the words "Powered by SugarCRM" and "Supercharged by SuiteCRM".
- */
-
-
-
-$subpanel_layout = array(
-    'top_buttons' => array(
-        array('widget_class' => 'SubPanelTopCreateButton'),
-        array('widget_class' => 'SubPanelTopSelectButton', 'popup_module' => 'Cases'),
-    ),
-
-    'insightWidget' => [
-        'rows' => [
-            [
-                'justify' => 'start',
-                'cols' => [
-                    [
-                        'icon' => 'Cases',
-                    ],
-                    [
-                        'labelKey' => '{{title_key}}',
-                        'class' => 'sub-panel-banner-button-title',
-                        'bold' => true,
-                    ]
-                ]
-            ],
-            [
-                'align' => 'center',
-                'justify' => 'start',
-                'class' => 'sub-panel-body',
-                'cols' => [
-                    [
-                        'descriptionKey' => '{{title_key}}_INSIGHT_DESCRIPTION',
-                        'class' => 'sub-panel-banner-tooltip',
-                    ],
-                    [
-                        'display' => 'hidden',
-                        'statistic' => 'cases'
-                    ],
-                    [
-                        'dynamicLabel' => 'LBL_CASES_INSIGHT',
-                        'class' => 'sub-panel-banner-value',
-                        'bold' => true,
-                    ],
-                    [
-                        'display' => 'hidden',
-                        'statistic' => 'default'
-                    ]
-                ]
-            ],
-        ]
-    ],
-
-    'where' => '',
-
-    'fill_in_additional_fields'=>true,
-
-    'list_fields' => array(
-        'name' =>
-        array (
-            'name' => 'name',
-            'vname' => 'LBL_LIST_NAME',
-            'widget_class' => 'SubPanelDetailViewLink',
-            'module' => 'Contacts',
-            'width' => '23%',
-            'default' => true,
-        ),
-        'advocase_contact_type_c' =>
-        array (
-            'type' => 'enum',
-            'default' => true,
-            'studio' => 'visible',
-            'vname' => 'LBL_ADVOCASE_CONTACT_TYPE',
-            'width' => '10%',
-        ),
-        'primary_address_city' =>
-        array (
-            'type' => 'varchar',
-            'vname' => 'LBL_LIST_PRIMARY_ADDRESS_CITY',
-            'width' => '10%',
-            'default' => true,
-        ),
-        'advocase_contact_region_c' =>
-        array (
-            'type' => 'varchar',
-            'default' => true,
-            'vname' => 'LBL_LIST_ADVOCASE_CONTACT_REGION_C',
-            'width' => '10%',
-        ),
-        'phone_work' =>
-        array (
-            'name' => 'phone_work',
-            'vname' => 'LBL_LIST_PHONE',
-            'width' => '15%',
-            'default' => true,
-        ),
-        'advocase_email_c' =>
-        array (
-            'name' => 'advocase_email_c',
-            'vname' => 'LBL_ADVOCASE_EMAIL_C',
-            'widget_class' => 'SubPanelEmailLink',
-            'width' => '30%',
-            'sortable' => false,
-            'default' => true,
-        ),
-        'edit_button' =>
-        array (
-            'vname' => 'LBL_EDIT_BUTTON',
-            'widget_class' => 'SubPanelEditButton',
-            'module' => 'Contacts',
-            'width' => '5%',
-            'default' => true,
-        ),
-        'remove_button' =>
-        array (
-            'vname' => 'LBL_REMOVE',
-            'widget_class' => 'SubPanelRemoveButton',
-            'module' => 'Contacts',
-            'width' => '5%',
-            'default' => true,
-        ),
-        'first_name' =>
-        array (
-            'name' => 'first_name',
-            'usage' => 'query_only',
-        ),
-        'last_name' =>
-        array (
-            'name' => 'last_name',
-            'usage' => 'query_only',
-        ),
-        'salutation' =>
-        array (
-            'name' => 'salutation',
-            'usage' => 'query_only',
-        ),
-        'contact_id' =>
-        array (
-            'usage' => 'query_only',
-        ),
-    ),
+// created: 2024-07-30 19:07:30
+$subpanel_layout['list_fields'] = array (
+  'date_entered' => 
+  array (
+    'type' => 'datetime',
+    'vname' => 'LBL_DATE_ENTERED',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'name' => 
+  array (
+    'name' => 'name',
+    'vname' => 'LBL_LIST_NAME',
+    'widget_class' => 'SubPanelDetailViewLink',
+    'module' => 'Contacts',
+    'width' => '23%',
+    'default' => true,
+  ),
+  'advocase_case_city_c' => 
+  array (
+    'type' => 'varchar',
+    'default' => true,
+    'vname' => 'LBL_ADVOCASE_CASE_CITY',
+    'width' => '10%',
+  ),
+  'advocase_case_region_c' => 
+  array (
+    'type' => 'enum',
+    'default' => true,
+    'studio' => 'visible',
+    'vname' => 'LBL_ADVOCASE_CASE_REGION',
+    'width' => '10%',
+  ),
+  'assigned_user_name' => 
+  array (
+    'link' => true,
+    'type' => 'relate',
+    'vname' => 'LBL_ASSIGNED_TO_NAME',
+    'id' => 'ASSIGNED_USER_ID',
+    'width' => '10%',
+    'default' => true,
+    'widget_class' => 'SubPanelDetailViewLink',
+    'target_module' => 'Users',
+    'target_record_key' => 'assigned_user_id',
+  ),
+  'status' => 
+  array (
+    'type' => 'dynamicenum',
+    'vname' => 'LBL_STATUS',
+    'width' => '10%',
+    'default' => true,
+  ),
+  'edit_button' => 
+  array (
+    'vname' => 'LBL_EDIT_BUTTON',
+    'widget_class' => 'SubPanelEditButton',
+    'module' => 'Contacts',
+    'width' => '5%',
+    'default' => true,
+  ),
+  'remove_button' => 
+  array (
+    'vname' => 'LBL_REMOVE',
+    'widget_class' => 'SubPanelRemoveButton',
+    'module' => 'Contacts',
+    'width' => '5%',
+    'default' => true,
+  ),
+  'first_name' => 
+  array (
+    'name' => 'first_name',
+    'usage' => 'query_only',
+  ),
+  'last_name' => 
+  array (
+    'name' => 'last_name',
+    'usage' => 'query_only',
+  ),
+  'salutation' => 
+  array (
+    'name' => 'salutation',
+    'usage' => 'query_only',
+  ),
+  'contact_id' => 
+  array (
+    'usage' => 'query_only',
+  ),
 );
