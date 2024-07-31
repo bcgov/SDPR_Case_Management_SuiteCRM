@@ -102,12 +102,7 @@ array (
             'name' => 'name',
             'label' => 'LBL_SUBJECT',
           ),
-          1 => 
-          array (
-            'name' => 'duration',
-            'customCode' => '{$fields.duration_hours.value}{$MOD.LBL_HOURS_ABBREV} {$fields.duration_minutes.value}{$MOD.LBL_MINSS_ABBREV} ',
-            'label' => 'LBL_DURATION',
-          ),
+          1 => '',
         ),
         1 => 
         array (
@@ -116,11 +111,7 @@ array (
             'name' => 'date_start',
             'label' => 'LBL_DATE_TIME',
           ),
-          1 => 
-          array (
-            'name' => 'parent_name',
-            'customLabel' => '{sugar_translate label=\'LBL_MODULE_NAME\' module=$fields.parent_type.value}',
-          ),
+          1 => '',
         ),
         2 => 
         array (
@@ -133,6 +124,15 @@ array (
           1 => '',
         ),
         3 => 
+        array (
+          0 => 
+          array (
+            'name' => 'parent_name',
+            'customLabel' => '{sugar_translate label=\'LBL_MODULE_NAME\' module=$fields.parent_type.value}',
+          ),
+          1 => '',
+        ),
+        4 => 
         array (
           0 => 'description',
           1 => '',
