@@ -108,6 +108,7 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           array (
             'name' => 'date_start',
             'type' => 'datetimecombo',
+            'label' => 'LBL_ADVOCASE_COMM_DATE',
             'displayParams' => 
             array (
               'required' => true,
@@ -160,7 +161,7 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           array (
             'name' => 'description',
             'comment' => 'Full text of the note',
-            'label' => 'LBL_DESCRIPTION',
+            'label' => 'LBL_COMMUNICATION_NOTES',
           ),
           1 => '',
         ),
