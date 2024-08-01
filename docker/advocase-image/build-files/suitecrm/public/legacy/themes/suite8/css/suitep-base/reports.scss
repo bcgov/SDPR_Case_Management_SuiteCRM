@@ -19,10 +19,9 @@
     }
     select {
         background: url($select-edit-background-url) no-repeat right;
-        background-size: 25px 11px;
-        border-color: $bright-grey;
-        height: 32px;
-        width: 100%;
+        background-size: 14px;
+        border-color: $surface-color-border-default;
+        background-origin: content-box; 
     }
     .field-line-wrapper {
         border: 2px solid $surface-color-border-default;
@@ -31,7 +30,8 @@
     }
     input[type=text],input[type=password],input[type=email],input[type=number]{
         background-color: $transparent-color;
-        border: 1px solid $form-border-color;
+        border: 1px solid $surface-color-border-default;
+        padding: 8px 16px;
     }
     textarea {
         background-color: $transparent-color;
@@ -65,6 +65,7 @@
     }
     .aor-tab-content #fieldLines tbody tr:nth-of-type(2n) td {
         background: $white;
+        white-space: nowrap;  
     }
     .detail {
         padding-bottom: 1em;

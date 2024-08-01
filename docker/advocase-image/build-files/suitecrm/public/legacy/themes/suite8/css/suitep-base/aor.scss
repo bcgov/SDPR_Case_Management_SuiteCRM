@@ -64,6 +64,7 @@
   padding: 0 0 16px !important;
   border-bottom: none !important;
   margin: 0 !important;
+  color: $primary_text;
 }
 
 #report-editview-footer .tab-toggler.active .button {
@@ -98,6 +99,9 @@
   #group_display_table {
     margin-bottom: 1em;
     margin-top: 1em;
+    td {
+      padding-right: 15px;
+    }
   }
     #fieldLines_head, #aor_conditionLines_head, #chartHead {
       td {
@@ -140,7 +144,6 @@
 
         td:first-of-type {
           border-left: 2px solid $surface-color-border-default;
-          padding-left:  4px;
           .button {
             padding: 6px 6px 18px 6px;
             line-height: 10px;
@@ -151,7 +154,6 @@
 
         td:last-of-type {
           border-right: 2px solid $surface-color-border-default;
-          padding-left:  4px;
           .button {
             padding: 6px 6px 18px 6px;
             line-height: 10px;
@@ -201,7 +203,6 @@
         }
 
         td:first-of-type {
-          padding-left:  4px;
           .button {
             padding: 6px 6px 18px 6px;
             line-height: 10px;

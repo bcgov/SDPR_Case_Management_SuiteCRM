@@ -1391,62 +1391,69 @@ textarea {
 }
 
 select[size] {
-  background: url($select-size-background-url) no-repeat right $input-select-option;
+  background: url($select-ui-widget-control-background-url) no-repeat right $input-select-option;
   background-color: $input-select-option;
   background-size: 52px 52px;
-  overflow-y: hidden;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
-  border-color: $input-select-bg;
+  border-color: $surface-color-border-default;
   border-style: solid;
   border-radius: $border-radius-base;
-  line-height: $input-line-height + 8;
   outline: 0;
-  height:100%;
+  height: $input-line-height + 8;
   -webkit-appearance: none;
   appearance: none;
-  border-size: 1px;
+  scrollbar-base-color: $input-select-bg;
+  scrollbar-arrow-color: $input-select-bg;
+  border-width: 1px;
   -moz-appearance: none;
+
+  height: 43px;
+  width: 160px;
+  padding: 8px 16px;
 }
 
 select.form-control {
-  background: url($select-form-control-background-url) no-repeat right $input-select-option;
+  background: url($select-ui-widget-control-background-url) no-repeat right $input-select-option;
   background-color: $input-select-option;
   background-size: 52px 52px;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
-  border-color: $input-select-bg;
+  border-color: $surface-color-border-default;
   border-style: solid;
   border-radius: $border-radius-base;
-  line-height: $input-line-height + 8;
   outline: 0;
   height: $input-line-height + 8;
   -webkit-appearance: none;
   appearance: none;
   scrollbar-base-color: $input-select-bg;
   scrollbar-arrow-color: $input-select-bg;
-  border-size: 1px;
+  border-width: 1px;
   -moz-appearance: none;
+
+  height: 43px;
+  width: 160px;
+  padding: 8px 16px;
 }
 
 select {
-  background: url($select-background-url) no-repeat right $input-select-option;
+  background: url($select-ui-widget-control-background-url) no-repeat right $input-select-option;
   background-color: $input-select-option;
   background-size: 52px 52px;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
-  border-color: $input-select-bg;
+  border-color: $surface-color-border-default;
   border-style: solid;
   border-radius: $border-radius-base;
-  line-height: $input-line-height + 8;
   outline: 0;
   height: $input-line-height + 8;
   -webkit-appearance: none;
   appearance: none;
   scrollbar-base-color: $input-select-bg;
   scrollbar-arrow-color: $input-select-bg;
-  border-size: 1px;
+  border-width: 1px;
   -moz-appearance: none;
+
+  height: 43px;
+  width: 160px;
+  padding: 8px 16px;
 }
 
 select:focus {
@@ -1506,19 +1513,21 @@ select.ui-widget-content {
   background-color: $input-select-option;
   background-size: 52px 52px;
   color: $main-font-color;
-  padding: 0 52px 0 5px;
-  border-color: $input-select-bg;
+  border-color: $surface-color-border-default;
   border-style: solid;
   border-radius: $border-radius-base;
-  line-height: $input-line-height + 8;
   outline: 0;
   height: $input-line-height + 8;
   -webkit-appearance: none;
   appearance: none;
   scrollbar-base-color: $input-select-bg;
   scrollbar-arrow-color: $input-select-bg;
-  border-size: 1px;
+  border-width: 1px;
   -moz-appearance: none;
+
+  height: 43px;
+  width: 160px;
+  padding: 8px 16px;
 }
 
 .form-control {

@@ -280,7 +280,8 @@ p.msg {
  .listViewThLinkS1{
   svg {
     position: relative;
-    left: 0.4em;
+    top: 1px;
+    left: 1px;
   }
  }
 }
@@ -688,4 +689,8 @@ table.subpanel-table .pagination li.single > a {
       display: none;
     }
   }
+}
+
+.tabDetailViewDFLink {
+  color: $typography-color-link;
 }
