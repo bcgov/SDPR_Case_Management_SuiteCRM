@@ -92,7 +92,15 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
             'name' => 'name',
           ),
           1 => 
-          '',
+          array (
+            'name' => 'date_end',
+            'type' => 'datetimecombo',
+            'displayParams' => 
+            array (
+              'required' => true,
+              'updateCallback' => 'SugarWidgetScheduler.update_time();',
+            ),
+          ),
         ),
         1 => 
         array (
@@ -100,7 +108,6 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           array (
             'name' => 'date_start',
             'type' => 'datetimecombo',
-            'label' => 'LBL_ADVOCASE_COMM_DATE',
             'displayParams' => 
             array (
               'required' => true,
@@ -108,7 +115,25 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
             ),
           ),
           1 => 
-          '',
+          array (
+            'name' => 'duration',
+            'customCode' => '
+                @@FIELD@@
+                <input id="duration_hours" name="duration_hours" type="hidden" value="{$fields.duration_hours.value}">
+                <input id="duration_minutes" name="duration_minutes" type="hidden" value="{$fields.duration_minutes.value}">
+                {sugar_getscript file="modules/Meetings/duration_dependency.js"}
+                <script type="text/javascript">
+                    var date_time_format = "{$CALENDAR_FORMAT}";
+                    {literal}
+                    SUGAR.util.doWhen(function(){return typeof DurationDependency != "undefined" && typeof document.getElementById("duration") != "undefined"}, function(){
+                        var duration_dependency = new DurationDependency("date_start","date_end","duration",date_time_format);
+                        initEditView(YAHOO.util.Selector.query(\'#duration\')[0].form);
+                    });
+                    {/literal}
+                </script>            
+            ',
+            'customCodeReadOnly' => '{$fields.duration_hours.value}{$MOD.LBL_HOURS_ABBREV} {$fields.duration_minutes.value}{$MOD.LBL_MINSS_ABBREV} ',
+          ),
         ),
         2 => 
         array (
@@ -135,7 +160,7 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           array (
             'name' => 'description',
             'comment' => 'Full text of the note',
-            'label' => 'LBL_COMMUNICATION_NOTES',
+            'label' => 'LBL_DESCRIPTION',
           ),
           1 => '',
         ),
