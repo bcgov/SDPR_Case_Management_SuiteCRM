@@ -1416,9 +1416,9 @@ table.dateTime {
 
 #parent_name {
   display: inline-block;
-  width: 76%;
+  width: 83%;
   height: 43px;
-  margin-right: 8px;
+  margin: 0px;
   clear: both;
 }
 
@@ -2803,7 +2803,6 @@ input#btn_ActionLine.button[type="button"] {
 
 td.dateTimeComboColumn.datecalendar {
   width: 71%;
-  margin-right: 24px;
   flex: 1;
 }
 
@@ -5903,14 +5902,14 @@ select#duration {
 select#parent_type {
   width: 17%;
   height: 43px;
-  padding-left: 10px;
+  padding: 8px 16px;
   margin-right: 1.9%;
 }
 
 select#advocase_comm_type_c {
   width: 100%;
   height: 43px;
-  padding-left: 10px;
+  padding: 8px 16px;
 }
 
 span.id-ff.multiple.selectcrossbtn {
@@ -5923,6 +5922,7 @@ span.id-ff.multiple.selectcrossbtn {
 
 textarea#description {
   height: 200px;
+  padding: 8px 16px;
 }
 
 @media (min-width: 1630px) {
