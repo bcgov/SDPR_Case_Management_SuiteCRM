@@ -233,3 +233,4 @@ $app_strings['LBL_CASES_INSIGHT'] = '{{fields.cases.value}} / {{fields.default.v
 $app_strings['LBL_LIST_RELATED_TO'] = 'Cases';
 $app_strings['Assigned To'] = 'Assigned To';
 $app_strings['DEFAULT'] = 'Basic';
+$app_strings['LBL_BASIC_FILTER'] = 'Filter';

@@ -440,7 +440,7 @@ td {
   font-weight: 700;
   line-height: 27.008px;
   color: $typography-color-secondary;
-  
+
   &:hover {
     background-color: $secondary-button-hover;
     border-color: $border-dark;
@@ -494,3 +494,94 @@ td.cdk-column-checkbox {
   min-width: 32px;
 }
 
+.filter-panel-container {
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  width: 500px;
+  padding: 0;
+
+  .panel-card .card-body-padding {
+    border: 1px solid $grey-widget;
+    border-top: none;
+    padding: 24px;
+  }
+
+  .card-header button {
+    color: $primary_text;
+  }
+
+  .panel-card .card-header {
+    background: $surface-background-lightGray;
+    border: 1px solid $grey-widget;
+    padding: 8px 16px;
+    height: fit-content;
+
+    .panel-title-upper-header {
+      padding: 0;
+      color: $primary_text;
+    }
+  }
+
+  .filter-body {
+    padding: 0 !important;
+  }
+
+  .btn-danger {
+    background: $surface-color-primary-button-default;
+    border: 1px solid $surface-color-primary-button-default;
+    color: $white;
+    padding: 8px 16px;
+  }
+
+  .btn-danger:hover {
+    background: $surface-color-primary-hover;
+  }
+
+  .btn-outline-danger {
+    border: 1px solid $surface-color-border-dark;
+    color: $surface-color-border-dark;
+    padding: 8px 16px;
+  }
+  .btn-outline-danger:hover {
+    background: $secondary-button-hover;
+  }
+
+  form {
+    .form-row {
+    display: flex;
+    flex-direction: column;
+    }
+
+    .form-group {
+      margin: 0 !important;
+    }
+
+    .form-control {
+      margin-bottom: 16px;
+    }
+
+    .mt-4 {
+      margin: 16px 0 0 !important;
+      display: flex;
+      gap: 16px;
+    }
+
+    .col-form-label-sm {
+      font-family: 'BC Sans';
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 27px;
+    }
+
+    .form-control-sm {
+      height: auto;
+      padding: 8px 16px;
+    }
+  }
+
+}
+
+.list-view .list-view-header {
+  position: relative;
+}
