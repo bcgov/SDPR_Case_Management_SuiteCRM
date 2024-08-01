@@ -116,7 +116,7 @@
         height: 43px;
         background: url($select-edit-background-url) no-repeat right;
         border-color: $bright-grey;
-        background-position: calc(100% - 0.5em) center;
+        background-position: calc(100% - 16px) center;
     }
     li#tab-actions {
         input[type=submit] {
