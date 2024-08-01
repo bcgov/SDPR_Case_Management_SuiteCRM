@@ -65,6 +65,7 @@
     }
     .aor-tab-content #fieldLines tbody tr:nth-of-type(2n) td {
         background: $white;
+        white-space: nowrap;  
     }
     .detail {
         padding-bottom: 1em;
