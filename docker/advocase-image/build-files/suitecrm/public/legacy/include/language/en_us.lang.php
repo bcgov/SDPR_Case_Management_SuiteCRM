@@ -462,7 +462,7 @@ $app_list_strings = array(
     ),
 
     'activity_status_type_dom' => array(
-        '' => '--None--',
+        '' => 'None',
         'active' => 'Active',
         'inactive' => 'Inactive',
     ),
@@ -799,16 +799,16 @@ $app_list_strings = array(
     ),
 
     'dom_email_server_type' => array(
-        '' => '--None--',
+        '' => 'None',
         'imap' => 'IMAP',
     ),
     'dom_mailbox_type' => array(/*''           => '--None Specified--',*/
-        'pick' => '--None--',
+        'pick' => 'None',
         'createcase' => 'Create Case',
         'bounce' => 'Bounce Handling',
     ),
     'dom_email_distribution' => array(
-        '' => '--None--',
+        '' => 'None',
         'direct' => 'Direct Assign',
         'roundRobin' => 'Round-Robin',
         'leastBusy' => 'Least-Busy',
@@ -1663,7 +1663,7 @@ $app_strings = array(
     'LBL_NEW_BUTTON_TITLE' => 'Create',
     'LBL_EDIT' => 'Edit',
     'LBL_NEXT_BUTTON_LABEL' => 'Next',
-    'LBL_NONE' => '--None--',
+    'LBL_NONE' => 'None',
     'LBL_NOTES' => 'Notes',
     'LBL_OPPORTUNITIES' => 'Opportunities',
     'LBL_OPPORTUNITY_NAME' => 'Opportunity Name',
