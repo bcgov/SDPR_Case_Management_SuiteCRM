@@ -769,25 +769,25 @@ if (!defined('sugarEntry') || !sugarEntry) {
                     // //$html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >$export_link$merge_link$selected_objects_span</td>\n";
                     //$html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >";
                     // if ($subpanel_def != null) {
-                    //     include_once('include/SubPanel/SubPanelTiles.php');
-                    //     $subpanelTiles = new SubPanelTiles($sugarbean);
-                    //     $html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >";
+                        include_once('include/SubPanel/SubPanelTiles.php');
+                        $subpanelTiles = new SubPanelTiles($sugarbean);
+                        $html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >";
 
-                    //     $html_text = $subpanelTiles->getCheckbox($html_text, $subpanel_def);
+                        $html_text = $subpanelTiles->getCheckbox($html_text, $subpanel_def);
 
-                    //     //attempt to get the query to recreate this subpanel
-                    //     if (!empty($this->response)) {
-                    //         $response =& $this->response;
-                    //     } else {
-                    //         $response = SugarBean::get_union_related_list($sugarbean, $this->sortby, $this->sort_order, $this->query_where, $current_offset, -1, $this->records_per_page, $this->query_limit, $subpanel_def);
-                    //         $this->response = $response;
-                    //     }
-                    //     //if query is present, then pass it in as parameter
-                    //     if (isset($response['query']) && !empty($response['query'])) {
-                    //         $html_text .= $subpanelTiles->get_buttons($subpanel_def, $response['query']);
-                    //     } else {
-                    //         $html_text .= $subpanelTiles->get_buttons($subpanel_def);
-                    //     }
+                        //attempt to get the query to recreate this subpanel
+                        if (!empty($this->response)) {
+                            $response =& $this->response;
+                        } else {
+                            $response = SugarBean::get_union_related_list($sugarbean, $this->sortby, $this->sort_order, $this->query_where, $current_offset, -1, $this->records_per_page, $this->query_limit, $subpanel_def);
+                            $this->response = $response;
+                        }
+                        //if query is present, then pass it in as parameter
+                        if (isset($response['query']) && !empty($response['query'])) {
+                            $html_text .= $subpanelTiles->get_buttons($subpanel_def, $response['query']);
+                        } else {
+                            $html_text .= $subpanelTiles->get_buttons($subpanel_def);
+                        }
                     // } else {
                     //     $html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  nowrap>$select_link&nbsp;$export_link&nbsp;$delete_link&nbsp;$selected_objects_span";
                     // }

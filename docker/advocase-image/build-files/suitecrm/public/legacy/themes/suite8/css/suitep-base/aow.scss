@@ -600,7 +600,9 @@ table.email-line {
     opacity: 0.2;
     position: absolute;
     top: 0.3em;
-    right: 185px;
+    right: 0px;
+    margin: 0;
+    padding-right: 16px;
   }
 }
 
