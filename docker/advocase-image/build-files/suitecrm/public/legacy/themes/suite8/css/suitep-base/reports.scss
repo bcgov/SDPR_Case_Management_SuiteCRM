@@ -21,7 +21,8 @@
         background: url($select-edit-background-url) no-repeat right;
         background-size: 14px;
         border-color: $surface-color-border-default;
-        background-origin: content-box; 
+        background-origin: content-box;
+        font-size: 16px;
     }
     .field-line-wrapper {
         border: 2px solid $surface-color-border-default;
@@ -105,4 +106,8 @@
     .assignedChipContainer .userselect {
         margin-left: auto;
     }
+}
+
+body {
+    font-size: 16px;
 }
