@@ -423,6 +423,11 @@ a.listViewTdToolsS1 {
   /*min-width: 55px;*/
 }
 
+a#contacts_remove_1 {
+  background: red;
+  background: url($sub-panel-delete-background-url) no-repeat right;
+}
+
 .list tr .nowrap {
   white-space: nowrap;
   word-wrap: normal;
