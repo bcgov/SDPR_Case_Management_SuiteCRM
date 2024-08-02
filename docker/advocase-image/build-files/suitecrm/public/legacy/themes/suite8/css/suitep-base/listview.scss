@@ -77,7 +77,8 @@ tr#pagination {
 }
 
 .list #pagination td .paginationTable tr td:first-of-type {
-  padding: 0.4em 0 0.2em 0.5em
+  padding: 0.4em 0 0.2em 0.5em;
+  background-color: $white;
 }
 
 .list #pagination td .paginationTable tr td:last-of-type {
@@ -85,19 +86,19 @@ tr#pagination {
 }
 
 .list #pagination td .paginationTable .paginationActionButtons {
-  background-color: $list-view-toolbar-bg;
+  background-color: $white;
   padding: 0.35em 0 0;
 }
 
 .list #pagination td .paginationTable .paginationChangeButtons {
-  background-color: $list-view-toolbar-bg;
+  background-color: $white;
   padding: 0.35em 0 0;
 }
 
 .list #pagination td .paginationTable .pageNumbers {
   position: static;
   font-weight: bold;
-  color: $list-view-pagination-color;
+  color: $typography-color-secondary;
   padding: 0 8px 0 8px;
   margin: -2px 0 0 0;
 }
@@ -1621,7 +1622,7 @@ div#search_form > .advanced input.button:hover {
 }
 
 .paginationTable .list-view-pagination-button {
-  background-color: $transparent-color;
+  background-color: $white;
   color: $list-view-button-color;
   margin: 0 0 0 2px;
   padding: 0;
