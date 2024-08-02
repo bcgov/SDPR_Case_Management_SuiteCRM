@@ -45,28 +45,52 @@ if (!defined('sugarEntry') || !sugarEntry) {
 
 
 
+
 #[\AllowDynamicProperties]
-class SugarWidgetSubPanelDeleteButton extends SugarWidgetField
+class SugarWidgetSubPanelRemoveButtonMeetings extends SugarWidgetField
 {
+    public function displayHeaderCell($layout_def)
+    {
+        return '&nbsp;';
+    }
+
     public function displayList(&$layout_def)
     {
         global $app_strings;
-        global $subpanel_item_count;
+        
+                
+        $parent_record_id = $_REQUEST['record'];
+        $parent_module = $_REQUEST['module'];
+
+        $action = 'DeleteRelationship';
+        $record = $layout_def['fields']['ID'];
+
         $return_module = $_REQUEST['module'];
-        $return_id = $_REQUEST['record'];
-        $module_name = $layout_def['module'];
-        $record_id = $layout_def['fields']['ID'];
-        $unique_id = $layout_def['subpanel_id']."_delete_".$subpanel_item_count; //bug 51512
-
-        // calls and meetings are held.
-        $new_status = 'Held';
-
-        switch ($module_name) {
-            case 'Tasks':
-                $new_status = 'Completed';
-                break;
-        }
+        $return_action = 'SubPanelViewer';
         $subpanel = $layout_def['subpanel_id'];
+        $return_id = $_REQUEST['record'];
+        
+        
+        if (isset($GLOBALS['FOCUS'])) {
+            $focus = $GLOBALS['FOCUS'];
+        }
+        
+        /* Handle case where we generate subpanels from MySettings/LoadTabSubpanels.php */
+        else {
+            if ($return_module == 'MySettings') {
+                global $beanList, $beanFiles;
+                $return_module = $_REQUEST['loadModule'];
+            
+                $class = $beanList[$return_module];
+                require_once($beanFiles[$class]);
+                $focus = new $class();
+                $focus->retrieve($return_id);
+            }
+        }
+        
+        //CCL - Comment out restriction to not remove assigned user
+        //if($focus->assigned_user_id == $record) return '';
+        
         if (isset($layout_def['linked_field_set']) && !empty($layout_def['linked_field_set'])) {
             $linked_field= $layout_def['linked_field_set'] ;
         } else {
@@ -76,8 +100,25 @@ class SugarWidgetSubPanelDeleteButton extends SugarWidgetField
         if (!empty($layout_def['refresh_page'])) {
             $refresh_page = 1;
         }
+        $return_url = "index.php?module=$return_module&action=$return_action&subpanel=$subpanel&record=$return_id&sugar_body_only=1";
 
-        $html = "<a id=\"$unique_id\" onclick='return sp_del_conf();' href=\"javascript:sub_p_del('$subpanel', '$module_name', '$record_id', $refresh_page);\">". '&nbsp;' ."</a>";
-        return $html;
+        $icon_remove_text = $app_strings['LBL_ID_FF_REMOVE'];
+        $remove_url = $layout_def['start_link_wrapper']
+            . "index.php?module=$parent_module"
+            . "&action=$action"
+            . "&record=$parent_record_id"
+            . "&linked_field=$linked_field"
+            . "&linked_id=$record"
+            . "&return_url=" . urlencode(urlencode($return_url))
+            . "&refresh_page=$refresh_page"
+            . $layout_def['end_link_wrapper'];
+        $remove_confirmation_text = $app_strings['NTC_REMOVE_CONFIRMATION'];
+        //based on listview since that lets you select records
+        if ($layout_def['ListView']) {
+            return "<a href=\"javascript:sub_p_rem('$subpanel', '$linked_field'" .", '$record', $refresh_page);\""
+                    . ' class="listViewTdToolsS1"' . " onclick=\"return sp_rem_conf();\"" . '">' . '&nbsp;' .'</a>';
+        } else {
+            return '';
+        }
     }
 }
