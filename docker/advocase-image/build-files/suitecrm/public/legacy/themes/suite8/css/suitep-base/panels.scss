@@ -315,7 +315,6 @@ div.sub-panel {
 }
 
 .subpanel-table li.sugar_action_button {
-  background-color: $panel-button-bg;
   padding: 0;
   padding-right: 4px;
   border: 1px solid transparent;
@@ -445,7 +444,7 @@ div.sub-panel {
 .subpanel-table .pagination .sugar_action_button:hover > form > a,
 .subpanel-table .pagination a,
 .subpanel-table .subnav {
-  background-color: $panel-button-bg-hover;
+  
 }
 
 .subpanel-table .pagination a {
