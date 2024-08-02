@@ -422,13 +422,30 @@ a.listViewTdToolsS1 {
   word-wrap: normal;
   text-align: left;
   /*min-width: 55px;*/
-  background: url($sub-panel-edit-background-url) no-repeat right;
   width: 22px;
 }
 
-a#contacts_remove_1 {
-  background: url($sub-panel-delete-background-url) no-repeat right;
+.listViewTdToolsS1 {
   font-size: 0;
+}
+
+[id^="contacts_edit_"], .listViewTdToolsS1 {
+  background: url($sub-panel-edit-background-url) no-repeat right;
+}
+
+[id^="contacts_remove_"], .listViewTdToolsS1 {
+  background: url($sub-panel-delete-background-url) no-repeat right;
+}
+
+[id^="users_remove_"], .listViewTdToolsS1 {
+  background: url($sub-panel-delete-background-url) no-repeat right;
+}
+
+[id^="aclroles_edit_"], .listViewTdToolsS1 {
+  background: url($sub-panel-edit-background-url) no-repeat right;
+}
+[id^="aclroles_remove_"], .listViewTdToolsS1 {
+  background: url($sub-panel-delete-background-url) no-repeat right;
 }
 
 .list tr .nowrap {
@@ -588,7 +605,7 @@ a#contacts_remove_1 {
         td.footable-last-visible {
           a {
             &:hover {
-              background: $pale-blue!important;
+              // background: $pale-blue!important;
             }
           }
         }
