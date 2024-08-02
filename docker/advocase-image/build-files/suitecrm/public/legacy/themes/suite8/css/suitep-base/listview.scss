@@ -423,11 +423,12 @@ a.listViewTdToolsS1 {
   text-align: left;
   /*min-width: 55px;*/
   background: url($sub-panel-edit-background-url) no-repeat right;
-  width: 20px;
+  width: 22px;
 }
 
 a#contacts_remove_1 {
   background: url($sub-panel-delete-background-url) no-repeat right;
+  font-size: 0;
 }
 
 .list tr .nowrap {
