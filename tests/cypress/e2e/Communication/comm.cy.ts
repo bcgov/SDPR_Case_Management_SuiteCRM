@@ -78,6 +78,8 @@ describe('ASA 121 - Create Communication', {
       cy.wait(3000)
 
       cy.iframe().find('input[id="date_start_date"]').type("06/24/2025")
+
+      // keeping the test lines for future reference in case design changed
       // cy.iframe().find('select[id="date_start_hours"]').select("03")
       // cy.iframe().find('select[id="date_start_minutes"]').select("15")
       // cy.iframe().find('input[id="date_end_date"]').type("06/24/2025")
