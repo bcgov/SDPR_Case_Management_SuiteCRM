@@ -78,12 +78,11 @@ describe('ASA 121 - Create Communication', {
       cy.wait(3000)
 
       cy.iframe().find('input[id="date_start_date"]').type("06/24/2025")
-      cy.iframe().find('select[id="date_start_hours"]').select("03")
-      cy.iframe().find('select[id="date_start_minutes"]').select("15")
-
-      cy.iframe().find('input[id="date_end_date"]').type("06/24/2025")
-      cy.iframe().find('select[id="date_end_hours"]').select("05")
-      cy.iframe().find('select[id="date_end_minutes"]').select("00")
+      // cy.iframe().find('select[id="date_start_hours"]').select("03")
+      // cy.iframe().find('select[id="date_start_minutes"]').select("15")
+      // cy.iframe().find('input[id="date_end_date"]').type("06/24/2025")
+      // cy.iframe().find('select[id="date_end_hours"]').select("05")
+      // cy.iframe().find('select[id="date_end_minutes"]').select("00")
 
       cy.iframe().find('input[id="SAVE_HEADER"]').click()
     })
