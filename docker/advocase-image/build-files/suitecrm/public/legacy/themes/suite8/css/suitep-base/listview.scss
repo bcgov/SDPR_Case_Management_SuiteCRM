@@ -421,6 +421,8 @@ a.listViewTdToolsS1 {
   word-wrap: normal;
   text-align: left;
   /*min-width: 55px;*/
+  background: url($sub-panel-edit-background-url) no-repeat right;
+  width: 20px;
 }
 
 .list tr .nowrap {
@@ -3043,7 +3045,6 @@ table.subpanel-table ul.subpanel > a {
 
 table.subpanel-table li.sugar_action_button {
   padding: 0px;
-  background-color: $list-view-action-button-bg;
   border: 1px solid transparent;
   border-radius: $border-radius-base;
   position: relative;
@@ -3119,7 +3120,6 @@ table.subpanel-table .pagination .sugar_action_button > form > a {
 }
 
 table.subpanel-table li.sugar_action_button:hover {
-  background-color: $list-view-header-bg;
 }
 
 .listViewLinkButton li.sugar_action_button:hover {
@@ -3178,7 +3178,6 @@ table.subpanel-table .pagination a {
 }
 
 table.subpanel-table li.sugar_action_button.hover {
-  background-color: $list-view-header-bg;
 }
 
 .listViewLinkButton li.sugar_action_button.hover {
