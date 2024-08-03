@@ -3702,12 +3702,7 @@ ul.clickMenu > li > span.searchAppliedAlert {
 }
 
 a#securitygroups_users_select_button {
-  position: absolute;
-  right: 65px;
-  background-color: #94a6b5;
-  padding: 0 8px;
-  margin-top: 10px;
-  border-radius: 4px;
+  display: none;
 }
 
 input#securitygroups_users_select_button_old {
