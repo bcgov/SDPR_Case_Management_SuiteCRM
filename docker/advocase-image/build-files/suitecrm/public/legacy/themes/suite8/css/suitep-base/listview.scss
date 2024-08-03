@@ -429,22 +429,22 @@ a.listViewTdToolsS1 {
   font-size: 0;
 }
 
-[id^="contacts_edit_"], .listViewTdToolsS1 {
+[id^="contacts_edit_"] {
   background: url($sub-panel-edit-background-url) no-repeat right;
 }
 
-[id^="contacts_remove_"], .listViewTdToolsS1 {
+[id^="contacts_remove_"] {
   background: url($sub-panel-delete-background-url) no-repeat right;
 }
 
-[id^="users_remove_"], .listViewTdToolsS1 {
+[id^="users_remove_"] {
   background: url($sub-panel-delete-background-url) no-repeat right;
 }
 
-[id^="aclroles_edit_"], .listViewTdToolsS1 {
+[id^="aclroles_edit_"] {
   background: url($sub-panel-edit-background-url) no-repeat right;
 }
-[id^="aclroles_remove_"], .listViewTdToolsS1 {
+[id^="aclroles_remove_"] {
   background: url($sub-panel-delete-background-url) no-repeat right;
 }
 
