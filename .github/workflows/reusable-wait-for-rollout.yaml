@@ -15,7 +15,7 @@ on:
 
 jobs:
   tag:
-    name: Wait for rollout in ${{ secrets.licence-plate }}-${{ inputs.namespace }}
+    name: Wait for rollout
     runs-on: ubuntu-latest
     environment: ${{ inputs.namespace }}
 
