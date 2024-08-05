@@ -93,9 +93,9 @@ jobs:
 
   ##### SCAN ##################################################################
 
-  owasp-staff:
+  owasp-advocase:
     name: OWASP ZAP Scan
-    needs: wait-for-rollouts
+    needs: [wait-for-rollout]
     runs-on: ubuntu-latest
 
     steps:
