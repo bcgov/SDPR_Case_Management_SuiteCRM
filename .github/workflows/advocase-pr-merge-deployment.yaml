@@ -79,3 +79,14 @@ jobs:
       licence-plate: d0d1b5
       openshift-api: ${{ secrets.OPENSHIFT_API }}
       token: ${{ secrets.OPENSHIFT_TOKEN }}
+
+  wait-for-rollout:
+    name: wait-for-rollout
+    needs: [setup, approve-deploy, rollout-advocase-deployment]
+    uses: ./.github/workflows/reusable-wait-for-rollout.yaml
+    with:
+      namespace: ${{ needs.setup.outputs.environment }}
+    secrets:
+      licence-plate: d0d1b5
+      openshift-api: ${{ secrets.OPENSHIFT_API }}
+      token: ${{ secrets.OPENSHIFT_TOKEN }}
