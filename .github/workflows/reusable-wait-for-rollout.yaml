@@ -29,21 +29,4 @@ jobs:
 
     - name: Wait for rollout
       run: |
-        #
-        # Parameters: namespace deployment-config
-        #
-        wait_for_rollout () {
-          NAMESPACE_DEPLOY=$1
-
-          STATUS=
-          while [ "$STATUS" != "Complete" ]; do
-            VERSION=$(oc -n $NAMESPACE_DEPLOY get deployment suitecrm -o json | jq '.status.latestVersion')
-            STATUS=$(oc -n $NAMESPACE_DEPLOY rollout history dc/suitecrm | grep ^$VERSION | awk '{ print $2 }')
-            WHEN=$(oc -n $NAMESPACE_DEPLOY get replicationcontroller suitecrm-$VERSION --no-headers | awk '{ print $5 }')
-
-            echo "Rollout #$VERSION of suitecrm is \"$STATUS\" $WHEN ago"
-            sleep 1
-          done
-        }
-
-        wait_for_rollout ${{ secrets.licence-plate }}-${{ inputs.tag-to }} $image
+        oc -n ${{ secrets.licence-plate }}-${{ inputs.namespace }} rollout status deployment/suitecrm
