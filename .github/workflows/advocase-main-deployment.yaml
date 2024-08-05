@@ -1,4 +1,4 @@
-name: Advocase Production Deployment
+name: "[PROD] Advocase Production Deployment"
 concurrency: 
   group: ${{ github.workflow }}
   cancel-in-progress: true
@@ -56,6 +56,17 @@ jobs:
     uses: ./.github/workflows/reusable-rollout-deployment.yaml
     with:
       namespace: prod
+    secrets:
+      licence-plate: d0d1b5
+      openshift-api: ${{ secrets.OPENSHIFT_API }}
+      token: ${{ secrets.OPENSHIFT_TOKEN }}
+
+  wait-for-rollout:
+    name: wait-for-rollout
+    needs: [approve-deploy, rollout-advocase-deployment]
+    uses: ./.github/workflows/reusable-wait-for-rollout.yaml
+    with:
+      namespace: ${{ needs.setup.outputs.environment }}
     secrets:
       licence-plate: d0d1b5
       openshift-api: ${{ secrets.OPENSHIFT_API }}
