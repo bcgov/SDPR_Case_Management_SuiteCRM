@@ -95,8 +95,9 @@ jobs:
 
   owasp-advocase:
     name: OWASP ZAP Scan
-    needs: [wait-for-rollout]
+    needs: [setup, wait-for-rollout]
     runs-on: ubuntu-latest
+    environment: ${{ needs.setup.outputs.environment }}
 
     steps:
       - name: OWASP ZAP Scan
