@@ -1,4 +1,4 @@
-name: Advocase DEV/UAT Deployment
+name: "[DEV/UAT] Advocase DEV/UAT Deployment"
 concurrency: 
   group: ${{ github.workflow }}
   cancel-in-progress: true
