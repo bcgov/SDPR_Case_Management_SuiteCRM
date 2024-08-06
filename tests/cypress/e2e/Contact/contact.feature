@@ -1,38 +1,40 @@
-Feature: Create new communication
+Feature: Create new contact
 
 Scenario:
-  Given user navigate to Communication Schedule Screen
-  and fill the inputs: Subject, Description
+  Given user navigate to Create Contact Screen
+  and fill the inputs: First Name, Type of Contact, CLBL Eligibility
   When user click save
-  Then New Communication is created
+  Then New Contact is created
 
-Feature: Update existing Communication
+Feature: Search Contact and Access Contact History
 
 Background:
-  Given user navigate to the View Communication Screen
-  and choose an existing communication
+  Given user navigate to the View Contact Screen
 
-Scenario: Search Invitee
-  Given user click edit button
-  and user update new input for Invitee Name field
+Scenario: Search Contact
+  Given user click filter button
+  and user update new input for 'First Name' search field
   When user click search
-  Then user can view the list of Invitees matching with the search result
+  Then user can view the list of Contact matching with the search result
 
-Scenario: Add Invitee
-  Given user view the list of Invitees matching with the search result
-  and user click add
-  When user click save
-  Then the invitees added to the communication
+Scenario: Access Contact History
+  Given user choose an existing contact
+  When user click 'Communication History' sub-panel
+  Then user can view the History of the Contact
 
-Scenario: Update Time and Date
-  Given user click edit button
-  and user choose a new start date and time
-  and user choose a new end date and time
-  When user click save
-  Then Communication is saved with new time and date
+Feature: Update Contact
 
-Scenario: Update Type of Communication
-  Given user click edit button
-  and user choose a new type of Communication
+Background:
+  Given user navigate to the View Contact Screen
+  and user choose an existing contact
+  and user click 'Edit' button
+
+Scenario: Update Contact type
+  Given user update new Contact type
   When user click save
-  Then Communication is saved with new type of Communication
+  Then Contact is saved with new Contact type
+
+Scenario: Update Secondary number
+  Given user type a new Secondary number
+  When user click save
+  Then Contact is saved with new Secondary number
