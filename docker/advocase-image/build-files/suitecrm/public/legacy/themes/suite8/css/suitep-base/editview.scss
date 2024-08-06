@@ -2440,7 +2440,6 @@ span.crumbLink {
   font-size: 16px;
   font-weight: 400;
   line-height: 27px;
-  border: 1px solid $grey-widget;
 }
 #scheduler .view tr,
 #createInviteeForm .view tr {
@@ -3483,14 +3482,26 @@ table legend {
 }
 
 span.id-ff button {
-  margin: 5px 5px 5px 0;
-  line-height: 0;
+  margin: 0;
   background: none;
   color: inherit;
   border: none;
   padding: 0;
   cursor: pointer;
   outline: none;
+  width: 18px;
+  height: 18px;
+  margin-left: 5px;
+}
+
+button#btn_parent_name {
+  padding-right: 3px;
+  padding-bottom: 3px;
+}
+
+button#btn_clr_parent_name {
+  padding-top: 2px;
+  padding-left: 1px;
 }
 
 span.id-ff button img {
