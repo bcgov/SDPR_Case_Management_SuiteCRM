@@ -221,3 +221,14 @@ p-multiselect {
     }
   }
 }
+
+.field-name-date_entered .d-flex {
+  column-gap: 16px;
+
+}
+
+.field-name-date_entered .custom-select-sm {
+  height: auto;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+}
