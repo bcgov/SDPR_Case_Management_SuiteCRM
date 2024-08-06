@@ -105,10 +105,10 @@ jobs:
         with:
           allow_issue_writing: false
           cmd_options: '-z "-config scanner.threadPerHost=20"'
-          target: ${{ secrets.ZAP_ADVOCASE_URL }} }}
+          target: ${{ secrets.ZAP_ADVOCASE_URL }}
 
       - name: Upload Report as Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: OWASP ZAP Report
           path: report_html.html
