@@ -77,7 +77,8 @@ tr#pagination {
 }
 
 .list #pagination td .paginationTable tr td:first-of-type {
-  padding: 0.4em 0 0.2em 0.5em
+  padding: 0.4em 0 0.2em 0.5em;
+  background-color: $white;
 }
 
 .list #pagination td .paginationTable tr td:last-of-type {
@@ -85,19 +86,19 @@ tr#pagination {
 }
 
 .list #pagination td .paginationTable .paginationActionButtons {
-  background-color: $list-view-toolbar-bg;
+  background-color: $white;
   padding: 0.35em 0 0;
 }
 
 .list #pagination td .paginationTable .paginationChangeButtons {
-  background-color: $list-view-toolbar-bg;
+  background-color: $white;
   padding: 0.35em 0 0;
 }
 
 .list #pagination td .paginationTable .pageNumbers {
   position: static;
   font-weight: bold;
-  color: $list-view-pagination-color;
+  color: $typography-color-secondary;
   padding: 0 8px 0 8px;
   margin: -2px 0 0 0;
 }
@@ -421,6 +422,30 @@ a.listViewTdToolsS1 {
   word-wrap: normal;
   text-align: left;
   /*min-width: 55px;*/
+  width: 22px;
+}
+
+.listViewTdToolsS1 {
+  font-size: 0;
+}
+
+[id^="contacts_edit_"] {
+  background: url($sub-panel-edit-background-url) no-repeat right;
+}
+
+[id^="contacts_remove_"] {
+  background: url($sub-panel-delete-background-url) no-repeat right;
+}
+
+[id^="users_remove_"] {
+  background: url($sub-panel-delete-background-url) no-repeat right;
+}
+
+[id^="aclroles_edit_"] {
+  background: url($sub-panel-edit-background-url) no-repeat right;
+}
+[id^="aclroles_remove_"] {
+  background: url($sub-panel-delete-background-url) no-repeat right;
 }
 
 .list tr .nowrap {
@@ -580,7 +605,7 @@ a.listViewTdToolsS1 {
         td.footable-last-visible {
           a {
             &:hover {
-              background: $pale-blue!important;
+              // background: $pale-blue!important;
             }
           }
         }
@@ -1615,7 +1640,7 @@ div#search_form > .advanced input.button:hover {
 }
 
 .paginationTable .list-view-pagination-button {
-  background-color: $transparent-color;
+  background-color: $white;
   color: $list-view-button-color;
   margin: 0 0 0 2px;
   padding: 0;
@@ -3043,7 +3068,6 @@ table.subpanel-table ul.subpanel > a {
 
 table.subpanel-table li.sugar_action_button {
   padding: 0px;
-  background-color: $list-view-action-button-bg;
   border: 1px solid transparent;
   border-radius: $border-radius-base;
   position: relative;
@@ -3119,7 +3143,6 @@ table.subpanel-table .pagination .sugar_action_button > form > a {
 }
 
 table.subpanel-table li.sugar_action_button:hover {
-  background-color: $list-view-header-bg;
 }
 
 .listViewLinkButton li.sugar_action_button:hover {
@@ -3178,7 +3201,6 @@ table.subpanel-table .pagination a {
 }
 
 table.subpanel-table li.sugar_action_button.hover {
-  background-color: $list-view-header-bg;
 }
 
 .listViewLinkButton li.sugar_action_button.hover {
@@ -3680,10 +3702,17 @@ ul.clickMenu > li > span.searchAppliedAlert {
 }
 
 a#securitygroups_users_select_button {
-  position: absolute;
-  right: 65px;
-  background-color: #94a6b5;
-  padding: 0 8px;
-  margin-top: 10px;
+  display: none;
+}
+
+input#securitygroups_users_select_button_old {
+  display: flex !important;
+  margin-left: 35px;
+  margin-top: 38px;
+  background-color: $white;
+  border: 1px solid;
+  border-color: $surface-color-border-dark;
   border-radius: 4px;
+  color: $typography-color-secondary;
+  font-weight: 700;
 }

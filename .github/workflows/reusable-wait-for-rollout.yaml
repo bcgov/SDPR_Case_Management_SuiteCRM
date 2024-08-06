@@ -1,0 +1,32 @@
+name: Wait for rollout
+on:
+  workflow_call:
+    inputs:
+      namespace:
+        required: true
+        type: string
+    secrets:
+      licence-plate:
+        required: true
+      openshift-api:
+        required: true
+      token:
+        required: true
+
+jobs:
+  tag:
+    name: Wait for rollout
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.namespace }}
+
+    steps:
+    - name: Log in to OpenShift tools
+      uses: redhat-actions/oc-login@v1
+      with:
+        namespace: ${{ secrets.licence-plate }}-${{ inputs.namespace }}
+        openshift_server_url: ${{ secrets.openshift-api }}
+        openshift_token: ${{ secrets.token }}
+
+    - name: Wait for rollout
+      run: |
+        oc -n ${{ secrets.licence-plate }}-${{ inputs.namespace }} rollout status deployment/suitecrm
