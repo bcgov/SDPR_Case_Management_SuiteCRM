@@ -328,8 +328,13 @@ ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover {
 }
 
 #detailpanel_report {
+
+  .tr {
+    border: 2px solid $surface-color-border-default;
+  }
+
   .list-view-rounded-corners {
-    margin: 0px;
+    margin: 40px; // change here for gaps
   }
 
   .list-view-rounded-corners > table th:first-of-type {
@@ -354,7 +359,7 @@ ul.jqtree-tree li.jqtree-selected > .jqtree-element:hover {
     padding: 5px 5px;
     font-size: 13px;
     font-weight: bold;
-    background-color: $aor-total;
+    background-color: $white;
   }
 }
 
