@@ -754,11 +754,11 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .buttons .button {
-  background-color: $danger-btn-bg;
+  background-color: $white;
 }
 
 .buttons .button:hover {
-  background-color: $danger-btn-bg-hover;
+  background-color: $secondary-button-hover;
 }
 
 .removeFileButton {
@@ -986,19 +986,18 @@ input[type=submit] {
 }
 
 input[type=button] {
-  font-size: $page-font-size;
-  font-weight: 500;
-  background: $danger-btn-bg;
-  color: $default-btn-color;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background: $white;
+  color: $primary_text;
   cursor: pointer;
   padding: 0 20px 0 20px;
   margin: 0 0 0 0;
-  border: none;
+  border: 1px solid $surface-color-border-dark;
   border-radius: 3px;
   letter-spacing: 1px;
-  line-height: $button-line-height;
   height: $button-line-height;
-  text-transform: uppercase;
 }
 
 input[type=reset] {
@@ -1169,18 +1168,17 @@ button[disabled] {
 }
 
 input[type="submit"][disabled] {
-  font-size: $page-font-size;
-  font-weight: 500;
-  background-color: $disabled-btn-bg;
-  color: $main-bg;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $white;
+  color: $typography-color-secondary;
   cursor: pointer;
   margin: 0 0 0 0;
-  border: none;
+  border: 1px solid $surface-color-border-dark;
   border-radius: 3px;
   letter-spacing: 1px;
-  line-height: $input-line-height;
   height: $input-line-height;
-  text-transform: uppercase;
 }
 
 input[type="reset"][disabled] {
@@ -1199,10 +1197,11 @@ input[type="reset"][disabled] {
 }
 
 input[type="button"][disabled] {
-  font-size: $page-font-size;
-  font-weight: 500;
-  background-color: $disabled-btn-bg;
-  color: $main-bg;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $white;
+  color: $typography-color-secondary;
   cursor: pointer;
   margin: 0 0 0 0;
   border: none;

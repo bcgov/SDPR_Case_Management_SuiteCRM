@@ -162,8 +162,16 @@ button {
 .clear-filter-button.btn,
 .settings-button.clear-filter-button,
 .settings-button.clear-filter-button.btn {
-  padding-left: .55rem;
-  padding-right: .55rem;
+  padding: 8px 16px;
+  margin: 0 0 0 16px;
+  background: $surface-color-primary-button-default !important;
+  border-color: $surface-color-primary-button-default !important;
+  color: $white;
+  border-radius: 6px !important;
+  font-style: normal;
+  font-weight: 700;
+  font-family: "BC Sans";
+  font-size: 16px;
 }
 
 .filter-settings-button.btn {
@@ -172,7 +180,8 @@ button {
   font-family: "BC Sans";
   font-size: 16px;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 6px !important;
+  margin: 0;
 }
 
 .filter-settings-button.btn::before:not(:active) {
