@@ -1,104 +1,97 @@
-import 'cypress-iframe'
-
-describe('ASA 121 - Create Communication', {
+describe('Create, search and modify contact', {
   env: {
-    route: '/#meetings'
+    route: '/#contacts'
   }
 }, () => {
-  describe('Schedule Communication', () => {
+  describe('Create contact', () => {
     beforeEach(() => {
       cy.visit(`/${Cypress.env('route')}/edit`)
       cy.wait(6000)
-      cy.frameLoaded('iframe')
     })
 
-    it('Should schedule a new communication, add details and save', () => {
-      cy.iframe().find('input[id="name"]').type("ASA-121")
-      cy.iframe().find('textarea[name="description"]').type("Communication schedule through test automation, with added details")
-      cy.wait(6000)
+    it('ASA 71 - Should create a new contact', () => {
+      cy.get('.field-name-advocase_contact_type_c').within(() => {
+      cy.get('.custom-select').select('Friend')
+     })
 
-      cy.frameLoaded('iframe')
-      cy.wait(6000)
-      cy.iframe().find('input[id="SAVE_HEADER"]').click({ force: true })
+      cy.get('.dynamic-field-name-first_name').within(() => {
+      cy.get('.form-control').type('Automate Tester')
+     })
+
+      cy.get('.dynamic-field-name-advocase_clbl_eligible_c').within(() => {
+      cy.get('.custom-select').select('Yes')
+     })
+
+      cy.get('.settings-button')
+      .first()
+      .click()
     })
   })
 
-  describe('Update communication', () => {
+  describe('Search contact and access contact history', () => {
+    beforeEach(() => {
+      cy.visit(`/${Cypress.env('route')}/index`)
+      cy.wait(6000)
+    })
+
+    it('ASA 75 - Should search contact', () => {
+      cy.get('.filter-settings-button').click()
+
+      cy.get('.dynamic-field-name-first_name').within(() => {
+      cy.get('.form-control').type('test')
+      })
+      
+      cy.get('.filter-button')
+        .last()
+        .click()
+    })
+
+    it('ASA 89 - Should access contact history', () => {
+      cy.get('.table-body-row', { timeout: 10000 })
+        .first()
+        .click()
+      cy.wait(6000)
+
+      cy.get('.insight-panel-card')
+        .last()
+        .click()
+    })
+  })
+
+  describe('ASA 92 - Update contact', () => {
     beforeEach(() => {
       cy.visit(`/${Cypress.env('route')}/index`)
       cy.wait(10000)
-      cy.get('scrm-dynamic-field > a', { timeout: 10000 })
+
+      cy.get('.table-body-row', { timeout: 10000 })
         .first()
         .click()
-      cy.wait(5000)
+      cy.wait(6000)
 
-      cy.frameLoaded('iframe')
+      cy.get('.settings-button')
+        .first()
+        .click()
+      cy.wait(6000)
     })
 
-    it('Should find invitee', () => {
-      cy.wait(10000)
-      cy.iframe().find('input[title="Edit"]').click()
-      cy.wait(3000)
+    it('ASA 90 - Should choose a type of contact', () => {
+      cy.get('.field-name-advocase_contact_type_c').within(() => {
+      cy.get('.custom-select').select('Health Authority')
+      })
 
-      cy.frameLoaded('iframe')
-      cy.wait(3000)
-
-      cy.iframe().find('input[id="search_first_name"]').type("test")
-      cy.iframe().find('input[id="invitees_search"]').click()
-      cy.wait(3000)
-
-      cy.iframe().find('input[id="CANCEL"]').click()
+      cy.get('.settings-button')
+      .first()
+      .click()
     })
 
-    it('Should add invitee', () => {
-      cy.wait(10000)
-      cy.iframe().find('input[title="Edit"]').click()
-      cy.wait(3000)
+    it('ASA 91 - Should save a secondary number', () => {
+      cy.get('.dynamic-field-name-phone_other').within(() => {
+      cy.get('.form-control').type('604-999-9999')
+      })
 
-      cy.frameLoaded('iframe')
-      cy.wait(3000)
-
-      cy.iframe().find('input[id="search_first_name"]').type("test")
-      cy.iframe().find('input[id="invitees_search"]').click()
-      cy.wait(3000)
-
-      cy.iframe().find('input[id="invitees_add_1"]').click()
-      cy.iframe().find('input[id="invitees_add_2"]').click()
-      cy.wait(3000)
-
-      cy.iframe().find('input[id="SAVE_HEADER"]').click()
-    })
-
-    it('ASA 96 - Should update time and date', () => {
-      cy.wait(10000)
-      cy.iframe().find('input[title="Edit"]').click()
-      cy.wait(3000)
-
-      cy.frameLoaded('iframe')
-      cy.wait(3000)
-
-      cy.iframe().find('input[id="date_start_date"]').type("06/24/2025")
-      cy.iframe().find('select[id="date_start_hours"]').select("03")
-      cy.iframe().find('select[id="date_start_minutes"]').select("15")
-
-      cy.iframe().find('input[id="date_end_date"]').type("06/24/2025")
-      cy.iframe().find('select[id="date_end_hours"]').select("05")
-      cy.iframe().find('select[id="date_end_minutes"]').select("00")
-
-      cy.iframe().find('input[id="SAVE_HEADER"]').click()
-    })
-
-    it('ASA 97 - Should update type of communication', () => {
-      cy.wait(3000)
-      cy.iframe().find('input[title="Edit"]').click()
-      cy.wait(3000)
-
-      cy.frameLoaded('iframe')
-      cy.wait(3000)
-
-      cy.iframe().find('select[id="advocase_comm_type_c"]').select("Email")
-
-      cy.iframe().find('input[id="SAVE_HEADER"]').click()
+      cy.get('.settings-button')
+      .first()
+      .click()
     })
   })
 })
