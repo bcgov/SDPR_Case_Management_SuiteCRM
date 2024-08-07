@@ -216,6 +216,7 @@ div#searchResults {
 #create-invitee-edit td {
   padding-bottom: 8px;
   line-height: $input-line-height;
+  vertical-align: top !important;
 }
 
 #cancel-create-invitee-btn {
@@ -814,17 +815,23 @@ option:checked {
 }
 
 #EditView input[type="button"] {
-  padding: 0 10px;
+  padding: 8px 16px;
   margin: 4px;
-  margin: 0.2em;
-  font-weight: bold;
-  height: 2.2em;
-  line-height: 1.1em;
-  padding: 0.3em 0.9em;
-  background-color: $button-bg-color;
+  font-weight: 700;
+  line-height: 27px;
   text-transform: capitalize;
+  height: auto;
   &:hover {
-    background-color: $btn-hover-bg-color;
+    background-color: $secondary-button-hover;
+  }
+}
+
+#EditView  #SAVE_HEADER {
+  background: $surface-color-background-blue;
+  color: $white;
+  &:hover {
+    background-color: $surface-color-primary-hover;
+
   }
 }
 
@@ -5914,7 +5921,8 @@ select#parent_type {
   width: 17%;
   height: 43px;
   padding: 8px 16px;
-  margin-right: 1.9%;
+  margin-right: 16px;
+  min-width: 120px;
 }
 
 select#advocase_comm_type_c {
