@@ -68,7 +68,7 @@
       {foreach from=$dashboardPages key=tabNum item=tab}
           {if $tabNum == 0}
               <li role="presentation" class="dashboard-tab">
-                  <a id="tab{$tabNum}" href="#tab_content_{$tabNum}" data-toggle="tab" {if !$lock_homepage}ondblclick="renameTab({$tabNum})"{/if} onClick="retrievePage({$tabNum});" class="hidden-xs dashboard-tab-title dashboard-tab-title-active">
+                  <a id="tab{$tabNum}" href="#tab_content_{$tabNum}" data-toggle="tab" {if !$lock_homepage}ondblclick="renameTab({$tabNum})"{/if} onClick="retrievePage({$tabNum});" class="hidden-xs dashboard-tab-title">
                       {$dashboardPages.$tabNum.pageTitle}
                   </a>
 
@@ -98,10 +98,19 @@
       {/foreach}
 
       {if !$lock_homepage}
-          <li id="tab-actions" class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">{$APP.LBL_LINK_ACTIONS}<span class="suitepicon suitepicon-action-caret"></span></a>
-              {include file='themes/suite8/include/MySugar/tpls/actions_menu.tpl'}
-          </li>
+          <ul class="dashboard-tabs-action-group">
+              <li id="tab-actions" class="dropdown dashboard-tabs-more-actions">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">{$APP.LBL_LINK_ACTIONS}
+                      <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10.6875 1.71875L6.71875 5.71875C6.5 5.90625 6.25 6 6 6C5.71875 6 5.46875 5.90625 5.28125 5.71875L1.3125 1.71875C1 1.4375 0.90625 1 1.0625 0.625C1.21875 0.25 1.59375 0 2 0H9.96875C10.375 0 10.7188 0.25 10.875 0.625C11.0312 1 10.9688 1.4375 10.6875 1.71875Z" fill="#474543"/>
+                      </svg>
+                  </a>
+                  {include file='themes/suite8/include/MySugar/tpls/actions_menu.tpl'}
+              </li>
+              <li>
+                  <input class="button addDashlets dashboard-tabs-add-dashlets" type="button" name="Edit"  data-toggle="modal" data-target=".modal-add-dashlet" value="{$lblAddDashlets}">
+              </li>
+          </ul>
       {/if}
   </ul>
   <div class="clearfix"></div>
