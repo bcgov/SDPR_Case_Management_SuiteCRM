@@ -882,7 +882,6 @@ table #dashletPanel {
 
 #dashboard #tab-actions ul.dropdown-menu li {
   background: none;
-  border-bottom: 1px solid $base-border-light-color;
 }
 
 #dashboard #tab-actions ul.dropdown-menu {
@@ -973,7 +972,7 @@ a.dropdown-toggle {
   align-items: center;
   gap: var(--layout-padding-small, 8px);
   border-radius: var(--layout-borderRadius-default, 4px);
-  border: 1px solid var(--surface-color-border-dark, #353433);
+  border: 1px solid var(--surface-color-border-dark, #353433) !important;
   background: var(--surface-color-secondary-button-default, #FFF) !important;
   color: var(--typography-color-secondary, #474543) !important;
   font-family: "BC Sans";
@@ -1005,4 +1004,9 @@ a.dropdown-toggle {
   border-radius: var(--layout-borderRadius-default, 4px) !important;
   background: var(--surface-color-primary-button-default, #013366) !important;
   text-transform: none !important;
+}
+
+input.button.addDashboard {
+  background: white !important;
+  color: $primary_text;
 }
