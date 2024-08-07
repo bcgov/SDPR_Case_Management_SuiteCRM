@@ -942,7 +942,7 @@ table #dashletPanel {
   align-items: center;
   gap: var(--layout-padding-small, 8px);
   background-color: $off-white !important;
-  color: black !important;
+  color: $primary_text !important;
   text-transform: none !important;
   font-family: "BC Sans";
   font-size: 18px !important;
@@ -953,6 +953,7 @@ table #dashletPanel {
 
 .active > .dashboard-tab-title {
   font-weight: 700 !important;
+  padding-bottom: 13px !important;
   border-bottom: 3px solid var(--surface-color-border-dark, #353433)!important;
   border-radius: 0px !important;
 }
@@ -967,19 +968,18 @@ a.dropdown-toggle {
   width: 166px;
   height: 43px;
   display: flex;
-  padding: var(--layout-margin-small, 8px) var(--layout-padding-medium, 16px);
-  justify-content: center;
+  padding: var(--layout-margin-small, 8px) var(--layout-padding-medium, 16px) !important;
   align-items: center;
   gap: var(--layout-padding-small, 8px);
-  border-radius: var(--layout-borderRadius-default, 4px);
+  border-radius: var(--layout-borderRadius-default, 4px) !important;
   border: 1px solid var(--surface-color-border-dark, #353433) !important;
   background: var(--surface-color-secondary-button-default, #FFF) !important;
   color: var(--typography-color-secondary, #474543) !important;
   font-family: "BC Sans";
-  font-size: 16px;
+  font-size: 15px !important;
   font-style: normal;
   font-weight: 700;
-  line-height: 27.008px;
+  line-height: 27.008px !important;
   text-transform: none;
 }
 
@@ -992,6 +992,7 @@ a.dropdown-toggle {
 }
 
 .dashboard-tabs-add-dashlets {
+  font-size: 15px !important;
   width: 137px;
   height: 43px !important;
   margin: 0 !important;
@@ -1010,4 +1011,11 @@ input.button.addDashboard {
   background: white !important;
   color: $primary_text;
   border: 0px;
+  height: 35px;
+  padding: 4px 8px;
+  font-family: "BC Sans";
+  font-size: 15px !important;
+  font-style: normal;
+  font-weight: 400 !important;
+  line-height: 27.008px !important;
 }
