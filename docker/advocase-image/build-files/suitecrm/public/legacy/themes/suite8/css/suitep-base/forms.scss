@@ -771,7 +771,6 @@ fieldset[disabled] .btn-primary.active {
    letter-spacing: 1px;
    line-height: $input-line-height;
    height: $input-line-height;
-   text-transform: uppercase;
  }
 
 .removeFileButton {
@@ -792,7 +791,6 @@ fieldset[disabled] .btn-primary.active {
   letter-spacing: 1px;
   line-height: $input-line-height;
   height: $input-line-height;
-  text-transform: uppercase;
 }
 
 .btn .btn:hover {
@@ -804,7 +802,6 @@ fieldset[disabled] .btn-primary.active {
   letter-spacing: 1px;
   line-height: $input-line-height;
   height: $input-line-height;
-  text-transform: uppercase;
 }
 
 .btn-default{
@@ -962,7 +959,6 @@ input[type=button].btn-info:focus {
   border: none;
   border-radius: 3px;
   height: $button-line-height;
-  text-transform: uppercase;
 }
 
 input[type=submit].button:hover {
@@ -982,7 +978,6 @@ input[type=submit] {
   letter-spacing: 1px;
   line-height: $button-line-height;
   height: $button-line-height;
-  text-transform: uppercase;
 }
 
 input[type=button] {
@@ -1013,7 +1008,6 @@ input[type=reset] {
   letter-spacing: 1px;
   line-height: $button-line-height;
   height: $button-line-height;
-  text-transform: uppercase;
 }
 
 .btn {
