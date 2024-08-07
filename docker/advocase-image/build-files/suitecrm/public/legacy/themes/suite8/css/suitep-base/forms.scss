@@ -1131,21 +1131,25 @@ input[type=submit]:focus, input[type=button] {
 form[name=DetailView] .button {
   margin: 0 4px 4px 0;
   float: left;
+  color: $typography-color-secondary
 }
 
 form[name=DetailView] input[type=submit] {
   margin: 0 4px 4px 0;
   float: right;
+  color: $typography-color-secondary
 }
 
 form[name=DetailView] input[type=button] {
   margin: 0 4px 4px 0;
   float: right;
+  color: $typography-color-secondary
 }
 
 form[name=DetailView] input[type=reset] {
   margin: 0 4px 4px 0;
   float: left;
+  color: $typography-color-secondary
 }
 
 td.submitButtons .button:hover {
