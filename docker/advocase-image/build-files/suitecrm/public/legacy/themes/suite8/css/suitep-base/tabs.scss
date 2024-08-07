@@ -221,7 +221,7 @@
     right: auto;
   }
 
-  #tab-actions > .dropdown-menu {
+  #tab-actions.open > .dropdown-menu {
     right: 0;
     background-color: $action-tab-bg;
     border-top-left-radius: 4px;
