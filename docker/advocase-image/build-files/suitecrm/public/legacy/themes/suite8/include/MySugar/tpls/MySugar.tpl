@@ -101,8 +101,8 @@
           <ul class="dashboard-tabs-action-group">
               <li id="tab-actions" class="dropdown dashboard-tabs-more-actions">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">{$APP.LBL_LINK_ACTIONS}
-                      <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M10.6875 1.71875L6.71875 5.71875C6.5 5.90625 6.25 6 6 6C5.71875 6 5.46875 5.90625 5.28125 5.71875L1.3125 1.71875C1 1.4375 0.90625 1 1.0625 0.625C1.21875 0.25 1.59375 0 2 0H9.96875C10.375 0 10.7188 0.25 10.875 0.625C11.0312 1 10.9688 1.4375 10.6875 1.71875Z" fill="#474543"/>
+                      <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M14.6875 10.7188L10.7188 14.7188C10.5 14.9062 10.25 15 10 15C9.71875 15 9.46875 14.9062 9.28125 14.7188L5.3125 10.7188C5 10.4375 4.90625 10 5.0625 9.625C5.21875 9.25 5.59375 9 6 9H13.9688C14.375 9 14.7188 9.25 14.875 9.625C15.0312 10 14.9688 10.4375 14.6875 10.7188Z" fill="#474543"/>
                       </svg>
                   </a>
                   {include file='themes/suite8/include/MySugar/tpls/actions_menu.tpl'}
