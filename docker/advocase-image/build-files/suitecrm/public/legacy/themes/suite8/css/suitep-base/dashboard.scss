@@ -969,7 +969,7 @@ a.dropdown-toggle {
   display: flex;
   padding: var(--layout-margin-small, 8px) var(--layout-padding-medium, 16px) !important;
   align-items: center;
-  gap: var(--layout-padding-small, 8px);
+  gap: var(--layout-padding-small, 7px);
   border-radius: var(--layout-borderRadius-default, 4px) !important;
   border: 1px solid var(--surface-color-border-dark, #353433) !important;
   background: var(--surface-color-secondary-button-default, #FFF) !important;
