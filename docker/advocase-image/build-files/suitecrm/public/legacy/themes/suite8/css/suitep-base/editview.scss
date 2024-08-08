@@ -419,7 +419,7 @@ div.clear {
 
 th {
   padding: 0;
-  border: 2px solid $surface-color-border-default;
+  border-bottom: 2px solid $surface-color-border-default;
 }
 
 td {
@@ -1753,8 +1753,9 @@ div.confirmTable {
 }
 
 .view {
-  border-top: 2px solid;
-  border-bottom: 1px solid;
+  border-top: 2px solid $surface-color-border-default;
+  border-left: 2px solid $surface-color-border-default;
+  border-right: 2px solid $surface-color-border-default;
 }
 
 .td_alt {
