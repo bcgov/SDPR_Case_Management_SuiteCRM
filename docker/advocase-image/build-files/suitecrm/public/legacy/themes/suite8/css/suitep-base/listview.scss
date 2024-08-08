@@ -87,12 +87,12 @@ tr#pagination {
 
 .list #pagination td .paginationTable .paginationActionButtons {
   background-color: $white;
-  padding: 0.35em 0 0;
+  padding: 1em 0 0;
 }
 
 .list #pagination td .paginationTable .paginationChangeButtons {
   background-color: $white;
-  padding: 0.35em 0 0;
+  padding: 1em 0 0;
 }
 
 .list #pagination td .paginationTable .pageNumbers {
@@ -397,7 +397,7 @@ tr#pagination {
 }
 
 .list thead {
-  background-color: $list-view-header-bg;
+  background-color: $surface-background-lightGray
 }
 
 .list .oddListRowS1 td[nowrap] {
@@ -3026,7 +3026,7 @@ tr.pagination-unique:nth-of-type(2) {
 
 div.list-view-rounded-corners > table,
 tr.pagination-unique {
-  background: $main-bg;
+  background: $surface-background-lightGray;
 }
 
 .sugar_action_button {
