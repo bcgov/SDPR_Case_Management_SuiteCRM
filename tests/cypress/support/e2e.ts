@@ -21,5 +21,6 @@ import './commands'
 
 // Admin login before test files 
 beforeEach(() => {
-  cy.kcLogout().kcLogin()
+  cy.kcRedirect()
+  cy.kcLogin()
 })
