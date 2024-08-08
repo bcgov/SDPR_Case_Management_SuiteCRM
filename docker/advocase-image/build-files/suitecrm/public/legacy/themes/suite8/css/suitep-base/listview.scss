@@ -583,6 +583,7 @@ a.listViewTdToolsS1 {
 
 .table-responsive.list > tbody > tr > td {
   padding: 12px 10px;
+  border-bottom: 1px solid $surface-color-border-default;
 }
 
 .table-responsive.list > tbody > tr > td > a {
