@@ -847,7 +847,6 @@ table #dashletPanel {
         color: $white;
         line-height: 9px;
         font-size: 13px;
-        letter-spacing: 1px;
         &:hover {
           background: $action-btn-hover-bg-color;
         }
@@ -976,7 +975,7 @@ a.dropdown-toggle {
   background: var(--surface-color-secondary-button-default, #FFF) !important;
   color: var(--typography-color-secondary, #474543) !important;
   font-family: "BC Sans";
-  font-size: 15px !important;
+  font-size: 16px !important;
   font-style: normal;
   font-weight: 700;
   line-height: 27.008px !important;
@@ -992,7 +991,7 @@ a.dropdown-toggle {
 }
 
 .dashboard-tabs-add-dashlets {
-  font-size: 15px !important;
+  font-size: 16px !important;
   width: 137px;
   height: 43px !important;
   margin: 0 !important;
@@ -1001,10 +1000,11 @@ a.dropdown-toggle {
   padding: var(--layout-margin-small, 8px) var(--layout-padding-medium, 16px) !important;
   justify-content: center;
   align-items: center;
-  gap: var(--layout-padding-small, 8px);
+  gap: var(--layout-padding-small, 7px);
   border-radius: var(--layout-borderRadius-default, 4px) !important;
   background: var(--surface-color-primary-button-default, #013366) !important;
   text-transform: none !important;
+  letter-spacing: 0px !important;
 }
 
 input.button.addDashboard {
@@ -1014,7 +1014,7 @@ input.button.addDashboard {
   height: 35px;
   padding: 4px 8px;
   font-family: "BC Sans";
-  font-size: 15px !important;
+  font-size: 16px !important;
   font-style: normal;
   font-weight: 400 !important;
   line-height: 27.008px !important;
