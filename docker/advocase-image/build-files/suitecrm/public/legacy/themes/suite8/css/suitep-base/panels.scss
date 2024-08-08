@@ -29,6 +29,10 @@
   margin: 0 40px;
 }
 
+form  #EditView_tabs .panel {
+  margin: 0;
+}
+
 .panel-body {
   padding: 0;
 }
@@ -444,7 +448,6 @@ div.sub-panel {
 .subpanel-table .pagination .sugar_action_button:hover > form > a,
 .subpanel-table .pagination a,
 .subpanel-table .subnav {
-  
 }
 
 .subpanel-table .pagination a {
