@@ -1122,28 +1122,60 @@ input[type=submit]:focus, input[type=button] {
  padding-right: 5px;
 }
 
+#edit_button {
+  margin: 0 4px 4px 0;
+  float: left;
+  color: $white;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $surface-color-primary-button-default;
+  border: 1px solid $surface-color-border-dark;
+}
+
 form[name=DetailView] .button {
   margin: 0 4px 4px 0;
   float: left;
-  color: $typography-color-secondary
+  color: $typography-color-secondary;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $white;
+  border: 1px solid $surface-color-border-dark;
 }
 
 form[name=DetailView] input[type=submit] {
   margin: 0 4px 4px 0;
   float: right;
-  color: $typography-color-secondary
+  color: $typography-color-secondary;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $white;
+  border: 1px solid $surface-color-border-dark;
+  display: none;
 }
 
 form[name=DetailView] input[type=button] {
   margin: 0 4px 4px 0;
   float: right;
-  color: $typography-color-secondary
+  color: $typography-color-secondary;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $white;
+  border: 1px solid $surface-color-border-dark;
 }
 
 form[name=DetailView] input[type=reset] {
   margin: 0 4px 4px 0;
   float: left;
-  color: $typography-color-secondary
+  color: $typography-color-secondary;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "BC Sans";
+  background-color: $white;
+  border: 1px solid $surface-color-border-dark;
 }
 
 td.submitButtons .button:hover {
@@ -1235,11 +1267,11 @@ input[type="button"][disabled] {
 }
 
 .buttons input#btn_view_change_log {
-  background-color: $info-btn-bg;
+  background-color: $white;
 }
 
 .buttons input#btn_view_change_log:hover {
-  background-color: $info-btn-bg-hover;
+  background-color: $surface-color-primary-hover;
 }
 
 
