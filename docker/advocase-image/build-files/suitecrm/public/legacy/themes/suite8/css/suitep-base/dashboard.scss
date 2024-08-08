@@ -1019,3 +1019,25 @@ input.button.addDashboard {
   font-weight: 400 !important;
   line-height: 27.008px !important;
 }
+
+.dashlet-header-title,
+.dashlet-header-btn-group {
+  background: $surface-color-background-blue;
+  height: 40px;
+}
+
+.dashboard-panel-header-text {
+  background: white;
+  height: 76px;
+  padding-left: 32px;
+  padding-top: 16px;
+  padding-bottom: 24px;
+
+  color: var(--typography-color-primary, $primary_text);
+
+  font-family: "BC Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 36px;
+}
