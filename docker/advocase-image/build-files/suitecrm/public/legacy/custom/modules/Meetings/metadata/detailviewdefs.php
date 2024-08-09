@@ -141,6 +141,11 @@ array (
           ),
           1 => '',
         ),
+        5 =>
+        array (
+          0 => 'assigned_user_name',
+          1 => '',
+        ),
       ),
     ),
   ),
