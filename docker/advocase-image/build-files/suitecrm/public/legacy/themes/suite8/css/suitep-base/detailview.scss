@@ -61,6 +61,8 @@ p.msg {
   font-weight: 700;
   line-height: 42px;
   display: flex !important;
+  padding: 24px 66px;
+  white-space: nowrap;
 }
 
 .nav-tabs > li.tab-inline-pagination {
@@ -647,6 +649,7 @@ table.subpanel-table .pagination li.single > a {
   line-height: 21px;
   letter-spacing: 0.1em;
   text-transform: capitalize;
+  display: none;
 }
 
 .subpanel-table {
@@ -665,7 +668,9 @@ table.subpanel-table .pagination li.single > a {
 .detail-border-bottom {
   margin-top: 0;
   margin-bottom: 0;
-  border-top: 1px solid $surface-color-border-dark;
+  border-top: 1px solid $surface-color-border-default;
+  margin-left: -27px;
+  width: 200%;
 }
 
 .view-action-DetailView {
