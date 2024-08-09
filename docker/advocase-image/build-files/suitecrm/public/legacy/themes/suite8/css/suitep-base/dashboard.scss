@@ -1041,3 +1041,7 @@ input.button.addDashboard {
   font-weight: 700;
   line-height: 36px;
 }
+
+.dashboard-dashlet-header {
+  background-color: $surface-background-lightGray !important;
+}

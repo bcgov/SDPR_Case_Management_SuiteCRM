@@ -418,7 +418,7 @@ array (
           0 => 
           array (
             'name' => 'advocase_case_city_c',
-            'label' => 'LBL_ADVOCASE_CASE_CITY',
+            'label' => 'LBL_ADVOCASE_CASE_CITY_C',
           ),
           1 => 
           array (
@@ -461,7 +461,6 @@ array (
           0 => 
           array (
             'name' => 'work_log',
-            'comment' => 'Free-form text used to denote activities of interest',
             'label' => 'LBL_WORK_LOG',
           ),
           1 => 
@@ -504,9 +503,9 @@ array (
           0 => '',
           1 => 
           array (
-            'name' => 'advocase_case_status_c',
+            'name' => 'state',
             'studio' => 'visible',
-            'label' => 'LBL_ADVOCASE_CASE_STATUS',
+            'label' => 'LBL_STATE',
           ),
         ),
         12 => 
