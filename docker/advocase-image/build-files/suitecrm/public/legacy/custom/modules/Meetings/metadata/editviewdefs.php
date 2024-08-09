@@ -73,40 +73,41 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
         ),
       ),
     ),
-    'panels' =>
+    'panels' => 
     array (
-      'lbl_meeting_information' =>
+      'lbl_meeting_information' => 
       array (
-        0 =>
+        0 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'name',
           ),
-          1 =>
+          1 => 
           array (
             'name' => 'date_end',
             'type' => 'datetimecombo',
-            'displayParams' =>
+            'displayParams' => 
             array (
               'required' => true,
               'updateCallback' => 'SugarWidgetScheduler.update_time();',
             ),
           ),
         ),
-        1 =>
+        1 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'date_start',
             'type' => 'datetimecombo',
-            'displayParams' =>
+            'label' => 'LBL_DATE',
+            'displayParams' => 
             array (
               'required' => true,
               'updateCallback' => 'SugarWidgetScheduler.update_time();',
             ),
           ),
-          1 =>
+          1 => 
           array (
             'name' => 'duration',
             'customCode' => '
@@ -122,14 +123,14 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
                         initEditView(YAHOO.util.Selector.query(\'#duration\')[0].form);
                     });
                     {/literal}
-                </script>
+                </script>            
             ',
             'customCodeReadOnly' => '{$fields.duration_hours.value}{$MOD.LBL_HOURS_ABBREV} {$fields.duration_minutes.value}{$MOD.LBL_MINSS_ABBREV} ',
           ),
         ),
-        2 =>
+        2 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'advocase_comm_type_c',
             'studio' => 'visible',
@@ -137,23 +138,28 @@ function formSubmitCheck(){ldelim}if(check_form(\'EditView\')){ldelim}document.E
           ),
           1 => '',
         ),
-        3 =>
+        3 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'parent_name',
             'label' => 'LBL_LIST_RELATED_TO',
           ),
           1 => '',
         ),
-        4 =>
+        4 => 
         array (
-          0 =>
+          0 => 
           array (
             'name' => 'description',
             'comment' => 'Full text of the note',
             'label' => 'LBL_DESCRIPTION',
           ),
+          1 => '',
+        ),
+        5 =>
+        array (
+          0 => 'assigned_user_name',
           1 => '',
         ),
       ),

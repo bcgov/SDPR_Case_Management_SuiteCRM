@@ -19,6 +19,7 @@ RUN install-php-extensions intl gd mysqli pdo_mysql soap zip redis
 
 # Copying modified files to container
 COPY ./suitecrm /opt/suitecrm
+COPY ./suitecrm/custom /tmp/custom
 
 # Running script to download and unzip SuiteCRM
 RUN /opt/suitecrm/scripts/suitecrm/download.sh
@@ -30,7 +31,8 @@ RUN touch /usr/local/etc/php/php.ini && \
     find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} \; && \
     find /suitecrm -type f -not -perm 0664 -exec chmod 0664 {} \;
 
-RUN chmod -R 775 /opt/suitecrm
+RUN chmod -R 775 /opt/suitecrm && \
+    chmod +x /suitecrm/bin/console
 
 RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2 /suitecrm
 

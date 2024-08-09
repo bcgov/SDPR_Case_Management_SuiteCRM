@@ -419,7 +419,7 @@ div.clear {
 
 th {
   padding: 0;
-  border: 2px solid $surface-color-border-default;
+  border-bottom: 2px solid $surface-color-border-default;
 }
 
 td {
@@ -1435,14 +1435,20 @@ input.sqsEnabled {
   clear: both;
 }
 
+.paginationTable {
+  margin-top: -20px;
+  margin-left: -45px;
+  margin-bottom: 35px;
+}
+
 .pageNumbers {
   position: static;
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
   color: $primary_text;
-  padding: 0 8px 0 0;
   margin: 0 0 0 0;
+  padding-bottom: 7px;
 }
 .page-number-wrapper {
   display: flex;
@@ -1753,8 +1759,10 @@ div.confirmTable {
 }
 
 .view {
-  border-top: 2px solid;
-  border-bottom: 1px solid;
+  border-top: 2px solid $surface-color-border-default;
+  border-left: 2px solid $surface-color-border-default;
+  border-right: 2px solid $surface-color-border-default;
+  border-bottom: 2px solid $surface-color-border-default;
 }
 
 .td_alt {
@@ -2338,7 +2346,7 @@ ul.clickMenu.SugarActionMenu li.single a:hover {
 }
 
 .view {
-  border: none;
+
 }
 
 table.view td {
@@ -2376,7 +2384,6 @@ table.view {
   background: $main-alternate-bg;
   margin: 0;
   width: 100%;
-  padding: 0.5rem 1.5rem;
 }
 
 .table-wrapper {
@@ -2444,9 +2451,11 @@ span.crumbLink {
 
 .view tr {
   padding: 5px 0 5px 0;
+  font-family: "BC Sans";
   font-size: 16px;
   font-weight: 400;
   line-height: 27px;
+  border-bottom: 1px solid $surface-color-border-default;
 }
 
 #scheduler .view tr,

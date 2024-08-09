@@ -45,6 +45,43 @@
 {assign var="alt_end" value=$navStrings.end}
 
 <table id="dashletPanel" cellpadding='0' cellspacing='0' width='100%' border='0' class='list view default dashletPanel'>
+	<thead>
+			<tr>
+			{assign var="isProcessed" value=false}
+			{foreach from=$displayColumns key=col item=params}
+					{if !$isProcessed && ($params.module|default:$pageData.bean.moduleDir) == "Cases"}
+							<th class="dashboard-dashlet-header">
+									<p>Date Created</p>
+							</th>
+							<th class="dashboard-dashlet-header">
+									<p>Subject</p>
+							</th>
+							<th class="dashboard-dashlet-header">
+									<p>City</p>
+							</th>
+							<th class="dashboard-dashlet-header">
+									<p>Region</p>
+							</th>
+							{assign var="isProcessed" value=true}
+					{/if}
+					{if !$isProcessed && ($params.module|default:$pageData.bean.moduleDir) == "Meetings"}
+							<th class="dashboard-dashlet-header">
+									<p>Date Created</p>
+							</th>
+							<th class="dashboard-dashlet-header">
+									<p>Subject</p>
+							</th>
+							<th class="dashboard-dashlet-header">
+									<p>Case</p>
+							</th>
+							<th class="dashboard-dashlet-header">
+									<p>Contact</p>
+							</th>
+							{assign var="isProcessed" value=true}
+					{/if}
+			{/foreach}
+			</tr>
+	</thead>
 	{foreach name=rowIteration from=$data key=id item=rowData}
 		{if $smarty.foreach.rowIteration.iteration is odd}
 			{assign var='_rowColor' value=$rowColor[0]}
