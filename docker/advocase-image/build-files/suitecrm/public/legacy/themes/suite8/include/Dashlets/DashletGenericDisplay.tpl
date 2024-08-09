@@ -62,9 +62,6 @@
 							<th class="dashboard-dashlet-header">
 									<p>Region</p>
 							</th>
-							<th class="dashboard-dashlet-header">
-									<p>Actions</p>
-							</th>
 							{assign var="isProcessed" value=true}
 					{/if}
 					{if !$isProcessed && ($params.module|default:$pageData.bean.moduleDir) == "Meetings"}
@@ -79,9 +76,6 @@
 							</th>
 							<th class="dashboard-dashlet-header">
 									<p>Contact</p>
-							</th>
-							<th class="dashboard-dashlet-header">
-									<p>Actions</p>
 							</th>
 							{assign var="isProcessed" value=true}
 					{/if}
