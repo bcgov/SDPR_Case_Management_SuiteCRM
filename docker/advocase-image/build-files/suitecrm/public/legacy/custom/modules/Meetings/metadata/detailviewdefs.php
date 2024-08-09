@@ -143,8 +143,8 @@ array (
         ),
         5 =>
         array (
-          0 => '',
-          1 => 'assigned_user_name',
+          0 => 'assigned_user_name',
+          1 => '',
         ),
       ),
     ),
