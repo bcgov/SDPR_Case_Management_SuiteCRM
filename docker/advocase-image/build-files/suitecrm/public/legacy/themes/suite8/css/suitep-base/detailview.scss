@@ -694,3 +694,14 @@ table.subpanel-table .pagination li.single > a {
 .tabDetailViewDFLink {
   color: $typography-color-link;
 }
+
+#assigned_user_id {
+  padding: 4px 8px;
+  border: 1px solid #f8bb47;
+  background-color: #fef1d8;
+  border-radius: 4px;
+  flex-grow: 0;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-weight: 400;
+}
