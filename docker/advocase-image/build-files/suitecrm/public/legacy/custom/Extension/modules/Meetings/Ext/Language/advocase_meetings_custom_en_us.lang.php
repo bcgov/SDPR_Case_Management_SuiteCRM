@@ -22,3 +22,7 @@ $mod_strings['LBL_EDITVIEW_PANEL1'] = 'New Panel 1';
 $mod_strings['LBL_CASE_MEETINGS_FROM_CASES_TITLE'] = 'Cases';
 $mod_strings['LBL_CASES_MEETINGS_1_FROM_CASES_TITLE'] = 'Cases';
 $mod_strings['LBL_DATE_TIME'] = 'Date of Communication & Time';
+
+$mod_strings['LBL_CREATE_INVITEE'] = 'Create a New Contact';
+$mod_strings['LBL_CREATE_CONTACT'] = 'Create a New Contact';
+$mod_strings['LBL_ADD_INVITEE'] = 'Add Contacts';
