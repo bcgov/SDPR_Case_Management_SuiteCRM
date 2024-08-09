@@ -22,16 +22,16 @@ array (
     'width' => '10%',
     'default' => true,
   ),
-  'PRIMARY_ADDRESS_CITY' => 
+  'ADVOCASE_CONTACT_CITY_C' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_LIST_PRIMARY_ADDRESS_CITY',
+    'label' => 'LBL_ADVOCASE_CONTACT_CITY_C',
     'default' => true,
   ),
   'ADVOCASE_CONTACT_REGION_C' => 
   array (
     'width' => '10%',
-    'label' => 'LBL_LIST_ADVOCASE_CONTACT_REGION_C',
+    'label' => 'LBL_ADVOCASE_CONTACT_REGION',
     'default' => true,
   ),
   'PHONE_WORK' => 

@@ -21,7 +21,7 @@ $subpanel_layout['list_fields'] = array (
   array (
     'type' => 'varchar',
     'default' => true,
-    'vname' => 'LBL_ADVOCASE_CASE_CITY',
+    'vname' => 'LBL_ADVOCASE_CASE_CITY_C',
     'width' => '10%',
   ),
   'advocase_case_region_c' => 

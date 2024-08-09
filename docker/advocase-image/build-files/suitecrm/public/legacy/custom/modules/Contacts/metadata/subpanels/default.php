@@ -18,10 +18,10 @@ $subpanel_layout['list_fields'] = array (
     'vname' => 'LBL_ADVOCASE_CONTACT_TYPE',
     'width' => '10%',
   ),
-  'primary_address_city' => 
+  'advocase_contact_city_c' => 
   array (
     'type' => 'varchar',
-    'vname' => 'LBL_PRIMARY_ADDRESS_CITY',
+    'vname' => 'LBL_ADVOCASE_CONTACT_CITY_C',
     'width' => '10%',
     'default' => true,
   ),
@@ -36,7 +36,7 @@ $subpanel_layout['list_fields'] = array (
   'phone_work' => 
   array (
     'name' => 'phone_work',
-    'vname' => 'LBL_LIST_PHONE',
+    'vname' => 'LBL_OFFICE_PHONE',
     'width' => '15%',
     'default' => true,
   ),
