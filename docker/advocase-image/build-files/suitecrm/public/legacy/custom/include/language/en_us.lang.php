@@ -2104,6 +2104,6 @@ $app_strings['LBL_OPEN_CASES_COUNT'] = 'Total Open Cases';
 $app_strings['LBL_MEETINGS_LAST_DATE'] = 'Last Updated';
 $app_strings['LBL_CASES_INSIGHT'] = '{{fields.cases.value}} / {{fields.default.value}}';
 $app_strings['LBL_LIST_RELATED_TO'] = 'Related to';
-$app_strings['Assigned To'] = 'Assigned To';
+$app_strings['Assigned To'] = 'Assign To';
 $app_strings['DEFAULT'] = 'Basic';
 $app_strings['LBL_BASIC_FILTER'] = 'Filter';
