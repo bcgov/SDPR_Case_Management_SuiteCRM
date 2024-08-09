@@ -14,7 +14,6 @@ array (
     'link' => true,
     'default' => true,
   ),
-
   'PARENT_NAME' => 
   array (
     'width' => '20%',

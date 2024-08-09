@@ -42,57 +42,12 @@ if (!defined('sugarEntry') || !sugarEntry) {
  */
 
 
-$layout_defs['Contacts'] = array(
-    // list of what Subpanels to show in the DetailView
-    'subpanel_setup' => array(
-        'documents' => array(
-            'order' => 25,
-            'module' => 'Documents',
-            'subpanel_name' => 'default',
-            'sort_order' => 'asc',
-            'sort_by' => 'id',
-            'title_key' => 'LBL_DOCUMENTS_SUBPANEL_TITLE',
-            'get_subpanel_data' => 'documents',
-            'top_buttons' =>
-                array(
-                    0 =>
-                        array(
-                            'widget_class' => 'SubPanelTopButtonQuickCreate',
-                        ),
-                    1 =>
-                        array(
-                            'widget_class' => 'SubPanelTopSelectButton',
-                            'mode' => 'MultiSelect',
-                        ),
-                ),
-        ),
-        'cases' => array(
-            'order' => 80,
-            'module' => 'Cases',
-            'sort_order' => 'desc',
-            'sort_by' => 'case_number',
-            'subpanel_name' => 'default',
-            'get_subpanel_data' => 'cases',
-            'add_subpanel_data' => 'case_id',
-            'title_key' => 'LBL_CASES_SUBPANEL_TITLE',
-            'top_buttons' => array(
-                array('widget_class' => 'SubPanelTopButtonQuickCreate'),
-                array('widget_class' => 'SubPanelTopSelectButton', 'mode' => 'MultiSelect')
-            ),
-        ),
-        'contacts' => array(
-            'order' => 100,
-            'module' => 'Contacts',
-            'sort_order' => 'asc',
-            'sort_by' => 'last_name, first_name',
-            'subpanel_name' => 'default',
-            'get_subpanel_data' => 'direct_reports',
-            'add_subpanel_data' => 'contact_id',
-            'title_key' => 'LBL_DIRECT_REPORTS_SUBPANEL_TITLE',
-            'top_buttons' => array(
-                array('widget_class' => 'SubPanelTopButtonQuickCreate'),
-                array('widget_class' => 'SubPanelTopSelectButton', 'mode' => 'MultiSelect')
-            ),
-        ),
-    )
-);
+
+global $mod_strings, $app_strings, $sugar_config;
+    if (ACLController::checkAccess('Contacts', 'edit', true)) {
+        $module_menu[] = array("index.php?module=Contacts&action=EditView&return_module=Contacts&return_action=DetailView", $mod_strings['LNK_NEW_CONTACT'],"Create", 'Contacts');
+    }
+
+    if (ACLController::checkAccess('Contacts', 'list', true)) {
+        $module_menu[] =array("index.php?module=Contacts&action=index&return_module=Contacts&return_action=DetailView", $mod_strings['LNK_CONTACT_LIST'],"List", 'Contacts');
+    }
