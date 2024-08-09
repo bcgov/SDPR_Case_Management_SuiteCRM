@@ -46,41 +46,51 @@
 
 <table id="dashletPanel" cellpadding='0' cellspacing='0' width='100%' border='0' class='list view default dashletPanel'>
 	<thead>
-			<tr>
-			{assign var="isProcessed" value=false}
-			{foreach from=$displayColumns key=col item=params}
-					{if !$isProcessed && ($params.module|default:$pageData.bean.moduleDir) == "Cases"}
-							<th class="dashboard-dashlet-header">
-									<p>Date Created</p>
-							</th>
-							<th class="dashboard-dashlet-header">
-									<p>Subject</p>
-							</th>
-							<th class="dashboard-dashlet-header">
-									<p>City</p>
-							</th>
-							<th class="dashboard-dashlet-header">
-									<p>Region</p>
-							</th>
-							{assign var="isProcessed" value=true}
-					{/if}
-					{if !$isProcessed && ($params.module|default:$pageData.bean.moduleDir) == "Meetings"}
-							<th class="dashboard-dashlet-header">
-									<p>Date Created</p>
-							</th>
-							<th class="dashboard-dashlet-header">
-									<p>Subject</p>
-							</th>
-							<th class="dashboard-dashlet-header">
-									<p>Case</p>
-							</th>
-							<th class="dashboard-dashlet-header">
-									<p>Contact</p>
-							</th>
-							{assign var="isProcessed" value=true}
-					{/if}
-			{/foreach}
-			</tr>
+    <tr height='20'>
+        {counter start=0 name="colCounter" print=false assign="colCounter"}
+        {assign var='datahide' value=""}
+        {foreach from=$displayColumns key=colHeader item=params}
+            {if $colCounter == '1'}{assign var='datahide' value="phone"}{/if}
+            {if $colCounter == '3'}{assign var='datahide' value="phone,phonelandscape"}{/if}
+            {if $colCounter == '5'}{assign var='datahide' value="phone,phonelandscape,tablet"}{/if}
+            {if $colHeader == 'NAME' || $params.bold}<th scope='col' data-toggle="true">
+            {else}<th scope='col' data-hide="{$datahide}">{/if}
+				<div class='header-title' text-align:{$params.align|default:'left'}'>
+                {if $params.sortable|default:true}
+					<!-- dashlet: {$dashletId} -->
+	                <a href='#' onclick='return SUGAR.mySugar.retrieveDashlet("{$dashletId}", "{$pageData.urls.orderBy}{$params.orderBy|default:$colHeader|lower}&sugar_body_only=1&id={$dashletId}", false, false, true, $(this).closest("div[id^=pageNum_][id$=_div]").parent().parent())' class='listViewThLinkS1' title="{$arrowAlt}">{sugar_translate label=$params.label module=$pageData.bean.moduleDir}</a>&nbsp;&nbsp;
+	                {if $params.orderBy|default:$colHeader|lower == $pageData.ordering.orderBy}
+	                    {if $pageData.ordering.sortOrder == 'ASC'}
+                            {capture assign="imageName"}arrow_down.{$arrowExt}{/capture}
+                            {capture assign="alt_sort"}{sugar_translate label='LBL_ALT_SORT_DESC'}{/capture}
+										<span class="sort "title="{$alt_sort}">{sugar_getimage name="sort_descend"}</span>
+	                    {else}
+                            {capture assign="imageName"}arrow_up.{$arrowExt}{/capture}
+                            {capture assign="alt_sort"}{sugar_translate label='LBL_ALT_SORT_ASC'}{/capture}
+										<span class="sort" title="{$alt_sort}">{sugar_getimage name="sort_ascend"}</span>
+	                    {/if}
+	                {else}
+                        {capture assign="imageName"}arrow.{$arrowExt}{/capture}
+                        {capture assign="alt_sort"}{sugar_translate label='LBL_ALT_SORT'}{/capture}
+						<span class="sort" title="{$alt_sort}">{sugar_getimage name="sort"}</span>
+	                {/if}
+	           {else}
+                    {if !isset($params.noHeader) || $params.noHeader == false}
+	           		  {sugar_translate label=$params.label module=$pageData.bean.moduleDir}
+                    {/if}
+	           {/if}
+			   </div>
+            </th>
+            {counter name="colCounter"}
+        {/foreach}
+		{if !empty($quickViewLinks)}
+		<th  class='td_alt' nowrap="nowrap" width='1%'>
+		<div class='header-title' text-align:{$params.align|default:'left'}'>
+		Actions
+		</div>
+		</th>
+		{/if}
+    </tr>
 	</thead>
 	{foreach name=rowIteration from=$data key=id item=rowData}
 		{if $smarty.foreach.rowIteration.iteration is odd}
@@ -143,7 +153,6 @@
         <td colspan='{$colCount+1}' align='right'>
             <table border='0' cellpadding='0' cellspacing='0' width='100%'>
                 <tr>
-                    <td align='left'>&nbsp;</td>
                     <td align='right' nowrap='nowrap'>
                         {if isset($pageData.urls.startPage) && $pageData.urls.startPage}
 							<button title='{$navStrings.start}' class='button' onclick='return SUGAR.mySugar.retrieveDashlet("{$dashletId}", "{$pageData.urls.startPage}", false, false, true, $(this).closest("div[id^=pageNum_][id$=_div]").parent().parent())'>
@@ -168,7 +177,7 @@
 								<span>{sugar_getimage name="paginate_previous"}</span>
 							</button>
                         {/if}
-                            <span class='pageNumbers'>({if $pageData.offsets.lastOffsetOnPage == 0}0{else}{$pageData.offsets.current+1}{/if} - {$pageData.offsets.lastOffsetOnPage} {$navStrings.of} {if $pageData.offsets.totalCounted}{$pageData.offsets.total}{else}{$pageData.offsets.total}{if $pageData.offsets.lastOffsetOnPage != $pageData.offsets.total}+{/if}{/if})</span>
+                            <span class='pageNumbers'>{if $pageData.offsets.lastOffsetOnPage == 0}0{else}{$pageData.offsets.current+1}{/if} - {$pageData.offsets.lastOffsetOnPage} {$navStrings.of} {if $pageData.offsets.totalCounted}{$pageData.offsets.total}{else}{$pageData.offsets.total}{if $pageData.offsets.lastOffsetOnPage != $pageData.offsets.total}+{/if}{/if}</span>
                         {if $pageData.urls.nextPage}
 							<button title='{$navStrings.next}' class='button' onclick='return SUGAR.mySugar.retrieveDashlet("{$dashletId}", "{$pageData.urls.nextPage}", false, false, true, $(this).closest("div[id^=pageNum_][id$=_div]").parent().parent())'>
 								<span>{sugar_getimage name="paginate_next"}</span>
@@ -196,3 +205,4 @@
         </td>
     </tr>
 </table>
+
