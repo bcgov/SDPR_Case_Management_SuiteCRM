@@ -1435,14 +1435,20 @@ input.sqsEnabled {
   clear: both;
 }
 
+.paginationTable {
+  margin-top: -20px;
+  margin-left: -45px;
+  margin-bottom: 35px;
+}
+
 .pageNumbers {
   position: static;
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
   color: $primary_text;
-  padding: 0 8px 0 0;
   margin: 0 0 0 0;
+  padding-bottom: 7px;
 }
 .page-number-wrapper {
   display: flex;
