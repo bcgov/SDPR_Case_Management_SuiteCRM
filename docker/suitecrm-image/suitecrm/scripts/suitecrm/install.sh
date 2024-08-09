@@ -17,6 +17,12 @@
 #   None
 #########################
 function install_suitecrm() {
+  #Check if /tmp/custom/suitecrm exists
+  if [[ -d "/tmp/custom/suitecrm" ]]; then
+    info "Copying custom files to SuiteCRM directory"
+    copy_files_with_source_dir_structure "/tmp/custom/suitecrm" "/suitecrm"
+  fi
+
   info "Installing SuiteCRM"
 
   # For some reason, the SuiteCRM installation CLI command only works after
@@ -52,13 +58,18 @@ function suitecrm_install_or_rebuild() {
     # Clear cache
     info "Clearing SuiteCRM cache"
     rm -r cache/* public/legacy/cache/*
+
+    suitecrm_rebuild_files
+    # 1st run to ensure SuiteCRM is properly configured
+    suitecrm_repair
   else
     info "SuiteCRM is not installed"
 
     suitecrm_install_command
   fi
 
-  suitecrm_rebuild_files
+  # 2nd run to ensure customizations are applied
+  suitecrm_repair
 }
 
 ########################
@@ -125,7 +136,9 @@ EOF
     error "Failed to rebuild SuiteCRM configuration file"
     exit 1
   fi
+}
 
+function suitecrm_repair() {
   info "Executing Quick Repair and Rebuild script"
   php /opt/suitecrm/scripts/suitecrm/php/rebuild-suitecrm.php --instance /suitecrm/public/legacy
 

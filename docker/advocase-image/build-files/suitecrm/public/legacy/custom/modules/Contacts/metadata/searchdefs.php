@@ -22,10 +22,16 @@ array (
         'default' => true,
         'width' => '10%',
       ),
+      'last_name' => 
+      array (
+        'name' => 'last_name',
+        'default' => true,
+        'width' => '10%',
+      ),
       'email' => 
       array (
-        'name' => 'email',
-        'label' => 'LBL_ANY_EMAIL',
+        'name' => 'advocase_email_c',
+        'label' => 'LBL_ADVOCASE_EMAIL_C',
         'type' => 'name',
         'default' => true,
         'width' => '10%',
@@ -38,9 +44,10 @@ array (
         'default' => true,
         'width' => '10%',
       ),
-      'last_name' => 
+      'advocase_contact_type_c' => 
       array (
-        'name' => 'last_name',
+        'name' => 'phone',
+        'label' => 'LBL_ADVOCASE_CONTACT_TYPE',
         'default' => true,
         'width' => '10%',
       ),

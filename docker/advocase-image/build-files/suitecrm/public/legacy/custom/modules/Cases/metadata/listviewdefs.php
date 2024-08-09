@@ -18,7 +18,7 @@ array (
   array (
     'type' => 'varchar',
     'default' => true,
-    'label' => 'LBL_ADVOCASE_CASE_CITY',
+    'label' => 'LBL_ADVOCASE_CASE_CITY_C',
     'width' => '10%',
   ),
   'ADVOCASE_CASE_REGION_C' => 
