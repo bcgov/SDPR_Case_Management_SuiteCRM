@@ -85,48 +85,42 @@ parameters:
   - name: DB_ROOT_USER
     displayName: MariaDB Galera Cluster Root User
     description: The MariaDB Galera Cluster root user
-    required: true
+    required: false
     value: root
   - name: DB_ROOT_PASSWORD
     displayName: MariaDB Galera Cluster Root Password
     description: The MariaDB Galera Cluster root password
     required: true
-    value: password
   - name: DB_BACKUP_USER
     displayName: MariaDB Galera Cluster Backup User
     description: The MariaDB Galera Cluster backup user
     required: true
-    value: backup
   - name: DB_BACKUP_PASSWORD
     displayName: MariaDB Galera Cluster Backup Password
     description: The MariaDB Galera Cluster backup password
     required: true
-    value: password
   - name: DB_PASSWORD
     displayName: MariaDB Galera Cluster Database Password
     description: The MariaDB Galera Cluster database password
     required: true
-    value: password
   - name: DB_USER
     displayName: MariaDB Galera Cluster Database User
     description: The MariaDB Galera Cluster database user
-    required: true
+    required: false
     value: suitecrm
   - name: DB_NAME
     displayName: MariaDB Galera Cluster Database Name
     description: The MariaDB Galera Cluster database name
-    required: true
+    required: false
     value: suitecrm
   - name: DB_HOST
     displayName: MariaDB Galera Cluster Database Host
     description: The MariaDB Galera Cluster database host
     required: true
-    value: mariadb-galera
   - name: SUITECRM_ADMIN_PASSWORD
     displayName: SuiteCRM Admin Password
     description: The SuiteCRM admin password
     required: true
-    value: password
   - name: SSO_IDP_X509_CERT
     displayName: SSO IDP X509
     description: The SSO IDP X509 certificate for IDIR/Keycloak integration
@@ -141,35 +135,31 @@ parameters:
     displayName: AWS Access Key ID
     description: The AWS access key ID for S3 backup
     required: true
-    value: key
   - name: AWS_SECRET_ACCESS_KEY
     displayName: AWS Secret Access Key
     description: The AWS secret access key for S3 backup
     required: true
-    value: key
   - name: S3_ENDPOINT_URL
     displayName: AWS S3 Endpoint URL
     description: The AWS S3 endpoint URL for S3 backup
     required: true
-    value: url
   - name: S3_BUCKET_NAME
     displayName: AWS S3 Bucket Name
     description: The AWS S3 bucket name for S3 backup
     required: true
-    value: bucket
   - name: BACKUP_VOLUME_SIZE
     displayName: Backup Volume Size
     description: The size of the backup volume
-    required: true
+    required: false
     value: 5Gi
   - name: VERIFICATION_VOLUME_SIZE
     displayName: Backup Verification Volume Size
     description: The size of the verification volume
-    required: true
+    required: false
     value: 2Gi
   - name: SUITECRM_SHARED_VOLUME_SIZE
     displayName: SuiteCRM Shared Volume Size
     description: The size of the volume shared among SuiteCRM pods for file storage
-    required: true
+    required: false
     value: 5Gi
   
