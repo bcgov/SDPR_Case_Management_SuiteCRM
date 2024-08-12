@@ -15,8 +15,6 @@ global:
 
   cron:
     app:
-      schedule: "* */2 * * *"
-    filesBackup:
       schedule: "*/15 * * * *"
     filesBackup:
       schedule: "0 2 * * *"
@@ -34,6 +32,9 @@ redis-cluster:
         cpu: "50m"
         memory: "250Mi"
   usePassword: false
+  commonAnnotations: {
+    "argocd.argoproj.io/sync-wave": "0"
+  }
 
 ## Dependency HA DB
 mariadb-galera:
@@ -49,6 +50,9 @@ mariadb-galera:
   replicaCount: 1
   persistence:
     size: 2G
+  commonAnnotations: {
+    "argocd.argoproj.io/sync-wave": "0"
+  }
 
 ## Dependecy Backup Storage
 backup-storage:
@@ -95,15 +99,15 @@ backup-storage:
     0 1 * * * default ./backup.sh -s
     0 4 * * * default ./backup.sh -s -v all
 
-# Default values for suitecrm.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+  podAnnotations: {
+    "argocd.argoproj.io/sync-wave": "1"
+  }
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/bcgovsuitecrm
-  pullPolicy: IfNotPresent
+  Always: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -111,7 +115,9 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-podAnnotations: {}
+podAnnotations: {
+  "argocd.argoproj.io/sync-wave": "1"
+}
 
 podSecurityContext: {}
   # fsGroup: 2000
