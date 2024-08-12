@@ -26,24 +26,24 @@ Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-
 | Variable Name | Description | Required | Default value |
 | --- | --- | --- | --- |
 | `APP_NAME` | The name of the application | False | suitecrm |
-| `DB_ROOT_USER` | MariaDB Galera Cluster Root User | True | |
+| `DB_ROOT_USER` | MariaDB Galera Cluster Root User | Fasle | root |
 | `DB_ROOT_PASSWORD` | MariaDB Galera Cluster Root Password | True | |
 | `DB_BACKUP_USER` | MariaDB Galera Cluster Backup User | True | |
 | `DB_BACKUP_PASSWORD` | MariaDB Galera Cluster Backup Password | True | |
 | `DB_PASSWORD` | MariaDB Galera Cluster Database Password | True | |
-| `DB_USER` | MariaDB Galera Cluster Database User | True | |
-| `DB_NAME` | MariaDB Galera Cluster Database Name | True | suitecrm |
+| `DB_USER` | MariaDB Galera Cluster Database User | False | suitecrm |
+| `DB_NAME` | MariaDB Galera Cluster Database Name | False | suitecrm |
 | `DB_HOST` | MariaDB Galera Cluster Database Host | True | |
 | `SUITECRM_ADMIN_PASSWORD` | SuiteCRM Admin Password | True | |
-| `SSO_IDP_X509_CERT` | The SSO IDP X509 certificate for IDIR/Keycloak integration | False | |
-| `OAUTH_KEY` | The OAuth key for SuiteCRM | False | |
+| `SSO_IDP_X509_CERT` | The SSO IDP X509 certificate for IDIR/Keycloak integration | False | cert |
+| `OAUTH_KEY` | The OAuth key for SuiteCRM | False | key |
 | `AWS_ACCESS_KEY_ID` | The AWS access key ID for S3 backup | True | |
 | `AWS_SECRET_ACCESS_KEY` | The AWS secret access key for S3 backup | True | |
 | `S3_ENDPOINT_URL` | The AWS S3 endpoint URL for S3 backup | True | |
 | `S3_BUCKET_NAME` | The AWS S3 bucket name for S3 backup | True | |
-| `BACKUP_VOLUME_SIZE` | The size of the backup volume | True | 5Gi |
-| `VERIFICATION_VOLUME_SIZE` | Backup Verification Volume Size | True | 2Gi |
-| `SUITECRM_SHARED_VOLUME_SIZE` | The size of the volume shared among SuiteCRM pods for file storage | True | 5Gi |
+| `BACKUP_VOLUME_SIZE` | The size of the backup volume | False | 5Gi |
+| `VERIFICATION_VOLUME_SIZE` | Backup Verification Volume Size | False | 2Gi |
+| `SUITECRM_SHARED_VOLUME_SIZE` | The size of the volume shared among SuiteCRM pods for file storage | False | 5Gi |
 
 **Note 1:** The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project. The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_ENDPOINT_URL`, and `S3_BUCKET_NAME` variables are extracted from the `s3-iam` secret provided by BC Gov DevOps team. The `S3URI` is in the format `https://<aws-access-key-id>:<aws-secret-access-key>@<aws-endpoint-url>`.
 <br />
