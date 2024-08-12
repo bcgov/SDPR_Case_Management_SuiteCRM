@@ -22,7 +22,7 @@ objects:
     stringData:
       database-url: mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}
       suitecrm-admin-password: ${SUITECRM_ADMIN_PASSWORD}
-      sso-idp-x509: ${SSO_IDP_X509}
+      sso-idp-x509: ${SSO_IDP_X509_CERT}
       oauth-key:  ${OAUTH_KEY}
     type: Opaque
   - kind: Secret
@@ -127,10 +127,10 @@ parameters:
     description: The SuiteCRM admin password
     required: true
     value: password
-  - name: SSO_IDP_X509
+  - name: SSO_IDP_X509_CERT
     displayName: SSO IDP X509
     description: The SSO IDP X509 certificate for IDIR/Keycloak integration
-    required: true
+    required: false
     value: cert
   - name: OAUTH_KEY
     displayName: OAuth Key
@@ -149,7 +149,7 @@ parameters:
     value: key
   - name: S3_ENDPOINT_URL
     displayName: AWS S3 Endpoint URL
-    description: The AWS S4 endpoint URL for S3 backup
+    description: The AWS S3 endpoint URL for S3 backup
     required: true
     value: url
   - name: S3_BUCKET_NAME
