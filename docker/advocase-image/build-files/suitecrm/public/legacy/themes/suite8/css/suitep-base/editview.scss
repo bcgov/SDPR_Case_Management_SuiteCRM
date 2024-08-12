@@ -1797,10 +1797,12 @@ div.confirmTable {
 
 .moduleTitle {
   color: $header-sub-title;
-  margin-left: -27px;
+  margin-left: -57px;
   display: flex;
   width: 200%;
   background-color: white;
+  padding-left: 30px;
+  padding-top: 13px;
 }
 
 .moduleTitle h2 {
