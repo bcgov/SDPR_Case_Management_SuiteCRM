@@ -1,0 +1,113 @@
+.view-module-AOR_Reports {
+    @media (max-width: 750px) {
+        #EditView_tabs {
+            clear: both;
+        }
+    }
+    #EditView {
+        .buttons {
+            top: -0.8em;
+        }
+    }
+
+    #SAVE_FOOTER,#CANCEL_FOOTER {
+        display: none;
+    }
+
+    .tab-panels-wrapper {
+    width: 77%;
+    }
+    select {
+        background: url($select-edit-background-url) no-repeat right;
+        background-size: 14px;
+        border-color: $surface-color-border-default;
+        background-origin: content-box;
+        font-size: 16px;
+    }
+    .field-line-wrapper {
+        border: 2px solid $surface-color-border-default;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    input[type=text],input[type=password],input[type=email],input[type=number]{
+        background-color: $transparent-color;
+        border: 1px solid $surface-color-border-default;
+        padding: 8px 16px;
+    }
+    textarea {
+        background-color: $transparent-color;
+        border: 1px solid $form-border-color;
+    }
+    .drop-area {
+        height: 570px;
+        overflow: auto;
+    }
+    #aor_conditionLines, #fieldLines {
+        .button {
+            background: $transparent-color;
+            border: 1px solid lightgrey;
+            color: $black;
+            font-size: 3em !important;
+            line-height: 7px !important;
+        }
+    }
+    #addChartButton {
+        background: $nepal-grey;
+        &:hover {
+            background: $pale-blue;
+        }
+    }
+    .reports-editview-footer-actions {
+        .action_buttons {
+            #btn_view_change_log {
+                display: none;
+            }
+        }
+    }
+    .aor-tab-content #fieldLines tbody tr:nth-of-type(2n) td {
+        background: $white;
+        white-space: nowrap;  
+    }
+    .detail {
+        padding-bottom: 1em;
+        padding-left: 1em;
+        h4 {
+            padding-top: 1em;
+        }
+        table {
+            background: $transparent-color;
+        }
+        tr td {
+            vertical-align: middle;
+        }
+    }
+    .assignedChip #assigned_user_name {
+        align-items: center;
+        background-color: $support-surfaceColor-warning;
+        border: 1px solid $support-borderColor-warning;
+        padding: 4px 8px;
+        width: fit-content !important;
+        color: $typography-color-secondary;
+        border-radius: 4px;
+        margin: 0;
+    }
+    .assignedChipContainer {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .assignedChip {
+        display: flex;
+        align-items: center;
+    }
+    .id-ff.multiple.selectcrossbtn {
+        margin-left: 5px;
+    }
+    .assignedChipContainer .userselect {
+        margin-left: auto;
+    }
+}
+
+body {
+    font-size: 16px;
+}

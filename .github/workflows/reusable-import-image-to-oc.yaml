@@ -1,0 +1,42 @@
+name: Import Image to OpenShift
+on:
+  workflow_call:
+    inputs:
+      image-name:
+        required: true
+        type: string
+      image-tags:
+        required: true
+        type: string
+      imagestream:
+        required: true
+        type: string
+      artifactory-repository:
+        required: true
+        type: string
+    secrets:
+      artifactory-registry:
+        required: true
+      licence-plate:
+        required: true
+      openshift-api:
+        required: true
+      token:
+        required: true
+
+jobs:
+  tag:
+    name: Import ${{ inputs.image-name }}:${{ inputs.image-tags }} to OpenShift
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Log in to OpenShift tools
+      uses: redhat-actions/oc-login@v1
+      with:
+        namespace: ${{ secrets.licence-plate }}-tools
+        openshift_server_url: ${{ secrets.openshift-api }}
+        openshift_token: ${{ secrets.token }}
+
+    - name: Import image to OpenShift
+      run: |
+        oc import-image ${{ inputs.imagestream }}:${{ inputs.image-tags }} --from=${{ secrets.artifactory-registry }}/${{ inputs.artifactory-repository }}/${{ inputs.image-name }}:${{ inputs.image-tags }} --confirm

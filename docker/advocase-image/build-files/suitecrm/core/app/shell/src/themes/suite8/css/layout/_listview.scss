@@ -1,0 +1,599 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+.list-view {
+  margin: 82px 56px 32px 56px;
+  background-color: #ffffff;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 6px;
+}
+
+.list-view-header {
+  min-height: 49px;
+  margin: 24px 40px 24px 40px;
+}
+
+.list-view-header-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.list-view-header-title,
+.list-view-header-filter {
+  display: flex;
+  align-items: center;
+}
+
+.list-view-header-title {
+  justify-self: start;
+}
+
+.list-view-header-filter {
+  justify-self: end;
+}
+
+.list-view-title {
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.table-header-select {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.table-header-select-count {
+  margin-right: 24px;
+  margin-bottom: 0;
+  color: $primary_text;
+  font-family: "BC Sans";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.table-header-select-count {
+  color:$primary_text;
+  font-family: "BC Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27.008px; /* 168.8% */
+}
+
+.list-view-actions {
+  margin: 1em 0 0 0;
+  text-align: end;
+}
+
+.listview-actions {
+  .more-button {
+    display: none;
+  }
+}
+
+.icon-bar-block {
+  display: grid;
+  grid-template-columns: 36px 20px;
+  gap: 0;
+}
+
+.list-view-settings {
+  text-align: end;
+}
+
+.scrm-settings-menu {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+
+.load-more-style {
+  align-content: center;
+}
+
+.list-view-container {
+  font-size: 0.85em;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 24px;
+}
+
+.list-view-hr {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.list-view-widget {
+  margin-right: 1.5em;
+}
+
+.list-widget-container {
+  padding-left: 0.6em;
+}
+
+.list-view-table {
+  margin: 0;
+  table-layout: auto;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table-header {
+  -webkit-border-top-left-radius: 0.3em;
+  -webkit-border-top-right-radius: 0.3em;
+  -moz-border-radius-topleft: 0.3em;
+  -moz-border-radius-topright: 0.3em;
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+}
+
+.table-footer {
+  height: 37px;
+  margin-top: 16px;
+  -webkit-border-bottom-right-radius: 0.3em;
+  -webkit-border-bottom-left-radius: 0.3em;
+  -moz-border-radius-bottomright: 0.3em;
+  -moz-border-radius-bottomleft: 0.3em;
+  border-bottom-right-radius: 0.3em;
+  border-bottom-left-radius: 0.3em;
+}
+
+.load-more-footer {
+  margin-top: 14px;
+  margin-bottom: 9px;
+}
+
+.card-body .table-footer {
+  margin-top: 8px;
+}
+
+.table td {
+  vertical-align: middle;
+  padding: 0.45em;
+  font-weight: 400;
+}
+
+.table th {
+  border-top: 0;
+  padding: 0.5rem 0.45em;
+  font-weight: 700;
+}
+
+.table thead th {
+  border-bottom: 0;
+}
+
+.table td, .table th {
+  font-size: 1rem;
+  max-width: 220px;
+}
+
+.table .show-more-column {
+  float: none !important;
+  width: 16px;
+  padding-left: 0rem;
+  padding-right: 0rem;
+
+  scrm-record-details-popup-button {
+    display: flex;
+    width: 100%;
+
+    scrm-popup-button {
+      display: flex;
+      width: 100%;
+
+      scrm-button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.field-name-assigned_user_name{
+  min-width: 53px;
+  min-height: 29px;
+  padding:4px 8px;
+  border: 1px solid $border-warning;
+  background-color: $surface-warning;
+  gap: 10px;
+  border-radius: 4px;
+}
+
+.dynamic-field-name-assigned_user_name .mr-1 {
+  margin-right: 0 !important;
+}
+
+span.field-group-field.pr-1 {
+  padding-right: 0 !important;
+}
+
+.dynamic-field-name-assigned_user_name a {
+  color: $typography-color-secondary;
+  &:hover {
+    color: $typography-color-secondary;
+    text-decoration: none;
+  }
+}
+
+.dynamic-field-name-name a {
+  color: $typography-color-secondary;
+  &:hover {
+    color: $typography-color-secondary;
+    text-decoration: none;
+  }
+}
+
+.field-name-state{
+  min-width: 53px;
+  min-height: 29px;
+  padding:4px 8px;
+  gap: 10px;
+  border-radius: 4px;
+}
+
+.field-name-state-Open{
+  border: 1px solid $border-success;
+  color: $color-success;
+  background-color: $surface-success;
+}
+
+.field-name-state-Closed{
+  border: 1px solid $border-danger;
+  color: $typography-color-danger;
+  background-color: $surface-danger;
+}
+
+.list-view-tableactions {
+  background-color: $white;
+}
+
+.list-view-table thead {
+  background-color: $nepal-grey;
+  color: $white;
+}
+
+.list-view-table td {
+  color: $primary_text;
+  border: none;
+}
+
+.bulk-action {
+  color: $white;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  padding: 8px;
+}
+
+.pipeline-chart,
+.donut-chart {
+  margin: 0 0.5em;
+}
+
+.pipeline-chart-content,
+.donut-chart-content {
+  margin: 1.5em 0;
+}
+
+.chart-create {
+  margin: 1em 0;
+}
+
+.listView-table-body {
+  background-color: $white;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: 6px;
+}
+
+.primary-table-header {
+  background-color: $light-grey;
+  color: $typography-color-secondary;
+  white-space: nowrap;
+}
+
+.primary-table-header span {
+  font-weight: bold;
+}
+
+.primary-table-header span:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.table-body-row {
+  border-top: 1px solid $border-default;
+  height: 45px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.table-body-row:hover {
+  background-color: $surface-tertiary-hover;
+  cursor: pointer;
+}
+
+.table-body-row-checked {
+  background-color: $surface-info;
+}
+
+td.list-group-icon {
+  margin: 0;
+  padding: 0.75rem 0;
+}
+
+.cdk-column-checkbox {
+  width: 64px;
+  padding-left: 24px !important;
+}
+
+.cdk-column-line-actions {
+  width: 134px;
+  padding-right: 24px !important;
+}
+
+.responsive-table-row.display-block-table {
+  border-left: 0.1em solid #aa9dcc;
+  border-right: 0.1em solid #aa9dcc;
+  margin: 0 0 0.5em 0;
+  -webkit-border-bottom-right-radius: 0.25em;
+  -webkit-border-bottom-left-radius: 0.25em;
+  -moz-border-radius-bottomright: 0.25em;
+  -moz-border-radius-bottomleft: 0.25em;
+  border-bottom-right-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+}
+
+.list-view-hr-container {
+  font-size: 0.85em;
+  padding-top: 0.4em;
+  padding-left: 1.2em;
+  padding-right: 1.2em;
+}
+
+.responsive-top-row .responsive-header-link {
+  background-image: linear-gradient(to right, $white 30%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 5px 1px;
+  background-repeat: repeat-x;
+  text-decoration: none;
+}
+
+.display-block-table th:not(:first-child) {
+  background-image: linear-gradient(to right, $midnight-grey 10%, rgba(255, 255, 255, 0) 0%);
+  background-position: top;
+  background-size: 5px 1px;
+  background-repeat: repeat-x;
+}
+
+.display-block-table td,
+.display-block-table th {
+  border: none;
+}
+
+.primary-table-data {
+  width: 100%;
+}
+
+td {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.select-action-group {
+  margin: 0 0 0 0.8em;
+  color: $white;
+}
+
+.list-view-tableactions .select-action-group {
+  margin: 0;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more {
+  background-color: $white;
+  background-repeat: no-repeat;
+  border: 1px solid $button-secondary;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-repeat: initial;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: visible;
+  outline: initial none initial;
+  padding: 8px 16px;
+  font-family: "BC Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27.008px;
+  color: $typography-color-secondary;
+
+  &:hover {
+    background-color: $secondary-button-hover;
+    border-color: $border-dark;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    background-color: $theme-gray-40;
+    border-color: $border-dark;
+  }
+}
+
+.select-action-group .dropdown-toggle::after,
+.bulk-action-group,
+.bulk-action-group .dropdown-toggle::after {
+  color: $white;
+}
+
+.pagination-count {
+  color: $typography-color-secondary;
+  font-weight: bold;
+  position: relative;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21.008px;
+  padding: 8px 16px 8px 16px;
+}
+
+.list-view .col-lg-12, .list-view .col-lg-9, .list-view .col-lg-3 {
+  transition-timing-function: ease;
+  /* Quick on the way out */
+  transition: 0.5s;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.quick-filter-border {
+  border-right: 1px solid rgb(108, 117, 125, 0.5)!important;
+  margin-right: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+td.cdk-column-checkbox {
+  min-width: 32px;
+}
+
+.filter-panel-container {
+  position: absolute;
+  right: 0;
+  z-index: 5;
+  width: 500px;
+  padding: 0 !important;
+  margin-top: 8px;
+  border-radius: 6px;
+  box-shadow: 0px 1.2px 3.6px 0px rgba(0, 0, 0, 0.10), 0px 6.4px 14.4px 0px rgba(0, 0, 0, 0.13);
+
+  .panel-card .card-body-padding {
+    border: 1px solid $grey-widget;
+    border-top: none;
+    padding: 24px;
+  }
+
+  .card-header button {
+    color: $primary_text;
+  }
+
+  .panel-card .card-header {
+    background: $surface-background-lightGray;
+    border: 1px solid $grey-widget;
+    padding: 8px 16px;
+    height: fit-content;
+
+    .panel-title-upper-header {
+      padding: 0;
+      color: $primary_text;
+    }
+  }
+
+  .filter-body {
+    padding: 0 !important;
+  }
+
+  .btn-danger {
+    background: $surface-color-primary-button-default;
+    border: 1px solid $surface-color-primary-button-default;
+    color: $white;
+    padding: 8px 16px;
+  }
+
+  .btn-danger:hover {
+    background: $surface-color-primary-hover;
+  }
+
+  .btn-outline-danger {
+    border: 1px solid $surface-color-border-dark;
+    color: $surface-color-border-dark;
+    padding: 8px 16px;
+  }
+  .btn-outline-danger:hover {
+    background: $secondary-button-hover;
+  }
+
+  form {
+    .form-row {
+    display: flex;
+    flex-direction: column;
+    }
+
+    .form-group {
+      margin: 0 !important;
+    }
+
+    .form-control {
+      margin-bottom: 16px;
+    }
+
+    .mt-4 {
+      margin: 16px 0 0 !important;
+      display: flex;
+      gap: 16px;
+    }
+
+    .col-form-label-sm {
+      font-family: 'BC Sans';
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 27px;
+    }
+
+    .form-control-sm {
+      height: auto;
+      padding: 8px 16px;
+      border-radius: 4px !important;
+    }
+  }
+
+}
+
+.list-view .list-view-header {
+  position: relative;
+}
