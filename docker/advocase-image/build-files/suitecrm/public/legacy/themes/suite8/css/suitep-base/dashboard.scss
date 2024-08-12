@@ -368,6 +368,7 @@ div#chartDashlets {
   padding: 0;
   margin: 0 32px 32px 0;
   border-radius: 6px;
+  overflow: hidden;
 }
 
 table tr td:last-child .dashletPanel {
@@ -522,6 +523,11 @@ td.dashlet-title {
   padding-right: 0;
 }
 
+table #dashletPanel td a {
+  color: $typography-color-link;
+}
+
+
 .bd .dashletPanel .list-view-data-icon {
   color: $dashlet-action-color;
   font-size: $dashlet-action-icon-font-size;
@@ -545,13 +551,16 @@ td.dashlet-title {
     position: relative;
     top: 0.3em;
   }
-  tr.oddListRowS1 {
-    text-align: center;
-  em {
-    font-style:normal;
-    font-size: 1.2em;
-    color: $black;
+
+  #dashboard .sort {
+    top: 2px;
   }
+  tr.oddListRowS1 {
+    em {
+      font-style:normal;
+      font-size: 1.2em;
+      color: $black;
+    }
   }
 }
 
@@ -591,7 +600,11 @@ table #dashletPanel {
 }
 
 .dashletToolSet {
-  margin: 0 10px 0 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 8px;
+
   svg {
     fill: $white;
   }
@@ -924,16 +937,29 @@ table #dashletPanel {
     overflow: hidden;
 
     .bd {
-      // overflow-x: hidden;
-      padding: 16px 32px;
+      padding: 0 32px 32px;
       background: $white;
+    }
 
-      .bd-center {
-        border: 1px solid $surface-color-border-default;
-        border-radius: 6px;
-        overflow-x: auto;
+    .dashlet-table-wrapper {
+      border: 1px solid $surface-color-border-default;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+
+    .pagination {
+      padding-top: 16px;
+
+      button {
+        background: transparent;
+        padding: 0 4px;
+      }
+
+      button[disabled] {
+        background: transparent;
       }
     }
+
     .header-title {
       color: $typography-color-secondary;
       display: inline-block;
@@ -941,9 +967,23 @@ table #dashletPanel {
     }
   }
   li .dashletPanel {
-    border-radius: 0;
+    border-radius: 6px;
     overflow: auto;
-    border: none;
+    border: 1px solid $surface-color-border-default;
+
+    .dashletPanel {
+      border: none
+    }
+  }
+
+  .sugarFeedDashlet {
+    thead {
+      display: none;
+    }
+
+    .dashlet-table-wrapper {
+      border: none;
+    }
   }
 }
 
@@ -1051,7 +1091,14 @@ input.button.addDashboard {
 .dashlet-header-title,
 .dashlet-header-btn-group {
   background: $surface-color-background-blue;
-  height: 40px;
+}
+
+.dashlet-header-title:first-child {
+  border-top-left-radius: 6px;
+}
+
+.dashlet-header-btn-group {
+  border-top-right-radius: 6px;
 }
 
 .dashboard-panel-header-text {
