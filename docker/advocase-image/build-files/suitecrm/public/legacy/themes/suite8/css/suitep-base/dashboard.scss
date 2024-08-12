@@ -289,9 +289,10 @@ ul.subpanelTablist li {
 
 .sugarFeedDashlet .byLineBox {
   width:100%;
-  position:relative;
+  position: relative;
   overflow: hidden;
-  font-size: 13px;
+  font-size: 12px;
+  color: $typography-color-secondary;
 }
 
 .sugarFeedDashlet blockquote {
