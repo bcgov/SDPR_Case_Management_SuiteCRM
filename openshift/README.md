@@ -3,6 +3,7 @@ Table of Contents
 - [Deployment pre-requisites](#deployment-pre-requisites)
   - [Allowing other namespaces to pull images from `-tools` namespace](#allowing-other-namespaces-to-pull-images-from--tools-namespace)
   - [Creating required components prior to HELM deployment](#creating-required-components-prior-to-helm-deployment)
+- [Allowing APS domains](#allowing-aps-domains)
 - [Creating Github Actions service account](#creating-github-actions-service-account)
 
 **IMPORTANT:** Always make sure to use the `-n <license plate>-<namespace>` flag when running `oc` commands to ensure you are running commands in the correct namespace.
@@ -52,6 +53,14 @@ Run the following command to create the components requiered for the HELM deploy
 
 ```bash
 oc process -f ./openshift/pre-deployment-template.yaml --param-file=./openshift/pre-deployment-envs.env | oc create -n <licence plate>-<namespace> -f -
+```
+
+## Allowing APS domains
+
+If you requested an APS domain for your project (e.g. `<your project>.apps.gov.bc.ca`), you need to apply the following NetworkPolicy, according to [BCGov documentation](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/unlisted/owner-journey-v1/#ocp-network-policies):
+
+```bash
+oc apply -f ./openshift/aps-network-policy-gold-cluster.yaml
 ```
 
 ## Creating Github Actions service account
