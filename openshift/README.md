@@ -2,9 +2,12 @@ Table of Contents
 
 - [Deployment pre-requisites](#deployment-pre-requisites)
   - [Allowing other namespaces to pull images from `-tools` namespace](#allowing-other-namespaces-to-pull-images-from--tools-namespace)
-  - [Creating required components prior to HELM deployment](#creating-required-components-prior-to-helm-deployment)
+  - [Creating required components prior to HELM/ArgoCD deployment](#creating-required-components-prior-to-helmargocd-deployment)
 - [Allowing APS domains](#allowing-aps-domains)
 - [Creating Github Actions service account](#creating-github-actions-service-account)
+- [Building images on Openshift](#building-images-on-openshift)
+  - [Creating ImageStream and BuildConfig](#creating-imagestream-and-buildconfig)
+  - [Starting a build](#starting-a-build)
 
 **IMPORTANT:** Always make sure to use the `-n <license plate>-<namespace>` flag when running `oc` commands to ensure you are running commands in the correct namespace.
 
@@ -18,11 +21,10 @@ Run the following command in all namespaces (`-dev`, `-test`, `-prod`) to allow 
 oc policy add-role-to-group system:image-puller system:serviceaccounts:<license plate>-<namespace> -n <license plate>-tools
 ```
 
-### Creating required components prior to HELM deployment
+### Creating required components prior to HELM/ArgoCD deployment
 
 Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-deployment-envs.env` and fill in the required values:
 
-<!-- Table with all variables with the following headers: Variable Name, Description, Required, Default value -->
 | Variable Name | Description | Required | Default value |
 | --- | --- | --- | --- |
 | `APP_NAME` | The name of the application | False | suitecrm |
@@ -49,7 +51,7 @@ Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-
 <br />
 **Note 2:** The `DB_USER` and `DB_NAME` variables should match `mariadb-galera.db.user` and `mariadb-galera.db.name` in the HELM chart `values.yaml` file. Also, the `DB_HOST` variable should match the name of the MariaDB Galera Cluster service in the Openshift project. The name of the service is in the format `<chart name>-mariadb-galera`.
 
-Run the following command to create the components requiered for the HELM deployment:
+Run the following command to create the components required for the HELM/ArgoCD deployment:
 
 ```bash
 oc process -f ./openshift/pre-deployment-template.yaml --param-file=./openshift/pre-deployment-envs.env | oc create -n <licence plate>-<namespace> -f -
@@ -69,4 +71,39 @@ Run the following command in all required namespaces (`-dev`, `-test`, `-prod`) 
 
 ```bash
 oc process -f ./openshift/github-actions-template.yaml | oc -n <license plate>-<namespace> apply -f -
+```
+
+## Building images on Openshift
+
+### Creating ImageStream and BuildConfig
+
+If you need to build images on Openshift, you can use the `./openshift/local-build-config-template.yaml` file to create an `ImageStream` and a `BuildConfig` for your project. Copy the `./openshift/local-build-config-envs.example.env` file to `./openshift/local-build-config-envs.env` and fill in the required values
+
+| Variable Name | Description | Required | Default value |
+| --- | --- | --- | --- |
+| `IMAGE_STREAM_NAME` | The name of the image stream | True | |
+| `TAG` | The tag to apply to the image stream | False | latest |
+| `DOCKERFILE_NAME` | The name of the Dockerfile to use | False | Dockerfile |
+| `REPOSITORY_URL` | The URL of the git repository | True | |
+| `REPOSITORY_REF` | The git reference to use | False | main |
+| `CONTEXT_DIR` | The context directory to use | False | . |
+
+Run the following command to create the `ImageStream` and `BuildConfig`:
+
+```bash
+oc process -f ./openshift/local-build-config-template.yaml --param-file=./openshift/local-build-config-envs.env | oc create -n <license plate>-<namespace> -f -
+```
+
+### Starting a build
+
+To start a build, run the following command:
+
+```bash
+oc start-build bc/<build config name> -n <license plate>-<namespace>
+```
+
+If you want to start a build with your local files, you can use the `oc start-build` command with the `--from-dir` flag:
+
+```bash
+oc start-build bc/<build config name> --from-dir=. -n <license plate>-<namespace>
 ```
