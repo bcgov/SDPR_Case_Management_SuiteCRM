@@ -1,0 +1,12 @@
+dependencies:
+- name: mariadb-galera
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.3.2
+- name: redis-cluster
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.0.1
+- name: backup-storage
+  repository: https://bcgov.github.io/helm-charts
+  version: 0.1.13
+digest: sha256:1a4057aa451a8f9fc462dabe75194ab2a822b19f6e4413ea1a7925798fe57c10
+generated: "2024-06-30T14:10:07.01774-07:00"

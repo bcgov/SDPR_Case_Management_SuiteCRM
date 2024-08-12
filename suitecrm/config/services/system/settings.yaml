@@ -1,3 +1,0 @@
-parameters:
-  system.settings:
-    setup_wizard_route: users/Wizard

@@ -1,5 +1,0 @@
-parameters:
-  record.fields.view_metadata_field_alias_map:
-    type:
-      parent:
-        alias: '{name}-group'

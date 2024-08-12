@@ -1,0 +1,552 @@
+/**
+ * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+ * Copyright (C) 2021 SalesAgility Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * In accordance with Section 7(b) of the GNU Affero General Public License
+ * version 3, these Appropriate Legal Notices must retain the display of the
+ * "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+ * feasible for technical reasons, the Appropriate Legal Notices must display
+ * the words "Supercharged by SuiteCRM".
+ */
+
+/* --------- BUTTON SECTION ---------- */
+
+button {
+  padding: 0.6em 0.95em;
+  margin: 0.2em;
+  background-color: $salmon-pink;
+  border: none;
+  -webkit-border-radius: 0.25em;
+  -moz-border-radius: 0.25em;
+  border-radius: 0.25em;
+  color: $off-white;
+  font-size: 0.9em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.login-button {
+  background-color: $coral-pink;
+  letter-spacing: 0.1em;
+}
+
+.login-button .disabled {
+  opacity: 40%;
+}
+
+.login-button:hover {
+  background-color: $light-orange;
+}
+
+.alerts-button,
+.quickcreate-button,
+.favourites-button {
+  -webkit-border-radius: 0.25em;
+  -moz-border-radius: 0.25em;
+  border-radius: 0.25em;
+  border: none;
+  margin: 0.2em 0.2em 0 0.2em;
+  padding: 0.1em 0.8em;
+  line-height: 1.9em;
+}
+
+@media all and (max-width: $breakpoint-small) {
+  .alerts-button,
+  .quickcreate-button,
+  .favourites-button {
+    -webkit-border-radius: 0.25em;
+    -moz-border-radius: 0.25em;
+    border-radius: 0.25em;
+    border: none;
+    margin: 0.2em 0.2em 0 0.2em;
+    padding: 0.185em 0.7em;
+    font-size: 0.8em;
+  }
+
+  .quickcreate-button {
+    padding: 0.3em 0.5em 0 0.5em;
+  }
+
+  .alerts-button.dropdown-toggle::after,
+  .quickcreate-button.dropdown-toggle::after,
+  .favourites-button.dropdown-toggle::after {
+    vertical-align: middle;
+  }
+}
+
+.alerts-button {
+  background-color: $burnt-red;
+}
+
+.alerts-button:active, .alerts-button:hover {
+  background-color: $burnt-orange;
+}
+
+.quickcreate-button {
+  background-color: $sky-blue;
+  color: $white;
+}
+
+.quickcreate-button:active, .quickcreate-button:hover {
+  background-color: $bright-purple;
+}
+
+.favourites-button {
+  background-color: $mellow-yellow;
+}
+
+.favourites-button:active, .favourites-button:hover {
+  background-color: $sandy-yellow;
+}
+
+.alerts-button.disabled, .quickcreate-button.disabled, .favourites-button.disabled {
+  opacity: 40%;
+}
+
+.alerts-button.dropdown-toggle::after,
+.quickcreate-button.dropdown-toggle::after,
+.favourites-button.dropdown-toggle::after {
+  color: $light-grey;
+}
+
+.action-alert,
+.action-favourite,
+.action-new {
+  float: left;
+}
+
+@media all and (min-width: $breakpoint-medium) {
+  .login-button {
+    width: 26.5em;
+  }
+}
+
+@media all and (max-width: $breakpoint-medium) {
+  .login-button {
+    width: 20em;
+  }
+}
+
+.action-button {
+  background-color: $cool-blue;
+  text-transform: uppercase;
+  padding: 0.3em 1em;
+  font-weight: 400;
+  height: 2.2em;
+  line-height: 1.6em;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.action-button:hover {
+  background-color: $astral-blue;
+}
+
+.clear-filter-button,
+.clear-filter-button.btn,
+.settings-button.clear-filter-button,
+.settings-button.clear-filter-button.btn {
+  padding: 8px 16px;
+  margin: 0 0 0 16px;
+  background: $surface-color-primary-button-default !important;
+  border-color: $surface-color-primary-button-default !important;
+  color: $white;
+  border-radius: 6px !important;
+  font-style: normal;
+  font-weight: 700;
+  font-family: "BC Sans";
+  font-size: 16px;
+}
+
+.filter-settings-button.btn {
+  font-style: normal;
+  font-weight: 700;
+  font-family: "BC Sans";
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 6px !important;
+  margin: 0;
+}
+
+.filter-settings-button.btn::before:not(:active) {
+  content: url('data:image/svg+xml,<svg width="18" height="15" viewBox="0 0 18 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.09375 0.71875C1.3125 0.28125 1.75 0 2.25 0H15.75C16.2188 0 16.6562 0.28125 16.875 0.71875C17.0625 1.15625 17 1.6875 16.6875 2.0625L11 9.03125V13C11 13.4062 10.7812 13.75 10.4375 13.9062C10.0938 14.0625 9.6875 14.0312 9.375 13.8125L7.375 12.3125C7.125 12.125 7 11.8438 7 11.5V9.03125L1.28125 2.0625C0.96875 1.6875 0.90625 1.15625 1.09375 0.71875Z" fill="%23474543"/></svg>');
+  // content: url('/suite-crm/core/app/shell/src/themes/suite8/images/filter.svg');
+  margin-right: 8px;
+  color: $button-secondary;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.settings-button,
+.settings-button.btn {
+  background-color: $white;
+  border: 1px solid;
+  border-color: $widget-border;
+  border-radius: 4px;
+  color: $button-secondary;
+}
+
+.settings-button:hover,
+.settings-button.btn:hover {
+  background-color: $secondary-button-hover;
+}
+
+.settings-button.active,
+.settings-button.btn.active {
+  background-color: $secondary-button-hover;
+}
+
+.settings-button.btn-outline-main,
+.settings-button.btn.btn-outline-main {
+  background-color: transparent;
+}
+
+.settings-button.btn-outline-main:hover,
+.settings-button.btn.btn-outline-main:hover {
+  background-color: $secondary-button-hover;
+}
+
+.settings-button.active,
+.settings-button.btn.active {
+  background-color: $secondary-button-hover;
+}
+
+.settings-button.btn-outline-main.active,
+.settings-button.btn.btn-outline-main.active {
+  background-color: $secondary-button-hover;
+}
+
+.settings-button.btn-outline-main.active:hover,
+.settings-button.btn.btn-outline-main.active:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: $secondary-button-hover;
+  fill: $secondary-button-hover;
+  stroke: $secondary-button-hover;
+}
+
+.quick-filter-button {
+  .settings-button {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    padding: 0.3em .5em;
+    color: $off-white;
+  }
+}
+
+.export-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 89px;
+  height: 35px;
+  padding: 4px 8px;
+
+  background-color: $white;
+  border: 1px solid;
+  border-color: $widget-border;
+  border-radius: 4px;
+  color: $button-secondary;
+
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27.008px; /* 168.8% */
+}
+.export-button {
+  .export-button-icon {
+    margin-right:4px;
+  }
+}
+.export-button:hover{
+  background-color: $surface-color-primary-hover;
+  color: $white;
+}
+
+.export-button.active {
+  background-color: $surface-color-background-blue;
+  color: $white;
+}
+
+.action-button.disabled, .settings-button.disabled {
+  opacity: 40%;
+}
+
+.widget-header .btn-link {
+  color: $white;
+}
+
+.bulk-action-button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: 0.09em solid $light-grey;
+  -webkit-border-radius: 0.15em;
+  -moz-border-radius: 0.15em;
+  border-radius: 0.15em;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 0.3em 0.5em;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: $white;
+  text-align: left;
+  min-width: 11em;
+}
+
+.bulk-action-button:hover {
+  background-color: $astral-blue;
+  color: $white;
+}
+
+.bulk-action-button::after {
+  position: relative;
+  margin-left: 3em;
+}
+
+.table-action-button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: 0.09em solid $light-grey;
+  -webkit-border-radius: 0.15em;
+  -moz-border-radius: 0.15em;
+  border-radius: 0.15em;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 0.3em 0.5em;
+  font-weight: bold;
+  font-size: 0.9em;
+  color: $white;
+  text-align: left;
+}
+
+.table-action-button:hover {
+  background-color: $astral-blue;
+  color: $white;
+}
+
+.table-action-button::after {
+  position: relative;
+  margin-left: 3em;
+}
+
+.select-action-group .dropdown-toggle::after {
+  margin-left: 0.6em;
+}
+
+.search-button {
+  background-color: $white;
+  margin: 0;
+}
+
+.widget-transparent-button {
+  background-color: transparent;
+  border: 0.1em solid $midnight-grey;
+  color: $midnight-grey;
+  text-align: left;
+  padding: 0.5em 1em;
+}
+
+.widget-transparent-button.dropdown-toggle::after {
+  float: right;
+  margin: 0.5em;
+}
+
+.remove-button {
+  background-color: transparent;
+  border: 0.1em solid $sky-blue;
+  color: $sky-blue;
+  -webkit-border-radius: 0.25em;
+  -moz-border-radius: 0.25em;
+  border-radius: 0.25em;
+  margin: 0.2em 0.2em 0 0.2em;
+  padding: 0.1em 0.8em;
+  line-height: 1.9em;
+}
+
+.navbar-toggler {
+  background-color: $midnight-blue;
+}
+
+.modal-button-save {
+  background-color: $midnight-blue;
+  border: none;
+  color: $white;
+  padding: 0.3rem 1rem;
+  font-size: 0.8em;
+  font-weight: bold;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+}
+
+.modal-button-cancel {
+  background-color: $pale-grey;
+  border: none;
+  color: $white;
+  padding: 0.3rem 1rem;
+  font-size: 0.8em;
+  font-weight: bold;
+  -webkit-border-radius: 0.2em;
+  -moz-border-radius: 0.2em;
+  border-radius: 0.2em;
+}
+
+.modal-button-save:hover, .modal-button-cancel:hover {
+  color: $white;
+  background-color: $bright-orange;
+}
+
+.pagination-button {
+  background: transparent;
+  padding: 0;
+  width: 13px;
+  height: 16.67px;
+}
+
+.pagination-button .disabled {
+  opacity: 40%;
+}
+
+.pagination-previous {
+  margin-left: 8px;
+}
+
+.pagination-next {
+  margin-right: 8px;
+}
+
+.create-popup-button {
+  background-color: transparent;
+  border: none;
+  padding: 0.2em;
+}
+
+.record-action-button {
+  background-color: transparent;
+  border: none;
+  padding: 0 0.3em;
+  font-size: 0.8em;
+  fill: transparentize($nepal-grey, 0.5);
+}
+
+button.settings-button.dropdown-toggle::after {
+  vertical-align: middle;
+}
+
+.list-icon-button {
+  background: transparent;
+
+  padding: 0;
+  cursor: pointer;
+}
+
+.list-icon-button.responsive-list-data {
+  width: 25%;
+  border: 0.1em solid #aa9dcc;
+  border-radius: 0;
+  margin: 0;
+  padding: 0.5em 0;
+}
+
+.save-filter-button {
+  margin: 0;
+  padding: 0.4em 0.8em;
+  font-size: 0.7em;
+  font-weight: bold;
+  color: $white;
+  background-color: $burnt-red;
+}
+
+.close-button {
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1;
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.minimise-button {
+  font-size: 0.5em;
+  fill: $white;
+  padding: .25rem .35rem;
+  margin: 0 0.2em 0 0.2em;
+}
+
+.minimise-button:hover {
+  fill: $midnight-grey;
+}
+
+.select-button {
+  fill: $secondary;
+}
+
+.select-button:hover {
+  fill: $white;
+}
+
+.btn-xs {
+  padding: 0.25rem 0.5rem;
+  font-size: 65%;
+  border-radius: 0.25rem;
+  line-height: 1.5;
+}
+
+.btn-link {
+  color: $coral-pink;
+}
+
+.btn-link:hover {
+  color: $coral-pink;
+}
+
+.back-button {
+  width: 1em;
+  height: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 1px solid $shell-grey;
+  fill: $shell-grey;
+  padding: 0.6em;
+  font-size: 1.4em;
+  &:hover {
+    background-color: $light-grey;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.input-group-append .btn {
+  border-left: 1px $white;
+  border-right: 1px $typography-color-secondary;
+  border-top: 1px $typography-color-secondary;
+  border-bottom: 1px $typography-color-secondary;
+}

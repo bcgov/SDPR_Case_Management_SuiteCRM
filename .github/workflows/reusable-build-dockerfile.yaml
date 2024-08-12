@@ -1,0 +1,90 @@
+name: Dockerfile Build
+on:
+  workflow_call:
+    inputs:
+      ref:
+        required: false
+        type: string
+        default: main
+      directory:
+        required: true
+        type: string
+      image-name:
+        required: true
+        type: string
+      image-tags:
+        required: true
+        type: string
+      push-advocase:
+        required: false
+        type: boolean
+        default: true
+      artifactory-repository:
+        required: true
+        type: string
+    secrets:
+      artifactory-registry:
+        required: true
+      artifactory-username:
+        required: true
+      artifactory-password:
+        required: true
+
+jobs:
+  build:
+    name: Dockerfile Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Process Image Tags
+      run: |
+        # This is a little strange - we can put bash processing in an input
+        # parameter, such as "${GITHUB_SHA::7}". It will come in as that exact
+        # string, so we need to echo it in bash to process it into the string
+        # that we actually want.
+        echo '${{ inputs.image-tags }} =>' ${{ inputs.image-tags }}
+        echo "IMAGE_TAGS=${{ inputs.image-tags }}" >> $GITHUB_ENV
+
+    - name: Check out
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ inputs.ref }}
+
+    - name: Login to Artifactory to Pull/Push Images
+      uses: redhat-actions/podman-login@v1
+      if: inputs.push-advocase
+      with:
+        registry: ${{ secrets.artifactory-registry }}
+        username: ${{ secrets.artifactory-username }}
+        password: ${{ secrets.artifactory-password }}
+
+    # There is a sporadic error "error happened during read: unexpected EOF"
+    # when pulling Artifactory images. It was suggested that perhaps it was due
+    # to /var/tmp being full. Maybe this will indicate something strange when it
+    # does happen.
+
+    - name: Debug for errors
+      if: inputs.push-advocase
+      run: cd /var/tmp; df -h .
+
+    - name: Buildah Build
+      id: build-image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        containerfiles: ${{ inputs.directory }}/Dockerfile
+        context: ${{ inputs.directory }}
+        image: ${{ inputs.image-name }}
+        tags: ${{ env.IMAGE_TAGS }}
+
+    - name: Debug for errors
+      run: cd /var/tmp; df -h .
+
+    - name: Push Image to Artifactory
+      uses: redhat-actions/push-to-registry@v2
+      with:
+        extra-args: --log-level=debug
+        image: ${{ steps.build-image.outputs.image }}
+        tags: ${{ steps.build-image.outputs.tags }}
+        registry: ${{ secrets.artifactory-registry }}/${{ inputs.artifactory-repository }}
+        username: ${{ secrets.artifactory-username }}
+        password: ${{ secrets.artifactory-password }}

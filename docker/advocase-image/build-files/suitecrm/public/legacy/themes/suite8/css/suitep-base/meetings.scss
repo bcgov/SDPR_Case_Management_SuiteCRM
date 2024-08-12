@@ -1,0 +1,152 @@
+#EditView_tabs .panel  {
+    padding: 24px 40px 0px;
+}
+
+.view-module-Meetings {
+    margin-top: 32px;
+
+    #EditView .buttons, .action_buttons {
+        bottom: 0.8em;
+    }
+
+    .schedulerInvitees {
+        margin-top: 40px;
+        border: 2px solid #d8d8d8;
+        border-bottom: none;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        h3 {
+            margin-top: 0;
+            font-size: 16px;
+        }
+    }
+    #create-invitees {
+        h3 {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            margin: 0px 0px 24px;
+        }
+    }
+
+    #EditView_tabs .panel-default > .panel-body {
+        padding: 0 0 16px;
+    }
+
+    .meeting-scheduler {
+        padding: 0 40px;
+    }
+
+    .invitees-hr-wrapper {
+        background: $white;
+        padding:  0 40px 32px;
+        border-left: 2px solid $surface-color-border-default;
+        border-right: 2px solid $surface-color-border-default;
+    }
+
+    .invitees-hr {
+        border-bottom: 1px solid $surface-color-border-default;
+        width: 100%;
+    }
+
+    .list-div-win-wrapper {
+        overflow: hidden;
+        border-radius: 6px;
+        border: 2px solid $surface-color-border-default;
+    }
+
+    #scheduler .schedulerDiv {
+        padding: 0 40px 32px;
+
+        h3 {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 36px;
+            margin: 0px 0px 24px;
+        }
+    }
+    input[type=text],input[type=password],input[type=email],input[type=number]{
+        background-color: $transparent-color;
+        border: 1px solid $form-border-color;
+    }
+    #EditView .edit input[type=submit]#invitees_search {
+        font-weight: 700;
+        line-height: 1.1em;
+        background-color: $surface-color-primary-button-default;
+        text-transform: capitalize;
+        border-radius: 4px0.2em;
+        border: 1px solid #013366;
+        padding: 8px 16px;
+        letter-spacing: 0.05em;
+        &:hover {
+            background: $surface-color-primary-hover;
+        }
+    }
+
+    input[type=button] {
+        margin: 0.2em;
+        font-weight: 700;
+        height: 2.2em;
+        line-height: 1.1em;
+        background-color: $white;
+        color: $typography-color-secondary;
+        text-transform: capitalize;
+        border-radius: 0.2em;
+        padding: 0.3em 1em;
+        letter-spacing: 0.05em;
+        font-size: 16px;
+        font-family: "BC Sans";
+        &:hover {
+            background: $secondary-button-hover;
+        }
+    }
+    input[type="button"][disabled] {
+        background: #a59f9f;
+        opacity: 0.5;
+    }
+    #list_div_win {
+        border-radius: 0;
+        border: none;
+        border-left: 2px solid #d8d8d8;
+        border-right: 2px solid #d8d8d8;
+        margin-top: -8px;
+    }
+    select {
+        width: 46%;
+        height: 43px;
+        background: url($select-edit-background-url) no-repeat right;
+        border-color: $bright-grey;
+        background-position: calc(100% - 16px) center;
+    }
+    li#tab-actions {
+        input[type=submit] {
+            padding-left: 1em;
+        }
+    }
+
+    br {
+        display: none;
+    }
+}
+
+#schedulerTable .schedulerTopRow {
+    font-family: "BC Sans";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 27.01px;
+    text-align: center;
+    background-color: $surface-background-lightGray;
+    color: $primary_text;
+    border: none;
+    border-bottom: 1px solid $surface-color-border-default;
+}
+
+#schedulerTable .schedulerTopRow th {
+    padding: 8px 24px;
+}
+
+.schedulerTable-wrapper {
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid $surface-color-border-default;
+}
