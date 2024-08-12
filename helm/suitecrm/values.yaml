@@ -18,6 +18,8 @@ global:
       schedule: "* */2 * * *"
     filesBackup:
       schedule: "*/15 * * * *"
+    filesBackup:
+      schedule: "0 2 * * *"
 
 ## Dependency Redis Cluster
 redis-cluster:
