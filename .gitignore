@@ -1,3 +1,5 @@
 docker/db
 
 .DS_Store
+
+openshift/pre-deployment-envs.env
