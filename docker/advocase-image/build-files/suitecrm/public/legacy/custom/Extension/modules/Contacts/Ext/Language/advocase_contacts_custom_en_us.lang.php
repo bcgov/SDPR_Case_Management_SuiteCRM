@@ -11,6 +11,8 @@ $mod_strings['LBL_ADVOCASE_INDIVIDUAL_AGE'] = 'Age Range of Individual';
 $mod_strings['LBL_ADVOCASE_LEGAL_AGREEMENT'] = 'Legal Agreement in Place';
 $mod_strings['LBL_ADVOCASE_NOTES'] = 'Notes';
 $mod_strings['LBL_ADVOCASE_OTHER_CONTACT_TYPE'] = 'If other, please specify';
+$mod_strings['LBL_DIRECT_REPORTS_SUBPANEL_TITLE'] = 'Contacts';
+$mod_strings['LBL_DOCUMENTS_SUBPANEL_TITLE'] = 'Attachments';
 
 $mod_strings['LBL_BIRTHDATE'] = 'Individual Birth Date';
 $mod_strings['LBL_OFFICE_PHONE'] = 'Phone Number';
