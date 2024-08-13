@@ -61,6 +61,8 @@ p.msg {
   font-weight: 700;
   line-height: 42px;
   display: flex !important;
+  padding: 24px 66px;
+  white-space: nowrap;
 }
 
 .nav-tabs > li.tab-inline-pagination {
@@ -647,6 +649,7 @@ table.subpanel-table .pagination li.single > a {
   line-height: 21px;
   letter-spacing: 0.1em;
   text-transform: capitalize;
+  display: none;
 }
 
 .subpanel-table {
@@ -665,7 +668,9 @@ table.subpanel-table .pagination li.single > a {
 .detail-border-bottom {
   margin-top: 0;
   margin-bottom: 0;
-  border-top: 1px solid $surface-color-border-dark;
+  border-top: 1px solid $surface-color-border-default;
+  margin-left: -57px;
+  width: 200%;
 }
 
 .view-action-DetailView {
@@ -693,4 +698,15 @@ table.subpanel-table .pagination li.single > a {
 
 .tabDetailViewDFLink {
   color: $typography-color-link;
+}
+
+#assigned_user_id {
+  padding: 4px 8px;
+  border: 1px solid #f8bb47;
+  background-color: #fef1d8;
+  border-radius: 4px;
+  flex-grow: 0;
+  font-family: "BC Sans";
+  font-size: 14px;
+  font-weight: 400;
 }
