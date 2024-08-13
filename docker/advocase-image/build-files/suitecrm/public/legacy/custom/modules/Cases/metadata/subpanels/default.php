@@ -1,9 +1,9 @@
 <?php
-// created: 2024-07-30 19:07:30
+
 $subpanel_layout['list_fields'] = array (
   'date_entered' => 
   array (
-    'type' => 'datetime',
+    'type' => 'date',
     'vname' => 'LBL_DATE_ENTERED',
     'width' => '10%',
     'default' => true,
@@ -66,21 +66,6 @@ $subpanel_layout['list_fields'] = array (
     'module' => 'Contacts',
     'width' => '5%',
     'default' => true,
-  ),
-  'first_name' => 
-  array (
-    'name' => 'first_name',
-    'usage' => 'query_only',
-  ),
-  'last_name' => 
-  array (
-    'name' => 'last_name',
-    'usage' => 'query_only',
-  ),
-  'salutation' => 
-  array (
-    'name' => 'salutation',
-    'usage' => 'query_only',
   ),
   'contact_id' => 
   array (
