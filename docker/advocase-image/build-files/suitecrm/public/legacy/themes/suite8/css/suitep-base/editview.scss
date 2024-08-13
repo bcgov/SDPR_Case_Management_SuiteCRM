@@ -320,7 +320,7 @@ div.noBullet li,
 }
 
 .content {
-  padding: 1em 1.6em 0 1.6em;
+  padding: 0 56px 36px;
   width: 100%;
 }
 
@@ -1731,6 +1731,9 @@ div.confirmTable {
   padding: 0;
 }
 
+#dashboard .h3Row td {
+  padding: 8px 16px;
+}
 
 .buttonSlide {
   border: 0;
@@ -1794,9 +1797,12 @@ div.confirmTable {
 
 .moduleTitle {
   color: $header-sub-title;
-  margin: 0;
+  margin-left: -57px;
   display: flex;
-  max-width: 47%;
+  width: 200%;
+  background-color: white;
+  padding-left: 30px;
+  padding-top: 13px;
 }
 
 .moduleTitle h2 {
@@ -4582,6 +4588,7 @@ object {
 .favorite {
   margin-left: 5px;
   color: $link-color;
+  display: none;
 }
 
 @media (min-width: 751px) {
