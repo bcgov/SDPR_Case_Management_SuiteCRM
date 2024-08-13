@@ -18,6 +18,7 @@ $mod_strings['LBL_ADVOCASE_COMMUNICATION_TYPE'] = 'Type of Communication';
 $mod_strings['LBL_ADVOCASE_OASQ_AWARENESS'] = 'How did the contact hear about the OASQ?';
 $mod_strings['LBL_ADVOCASE_OASQ_MANDATE'] = 'Within OASQ mandate';
 $mod_strings['LBL_ADVOCASE_OTHER_COMM_TYPE'] = 'If other, please specify';
+$mod_strings['LBL_DOCUMENTS_SUBPANEL_TITLE'] = 'Attachments';
 
 $mod_strings['LBL_STATE'] = 'Status';
 $mod_strings['LBL_LIST_NAME'] = 'Subject';
