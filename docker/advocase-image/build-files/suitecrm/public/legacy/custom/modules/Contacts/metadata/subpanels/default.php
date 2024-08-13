@@ -1,5 +1,5 @@
 <?php
-// created: 2024-07-30 22:01:58
+
 $subpanel_layout['list_fields'] = array (
   'name' => 
   array (
@@ -62,21 +62,6 @@ $subpanel_layout['list_fields'] = array (
     'module' => 'Contacts',
     'width' => '5%',
     'default' => true,
-  ),
-  'first_name' => 
-  array (
-    'name' => 'first_name',
-    'usage' => 'query_only',
-  ),
-  'last_name' => 
-  array (
-    'name' => 'last_name',
-    'usage' => 'query_only',
-  ),
-  'salutation' => 
-  array (
-    'name' => 'salutation',
-    'usage' => 'query_only',
   ),
   'contact_id' => 
   array (

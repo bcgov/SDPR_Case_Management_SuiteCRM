@@ -1511,8 +1511,8 @@ $app_strings = array(
     'LBL_ADMIN' => 'Admin',
     'LBL_ALT_HOT_KEY' => '',
     'LBL_ARCHIVE' => 'Archive',
-    'LBL_ASSIGNED_TO_USER' => 'Assigned to User',
-    'LBL_ASSIGNED_TO' => 'Assigned to:',
+    'LBL_ASSIGNED_TO_USER' => 'Assign to User',
+    'LBL_ASSIGNED_TO' => 'Assign to:',
     'LBL_BACK' => 'Back',
     'LBL_BILLING_ADDRESS' => 'Billing Address',
     'LBL_QUICK_CREATE' => 'Create ',
@@ -1947,7 +1947,7 @@ $app_strings = array(
     'LBL_AVAILABLE_FIELDS' => 'Available Fields',
     'LBL_FIRST_FORM_COLUMN' => 'First Form Column',
     'LBL_SECOND_FORM_COLUMN' => 'Second Form Column',
-    'LBL_ASSIGNED_TO_REQUIRED' => 'Missing required field: Assigned to',
+    'LBL_ASSIGNED_TO_REQUIRED' => 'Missing required field: Assign to',
     'LBL_RELATED_CAMPAIGN_REQUIRED' => 'Missing required field: Related campaign',
     'LBL_TYPE_OF_PERSON_FOR_FORM' => 'Web form to create ',
     'LBL_TYPE_OF_PERSON_FOR_FORM_DESC' => 'Submitting this form will create ',
@@ -2066,7 +2066,7 @@ $app_strings = array(
     'ERROR_MISSING_COLLECTION_SELECTION' => 'Empty required field',
 
     //MB -Fixed Bug #32812 -Max
-    'LBL_ASSIGNED_TO_NAME' => 'Assigned to',
+    'LBL_ASSIGNED_TO_NAME' => 'Assign to',
     'LBL_DESCRIPTION' => 'Description',
     'LBL_CASE_ACTIONS' => 'Case Actions',
 
