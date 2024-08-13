@@ -5,7 +5,7 @@
             <tr>
                 <td class="dashlet-header-title" colspan="2">
                 </td>
-                <td class="dashlet-header-btn-group" style="padding-right: 0px;" nowrap="" width="1%">
+                <td class="dashlet-header-btn-group" nowrap="" width="1%">
                     <div class="dashletToolSet">
                         <a href="javascript:void(0)" title="{$DASHLET_BUTTON_ARIA_REFRESH}" aria-label="{$DASHLET_BUTTON_ARIA_REFRESH}" onclick="SUGAR.mySugar.retrieveDashlet('{$DASHLET_ID}'); return false;">
                             <span class="refresh">{sugar_getimage name="refresh"}</span>
