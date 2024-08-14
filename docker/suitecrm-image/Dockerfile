@@ -15,7 +15,7 @@ RUN apt-get update && \
 
 # Install php extensions
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN install-php-extensions intl gd mysqli pdo_mysql soap zip redis
+RUN install-php-extensions intl gd mysqli pdo_mysql soap zip redis apcu
 
 # Copying modified files to container
 COPY ./suitecrm /opt/suitecrm
