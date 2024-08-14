@@ -87,7 +87,10 @@ spec:
             - name: SESSION_SAVE_HANDLER
               value: rediscluster
             - name: SESSION_SAVE_PATH
-              value: 'seed[]=tcp://suitecrm-redis-cluster-headless:6379&timeout=2&read_timeout=2'
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.global.secrets.suitecrmSecretName }}
+                  key: redis-path
             - name: SUITECRM_URL
               value: {{.Values.global.suitecrmHost}}
             - name: SUITECRM_ADMIN_PWD
