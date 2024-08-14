@@ -44,12 +44,14 @@
 
   #tab-actions .dropdown-menu > li > input[type=button],
   .dropdown-menu > li > a {
-    font-size: $page-font-size;
-    font-weight: normal;
+    font-size: 16px;
+    font-weight: 400;
     cursor: pointer;
     margin: 0;
     letter-spacing: normal;
     line-height: $tab-height;
+    color: $primary_text;
+    font-family: 'BC Sans';
   }
 
   .detail-view > .nav-tabs > #tab-actions {
@@ -65,6 +67,7 @@
     line-height: 16px;
     padding: 5px 12px 0 12px;
     display: inline-block;
+    margin-right: 95px;
   }
 
   .detail-view > .nav-tabs > #tab-actions > .dropdown-menu {
