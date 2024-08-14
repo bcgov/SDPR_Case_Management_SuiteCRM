@@ -88,7 +88,7 @@ function suitecrm_install_command() {
                 -P $SUITE_DB_PASSW \
                 -H $SUITE_DB_HOST \
                 -N $SUITE_DB_NAME \
-                -S $SUITECRM_URL \
+                -S 'http://localhost:8181/ \
                 -d "no"
 }
 
