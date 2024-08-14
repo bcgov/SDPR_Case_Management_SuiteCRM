@@ -15,7 +15,7 @@ RUN apt-get update && \
 
 # Install php extensions
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN install-php-extensions intl gd mysqli pdo_mysql soap zip redis
+RUN install-php-extensions intl gd mysqli pdo_mysql soap zip redis apcu
 
 # Copying modified files to container
 COPY ./suitecrm /opt/suitecrm
@@ -34,7 +34,7 @@ RUN touch /usr/local/etc/php/php.ini && \
 RUN chmod -R 775 /opt/suitecrm && \
     chmod +x /suitecrm/bin/console
 
-RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2 /suitecrm
+RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2
 
 # Exposed ports
 EXPOSE 8181
