@@ -62,7 +62,6 @@
     border-radius: 4px;
     font-size: 11px;
     font-weight: 600;
-    height: 28px;
     line-height: 16px;
     padding: 5px 12px 0 12px;
     display: inline-block;
@@ -204,9 +203,9 @@
   }
 
   #tab-actions > a .suitepicon-action-caret {
-    font-size: 8px;
-    margin-left: 8px;
-    line-height: 14px;
+    font-size: 10px;
+    margin-left: 14px !important;
+    line-height: 25px;
     position: relative;
     bottom: 0.2em;
   }
