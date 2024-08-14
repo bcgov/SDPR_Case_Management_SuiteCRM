@@ -138,14 +138,13 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
-          volumeMounts:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-      {{- with .Values.volumes }}
+          volumeMounts: 
+            - name: {{ .Values.global.volume.name }}
+              mountPath: /suitecrm/public/legacy/upload
       volumes:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        - name: {{ .Values.global.volume.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.global.volume.claimName }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
