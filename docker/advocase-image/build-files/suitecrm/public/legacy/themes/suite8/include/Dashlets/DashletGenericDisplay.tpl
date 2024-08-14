@@ -99,7 +99,18 @@
 			{else}
 				{assign var='_rowColor' value=$rowColor[1]}
 			{/if}
-			<tr height='20' class='{$_rowColor}S1'>
+			
+		{foreach from=$displayColumns key=col item=params}
+			{if !$linkRecorded}
+				{if $params.link && !$params.customCode}
+				{capture assign='recordUrl'}index.php?action={$params.action|default:'DetailView'}&module={if $params.dynamic_module && $rowData[$params.dynamic_module]}{$rowData[$params.dynamic_module]}{else}{$params.module|default:$pageData.bean.moduleDir}{/if}&record={$rowData[$params.id]|default:$rowData.ID}&offset={$pageData.offsets.current+$smarty.foreach.rowIteration.iteration}&stamp={$pageData.stamp}{/capture}
+					{assign var="savedLink" value=$recordUrl}
+					{assign var="linkRecorded" value=true}
+				{/if}
+			{/if}
+		{/foreach}
+
+		<tr height='20' class='{$_rowColor}S1' onclick="window.location.href='{convert_link link=$savedLink}';">
 				{if $prerow}
 				<td width='1%' nowrap='nowrap'>
 						<input onclick='sListView.check_item(this, document.MassUpdate)' type='checkbox' class='checkbox' name='mass[]' value='{$rowData[$params.id]|default:$rowData.ID}'>
