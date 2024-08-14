@@ -34,7 +34,7 @@ RUN touch /usr/local/etc/php/php.ini && \
 RUN chmod -R 775 /opt/suitecrm && \
     chmod +x /suitecrm/bin/console
 
-RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2 /suitecrm
+RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2
 
 # Exposed ports
 EXPOSE 8181
