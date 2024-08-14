@@ -4,10 +4,6 @@
 
 global:
   env: dev
-  suitecrmHost: <! change me >
-  ssoDomain: <! change me >
-  ssoRealm: <! change me >
-  ssoClientid: <! change me >
 
   secrets:
     suitecrmSecretName: suitecrm-secrets
@@ -15,9 +11,13 @@ global:
 
   cron:
     app:
-      schedule: "* */2 * * *"
-    filesBackup:
       schedule: "*/15 * * * *"
+    filesBackup:
+      schedule: "0 2 * * *"
+
+  volume:
+    name: suitecrm-shared-volume-pvc
+    claimName: suitecrm-shared-volume-pvc
 
 ## Dependency Redis Cluster
 redis-cluster:
@@ -37,14 +37,11 @@ redis-cluster:
 mariadb-galera:
   enabled: true
   existingSecret: suitecrm-database-credentials
-  db:
-    user: <! change me >
-    name: <! change me >
   podSecurityContext:
     enabled: false
   containerSecurityContext:
     enabled: false
-  replicaCount: 1
+  replicaCount: 3
   persistence:
     size: 2G
 
@@ -93,15 +90,13 @@ backup-storage:
     0 1 * * * default ./backup.sh -s
     0 4 * * * default ./backup.sh -s -v all
 
-# Default values for suitecrm.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+  podAnnotations: {}
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/bcgovsuitecrm
-  pullPolicy: IfNotPresent
+  Always: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -154,21 +149,6 @@ autoscaling:
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
-volumes:
-  - name: shared-uploads
-    persistentVolumeClaim:
-      claimName: cbsuitecrm-uploads-shared
-
-volumeMounts: 
-  - name: shared-uploads
-    mountPath: /suitecrm/public/legacy/upload
-
-persistence:
-  enabled: true
-  accessModes: 
-    - ReadWriteMany
-  size: 1G
 
 nodeSelector: {}
 tolerations: []

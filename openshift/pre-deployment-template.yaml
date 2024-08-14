@@ -1,0 +1,165 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ${APP_NAME}-pre-deployment-template
+
+objects:
+  - kind: Secret
+    apiVersion: v1
+    metadata:
+      name: ${APP_NAME}-database-credentials
+    stringData:
+      mariadb-galera-root-user: ${DB_ROOT_USER}
+      mariadb-root-password: ${DB_ROOT_PASSWORD}
+      mariadb-galera-backup-user: ${DB_BACKUP_USER}
+      mariadb-galera-mariabackup-password: ${DB_BACKUP_PASSWORD}
+      mariadb-password: ${DB_PASSWORD}
+    type: Opaque
+  - kind: Secret
+    apiVersion: v1
+    metadata:
+      name: ${APP_NAME}-secrets
+    stringData:
+      database-url: mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}
+      suitecrm-admin-password: ${SUITECRM_ADMIN_PASSWORD}
+      sso-idp-x509: ${SSO_IDP_X509_CERT}
+      oauth-key:  ${OAUTH_KEY}
+    type: Opaque
+  - kind: Secret
+    apiVersion: v1
+    metadata:
+      name: ${APP_NAME}-s3-backup-credentials
+    stringData:
+      aws-access-key-id:  ${AWS_ACCESS_KEY_ID}
+      aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+      aws-endpoint-url: https://${S3_ENDPOINT_URL}
+      bucketName: ${S3_BUCKET_NAME}
+      S3URI: https://${AWS_ACCESS_KEY_ID}:${AWS_SECRET_ACCESS_KEY}@${S3_ENDPOINT_URL}
+    type: Opaque
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: ${APP_NAME}-db-backup-pvc
+      labels:
+          app: ${APP_NAME}
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: netapp-file-standard
+      resources:
+        requests:
+          storage: ${BACKUP_VOLUME_SIZE}
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: ${APP_NAME}-db-backup-verification-pvc
+      labels:
+          app: ${APP_NAME}
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      storageClassName: netapp-file-standard
+      resources:
+        requests:
+          storage: ${VERIFICATION_VOLUME_SIZE}
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: ${APP_NAME}-shared-volume-pvc
+      labels:
+          app: ${APP_NAME}
+    spec:
+      accessModes:
+        - ReadWriteMany
+      storageClassName: netapp-file-standard
+      resources:
+        requests:
+          storage: ${SUITECRM_SHARED_VOLUME_SIZE}
+
+parameters:
+  - name: APP_NAME
+    displayName: Application Name
+    description: The name of the application
+    required: false
+    value: suitecrm
+  - name: DB_ROOT_USER
+    displayName: MariaDB Galera Cluster Root User
+    description: The MariaDB Galera Cluster root user
+    required: false
+    value: root
+  - name: DB_ROOT_PASSWORD
+    displayName: MariaDB Galera Cluster Root Password
+    description: The MariaDB Galera Cluster root password
+    required: true
+  - name: DB_BACKUP_USER
+    displayName: MariaDB Galera Cluster Backup User
+    description: The MariaDB Galera Cluster backup user
+    required: true
+  - name: DB_BACKUP_PASSWORD
+    displayName: MariaDB Galera Cluster Backup Password
+    description: The MariaDB Galera Cluster backup password
+    required: true
+  - name: DB_PASSWORD
+    displayName: MariaDB Galera Cluster Database Password
+    description: The MariaDB Galera Cluster database password
+    required: true
+  - name: DB_USER
+    displayName: MariaDB Galera Cluster Database User
+    description: The MariaDB Galera Cluster database user
+    required: false
+    value: suitecrm
+  - name: DB_NAME
+    displayName: MariaDB Galera Cluster Database Name
+    description: The MariaDB Galera Cluster database name
+    required: false
+    value: suitecrm
+  - name: DB_HOST
+    displayName: MariaDB Galera Cluster Database Host
+    description: The MariaDB Galera Cluster database host
+    required: true
+  - name: SUITECRM_ADMIN_PASSWORD
+    displayName: SuiteCRM Admin Password
+    description: The SuiteCRM admin password
+    required: true
+  - name: SSO_IDP_X509_CERT
+    displayName: SSO IDP X509
+    description: The SSO IDP X509 certificate for IDIR/Keycloak integration
+    required: false
+    value: cert
+  - name: OAUTH_KEY
+    displayName: OAuth Key
+    description: The OAuth key for SuiteCRM
+    required: false
+    value: key
+  - name: AWS_ACCESS_KEY_ID
+    displayName: AWS Access Key ID
+    description: The AWS access key ID for S3 backup
+    required: true
+  - name: AWS_SECRET_ACCESS_KEY
+    displayName: AWS Secret Access Key
+    description: The AWS secret access key for S3 backup
+    required: true
+  - name: S3_ENDPOINT_URL
+    displayName: AWS S3 Endpoint URL
+    description: The AWS S3 endpoint URL for S3 backup
+    required: true
+  - name: S3_BUCKET_NAME
+    displayName: AWS S3 Bucket Name
+    description: The AWS S3 bucket name for S3 backup
+    required: true
+  - name: BACKUP_VOLUME_SIZE
+    displayName: Backup Volume Size
+    description: The size of the backup volume
+    required: false
+    value: 5Gi
+  - name: VERIFICATION_VOLUME_SIZE
+    displayName: Backup Verification Volume Size
+    description: The size of the verification volume
+    required: false
+    value: 2Gi
+  - name: SUITECRM_SHARED_VOLUME_SIZE
+    displayName: SuiteCRM Shared Volume Size
+    description: The size of the volume shared among SuiteCRM pods for file storage
+    required: false
+    value: 5Gi
+  

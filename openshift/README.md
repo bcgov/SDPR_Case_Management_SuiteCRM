@@ -1,101 +1,109 @@
 Table of Contents
 
-- [Secrets](#secrets)
-  - [Generating Base64 encoded values](#generating-base64-encoded-values)
-  - [Creating SuiteCRM database secrets](#creating-suitecrm-database-secrets)
-  - [Creating SuiteCRM secrets](#creating-suitecrm-secrets)
-  - [Creating S3 Bucket file backup secrets](#creating-s3-bucket-file-backup-secrets)
-- [Creating database backup and verification volume claims](#creating-database-backup-and-verification-volume-claims)
-  - [Creating the backup volume claim](#creating-the-backup-volume-claim)
-  - [Creating the verification volume claim](#creating-the-verification-volume-claim)
-  - [Creating Github Actions service account](#creating-github-actions-service-account)
+- [Deployment pre-requisites](#deployment-pre-requisites)
+  - [Allowing other namespaces to pull images from `-tools` namespace](#allowing-other-namespaces-to-pull-images-from--tools-namespace)
+  - [Creating required components prior to HELM/ArgoCD deployment](#creating-required-components-prior-to-helmargocd-deployment)
+- [Allowing APS domains](#allowing-aps-domains)
+- [Creating Github Actions service account](#creating-github-actions-service-account)
+- [Building images on Openshift](#building-images-on-openshift)
+  - [Creating ImageStream and BuildConfig](#creating-imagestream-and-buildconfig)
+  - [Starting a build](#starting-a-build)
 
-## Secrets
+**IMPORTANT:** Always make sure to use the `-n <license plate>-<namespace>` flag when running `oc` commands to ensure you are running commands in the correct namespace.
 
-### Generating Base64 encoded values
+## Deployment pre-requisites
 
-**Note 1:** Secret values should be base64 encoded. You can use the following command to encode a string:
+### Allowing other namespaces to pull images from `-tools` namespace
+
+Run the following command in all namespaces (`-dev`, `-test`, `-prod`) to allow other namespaces to pull images from the `-tools` namespace:
 
 ```bash
-echo -n 'your-string' | base64
+oc policy add-role-to-group system:image-puller system:serviceaccounts:<license plate>-<namespace> -n <license plate>-tools
 ```
 
-**Note 2:** Keep in mind that <ins>*base64 encoding is not encryption*</ins>. The actual secrets **MUST NOT** be stored in this repository.
-**Note 3:** The password related keys **should not be changed** as they follow the naming convention of the MariaDB Galera Helm chart. Refer to the [MariaDB Galera Helm chart documentation](https://artifacthub.io/packages/helm/bitnami/mariadb-galera) and to [MariaDB Galera Helm chart Github repository](https://github.com/bitnami/charts/tree/main/bitnami/mariadb-galera) (specifically the `templates/secrets.yaml` file) for more information.
+### Creating required components prior to HELM/ArgoCD deployment
 
-### Creating SuiteCRM database secrets
+Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-deployment-envs.env` and fill in the required values:
 
-Fill in the following values in the `./openshift/db-secrets.yaml` file:
+| Variable Name | Description | Required | Default value |
+| --- | --- | --- | --- |
+| `APP_NAME` | The name of the application | False | suitecrm |
+| `DB_ROOT_USER` | MariaDB Galera Cluster Root User | Fasle | root |
+| `DB_ROOT_PASSWORD` | MariaDB Galera Cluster Root Password | True | |
+| `DB_BACKUP_USER` | MariaDB Galera Cluster Backup User | True | |
+| `DB_BACKUP_PASSWORD` | MariaDB Galera Cluster Backup Password | True | |
+| `DB_PASSWORD` | MariaDB Galera Cluster Database Password | True | |
+| `DB_USER` | MariaDB Galera Cluster Database User | False | suitecrm |
+| `DB_NAME` | MariaDB Galera Cluster Database Name | False | suitecrm |
+| `DB_HOST` | MariaDB Galera Cluster Database Host | True | |
+| `SUITECRM_ADMIN_PASSWORD` | SuiteCRM Admin Password | True | |
+| `SSO_IDP_X509_CERT` | The SSO IDP X509 certificate for IDIR/Keycloak integration | False | cert |
+| `OAUTH_KEY` | The OAuth key for SuiteCRM | False | key |
+| `AWS_ACCESS_KEY_ID` | The AWS access key ID for S3 backup | True | |
+| `AWS_SECRET_ACCESS_KEY` | The AWS secret access key for S3 backup | True | |
+| `S3_ENDPOINT_URL` | The AWS S3 endpoint URL for S3 backup | True | |
+| `S3_BUCKET_NAME` | The AWS S3 bucket name for S3 backup | True | |
+| `BACKUP_VOLUME_SIZE` | The size of the backup volume | False | 5Gi |
+| `VERIFICATION_VOLUME_SIZE` | Backup Verification Volume Size | False | 2Gi |
+| `SUITECRM_SHARED_VOLUME_SIZE` | The size of the volume shared among SuiteCRM pods for file storage | False | 5Gi |
 
-- `mariadb-galera-root-user`: The root user for the MariaDB Galera cluster.
-- `mariadb-root-password`: The password for the MariaDB Galera root user.
-- `mariadb-galera-backup-user`: The backup user for the MariaDB Galera cluster.
-- `mariadb-galera-mariabackup-password`: The password for the MariaDB Galera backup user.
-- `mariadb-password`: The password for the MariaDB Galera database user.
+**Note 1:** The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project. The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_ENDPOINT_URL`, and `S3_BUCKET_NAME` variables are extracted from the `s3-iam` secret provided by BC Gov DevOps team. The `S3URI` is in the format `https://<aws-access-key-id>:<aws-secret-access-key>@<aws-endpoint-url>`.
+<br />
+**Note 2:** The `DB_USER` and `DB_NAME` variables should match `mariadb-galera.db.user` and `mariadb-galera.db.name` in the HELM chart `values.yaml` file. Also, the `DB_HOST` variable should match the name of the MariaDB Galera Cluster service in the Openshift project. The name of the service is in the format `<chart name>-mariadb-galera`.
 
-Run the following command to create the secrets in your current Openshift project:
-
-```bash
-oc apply -f ./openshift/db-secrets.yaml
-```
-### Creating SuiteCRM secrets
-
-Fill in the following values in the `./openshift/suitecrm-secrets.yaml` file:
-
-- `DATABASE_URL`: The Database URL used on instead of `.env.local` file
-- `suitecrmadminpwd`: The SuiteCRM admin password
-- `sso_idp_x509`: The SSO IDP X509 certificate for SAML integration
-- `oauthkey`: The SuiteCRM OAuth key
-
-```bash
-oc apply -f ./openshift/suitecrm-secrets.yaml
-```
-
-### Creating S3 Bucket file backup secrets
-
-Fill in the following values in the `./openshift/s3-backup-secrets.yaml` file:
-
-- `aws-access-key-id`: AWS access key ID
-- `aws-secret-access-key`: AWS secret access key
-- `aws-endpoint-url`: The AWS endpoint URL. Don't forget the preceding `http`/`https` protocol (e.g. `https://s3.ca-central-1.amazonaws.com`)
-- `bucketName`: The S3 bucket name
-- `S3URI`: The S3 URI
+Run the following command to create the components required for the HELM/ArgoCD deployment:
 
 ```bash
-oc apply -f ./openshift/s3-backup-secrets.yaml
+oc process -f ./openshift/pre-deployment-template.yaml --param-file=./openshift/pre-deployment-envs.env | oc create -n <licence plate>-<namespace> -f -
 ```
 
-**Note 1:** The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project.
-**Note 2:**: The `aws-access-key-id`, `aws-secret-access-key` and `aws-endpoint-url` are derived from the `S3URI` secret provided by BC Gov DevOps team. The `S3URI` is in the format `https://<aws-access-key-id>:<aws-secret-access-key>@<aws-endpoint-url>`.
+## Allowing APS domains
 
-## Creating database backup and verification volume claims
-
-The backup and backup verification volume claims are necessary for the backup and verification processes to work. Check the following documenations for more info:
-
-- [BC Gov Backup-container documentation](https://github.com/BCDevOps/backup-container): how to configure the backup container
-- [BC Gov Backup Storage Helm Chart](https://github.com/bcgov/helm-charts/tree/master/charts/backup-storage): how to deploy using Helm
-- [BC Gov Database backup best practices documentation](https://developer.gov.bc.ca/docs/default/component/platform-developer-docs/docs/database-and-api-management/database-backup-best-practices/)
-
-### Creating the backup volume claim
-
-Run the following command to create the backup persistent volume claim in your current Openshift project:
+If you requested an APS domain for your project (e.g. `<your project>.apps.gov.bc.ca`), you need to apply the following NetworkPolicy, according to [BCGov documentation](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/unlisted/owner-journey-v1/#ocp-network-policies):
 
 ```bash
-oc apply -f ./openshift/db-backup-pvc.yaml
+oc apply -f ./openshift/aps-network-policy-gold-cluster.yaml
 ```
 
-### Creating the verification volume claim
+## Creating Github Actions service account
 
-Run the following command to create the verification persistent volume claim in your current Openshift project:
+Run the following command in all required namespaces (`-dev`, `-test`, `-prod`) to create the Github Actions service account in your current Openshift project:
 
 ```bash
-oc apply -f ./openshift/db-backup-verification-pvc.yaml
+oc process -f ./openshift/github-actions-template.yaml | oc -n <license plate>-<namespace> apply -f -
 ```
 
-### Creating Github Actions service account
+## Building images on Openshift
 
-Run the following command in all namespaces (-tools, -dev, -test, -prod) to create the Github Actions service account in your current Openshift project:
+### Creating ImageStream and BuildConfig
+
+If you need to build images on Openshift, you can use the `./openshift/local-build-config-template.yaml` file to create an `ImageStream` and a `BuildConfig` for your project. Copy the `./openshift/local-build-config-envs.example.env` file to `./openshift/local-build-config-envs.env` and fill in the required values
+
+| Variable Name | Description | Required | Default value |
+| --- | --- | --- | --- |
+| `IMAGE_STREAM_NAME` | The name of the image stream | True | |
+| `TAG` | The tag to apply to the image stream | False | latest |
+| `DOCKERFILE_NAME` | The name of the Dockerfile to use | False | Dockerfile |
+| `REPOSITORY_URL` | The URL of the git repository | True | |
+| `REPOSITORY_REF` | The git reference to use | False | main |
+| `CONTEXT_DIR` | The context directory to use | False | . |
+
+Run the following command to create the `ImageStream` and `BuildConfig`:
 
 ```bash
-oc process -f ./openshift/github-actions-sa.yaml | oc -n <license plate>-<namespace> apply -f -
+oc process -f ./openshift/local-build-config-template.yaml --param-file=./openshift/local-build-config-envs.env | oc create -n <license plate>-<namespace> -f -
+```
+
+### Starting a build
+
+To start a build, run the following command:
+
+```bash
+oc start-build bc/<build config name> -n <license plate>-<namespace>
+```
+
+If you want to start a build with your local files, you can use the `oc start-build` command with the `--from-dir` flag:
+
+```bash
+oc start-build bc/<build config name> --from-dir=. -n <license plate>-<namespace>
 ```

@@ -1,0 +1,65 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: ${IMAGE_STREAM_NAME}-local-build-config
+
+objects:
+  - kind: ImageStream
+    apiVersion: image.openshift.io/v1
+    metadata:
+      name: ${IMAGE_STREAM_NAME}
+  - kind: BuildConfig
+    apiVersion: build.openshift.io/v1
+    metadata:
+      name: ${IMAGE_STREAM_NAME}-build
+    spec:
+      nodeSelector: null
+      output: 
+        to:
+          kind: ImageStreamTag
+          name: ${IMAGE_STREAM_NAME}:{TAG}
+      resources:
+        limits:
+          cpu: '1'
+          memory: 3Gi
+        requests:
+          cpu: 500m
+          memory: 1Gi
+      successfulBuildsHistoryLimit: 5
+      failedBuildsHistoryLimit: 5
+      strategy:
+        type: Docker
+        dockerStrategy:
+          dockerfilePath: ${DOCKERFILE_NAME}
+      postCommit: {}
+      source:
+        type: Git
+        git:
+          uri: ${REPOSITORY_URL}
+          ref: ${REPOSITORY_REF}
+        contextDir: ${CONTEXT_DIR}
+      runPolicy: Serial
+
+parameters:
+  - name: IMAGE_STREAM_NAME
+    description: The name of the image stream
+    required: true
+  - name: TAG
+    description: The tag to apply to the image stream
+    required: false
+    value: latest
+  - name: DOCKERFILE_NAME
+    description: The name of the Dockerfile to use
+    required: false
+    value: Dockerfile
+  - name: REPOSITORY_URL
+    description: The URL of the git repository
+    required: true
+  - name: REPOSITORY_REF
+    description: The git reference to use
+    required: false
+    value: main
+  - name: CONTEXT_DIR
+    description: The context directory to use
+    required: false
+    value: "."
