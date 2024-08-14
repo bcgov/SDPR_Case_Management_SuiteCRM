@@ -91,8 +91,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.global.secrets.suitecrmSecretName }}
                   key: redis-path
-            - name: SUITECRM_URL
-              value: {{.Values.global.suitecrmHost}}
             - name: SUITECRM_ADMIN_PWD
               valueFrom:
                 secretKeyRef:
