@@ -1,3 +1,6 @@
 docker/db
 
 .DS_Store
+
+openshift/*.env
+!openshift/*.example.env
