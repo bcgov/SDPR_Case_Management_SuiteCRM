@@ -34,5 +34,5 @@ $sugar_config = array (
   array (
     'en_us' => 'English (US)',
   ),
-  'site_url' => getenv('SUITECRM_URL'),
+  'site_url' => 'https://localhost:8181/',
 );
