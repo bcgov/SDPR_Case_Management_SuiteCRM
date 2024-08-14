@@ -18,9 +18,17 @@ objects:
   - kind: Secret
     apiVersion: v1
     metadata:
+      name: ${APP_NAME}-redis-credentials
+    stringData:
+      redis-password: ${REDIS_PASSWORD}
+    type: Opaque
+  - kind: Secret
+    apiVersion: v1
+    metadata:
       name: ${APP_NAME}-secrets
     stringData:
       database-url: mysql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}
+      redis-path: 'seed[]=tcp://${REDIS_HOST}:6379&timeout=2&read_timeout=2&auth=${REDIS_PASSWORD}'
       suitecrm-admin-password: ${SUITECRM_ADMIN_PASSWORD}
       sso-idp-x509: ${SSO_IDP_X509_CERT}
       oauth-key:  ${OAUTH_KEY}
@@ -116,6 +124,14 @@ parameters:
   - name: DB_HOST
     displayName: MariaDB Galera Cluster Database Host
     description: The MariaDB Galera Cluster database host
+    required: true
+  - name: REDIS_HOST
+    displayName: Redis Cluster Host
+    description: The Redis Cluster host
+    required: true
+  - name: REDIS_PASSWORD
+    displayName: Redis ClusterPassword
+    description: The Redis Cluster password
     required: true
   - name: SUITECRM_ADMIN_PASSWORD
     displayName: SuiteCRM Admin Password
