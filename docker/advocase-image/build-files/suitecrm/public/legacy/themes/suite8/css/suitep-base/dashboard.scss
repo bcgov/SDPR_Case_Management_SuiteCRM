@@ -24,6 +24,13 @@
  * the words "Supercharged by SuiteCRM".
  */
 /**** Dashboard ***/
+.suitepicon-dashlet-action-edit {
+  background: url($dashlet-edit-background-url) no-repeat right;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+}
 
 .modal-add-dashlet div.modal-content {
   width: 80%;
