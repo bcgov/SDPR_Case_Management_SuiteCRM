@@ -55,12 +55,12 @@ spec:
                       name: suitecrm-s3-backup-credentials
                       key: aws-endpoint-url
               volumeMounts:
-                - name: shared-uploads
+                - name: {{ .Values.global.volume.name }}
                   mountPath: /aws/suitecrm/public/legacy/upload
-          {{- with .Values.volumes }}
           volumes:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
+            - name: {{ .Values.global.volume.name }}
+              persistentVolumeClaim:
+                claimName: {{ .Values.global.volume.claimName }}
           restartPolicy: Never
           terminationGracePeriodSeconds: 30
           activeDeadlineSeconds: 1600
