@@ -134,11 +134,7 @@
 											{capture name='tmp1' assign='alt_edit'}{sugar_translate label="LNK_EDIT"}{/capture}
 											{capture name='tmp1' assign='alt_view'}{sugar_translate label="LBL_VIEWINLINE"}{/capture}
 						{capture assign='editUrl'}index.php?action=EditView&module={$pageData.bean.moduleDir}&record={$rowData.ID}&offset={$pageData.offsets.current+$smarty.foreach.rowIteration.iteration}&stamp={$pageData.stamp}&return_module=Home&return_action=index{/capture}
-											<a title='{$editLinkString}' class="list-view-data-icon" href='{convert_link link=$editUrl}'> <span class="suitepicon suitepicon-action-edit"></span></a>
-					{/if}
-					{if $pageData.access.view}
-						{capture assign='viewUrl'}index.php?action=DetailView&module={$pageData.bean.moduleDir}&record={$rowData[$params.parent_id]|default:$rowData.ID}&offset={$pageData.offsets.current+$smarty.foreach.rowIteration.iteration}&stamp={$pageData.stamp}&return_module=Home&return_action=index{/capture}
-									<a title='{$viewLinkString}' class="list-view-data-icon" href='{convert_link link=$viewUrl}' title="{sugar_translate label="LBL_VIEW_INLINE"}"> <span class="suitepicon suitepicon-action-view-record"></span></a>
+						<a title='{$editLinkString}' class="list-view-data-icon suitepicon-dashlet-action-edit" href='{convert_link link=$editUrl}'></a>
 					{/if}
 				</td>
 				{/if}
