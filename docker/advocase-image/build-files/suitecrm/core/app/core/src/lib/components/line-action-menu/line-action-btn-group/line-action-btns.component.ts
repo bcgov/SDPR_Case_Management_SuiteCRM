@@ -57,6 +57,21 @@ export class LineActionBtnComponent {
     event.stopPropagation();
   }
 
+  onClickEdit(event: MouseEvent) {
+    const currentUrl = this.router.url; // Get the current URL
+    const returnModuleName = currentUrl.split('/')[1]; // Extract the module name (e.g., "contacts")
+    const returnId = currentUrl.split('/')[3]; // Extract the module name (e.g., "contacts")
+
+    this.router.navigate([this.currentModule + '/edit/' + this.record.id], {
+      queryParams: {
+        return_module: returnModuleName,
+        return_id: returnId,
+        return_action: 'DetailView'
+      }
+    });
+    event.stopPropagation();
+  }
+  
   onClickPaperClip(event: MouseEvent) {
     this.router.navigate(['documents/edit'], {
       queryParams: {
