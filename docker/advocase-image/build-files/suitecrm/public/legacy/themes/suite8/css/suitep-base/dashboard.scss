@@ -573,15 +573,14 @@ table #dashletPanel td a {
 }
 
 table #dashletPanel {
-  .oddListRowS1 {
-    td {
-      padding: 14px;
-    }
+  .oddListRowS1 td,
+  .evenListRowS1 td {
+    padding: 14px;
+    cursor: pointer;
   }
-  .evenListRowS1 {
-    td {
-      padding: 14px;
-    }
+  .oddListRowS1 td a:hover,
+  .evenListRowS1 td a:hover {
+    text-decoration: underline;
   }
 }
 
