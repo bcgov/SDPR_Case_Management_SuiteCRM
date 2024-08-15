@@ -142,7 +142,7 @@
         <input title="{$APP.LBL_EDIT_BUTTON_TITLE}"
         accessKey="{$APP.LBL_EDIT_BUTTON_KEY}"
         name="Edit"
-        id="edit_button"
+        id="edit_button_not_collapsed"
         class="button primary"
         type="button"
         value="{$APP.LBL_EDIT_BUTTON_LABEL}"
