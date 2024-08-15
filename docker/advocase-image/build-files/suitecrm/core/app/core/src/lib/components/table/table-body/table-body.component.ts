@@ -60,6 +60,7 @@ interface TableViewModel {
 })
 export class TableBodyComponent implements OnInit, OnDestroy {
     @Input() config: TableConfig;
+    @Input() subpanel: boolean;
     @Output() deselectAllEvent = new EventEmitter<void>();
     maxColumns = 4;
     popoverColumns: ColumnDefinition[];
@@ -135,6 +136,7 @@ export class TableBodyComponent implements OnInit, OnDestroy {
             })
         );
 
+        console.log(this.config.module);
         this.subs.push(this.vm$.subscribe(vm => this.latestViewModel = vm));
         this.subs.push(this.selectionService.deselectAll$.subscribe(() => this.deselectAll()));
     }

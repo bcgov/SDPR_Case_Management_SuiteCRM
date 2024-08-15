@@ -10,7 +10,7 @@
         </span>
         <div panel-body>
             <scrm-list-filter *ngIf="store.showFilter" [config]="filterConfig"></scrm-list-filter>
-            <scrm-table [config]="tableConfig"></scrm-table>
+            <scrm-table [config]="tableConfig" [subpanel]="subpanel"></scrm-table>
         </div>
     </scrm-panel>
 </ng-container>
