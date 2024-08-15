@@ -582,6 +582,12 @@ table #dashletPanel {
   .evenListRowS1 td a:hover {
     text-decoration: underline;
   }
+  .oddListRowS1:hover,
+  .evenListRowS1:hover {
+    td {
+      background-color: $surface-tertiary-hover;
+    }
+  }
 }
 
 .h3Row {
