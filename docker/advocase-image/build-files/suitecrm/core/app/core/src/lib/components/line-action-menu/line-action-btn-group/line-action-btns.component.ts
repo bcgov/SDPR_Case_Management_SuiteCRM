@@ -34,6 +34,7 @@ import { Router } from '@angular/router';
 export class LineActionBtnComponent {
   @Input() record: any;
   @Input() module: string;
+  @Input() subpanel: boolean;
   currentModule: string;
 
   constructor(
@@ -43,6 +44,7 @@ export class LineActionBtnComponent {
 
   ngOnInit(): void {
     this.currentModule = this.module;
+    console.log(this.record);
   }
 
   onClickPhone(event: MouseEvent) {
