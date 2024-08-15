@@ -59,6 +59,26 @@
     right: 0;
   }
 
+  .view-module-AOR_Reports > .detail-view > .nav-tabs {
+    position: absolute;
+    right: 0;
+    top: 35px;
+  }
+
+  .view-module-AOR_Reports {
+    #subpanel_list li.noBullet {
+      margin: 0;
+    }
+
+    #subpanel_list div.sub-panel {
+      margin: 0;
+    }
+
+    .panel {
+      margin: 0;
+    }
+  }
+
   .detail-view > .nav-tabs > #tab-actions > a {
     background-color: $button-bg-color;
     border-radius: 4px;
