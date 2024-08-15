@@ -24,6 +24,13 @@
  * the words "Supercharged by SuiteCRM".
  */
 /**** Dashboard ***/
+.suitepicon-dashlet-action-edit {
+  background: url($dashlet-edit-background-url) no-repeat right;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+}
 
 .modal-add-dashlet div.modal-content {
   width: 80%;
@@ -566,15 +573,14 @@ table #dashletPanel td a {
 }
 
 table #dashletPanel {
-  .oddListRowS1 {
-    td {
-      padding: 14px;
-    }
+  .oddListRowS1 td,
+  .evenListRowS1 td {
+    padding: 14px;
+    cursor: pointer;
   }
-  .evenListRowS1 {
-    td {
-      padding: 14px;
-    }
+  .oddListRowS1 td a:hover,
+  .evenListRowS1 td a:hover {
+    text-decoration: underline;
   }
 }
 
@@ -1033,7 +1039,7 @@ li#page_0_hidden1b {
 }
 
 a.dropdown-toggle {
-  width: 166px;
+  width: 167px;
   height: 43px;
   display: flex;
   padding: var(--layout-margin-small, 8px) var(--layout-padding-medium, 16px) !important;
