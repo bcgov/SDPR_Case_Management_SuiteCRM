@@ -34,7 +34,7 @@
                        [tableActions]="config?.tableActions"
     >
     </scrm-table-header>
-    <scrm-table-body [config]="config"></scrm-table-body>
+    <scrm-table-body [config]="config" [subpanel]="subpanel"></scrm-table-body>
     <scrm-table-footer *ngIf="showFooter()"
                        [bulkActions]="config.bulkActions"
                        [paginationType]="getPaginationType()"
