@@ -72,3 +72,45 @@ $subpanel_layout['list_fields'] = array (
     'usage' => 'query_only',
   ),
 );
+
+$subpanel_layout['insightWidget'] = array(
+  'rows' => [
+    [
+      'justify' => 'start',
+      'cols' => [
+          [
+            'icon' => 'Cases',
+          ],
+          [
+            'labelKey' => '{{title_key}}',
+            'class' => 'sub-panel-banner-button-title',
+            'bold' => true,
+          ]
+        ]
+    ],
+    [
+      'align' => 'center',
+      'justify' => 'start',
+      'class' => 'sub-panel-body',
+      'cols' => [
+          [
+            'descriptionKey' => '{{title_key}}_INSIGHT_DESCRIPTION',
+            'class' => 'sub-panel-banner-tooltip',
+          ],
+          [
+            'display' => 'hidden',
+            'statistic' => 'cases'
+          ],
+          [
+            'dynamicLabel' => 'LBL_CASES_INSIGHT',
+            'class' => 'sub-panel-banner-value',
+            'bold' => true,
+          ],
+          [
+            'display' => 'hidden',
+            'statistic' => 'default'
+          ]
+      ]
+    ],
+  ]
+);

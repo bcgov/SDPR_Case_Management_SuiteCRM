@@ -99,7 +99,18 @@
 			{else}
 				{assign var='_rowColor' value=$rowColor[1]}
 			{/if}
-			<tr height='20' class='{$_rowColor}S1'>
+			
+		{foreach from=$displayColumns key=col item=params}
+			{if !$linkRecorded}
+				{if $params.link && !$params.customCode}
+				{capture assign='recordUrl'}index.php?action={$params.action|default:'DetailView'}&module={if $params.dynamic_module && $rowData[$params.dynamic_module]}{$rowData[$params.dynamic_module]}{else}{$params.module|default:$pageData.bean.moduleDir}{/if}&record={$rowData[$params.id]|default:$rowData.ID}&offset={$pageData.offsets.current+$smarty.foreach.rowIteration.iteration}&stamp={$pageData.stamp}{/capture}
+					{assign var="savedLink" value=$recordUrl}
+					{assign var="linkRecorded" value=true}
+				{/if}
+			{/if}
+		{/foreach}
+
+		<tr height='20' class='{$_rowColor}S1' onclick="window.location.href='{convert_link link=$savedLink}';">
 				{if $prerow}
 				<td width='1%' nowrap='nowrap'>
 						<input onclick='sListView.check_item(this, document.MassUpdate)' type='checkbox' class='checkbox' name='mass[]' value='{$rowData[$params.id]|default:$rowData.ID}'>
@@ -134,11 +145,7 @@
 											{capture name='tmp1' assign='alt_edit'}{sugar_translate label="LNK_EDIT"}{/capture}
 											{capture name='tmp1' assign='alt_view'}{sugar_translate label="LBL_VIEWINLINE"}{/capture}
 						{capture assign='editUrl'}index.php?action=EditView&module={$pageData.bean.moduleDir}&record={$rowData.ID}&offset={$pageData.offsets.current+$smarty.foreach.rowIteration.iteration}&stamp={$pageData.stamp}&return_module=Home&return_action=index{/capture}
-											<a title='{$editLinkString}' class="list-view-data-icon" href='{convert_link link=$editUrl}'> <span class="suitepicon suitepicon-action-edit"></span></a>
-					{/if}
-					{if $pageData.access.view}
-						{capture assign='viewUrl'}index.php?action=DetailView&module={$pageData.bean.moduleDir}&record={$rowData[$params.parent_id]|default:$rowData.ID}&offset={$pageData.offsets.current+$smarty.foreach.rowIteration.iteration}&stamp={$pageData.stamp}&return_module=Home&return_action=index{/capture}
-									<a title='{$viewLinkString}' class="list-view-data-icon" href='{convert_link link=$viewUrl}' title="{sugar_translate label="LBL_VIEW_INLINE"}"> <span class="suitepicon suitepicon-action-view-record"></span></a>
+						<a title='{$editLinkString}' class="list-view-data-icon suitepicon-dashlet-action-edit" href='{convert_link link=$editUrl}'></a>
 					{/if}
 				</td>
 				{/if}
