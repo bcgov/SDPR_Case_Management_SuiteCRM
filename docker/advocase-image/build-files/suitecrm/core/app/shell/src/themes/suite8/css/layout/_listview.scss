@@ -263,9 +263,8 @@ span.field-group-field.pr-1 {
 .field-name-state{
   min-width: 53px;
   min-height: 29px;
-  padding:4px 8px;
   gap: 10px;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 .field-name-state-Open{
@@ -543,6 +542,7 @@ td.cdk-column-checkbox {
     border: 1px solid $surface-color-primary-button-default;
     color: $white;
     padding: 8px 16px;
+    font-size: 16px;;
   }
 
   .btn-danger:hover {
@@ -553,6 +553,7 @@ td.cdk-column-checkbox {
     border: 1px solid $surface-color-border-dark;
     color: $surface-color-border-dark;
     padding: 8px 16px;
+    font-size: 16px;
   }
   .btn-outline-danger:hover {
     background: $secondary-button-hover;
@@ -591,7 +592,6 @@ td.cdk-column-checkbox {
       border-radius: 4px !important;
     }
   }
-
 }
 
 .list-view .list-view-header {
