@@ -94,7 +94,7 @@
 
             <ng-container cdkColumnDef="line-actions">
                 <ng-container *cdkHeaderCellDef>
-                    <ng-container *ngIf="config.module == 'cases' || config.module == 'contacts'">
+                    <ng-container *ngIf="config.module == 'cases' || config.module == 'contacts' || (config.module == 'documents' && subpanel) || (config.module == 'communication' && subpanel)">
                         <th cdk-header-cell scope="col" class="primary-table-header case-action">
                             <scrm-label [labelKey]="caseActionLabel"></scrm-label>
                         </th>
@@ -102,10 +102,10 @@
                 </ng-container>
 
                 <ng-container *cdkCellDef="let record">
-                    <ng-container *ngIf="config.module == 'cases' || config.module == 'contacts'">
-                      <td cdk-cell>
-                        <line-action-btns [module]="config.module" [record]="record"></line-action-btns>
-                      </td>
+                    <ng-container *ngIf="config.module == 'cases' || config.module == 'contacts' || (config.module == 'documents' && subpanel) || (config.module == 'communication' && subpanel)">
+                        <td cdk-cell>
+                            <line-action-btns [module]="config.module" [record]="record" [subpanel]="subpanel"></line-action-btns>
+                        </td>
                     </ng-container>
                 </ng-container>
             </ng-container>
