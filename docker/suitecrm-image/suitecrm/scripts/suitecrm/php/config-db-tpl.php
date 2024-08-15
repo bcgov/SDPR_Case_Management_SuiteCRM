@@ -34,5 +34,5 @@ $sugar_config = array (
   array (
     'en_us' => 'English (US)',
   ),
-  'site_url' => 'https://localhost:8181/',
+  'site_url' => 'http://localhost:8181',
 );
