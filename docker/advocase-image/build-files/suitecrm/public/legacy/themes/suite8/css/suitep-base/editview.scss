@@ -1455,7 +1455,7 @@ input.sqsEnabled {
   justify-content: flex-end;
   width: 100%;
   margin-top: 1.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 40px 32px;
 }
 
 .contentBox {
@@ -1803,6 +1803,10 @@ div.confirmTable {
   background-color: white;
   padding-left: 30px;
   padding-top: 13px;
+}
+
+.view-module-Meetings .moduleTitle {
+  padding-top: 0;
 }
 
 .moduleTitle h2 {
@@ -2397,6 +2401,11 @@ table.view {
   border-radius: 6px;
   outline: 2px solid $grey-widget;
   margin: 24px 40px 0;
+}
+
+.view-module-Meetings .table-wrapper,
+#list_subpanel_aor_scheduled_reports_aor_reports .table-wrapper {
+  outline: none;
 }
 
 .evenListRowS1 {
