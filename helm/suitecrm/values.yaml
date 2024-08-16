@@ -4,6 +4,7 @@
 
 global:
   env: dev
+  suitecrmHost: suitecrm-dev.apps.silver.devops.gov.bc.ca
 
   secrets:
     suitecrmSecretName: suitecrm-secrets
@@ -13,6 +14,7 @@ global:
     app:
       schedule: "*/15 * * * *"
     filesBackup:
+      enabled: false
       schedule: "0 2 * * *"
 
   volume:
@@ -123,7 +125,7 @@ service:
 ingress:
   ingressClassName: "openshift-default"
   annotations:
-  enabled: true # create an ingress for this component
+  enabled: true
   hostname: "{{tpl .Values.global.suitecrmHost .}}"
   port: 8181
   tls: true
