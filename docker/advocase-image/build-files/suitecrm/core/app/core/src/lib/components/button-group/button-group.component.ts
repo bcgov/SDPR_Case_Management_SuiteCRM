@@ -62,6 +62,7 @@ export class ButtonGroupComponent implements OnInit, OnDestroy {
             this.internalConfig = {...config};
             this.splitButtons();
         });
+        console.log(this.config$);
     }
 
     ngOnDestroy(): void {
