@@ -849,7 +849,8 @@ option:checked {
   }
 }
 
-#EditView input[type="submit"] {
+#EditView input[type="submit"],
+#EditView input[value=Cancel]#CANCEL {
   margin: 0.2em;
   font-weight: bold;
   height: 2.2em;
