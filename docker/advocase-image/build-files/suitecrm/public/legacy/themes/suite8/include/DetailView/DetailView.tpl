@@ -52,94 +52,69 @@
         {{capture name=label_upper assign=label_upper}}{{$label|upper}}{{/capture}}
         {{if (isset($tabDefs[$label_upper].newTab) && $tabDefs[$label_upper].newTab == true)}}
         {{counter name="tabCount" print=false}}
-        {{if $tabCount == '0'}}
-        <li role="presentation" class="active">
+        <li role="presentation" {{if $tabCount == '0'}}class="active"{{/if}}>
             <a id="tab{{$tabCount}}" data-toggle="tab" class="hidden-xs">
                 {sugar_translate label='{{$label}}' module='{{$module}}'}
             </a>
         </li>
-        {{else}}
-        <li role="presentation" class="hidden-xs">
-            <a id="tab{{$tabCount}}" data-toggle="tab">
-                {sugar_translate label='{{$label}}' module='{{$module}}'}
-            </a>
-        </li>
         {{/if}}
-        {{/if}}
+        {{counter name="tabCount" print=false}}
         {{/foreach}}
-        {{else}}
         {{/if}}
-        {if $config.enable_action_menu and $config.enable_action_menu != false}
+        {{if $config.enable_action_menu and $config.enable_action_menu != false}}
         <li id="tab-actions" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$APP.LBL_LINK_ACTIONS}}<span class="suitepicon suitepicon-action-caret"></span></a>
             {{include file="themes/suite8/include/DetailView/actions_menu.tpl"}}
         </li>
-        <li class="dropdown-edit">{{sugar_button module="$module" id="EDIT" view="$view" form_id="formDetailView"}}</li>
-        <li class="tab-inline-pagination">
-            {{if $panelCount == 0}}
-            {{if $SHOW_VCR_CONTROL}}
-            {$PAGINATION}
-            {{/if}}
-            {{counter name="panelCount" print=false}}
-            {{/if}}
-        </li>
-        {/if}
+        {{/if}}
     </ul>
-    {{counter name="tabCount" start=0 print=false assign="tabCount"}}
+
     <div class="clearfix"></div>
     {{if $useTabs}}
     <div class="tab-content">
-        {{else}}
-        <div class="tab-content" style="padding: 0; border: 0;">
-        {{/if}}
-        {{if $useTabs}}
         {{foreach name=section from=$sectionPanels key=label item=panel}}
         {{capture name=label_upper assign=label_upper}}{{$label|upper}}{{/capture}}
         {{if isset($tabDefs[$label_upper].newTab) && $tabDefs[$label_upper].newTab == true}}
-        {{if $tabCount == '0'}}
-        <div class="tab-pane-NOBOOTSTRAPTOGGLER active fade in" id='tab-content-{{$tabCount}}'>
+        <div class="tab-pane-NOBOOTSTRAPTOGGLER {{if $tabCount == 0}}active fade in{{else}}fade{{/if}}" id='tab-content-{{$tabCount}}'>
             {{include file='themes/suite8/include/DetailView/tab_panel_content.tpl'}}
         </div>
-        {{else}}
-        <div class="tab-pane-NOBOOTSTRAPTOGGLER fade" id='tab-content-{{$tabCount}}'>
-            {{include file='themes/suite8/include/DetailView/tab_panel_content.tpl'}}
-        </div>
-        {{/if}}
         {{/if}}
         {{counter name="tabCount" print=false}}
         {{/foreach}}
+    </div>
+    {{/if}}
+
+    <div class="panel-content">
+        {{counter name="tabCount" start=-1 print=false assign="tabCount"}}
+        {{counter name="panelCount" start=-1 print=false assign="panelCount"}}
+        {{foreach name=section from=$sectionPanels key=label item=panel}}
+        {{capture name=label_upper assign=label_upper}}{{$label|upper}}{{/capture}}
+        {{if isset($tabDefs[$label_upper].newTab) && $tabDefs[$label_upper].newTab == true && $useTabs}}
+        {{counter name="tabCount" print=false}}
         {{else}}
-        <div class="panel-content">
-            {{counter name="tabCount" start=-1 print=false assign="tabCount"}}
-            {{counter name="panelCount" start=-1 print=false assign="panelCount"}}
-            {{foreach name=section from=$sectionPanels key=label item=panel}}
-            {{capture name=label_upper assign=label_upper}}{{$label|upper}}{{/capture}}
-            {{if (isset($tabDefs[$label_upper].newTab) && $tabDefs[$label_upper].newTab == true && $useTabs)}}
-            {{counter name="tabCount" print=false}}
-            {{else}}
-            {{assign var='panelId' value="top-panel-$panelCount"}}
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a role="button" data-toggle="collapse" href="#{{$panelId}}" aria-expanded="false">
-                        <div class="col-xs-10 col-sm-11 col-md-11">
-                            {sugar_translate label='{{$label}}' module='{{$module}}'}
-                        </div>
-                    </a>
-                </div>
-                <div class="panel-body panelContainer" id="{{$panelId}}" data-id="{{$label_upper}}">
-                    <div class="tab-content">
-                        {{include file='themes/suite8/include/DetailView/tab_panel_content.tpl'}}
+        <div class="panel panel-default">
+            <div class="panel-heading {{if (isset($tabDefs[$label_upper].panelDefault) && $tabDefs[$label_upper].panelDefault == 'collapsed') }}collapsed panel-heading-collapse{{/if}}">
+                <a role="button" data-toggle="collapse" href="#panel-{{$panelCount}}" aria-expanded="{{if (isset($tabDefs[$label_upper].panelDefault) && $tabDefs[$label_upper].panelDefault == 'collapsed') }}false{{else}}true{{/if}}">
+                    <div class="col-xs-10 col-sm-11 col-md-11">
+                        {sugar_translate label='{{$label}}' module='{{$module}}'}
                     </div>
+                </a>
+            </div>
+            <div class="panel-body panel-collapse {{if (isset($tabDefs[$label_upper].panelDefault) && $tabDefs[$label_upper].panelDefault == 'collapsed') }}collapse{{else}}collapse in{{/if}}" id="panel-{{$panelCount}}" data-id="{{$label_upper}}">
+                <div class="tab-content">
+                    {{include file='themes/suite8/include/DetailView/tab_panel_content.tpl'}}
                 </div>
             </div>
-            {{/if}}
-            {{counter name="panelCount" print=false}}
-            {{/foreach}}
         </div>
         {{/if}}
+        {{counter name="panelCount" print=false}}
+        {{/foreach}}
     </div>
 </div>
 
+{{include file=$footerTpl}}
+<script type="text/javascript" src="include/InlineEditing/inlineEditing.js"></script>
+<script type="text/javascript" src="modules/Favorites/favorites.js"></script>
 
 {literal}
 
