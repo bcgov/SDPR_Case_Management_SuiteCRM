@@ -93,11 +93,6 @@ export class LineActionMenuComponent implements OnInit, OnDestroy {
                 this.languages.vm$
             ),
             map(([actions, screenSize, languages]) => {
-                if (screenSize) {
-                    this.screen = screenSize;
-                }
-                this.configState.next(this.getButtonGroupConfig(actions));
-
                 actions = [
                     {
                         "key": "edit",
@@ -139,6 +134,11 @@ export class LineActionMenuComponent implements OnInit, OnDestroy {
                         "label": "Unlink Record"
                     }
                 ];
+                if (screenSize) {
+                    this.screen = screenSize;
+                }
+                this.configState.next(this.getButtonGroupConfig(actions));
+
                 this.actions = actions;
                 console.log('actions: ',this.actions)
             })
