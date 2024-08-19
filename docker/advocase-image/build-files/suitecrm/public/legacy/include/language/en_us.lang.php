@@ -2068,7 +2068,7 @@ $app_strings = array(
     //MB -Fixed Bug #32812 -Max
     'LBL_ASSIGNED_TO_NAME' => 'Assign to',
     'LBL_DESCRIPTION' => 'Description',
-    'LBL_CASE_ACTIONS' => 'Case Actions',
+    'LBL_CASE_ACTIONS' => 'Actions',
 
     'LBL_YESTERDAY' => 'yesterday',
     'LBL_TODAY' => 'today',
