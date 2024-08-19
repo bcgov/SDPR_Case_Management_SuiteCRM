@@ -231,20 +231,18 @@
                                             <!-- <li class="new-list-item-header font-weight-bold">
                                                 <scrm-label labelKey="LBL_QUICK_ACTIONS"></scrm-label>
                                             </li> -->
-                                            <li class="new-list-item" *ngFor="let quickAction of (this?.navigation?.quickActions ?? []); let i = index">
-                                                <ng-container *ngIf="i === (this?.navigation?.quickActions ?? []).findIndex(a => a.labelKey === quickAction.labelKey && a.module === quickAction.module)">
-                                                    <ng-container *ngIf="!quickAction.process">
-                                                        <a [routerLink]="quickAction.url" [queryParams]="quickAction?.params ?? null" class="d-flex align-items-center">
-                                                            <scrm-label [labelKey]="quickAction.labelKey" [module]="quickAction.module" class="new-list-item-label"></scrm-label>
-                                                        </a>
-                                                    </ng-container>
-                                                    <ng-container *ngIf="quickAction.process">
-                                                        <a (click)="handleProcess(quickAction)" class="d-flex align-items-center">
-                                                            <scrm-label [labelKey]="quickAction.labelKey" [module]="quickAction.module" class="new-list-item-label"></scrm-label>
-                                                        </a>
-                                                    </ng-container>
+                                            <li class="new-list-item" *ngFor="let quickAction of (this?.navigation?.quickActions ?? [])">
+                                                <ng-container *ngIf="!quickAction.process">
+                                                    <a [routerLink]="quickAction.url" [queryParams]="quickAction?.params ?? null" class="d-flex align-items-center">
+                                                        <scrm-label [labelKey]="quickAction.labelKey" [module]="quickAction.module" class="new-list-item-label"></scrm-label>
+                                                    </a>
                                                 </ng-container>
-                                            </li>                                            
+                                                <ng-container *ngIf="quickAction.process">
+                                                    <a (click)="handleProcess(quickAction)" class="d-flex align-items-center">
+                                                        <scrm-label [labelKey]="quickAction.labelKey" [module]="quickAction.module" class="new-list-item-label"></scrm-label>
+                                                    </a>
+                                                </ng-container>
+                                            </li>
                                         </ng-container>
                                     </ul>
                                 </li>
