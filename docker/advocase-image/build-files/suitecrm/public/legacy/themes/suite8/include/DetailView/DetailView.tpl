@@ -74,16 +74,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$APP.LBL_LINK_ACTIONS}}<span class="suitepicon suitepicon-action-caret"></span></a>
             {{include file="themes/suite8/include/DetailView/actions_menu.tpl"}}
         </li>
-        <div class="edit-button-not-collapsed">
-            <input title="{$APP.LBL_EDIT_BUTTON_TITLE}"
-                accessKey="{$APP.LBL_EDIT_BUTTON_KEY}"
-                name="Edit"
-                id="edit_button_not_collapsed"
-                class="button primary"
-                type="button"
-                value="{$APP.LBL_EDIT_BUTTON_LABEL}"
-                onclick="window.location.href='index.php?module=AOR_Reports&action=EditView&record={$id}&return_module=AOR_Reports&return_action=DetailView&return_id={$id}'"/>
-        </div>
+        <li class="dropdown-edit">{{sugar_button module="$module" id="EDIT" view="$view" form_id="formDetailView"}}</li>
         <li class="tab-inline-pagination">
             {{if $panelCount == 0}}
             {{if $SHOW_VCR_CONTROL}}
