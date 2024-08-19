@@ -28,8 +28,9 @@
 .panel-card .card-header {
   background-color: $surface-color-background-blue;
   padding: 0 0.5rem;
-  height: 2.3395rem;
+  height: 50px;
   color: $white;
+  border-radius: 6px 6px 0px 0px;
 }
 
 .record-content .panel-title-header {
@@ -62,7 +63,8 @@
 }
 
 .panel-card .card-body-padding {
-  padding: 1rem 2.5rem;
+  padding: 32px 0;
+  margin-bottom: 4px !important;
   border-radius: 0px 0px  6px 6px;
   border-right:  2px solid  #D8D8D8;
   border-bottom:  2px solid #D8D8D8;
@@ -107,11 +109,6 @@
   font-style: normal;
   font-weight: 700;
   line-height: 34px;
-  text-transform: lowercase;
-}
-
-.panel-title-upper-header::first-letter {
-  text-transform: uppercase;
 }
 
 .panel-title-upper-header .panel-title {
