@@ -31,7 +31,7 @@
         <div
             class="flex-grow-1 align-items-center justify-content-between sub-panel-flex-content d-flex"
             >
-            <div *ngIf="title" class="panel-title panel-title-upper-header">{{title}}</div>
+            <div *ngIf="title" class="panel-title panel-title-upper-header">{{title | capitalize}}</div>
             <div *ngIf="titleKey" class="pl-1 panel-title panel-title-upper-header">
                 <scrm-label [labelKey]="titleKey"></scrm-label>
             </div>
@@ -60,7 +60,7 @@
                 <ng-content select="[panel-icon-area]"></ng-content>
             </div>
 
-            <div *ngIf="title" class="pl-1 panel-title">{{title}}</div>
+            <div *ngIf="title" class="pl-1 panel-title">{{title | capitalize}}</div>
 
             <div *ngIf="titleKey" class="pl-1 panel-title">
                 <scrm-label [labelKey]="titleKey"></scrm-label>
