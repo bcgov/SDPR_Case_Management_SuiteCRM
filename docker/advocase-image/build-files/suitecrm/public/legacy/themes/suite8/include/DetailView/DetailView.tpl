@@ -65,6 +65,7 @@
         <li id="tab-actions" class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$APP.LBL_LINK_ACTIONS}}<span class="suitepicon suitepicon-action-caret"></span></a>
             {{include file="themes/suite8/include/DetailView/actions_menu.tpl"}}
+             <li class="dropdown-edit">{{sugar_button module="$module" id="EDIT" view="$view" form_id="formDetailView"}}</li>
         </li>
         {{/if}}
     </ul>
