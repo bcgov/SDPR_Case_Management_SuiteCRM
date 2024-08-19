@@ -98,6 +98,47 @@ export class LineActionMenuComponent implements OnInit, OnDestroy {
                 }
                 this.configState.next(this.getButtonGroupConfig(actions));
 
+                actions = [
+                    {
+                        "key": "edit",
+                        "labelKey": "LBL_EDIT_RECORD",
+                        "action": "edit",
+                        "icon": "edit",
+                        "asyncProcess": true,
+                        "routing": true,
+                        "params": null,
+                        "modes": [
+                            "list"
+                        ],
+                        "acl": [
+                            "edit"
+                        ],
+                        "module": "contacts",
+                        "status": "",
+                        "label": "Edit Record"
+                    },
+                    {
+                        "key": "unlink",
+                        "labelKey": "LBL_UNLINK_RECORD",
+                        "action": "unlink",
+                        "icon": "unlink",
+                        "asyncProcess": true,
+                        "routing": false,
+                        "params": {
+                            "displayConfirmation": true,
+                            "confirmationLabel": "LBL_UNLINK_RELATIONSHIP_CONFIRM"
+                        },
+                        "modes": [
+                            "list"
+                        ],
+                        "acl": [
+                            "edit"
+                        ],
+                        "module": "contacts",
+                        "status": "",
+                        "label": "Unlink Record"
+                    }
+                ];
                 this.actions = actions;
                 console.log('actions: ',this.actions)
             })
