@@ -25,19 +25,21 @@
 * the words "Supercharged by SuiteCRM".
 */
 -->
-<div class="case-action-group">
-    <button *ngIf="subpanel == false" (click) = "onClickPhone($event)" class="line-action-item">
-        <scrm-image image="phone">
-        </scrm-image>
-    </button>
+<div *ngIf="config$" [class]="klass">
+    <ng-container *ngFor="let item of buttons.expanded">
+        <scrm-button *ngIf="item && !(item?.items ?? '')"
+                     [config]="item"
+                     (click) = "stopPropagation($event)">
+        </scrm-button>
+        <scrm-dropdown-button *ngIf="item && (item?.items ?? '') && ((item?.type ?? 'dropdown') === 'dropdown')"
+                              [config]="item">
+        </scrm-dropdown-button>
+        <scrm-grouped-button *ngIf="item && (item?.items ?? '') && ((item?.type ?? 'dropdown') === 'grouped')"
+                              [config]="item">
+        </scrm-grouped-button>
+    </ng-container>
 
-    <button *ngIf="module == 'cases' && subpanel == false" (click) = "onClickPaperClip($event)" class="line-action-item">
-        <scrm-image image="paperclip">
-        </scrm-image>
-    </button>
-
-    <button *ngIf="module == 'contacts' && subpanel == false" (click) = "onClickCreateCase($event)" class="line-action-item">
-        <scrm-image image="create_case">
-        </scrm-image>
-    </button>
+    <scrm-dropdown-button autoClose="outside"
+                          *ngIf="buttons.collapsed.length"
+                          [config]="dropdownConfig"></scrm-dropdown-button>
 </div>
