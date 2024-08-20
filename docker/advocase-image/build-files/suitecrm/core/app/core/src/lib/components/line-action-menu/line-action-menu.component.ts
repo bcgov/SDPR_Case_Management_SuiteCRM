@@ -61,7 +61,8 @@ export class LineActionMenuComponent implements OnInit, OnDestroy {
     @Input() wrapperClass = '';
     @Input() record: Record;
     @Input() config: ActionDataSource;
-    @Input() limitConfigKey = 'listview_line_actions_limits';
+    @Input() limitConfigKey = 'listview_line_actions_limits';';
+    @Input() subpanel: boolean;
     configState = new BehaviorSubject<ButtonGroupInterface>({buttons: []});
     config$ = this.configState.asObservable();
     actions: Action[];
@@ -93,47 +94,49 @@ export class LineActionMenuComponent implements OnInit, OnDestroy {
                 this.languages.vm$
             ),
             map(([actions, screenSize, languages]) => {
-                actions = [
-                    {
-                        "key": "edit",
-                        "labelKey": "LBL_EDIT_RECORD",
-                        "action": "edit",
-                        "icon": "edit",
-                        "asyncProcess": true,
-                        "routing": true,
-                        "params": null,
-                        "modes": [
-                            "list"
-                        ],
-                        "acl": [
-                            "edit"
-                        ],
-                        "module": "contacts",
-                        "status": "",
-                        "label": "Edit Record"
-                    },
-                    {
-                        "key": "unlink",
-                        "labelKey": "LBL_UNLINK_RECORD",
-                        "action": "unlink",
-                        "icon": "unlink",
-                        "asyncProcess": true,
-                        "routing": false,
-                        "params": {
-                            "displayConfirmation": true,
-                            "confirmationLabel": "LBL_UNLINK_RELATIONSHIP_CONFIRM"
+                if (actions.length == 0 && this.subpanel) {
+                    actions = [
+                        {
+                            "key": "edit",
+                            "labelKey": "LBL_EDIT_RECORD",
+                            "action": "edit",
+                            "icon": "edit",
+                            "asyncProcess": true,
+                            "routing": true,
+                            "params": null,
+                            "modes": [
+                                "list"
+                            ],
+                            "acl": [
+                                "edit"
+                            ],
+                            "module": "contacts",
+                            "status": "",
+                            "label": "Edit Record"
                         },
-                        "modes": [
-                            "list"
-                        ],
-                        "acl": [
-                            "edit"
-                        ],
-                        "module": "contacts",
-                        "status": "",
-                        "label": "Unlink Record"
-                    }
-                ];
+                        {
+                            "key": "unlink",
+                            "labelKey": "LBL_UNLINK_RECORD",
+                            "action": "unlink",
+                            "icon": "unlink",
+                            "asyncProcess": true,
+                            "routing": false,
+                            "params": {
+                                "displayConfirmation": true,
+                                "confirmationLabel": "LBL_UNLINK_RELATIONSHIP_CONFIRM"
+                            },
+                            "modes": [
+                                "list"
+                            ],
+                            "acl": [
+                                "edit"
+                            ],
+                            "module": "contacts",
+                            "status": "",
+                            "label": "Unlink Record"
+                        }
+                    ];
+                }
                 if (screenSize) {
                     this.screen = screenSize;
                 }
