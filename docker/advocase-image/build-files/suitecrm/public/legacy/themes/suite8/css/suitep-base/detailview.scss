@@ -710,3 +710,29 @@ table.subpanel-table .pagination li.single > a {
   font-size: 14px;
   font-weight: 400;
 }
+
+li.dropdown-edit #edit_button {
+  margin: 0;
+  padding: 8px 16px;
+  height: fit-content;
+  line-height: 24px;
+}
+
+scrm-field.field.field-mode-detail.field-name-assigned_user_name.field-name-assigned_user_name-nick.field-type-relate {
+  border: none;
+  background-color: white;
+  display: flex;
+  margin-left: -24px;
+  padding: 8px;
+}
+
+.ng-tns-c3177733119-5.p-overlay.p-component.ng-star-inserted {
+  width: 624px;
+}
+
+scrm-field.field.field-mode-detail.field-name-state.field-name-state-Open.field-type-enum {
+  border: none;
+  background-color: white;
+  display: flex;
+  padding: 0;
+}

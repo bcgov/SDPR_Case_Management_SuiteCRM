@@ -25,19 +25,17 @@
 * the words "Supercharged by SuiteCRM".
 */
 -->
-<div class="case-action-group">
-    <button *ngIf="subpanel == false" (click) = "onClickPhone($event)" class="line-action-item">
-        <scrm-image image="phone">
-        </scrm-image>
-    </button>
-
-    <button *ngIf="module == 'cases' && subpanel == false" (click) = "onClickPaperClip($event)" class="line-action-item">
-        <scrm-image image="paperclip">
-        </scrm-image>
-    </button>
-
-    <button *ngIf="module == 'contacts' && subpanel == false" (click) = "onClickCreateCase($event)" class="line-action-item">
-        <scrm-image image="create_case">
-        </scrm-image>
-    </button>
-</div>
+<ng-container *ngIf="actions.length">
+    <div class="line-action-container">
+        <div id="line-action-div" class="line-action line-action-position">
+            <div class="{{wrapperClass}}" [ngClass]="isButtonClicked  ? 'active': ''">
+                <div class="{{klass}}">
+                    <scrm-button-group *ngIf="config$" [config$]="config$" [klass]="'icon-bar-block'"></scrm-button-group>
+                </div>
+                <button class="more-button" aria-label="Mobile Menu Button" (click)="isButtonClicked=!isButtonClicked">
+                    <scrm-image class="sicon" image="apps-line"></scrm-image>
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-container>

@@ -25,19 +25,13 @@
 * the words "Supercharged by SuiteCRM".
 */
 -->
-<div class="case-action-group">
-    <button *ngIf="subpanel == false" (click) = "onClickPhone($event)" class="line-action-item">
-        <scrm-image image="phone">
-        </scrm-image>
-    </button>
-
-    <button *ngIf="module == 'cases' && subpanel == false" (click) = "onClickPaperClip($event)" class="line-action-item">
-        <scrm-image image="paperclip">
-        </scrm-image>
-    </button>
-
-    <button *ngIf="module == 'contacts' && subpanel == false" (click) = "onClickCreateCase($event)" class="line-action-item">
-        <scrm-image image="create_case">
-        </scrm-image>
-    </button>
+<div [class.overlay]="overlay">
+    <div class="loading-spinner">
+        <svg class="spinner" width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle class="circle circle-a" cx="12" cy="12" r="12" fill="#013366"/>
+            <circle class="circle circle-b" cx="60" cy="12" r="12" fill="#FCBA19"/>
+            <circle class="circle circle-c" cx="108" cy="12" r="12" fill="#013366"/>
+        </svg>
+    </div>
 </div>
+
