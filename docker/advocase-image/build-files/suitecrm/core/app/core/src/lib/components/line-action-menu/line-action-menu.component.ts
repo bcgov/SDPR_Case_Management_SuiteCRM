@@ -61,7 +61,7 @@ export class LineActionMenuComponent implements OnInit, OnDestroy {
     @Input() wrapperClass = '';
     @Input() record: Record;
     @Input() config: ActionDataSource;
-    @Input() limitConfigKey = 'listview_line_actions_limits';';
+    @Input() limitConfigKey = 'listview_line_actions_limits';
     @Input() subpanel: boolean;
     configState = new BehaviorSubject<ButtonGroupInterface>({buttons: []});
     config$ = this.configState.asObservable();
