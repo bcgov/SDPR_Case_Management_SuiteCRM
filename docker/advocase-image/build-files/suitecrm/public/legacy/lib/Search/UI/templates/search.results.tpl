@@ -36,98 +36,100 @@
  * display the words "Powered by SugarCRM" and "Supercharged by SuiteCRM".
  *}
 <div class="search-bottom-section">
-    <div search-moduleTitle class="moduleTitle">
+    <div search-moduleTitle class="search-moduleTitle moduleTitle">
         <h2 class="search-module-title-text module-title-text">{$APP.LBL_SEARCH_RESULTS_TITLE}</h2>
     </div>
-    {if !empty($total)}{$APP.LBL_SEARCH_TOTAL}{$total}{/if}
-    {if !empty($error)}
-        <p class="error">{$APP.ERR_SEARCH_INVALID_QUERY}</p>
-    {else}
+    <div class="search-bottom-table">
+        {if !empty($total)}{$APP.LBL_SEARCH_TOTAL}{$total}{/if}
+        {if !empty($error)}
+            <p class="error">{$APP.ERR_SEARCH_INVALID_QUERY}</p>
+        {else}
 
-        {if $pagination}
-            <ul class="nav nav-tabs">
-                <li class="tab-inline-pagination">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                        <tbody>
-                            <tr>
-                                <td nowrap class="paginationWrapper">
-                                    <span class="pagination">
-                                        <button type="button" class="button btn-pagination" title="{$APP.LBL_SEARCH_PREV}"{if !$pagination.prev}disabled="true"{else}onclick="pagination.onClick('prev');"{/if}>
-                                            <span class="suitepicon suitepicon-action-left"> </span><span class="pagination-label">{$APP.LBL_SEARCH_PREV}</span>
-                                        </button>
-                                        &nbsp;&nbsp;
-                                        <span class="pagination-range-label">{$APP.LBL_SEARCH_PAGE}{$pagination.page}{$APP.LBL_SEARCH_OF}{$pagination.last}</span>
-                                        &nbsp;&nbsp;
-                                        <button type="button" class="button btn-pagination" title="{$APP.LBL_SEARCH_NEXT}"{if !$pagination.next}disabled="true"{else}onclick="pagination.onClick('next');"{/if}>
-                                            <span class="pagination-label">{$APP.LBL_SEARCH_NEXT}</span><span class="suitepicon suitepicon-action-right"> </span>
-                                        </button>
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </li>
-            </ul>
-            <script>
-                {literal}
-                var pagination = {
-                    onClick: function(dir) {
-                        var from = {/literal}{$pagination.from}{literal};
-                        var size = {/literal}{$pagination.size}{literal};
-                        var string = "{/literal}{$pagination.string}{literal}";
-                        if (dir === 'prev') {
-                            from -= size;
-                        } else if (dir === 'next') {
-                            from += size;
-                        } else {
-                            throw 'Invalid direction';
+            {if $pagination}
+                <ul class="nav nav-tabs">
+                    <li class="tab-inline-pagination">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td nowrap class="paginationWrapper">
+                                        <span class="pagination">
+                                            <button type="button" class="button btn-pagination" title="{$APP.LBL_SEARCH_PREV}"{if !$pagination.prev}disabled="true"{else}onclick="pagination.onClick('prev');"{/if}>
+                                                <span class="suitepicon suitepicon-action-left"> </span><span class="pagination-label">{$APP.LBL_SEARCH_PREV}</span>
+                                            </button>
+                                            &nbsp;&nbsp;
+                                            <span class="pagination-range-label">{$APP.LBL_SEARCH_PAGE}{$pagination.page}{$APP.LBL_SEARCH_OF}{$pagination.last}</span>
+                                            &nbsp;&nbsp;
+                                            <button type="button" class="button btn-pagination" title="{$APP.LBL_SEARCH_NEXT}"{if !$pagination.next}disabled="true"{else}onclick="pagination.onClick('next');"{/if}>
+                                                <span class="pagination-label">{$APP.LBL_SEARCH_NEXT}</span><span class="suitepicon suitepicon-action-right"> </span>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+                <script>
+                    {literal}
+                    var pagination = {
+                        onClick: function(dir) {
+                            var from = {/literal}{$pagination.from}{literal};
+                            var size = {/literal}{$pagination.size}{literal};
+                            var string = "{/literal}{$pagination.string}{literal}";
+                            if (dir === 'prev') {
+                                from -= size;
+                            } else if (dir === 'next') {
+                                from += size;
+                            } else {
+                                throw 'Invalid direction';
+                            }
+                            // keep search form values
+                            $('input[name="search-query-from"]').val(from);
+                            $('select[name="search-query-size"]').val(size);
+                            $('input[name="search-query-string"').val(string);
+                            $('#search-wrapper-form').submit();
                         }
-                        // keep search form values
-                        $('input[name="search-query-from"]').val(from);
-                        $('select[name="search-query-size"]').val(size);
-                        $('input[name="search-query-string"').val(string);
-                        $('#search-wrapper-form').submit();
-                    }
-                };
-                {/literal}
-            </script>
-        {/if}
+                    };
+                    {/literal}
+                </script>
+            {/if}
 
-        {foreach from=$resultsAsBean item=beans key=module}
-        <h3>{$module}</h3>
-        <div class="unified-search-table-wrapper">
-        <table class="list view">
-            <thead>
-                <tr>
-                    <th></th>
-                    {foreach from=$headers[$module] item=header}
-                    <th title="{$header.comment}">{$header.label}</th>
+            {foreach from=$resultsAsBean item=beans key=module}
+            <h3>{$module}</h3>
+            <div class="unified-search-table-wrapper">
+            <table class="list view">
+                <thead>
+                    <tr>
+                        <th></th>
+                        {foreach from=$headers[$module] item=header}
+                        <th title="{$header.comment}">{$header.label}</th>
+                        {/foreach}
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach from=$beans item=bean}
+                    <tr class="{cycle values="oddListRowS1,evenListRowS1"}">
+                        <td><a href="{$APP_CONFIG.site_url}/index.php?action=EditView&module={$module}&record={$bean->id}&offset=1"><span class="suitepicon suitepicon-action-edit"></span></a></td>
+                        {foreach from=$headers[$module] item=header}
+                        {assign var="headerField" value=$header.field|default:''}
+                        <td>{$bean->$headerField}
+                        </td>
+                        {/foreach}
+                    </tr>
                     {/foreach}
-                </tr>
-            </thead>
-            <tbody>
-                {foreach from=$beans item=bean}
-                <tr class="{cycle values="oddListRowS1,evenListRowS1"}">
-                    <td><a href="{$APP_CONFIG.site_url}/index.php?action=EditView&module={$module}&record={$bean->id}&offset=1"><span class="suitepicon suitepicon-action-edit"></span></a></td>
-                    {foreach from=$headers[$module] item=header}
-                    {assign var="headerField" value=$header.field|default:''}
-                    <td>{$bean->$headerField}
-                    </td>
-                    {/foreach}
-                </tr>
-                {/foreach}
-            </tbody>
-            </thead>
-        </table>
-        </div>
-        {foreachelse}
-        <p class="error">{$APP.ERR_SEARCH_NO_RESULTS}</p>
-        {/foreach}
+                </tbody>
+                </thead>
+            </table>
+            </div>
+            {foreachelse}
+            <p class="error">{$APP.ERR_SEARCH_NO_RESULTS}</p>
+            {/foreach}
 
-        {if !empty($results->getSearchTime())}
-            <p class="text-muted text-right" id="search-time">
-                {$APP.LBL_SEARCH_PERFORMED_IN} {$results->getSearchTime()*1000|string_format:"%.2f"} ms
-            </p>
+            {if !empty($results->getSearchTime())}
+                <p class="text-muted text-right" id="search-time">
+                    {$APP.LBL_SEARCH_PERFORMED_IN} {$results->getSearchTime()*1000|string_format:"%.2f"} ms
+                </p>
+            {/if}
         {/if}
-    {/if}
+    </div>
 </div>
