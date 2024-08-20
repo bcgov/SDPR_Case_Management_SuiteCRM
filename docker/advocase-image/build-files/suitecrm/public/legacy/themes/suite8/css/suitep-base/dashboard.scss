@@ -930,7 +930,7 @@ table #dashletPanel {
   background: $dashboard-toolbar-bg;
   padding-bottom: 6px;
   &:hover {
-    background: $action-btn-hover-bg-color;
+    background: $secondary-button-hover !important;
   }
 }
 
@@ -1086,6 +1086,9 @@ a.dropdown-toggle {
   background: var(--surface-color-primary-button-default, #013366) !important;
   text-transform: none !important;
   letter-spacing: 0px !important;
+  &:hover {
+    background: $surface-color-primary-hover !important;
+  }
 }
 
 input.button.addDashboard {
