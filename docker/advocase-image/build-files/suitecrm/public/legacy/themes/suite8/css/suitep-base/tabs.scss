@@ -59,6 +59,7 @@
     right: 0;
   }
 
+  .view-module-Documents > .detail-view > .nav-tabs,
   .view-module-Meetings > .detail-view > .nav-tabs,
   .view-module-AOR_Reports > .detail-view > .nav-tabs {
     position: absolute;
@@ -77,7 +78,7 @@
       margin: 0;
     }
   }
-
+  .view-module-Meetings,
   .view-module-AOR_Reports {
     #subpanel_list div.sub-panel {
       margin: 0;
