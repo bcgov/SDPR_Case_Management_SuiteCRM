@@ -900,7 +900,7 @@ table #dashletPanel {
       .button {
         background: $dashboard-toolbar-bg;
         &:hover {
-          background: $action-btn-hover-bg-color;
+          background: $secondary-button-hover !important;
         }
       }
     }
