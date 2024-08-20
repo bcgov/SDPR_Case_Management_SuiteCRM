@@ -59,6 +59,37 @@
     right: 0;
   }
 
+  .view-module-Meetings > .detail-view > .nav-tabs,
+  .view-module-AOR_Reports > .detail-view > .nav-tabs {
+    position: absolute;
+    right: 0;
+    top: 35px;
+    height: 43px;
+  }
+
+  .view-module-Meetings,
+  .view-module-AOR_Reports {
+    #subpanel_list li.noBullet {
+      margin: 0;
+    }
+
+    .panel {
+      margin: 0;
+    }
+  }
+
+  .view-module-AOR_Reports {
+    #subpanel_list div.sub-panel {
+      margin: 0;
+    }
+  }
+
+  .view-module-Meetings {
+    #subpanel_list div.sub-panel {
+      margin: 32px 0 0;
+    }
+  }
+
   .detail-view > .nav-tabs > #tab-actions > a {
     background-color: $button-bg-color;
     border-radius: 4px;
@@ -84,7 +115,7 @@
   }
 
   .detail-view > .nav-tabs > #tab-actions > .dropdown-menu > li:hover {
-    background-color: $action-btn-hover-bg-color;
+    background-color: $secondary-button-hover;
   }
 
   .nav-tabs > li > a,
@@ -314,5 +345,3 @@
 .tab-content .tab-pane-NOBOOTSTRAPTOGGLER:not(.active) {
   display: none;
 }
-
-
