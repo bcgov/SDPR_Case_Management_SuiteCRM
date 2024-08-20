@@ -124,6 +124,8 @@
   width: 20px;
 }
 
-.panel-body-container .listView-table-body {
-  margin: 1.25rem 2.2rem;
+.panel-body-container {
+  .listView-table-body {
+    margin: 1.25rem 2.2rem;
+  }
 }
