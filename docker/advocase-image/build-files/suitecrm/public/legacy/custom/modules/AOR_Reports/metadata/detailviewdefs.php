@@ -20,7 +20,6 @@ array (
             'customCode' => '{if $can_export}<input type="button" class="button" id="download_pdf_button_old" value="{$MOD.LBL_DOWNLOAD_PDF}">{/if}',
           ),
         ),
-        'hideAudit' => true,
         'footerTpl' => 'modules/AOR_Reports/tpls/report.tpl',
       ),
       'maxColumns' => '2',
