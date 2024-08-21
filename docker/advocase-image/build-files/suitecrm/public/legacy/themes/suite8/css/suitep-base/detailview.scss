@@ -265,6 +265,24 @@ p.msg {
   display: none !important;
 }
 
+#whole_subpanel_therevisions {
+  position: absolute;
+  width: 100%;
+  padding-right: 17px;
+}
+
+#whole_subpanel_contacts {
+  position: absolute;
+  width: 100%;
+  padding-right: 17px;
+}
+
+#whole_subpanel_cases {
+  position: absolute;
+  width: 100%;
+  padding-right: 17px;
+}
+
 #subpanel_history .evenListRowS1 td:nth-of-type(2) a {
   border-bottom: none;
 }
