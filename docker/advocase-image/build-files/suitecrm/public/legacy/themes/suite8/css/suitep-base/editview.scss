@@ -170,7 +170,7 @@ div#searchResults {
 }
 
 #create-invitees {
-  background-color: $panel-bg;
+  background-color: $white;
   color: $primary_text;
   padding: 32px 40px;
   margin-top: 32px;
@@ -183,7 +183,7 @@ div#searchResults {
 
 .schedulerInvitees {
   background-color: $panel-bg;
-  color: $main-font-color;
+  color: $primary_text;
   padding: 32px 40px;
   margin-top: 5px;
   border: 1px solid $panel-border-bg;
@@ -217,6 +217,11 @@ div#searchResults {
   padding-bottom: 8px;
   line-height: $input-line-height;
   vertical-align: top !important;
+}
+
+#create-invitees-buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 #cancel-create-invitee-btn {
@@ -617,7 +622,7 @@ textarea {
 }
 
 .edit-view-row .label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   width: 98%;
   text-align: left;
@@ -886,7 +891,7 @@ option:checked {
   font-family: 'BC Sans';
   border: 1px solid $surface-color-border-dark;
   color: $white;
-  
+
   &:hover {
     background-color: $surface-color-primary-hover;
   }
