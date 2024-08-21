@@ -17,7 +17,7 @@ array (
   ),
   'ADVOCASE_CONTACT_TYPE_C' => 
   array (
-    'type' => 'varchar',
+    // 'type' => 'varchar',
     'label' => 'LBL_ADVOCASE_CONTACT_TYPE',
     'width' => '10%',
     'default' => true,
