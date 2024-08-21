@@ -821,14 +821,38 @@ option:checked {
   line-height: 27px;
   text-transform: capitalize;
   height: auto;
+  font-size: 16px;
+  font-family: 'BC Sans';
+  border: 1px solid $surface-color-border-dark;
+  color: $typography-color-secondary;
+
   &:hover {
     background-color: $secondary-button-hover;
   }
 }
 
-#EditView  #SAVE_HEADER {
+#EditView #btn_view_change_log {
+  display: none;
+}
+
+#EditView #CANCEL_HEADER {
+  background: $white;
+  border: 1px solid $widget-border;
+  color: $typography-color-secondary;
+  &:hover {
+    background-color: $secondary-button-hover;
+  }
+}
+
+#EditView #SAVE_HEADER {
   background: $surface-color-background-blue;
   color: $white;
+  padding: 8px 16px;
+  margin: 4px;
+  font-weight: 700;
+  line-height: 27px;
+  text-transform: capitalize;
+  height: auto;
   &:hover {
     background-color: $surface-color-primary-hover;
 
@@ -850,27 +874,31 @@ option:checked {
 }
 
 #EditView input[type="submit"],
-#EditView input[value=Cancel]#CANCEL {
-  margin: 0.2em;
-  font-weight: bold;
-  height: 2.2em;
-  line-height: 1.1em;
-  padding: 0.3em 0.9em;
-  background-color: $button-bg-color;
+#EditView input[value=Cancel] #CANCEL {
+  background: $surface-color-primary-button-default;
+  padding: 8px 16px;
+  margin: 4px;
+  font-weight: 700;
+  line-height: 27px;
   text-transform: capitalize;
-  margin-bottom: 24px;
+  height: auto;
+  font-size: 16px;
+  font-family: 'BC Sans';
+  border: 1px solid $surface-color-border-dark;
+  color: $white;
+  
   &:hover {
-    background-color: $btn-hover-bg-color;
+    background-color: $surface-color-primary-hover;
   }
 }
 
-#EditView .buttons ,.action_buttons {
+#EditView .buttons, .action_buttons {
   display: flex;
   justify-content: flex-end;
+  flex-direction: row-reverse;
   position: absolute;
-  bottom: 0.2em;
+  bottom: 12px;
   right: 0;
-  height: min-content;
 }
 
 .actionbutton-footer {
@@ -1438,9 +1466,12 @@ input.sqsEnabled {
 }
 
 .paginationTable {
-  margin-top: -20px;
-  margin-left: -45px;
-  margin-bottom: 35px;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  right: 43px;
+  margin-bottom: 66px;
+  border-bottom: 2px solid white;
 }
 
 .pageNumbers {
@@ -1804,11 +1835,15 @@ div.confirmTable {
   width: 200%;
   background-color: white;
   padding-left: 30px;
-  padding-top: 13px;
+  border-bottom: 1px solid $surface-color-border-default;
 }
 
 .view-module-Meetings .moduleTitle {
   padding-top: 0;
+}
+
+.view-module-Documents .moduleTitle {
+  margin-top: 11px;
 }
 
 .moduleTitle h2 {

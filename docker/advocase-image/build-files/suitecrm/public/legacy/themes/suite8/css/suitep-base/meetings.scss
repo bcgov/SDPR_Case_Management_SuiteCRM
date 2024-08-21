@@ -1,16 +1,18 @@
 #EditView_tabs .panel  {
-    padding: 24px 40px 0px;
+    padding: 24px 0px 0px;
 }
 
 .view-module-Meetings {
     margin-top: 10px;
 
-    #EditView .buttons, .action_buttons {
-        bottom: 0.8em;
+    #EditView .buttons,
+    .action_buttons {
+        bottom: 20px;
+        flex-direction: row;
     }
 
     .schedulerInvitees {
-        margin-top: 40px;
+        margin-top: 32px;
         border: 2px solid #d8d8d8;
         border-bottom: none;
         border-top-left-radius: 6px;
@@ -34,7 +36,7 @@
     }
 
     .meeting-scheduler {
-        padding: 0 40px;
+        padding: 0;
     }
 
     .invitees-hr-wrapper {
@@ -71,13 +73,15 @@
     }
     #EditView .edit input[type=submit]#invitees_search {
         font-weight: 700;
-        line-height: 1.1em;
+        line-height: 0.1em;
         background-color: $surface-color-primary-button-default;
         text-transform: capitalize;
-        border-radius: 4px0.2em;
+        border-radius: 4px;
         border: 1px solid #013366;
         padding: 8px 16px;
         letter-spacing: 0.05em;
+        font-size: 16px;
+        margin: 0;
         &:hover {
             background: $surface-color-primary-hover;
         }
