@@ -25,3 +25,4 @@ $mod_strings['LBL_LIST_NAME'] = 'Subject';
 $mod_strings['LBL_LIST_STATE'] = 'Status';
 $mod_strings['LBL_WORK_LOG'] = 'Initial Communication Note';
 $mod_strings['LBL_CASE_INFORMATION'] = 'Case Overview';
+$mod_strings['LBL_DATE_ENTERED'] = 'Date Created';
