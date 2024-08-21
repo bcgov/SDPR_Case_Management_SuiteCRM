@@ -92,6 +92,8 @@ Follow the instructions from the [Deployment pre-requisites](./openshift/README.
 
 ## Deploying the project on Openshift
 
+Check the [Parameters](./helm/suitecrm/README.md#parameters) from the SuiteCRM Helm chart to see the available configuration parameters and the components that are being deployed.
+
 ### Deploying using ArgoCD
 
-If you followed the instructions from [Enabling ArgoCD for the project](#enabling-argocd-for-the-project), you should have ArgoCD setup for the project. 
+If you followed the instructions from [Enabling ArgoCD for the project](#enabling-argocd-for-the-project), you should have ArgoCD setup for the project.
