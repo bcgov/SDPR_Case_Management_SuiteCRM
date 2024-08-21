@@ -204,6 +204,7 @@ SugarWidgetSchedulerSearch.prototype.display = function () {
     table1.setAttribute('width', '100%');
     var row1 = table1.insertRow(0);
     var cell1 = row1.insertCell(0);
+    var cell12 = row1.insertCell(1);
 
     var form = document.createElement("form");
     form.setAttribute('name', 'schedulerwidget');
@@ -317,6 +318,7 @@ SugarWidgetSchedulerSearch.prototype.display = function () {
     var create_invitees = document.createElement("div");
     create_invitees.setAttribute('id', 'create-invitees');
     create_invitees.setAttribute('style', 'margin-bottom: 10px;');
+    create_invitees.setAttribute('style', 'display: none;');
 
     var empty_search_message = document.createElement("div");
     empty_search_message.setAttribute('id', 'empty-search-message');
@@ -339,13 +341,7 @@ SugarWidgetSchedulerSearch.prototype.display = function () {
     button1.innerHTML = GLOBAL_REGISTRY['meeting_strings']['LBL_CREATE_CONTACT'];
     create_invitees_buttons.appendChild(button1);
 
-    var button2 = document.createElement("button");
-    button2.setAttribute('id', 'create_invitee_as_lead');
-    button2.setAttribute('type', 'button');
-    button2.setAttribute('onclick', 'SugarWidgetSchedulerSearch.showCreateForm(\'Leads\');');
-    button2.innerHTML = GLOBAL_REGISTRY['meeting_strings']['LBL_CREATE_LEAD'];
-    create_invitees_buttons.appendChild(button2);
-    create_invitees.appendChild(create_invitees_buttons);
+    cell12.appendChild(create_invitees_buttons)
 
     var create_invitee_edit = document.createElement("div");
     create_invitee_edit.setAttribute('id', 'create-invitee-edit');
@@ -450,6 +446,8 @@ SugarWidgetSchedulerSearch.prototype.display = function () {
     create_invitees.appendChild(create_invitee_edit);
     this.parentNode.appendChild(create_invitees);
 
+    this.parentNode.insertBefore(create_invitees, divWrapper.nextSibling)
+
     addToValidate('createInviteeForm', 'last_name', 'last_name', true, GLOBAL_REGISTRY['meeting_strings']['LBL_LAST_NAME']);
 
     this.list_view = new SugarWidgetListView();
@@ -458,7 +456,7 @@ SugarWidgetSchedulerSearch.prototype.display = function () {
 
 SugarWidgetSchedulerSearch.showCreateForm = function (module) {
     document.getElementById('create-invitee-edit').style.display = '';
-    document.getElementById('create-invitees-buttons').style.display = 'none';
+    document.getElementById('create-invitees').style.display = '';
     document.getElementById('list_div_win').style.display = 'none';
     document.forms['createInviteeForm'].elements['inviteeModule'].value = module;
 
@@ -475,7 +473,7 @@ SugarWidgetSchedulerSearch.showCreateForm = function (module) {
 
 SugarWidgetSchedulerSearch.hideCreateForm = function (module) {
     document.getElementById('create-invitee-edit').style.display = 'none';
-    document.getElementById('create-invitees-buttons').style.display = '';
+    document.getElementById('create-invitees').style.display = 'none';
 
     document.forms['createInviteeForm'].reset();
 }
@@ -927,7 +925,7 @@ SugarWidgetSchedulerAttendees.prototype.display = function () {
     if (this.parentNode.childNodes.length < 1)
         this.parentNode.innerHTML += '<div id="scheduler-Div" class="schedulerDiv">' + html + '</div>';
     else
-        this.parentNode.childNodes[3].innerHTML = html;
+        this.parentNode.childNodes[4].innerHTML = html;
 
     var thetable = "schedulerTable";
 
