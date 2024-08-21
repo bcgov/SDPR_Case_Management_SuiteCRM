@@ -55,9 +55,9 @@ The file [network-policy.yaml](./templates/network-policy.yaml) file contains al
 >
 > Always make sure to use the `-n <license plate>-<namespace>` flag to ensure you are running commands in the correct namespace.
 
-> [!INFO]
+> [!IMPORTANT]
 >
-> If you want to deploy the SuiteCRM chart into Openshift, make sure you are [logged in](../../README.md#login-to-openshift-using-oc-cli) and have the correct permissions to deploy resources.
+> If you want to deploy the SuiteCRM chart into Openshift, make sure you are [logged in openshift](../../README.md#login-to-openshift-using-oc-cli) and have the correct permissions to deploy resources.
 
 > [!TIP]
 >
