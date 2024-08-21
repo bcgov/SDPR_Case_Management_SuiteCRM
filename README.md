@@ -86,10 +86,9 @@ Now you have the bare minimum requirements to start working on the project.
 ```bash
 git clone git@github.com:bcgov/SDPR_Case_Management_SuiteCRM.git
 ```
-
 ## Setup the project
 
-Follow the instructions from the [Deployment pre-requisites](./openshift/README.md) page to setup the environments before deploying the project on Openshift through either Helm or ArgoCD.
+Follow the instructions from the [Deployment pre-requisites](./openshift/README.md#deployment-pre-requisites) page to setup the environments before deploying the project on Openshift through either Helm or ArgoCD.
 
 ## Deploying the project on Openshift
 
