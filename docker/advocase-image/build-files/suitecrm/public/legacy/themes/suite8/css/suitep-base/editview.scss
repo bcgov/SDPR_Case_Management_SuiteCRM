@@ -726,10 +726,6 @@ slot {
   padding: 0 5px 5px 5px;
 }
 
-#EditView_tabs.yui-navset.yui-navset-top .nav.nav-tabs {
-  margin-top: 15px;
-}
-
 #EditView_tabs .nav.nav-tabs {
   margin: 0;
 }
@@ -840,6 +836,8 @@ option:checked {
   display: none;
 }
 
+#EditView #reset_user_preferences_header,
+#EditView #reset_homepage_header,
 #EditView #CANCEL_HEADER {
   background: $white;
   border: 1px solid $widget-border;
