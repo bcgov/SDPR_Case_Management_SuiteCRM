@@ -4,7 +4,10 @@
 
 global:
   env: dev
-  suitecrmHost: suitecrm-dev.apps.silver.devops.gov.bc.ca
+  suitecrmHost: ""
+  ssoDomain: ""
+  ssoRealm: ""
+  ssoClientId: ""
 
   secrets:
     suitecrmSecretName: suitecrm-secrets
@@ -34,18 +37,26 @@ redis-cluster:
         cpu: "50m"
         memory: "250Mi"
   usePassword: false
+  networkPolicy:
+    allowExternal: false
+  existingSecret: suitecrm-redis-credentials
+  existingSecretPasswordKey: redis-password
 
 ## Dependency HA DB
 mariadb-galera:
-  enabled: true
   existingSecret: suitecrm-database-credentials
-  podSecurityContext:
-    enabled: false
-  containerSecurityContext:
-    enabled: false
+  # podSecurityContext:
+  #   enabled: false
+  # containerSecurityContext:
+  #   enabled: false
   replicaCount: 3
   persistence:
     size: 2G
+  db:
+    user: suitecrm
+    name: suitecrm
+  networkPolicy:
+    allowExternal: false
 
 ## Dependecy Backup Storage
 backup-storage:
@@ -56,9 +67,9 @@ backup-storage:
 
   persistence:
     backup:
-      claimName: db-backup-pvc
+      claimName: suitecrm-db-backup-pvc
     verification:
-      claimName: db-backup-verification-pvc
+      claimName: suitecrm-db-backup-verification-pvc
       mountPath: /var/lib/mysql/data
 
   db:
@@ -92,15 +103,12 @@ backup-storage:
     0 1 * * * default ./backup.sh -s
     0 4 * * * default ./backup.sh -s -v all
 
-  podAnnotations: {}
-
 replicaCount: 2
 
 image:
   repository: image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/bcgovsuitecrm
-  Always: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  pullPolicy: Always
+  tag: latest
 
 imagePullSecrets: []
 nameOverride: ""
@@ -124,7 +132,7 @@ service:
 
 ingress:
   ingressClassName: "openshift-default"
-  annotations:
+  annotations: {}
   enabled: true
   hostname: "{{tpl .Values.global.suitecrmHost .}}"
   port: 8181
@@ -148,7 +156,7 @@ resources: {}
 autoscaling:
   enabled: false
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 5
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
