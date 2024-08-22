@@ -1,0 +1,66 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<ul *ngIf="items && items.length > 0" class="navbar-list navbar-nav nav-collapsed-items">
+
+    <li class="top-nav nav-item dropdown non-grouped">
+
+        <a class="nav-link-nongrouped dropdown-toggle" *ngIf="hoverEnabled()"
+           [class]="{
+               'hover-enabled': true,
+               'nav-link-activated': showDropdown()
+           }"
+           (click)="toggleDropdown()">
+            <scrm-label [labelKey]="labelKey"></scrm-label>
+            <svg class="navbar-caret" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14.6875 10.7188L10.7188 14.7188C10.5 14.9062 10.25 15 10 15C9.71875 15 9.46875 14.9062 9.28125 14.7188L5.3125 10.7188C5 10.4375 4.90625 10 5.0625 9.625C5.21875 9.25 5.59375 9 6 9H13.9688C14.375 9 14.7188 9.25 14.875 9.625C15.0312 10 14.9688 10.4375 14.6875 10.7188Z" fill="white"/>
+            </svg>
+        </a>
+
+        <a class="nav-link-nongrouped dropdown-toggle" *ngIf="!hoverEnabled()"
+           [class]="{
+               'hover-enabled':false,
+               'nav-link-activated': showDropdown()
+           }"
+           (click)="toggleDropdown()">
+            <scrm-label [labelKey]="labelKey"></scrm-label>
+        </a>
+
+        <div aria-labelledby="navbarDropdownMenuLink"
+             (click)="hideDropdown()"
+             class="dropdown-menu more-menu submenu"
+             [class.show]="showDropdown()"
+             [class.hover-enabled]="hoverEnabled()"
+        >
+            <div *ngFor="let item of items" class="nav-item">
+                <scrm-menu-item-link [class]="'nav-link action-link'" [link]="item.link">
+                </scrm-menu-item-link>
+            </div>
+        </div>
+    </li>
+</ul>
+
