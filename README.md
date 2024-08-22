@@ -14,8 +14,10 @@ Table of Contents
 - [Installation](#installation)
   - [Clone the repository](#clone-the-repository)
   - [Setup the project](#setup-the-project)
+  - [Building the Docker images](#building-the-docker-images)
   - [Deploying the project on Openshift](#deploying-the-project-on-openshift)
     - [Deploying using ArgoCD](#deploying-using-argocd)
+    - [Deploying using Helm](#deploying-using-helm)
 
 # Technologies Used
 
@@ -90,6 +92,8 @@ git clone git@github.com:bcgov/SDPR_Case_Management_SuiteCRM.git
 
 Follow the instructions from the [Deployment pre-requisites](./openshift/README.md#deployment-pre-requisites) page to setup the environments before deploying the project on Openshift through either Helm or ArgoCD.
 
+## Building the Docker images
+
 ## Deploying the project on Openshift
 
 Check the [Parameters](./helm/suitecrm/README.md#parameters) from the SuiteCRM Helm chart to see the available configuration parameters and the components that are being deployed.
@@ -97,3 +101,198 @@ Check the [Parameters](./helm/suitecrm/README.md#parameters) from the SuiteCRM H
 ### Deploying using ArgoCD
 
 If you followed the instructions from [Enabling ArgoCD for the project](#enabling-argocd-for-the-project), you should have ArgoCD setup for the project.
+Create a new project by clicking on the `+ NEW APP` button on the top left corner of the ArgoCD web console. You can fill the values using the form in the UI, or you can click on the `EDIT AS YAML` button and use the following working manifest as a template:
+
+> [!NOTE]
+>
+> This manifest is not integrating SSO (IDIR/Keycloak) and is not using APS domain, only the default Openshift Ingress. To integrate SSO check the [SSO/Keycloak/IDIR Integration](./helm/suitecrm/README.md#ssokeycloakidir-integration) section and to use the APS domain check the [APS Domain Integration](./helm/suitecrm/README.md#aps-domain-integration) section.
+
+> [!IMPORTANT]
+>
+> Don't forget to replace the placeholders `<license plate>` and `<env>` with the appropriate values.
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: <license plate>-advocase-prod
+spec:
+  project: <license plate>
+  source:
+    repoURL: 'git@github.com:bcgov-c/tenant-gitops-<license plate>.git'
+    path: helm/suitecrm
+    targetRevision: HEAD
+    helm:
+      releaseName: suitecrm
+      values: |
+        global:
+          env: <env>
+          suitecrmHost: advocase-<license plate>-<env>.apps.gold.devops.gov.bc.ca
+
+        mariadb-galera:
+          replicaCount: 1
+          existingSecret: suitecrm-database-credentials
+          db:
+            user: advocase_admin
+            name: advocase
+          persistence:
+            size: 2G
+          networkPolicy:
+            allowExternal: false
+
+        redis-cluster:
+          networkPolicy:
+            allowExternal: false
+          usePassword: true
+          existingSecret: suitecrm-redis-credentials
+          existingSecretPasswordKey: redis-password
+
+        backup-storage:
+          image:
+            repository: image-registry.openshift-image-registry.svc:5000/<license plate>-tools/backup-container-rhel9-mariadb-1011
+            pullPolicy: Always
+            tag: latest
+
+          persistence:
+            backup:
+              claimName: db-backup-pvc
+            verification:
+              claimName: db-backup-verification-pvc
+              mountPath: /var/lib/mysql/data
+
+          db:
+            secretName: suitecrm-database-credentials
+            usernameKey: mariadb-galera-root-user
+            passwordKey: mariadb-root-password
+
+          env:
+            DATABASE_SERVICE_NAME:
+              value: suitecrm-mariadb-galera
+            NUM_BACKUPS:
+              value: "31"
+            DAILY_BACKUPS:
+              value: "6"
+            WEEKLY_BACKUPS:
+              value: "4"
+            MONTHLY_BACKUPS:
+              value: "1"
+            MYSQL_USER:
+              value: "user"
+            MYSQL_PASSWORD:
+              value: "user123"
+            MYSQL_DATABASE:
+              value: "advocase"
+            MYSQL_ROOT_PASSWORD:
+              value: "root"
+
+          backupConfig: |
+            suitecrm-mariadb-galera:3306/advocase
+
+            0 1 * * * default ./backup.sh -s
+            0 4 * * * default ./backup.sh -s -v all
+
+        replicaCount: 1 
+
+        ingress:
+          enabled: true
+
+        image:
+          repository: image-registry.openshift-image-registry.svc:5000/<license plate>-tools/artifactory-advocase
+          tag: "latest"
+          pullPolicy: Always
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: <license plate>-prod
+```
+
+### Deploying using Helm
+
+If you followed the instructions from [Installing HELM](#installing-helm), you should have Helm installed in your local machine. To deploy the project using Helm, create a new file `values.yaml`. You can use the following template as a starting point:
+
+> [!IMPORTANT]
+>
+> Don't forget to replace the placeholders `<license plate>` and `<env>` with the appropriate values.
+
+```yaml
+global:
+  env: <env>
+  suitecrmHost: advocase-<license plate>-<env>.apps.gold.devops.gov.bc.ca
+
+mariadb-galera:
+  replicaCount: 1
+  existingSecret: suitecrm-database-credentials
+  db:
+    user: advocase_admin
+    name: advocase
+  persistence:
+    size: 2G
+  networkPolicy:
+    allowExternal: false
+
+redis-cluster:
+  networkPolicy:
+    allowExternal: false
+  usePassword: true
+  existingSecret: suitecrm-redis-credentials
+  existingSecretPasswordKey: redis-password
+
+backup-storage:
+  image:
+    repository: image-registry.openshift-image-registry.svc:5000/<license plate>-tools/backup-container-rhel9-mariadb-1011
+    pullPolicy: Always
+    tag: latest
+
+  persistence:
+    backup:
+      claimName: db-backup-pvc
+    verification:
+      claimName: db-backup-verification-pvc
+      mountPath: /var/lib/mysql/data
+
+  db:
+    secretName: suitecrm-database-credentials
+    usernameKey: mariadb-galera-root-user
+    passwordKey: mariadb-root-password
+
+  env:
+    DATABASE_SERVICE_NAME:
+      value: suitecrm-mariadb-galera
+    NUM_BACKUPS:
+      value: "31"
+    DAILY_BACKUPS:
+      value: "6"
+    WEEKLY_BACKUPS:
+      value: "4"
+    MONTHLY_BACKUPS:
+      value: "1"
+    MYSQL_USER:
+      value: "user"
+    MYSQL_PASSWORD:
+      value: "user123"
+    MYSQL_DATABASE:
+      value: "advocase"
+    MYSQL_ROOT_PASSWORD:
+      value: "root"
+
+  backupConfig: |
+    suitecrm-mariadb-galera:3306/advocase
+
+    0 1 * * * default ./backup.sh -s
+    0 4 * * * default ./backup.sh -s -v all
+
+replicaCount: 1 
+
+ingress:
+  enabled: true
+
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/<license plate>-tools/artifactory-advocase
+  tag: "latest"
+  pullPolicy: Always
+```
+
+After creating the `values.yaml` file, you can deploy the project using the following command:
+
+```bash
+helm install -n <license plate>-<namespace> suitecrm ./helm/suitecrm -f /path/to/your/custom/values.yaml
+```

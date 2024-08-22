@@ -6,6 +6,9 @@ This Helm chart deploys a SuiteCRM instance on a Openshift/Kubernetes cluster us
 - [Components](#components)
   - [Network Policies](#network-policies)
 - [Installing the Chart](#installing-the-chart)
+  - [SSO/Keycloak/IDIR Integration](#ssokeycloakidir-integration)
+  - [APS Domain Integration](#aps-domain-integration)
+  - [Enabling File Backup to S3](#enabling-file-backup-to-s3)
 - [Parameters](#parameters)
   - [Global Parameters](#global-parameters)
   - [Redis Cluster Dependency Parameters](#redis-cluster-dependency-parameters)
@@ -75,6 +78,48 @@ To install the SuiteCRM chart with the release name `my-release`:
 helm install -n <license plate>-<namespace> my-release helm/suitecrm
 ```
 
+## SSO/Keycloak/IDIR Integration
+
+To enable SSO/Keycloak/IDIR integration, you need to set the following parameters in the `values.yaml` file:
+
+```yaml
+global:
+  suitecrmHost: <valid hostname>
+  ssoDomain: <valid SSO domain>
+  ssoRealm: <valid SSO realm>
+  ssoClientId: <valid SSO client ID>
+```
+Additionally, you need to set up the `SSO_IDP_X509_CERT` parameter when setting up the project for deployment. Check the [Creating required components prior to HELM/ArgoCD deployment](../../openshift/README.md##creating-required-components-prior-to-helmargocd-deployment) page for more information.
+
+> [!NOTE]
+>
+> Ask for the BC Gov CTO team to get the values for `global.suitecrmHost`, `global.ssoDomain`, `global.ssoRealm`, `global.ssoClientId`, and `SSO_IDP_X509_CERT` for each namespace (`-dev`, `-test`, `-prod`).
+
+## APS Domain Integration
+
+For APS Domain integration, first you need to add create network policy in all namespaces (`-dev`, `-test`, `-prod`) to allow external incoming traffic from your `*.apps.gov.bc.ca` domain. Follow the instructions from the [OCP Network Policies](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/unlisted/owner-journey-v1/#ocp-network-policies) page according to the cluster you are deploying the project.
+
+After that, you need to set the `global.suitecrmHost` parameter in the `values.yaml` file:
+
+```yaml
+global:
+  suitecrmHost: <project.name>.apps.gov.bc.ca
+```
+> [!IMPORTANT]
+>
+> For production environments, you should use an APS domain or request a custom domain with SSL certificates from the BC Gov CTO team. It's not recommended to use the default Openshift Ingress for production environments.
+
+## Enabling File Backup to S3
+
+To enable file backup to S3, you need to set the following parameters in the `values.yaml` file:
+
+```yaml
+global:
+  cron:
+    filesBackup:
+      enabled: true
+```
+
 # Parameters
 
 ## Global Parameters
@@ -139,7 +184,7 @@ For more information on how to deploy the BC Gov Backup Storage Helm Chart, and 
 | ---- | ----------- | ------- |
 | `backup-storage.image.repository` | BC Gov Backup Storage Image Repository | `docker.io/bcgovimages/backup-container-mariadb` |
 | `backup-storage.image.pullPolicy` | BC Gov Backup Storage Image Pull Policy | `Always` |
-|`backup-storage.image.tag` | BC Gov Backup Storage Image Tag | `latest` |
+| `backup-storage.image.tag` | BC Gov Backup Storage Image Tag | `latest` |
 | `backup-storage.persistence.backup.claimName` | BC Gov Backup Storage PVC Name | `suitecrm-db-backup-pvc` |
 | `backup-storage.persistence.verification.claimName` | BC Gov Backup Verification PVC Name | `suitecrm-db-backup-verification-pvc` |
 | `backup-storage.persistence.verification.mountPath` | BC Gov Backup Verification Mount Path | `/var/lib/mysql/data` |
