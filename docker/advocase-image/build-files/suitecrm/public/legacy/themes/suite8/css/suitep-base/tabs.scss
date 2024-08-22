@@ -60,6 +60,8 @@
   }
 
   .view-module-Documents > .detail-view > .nav-tabs,
+  .view-module-SecurityGroups > .detail-view > .nav-tabs,
+  .view-module-DocumentRevisions > .detail-view > .nav-tabs,
   .view-module-Meetings > .detail-view > .nav-tabs,
   .view-module-AOR_Reports > .detail-view > .nav-tabs {
     position: absolute;
@@ -67,6 +69,11 @@
     top: 35px;
     height: 43px;
   }
+
+    .view-module-DocumentRevisions > .detail-view > .nav-tabs {
+      display: none;
+      position: relative;
+    }
 
   .view-module-Meetings,
   .view-module-AOR_Reports {
