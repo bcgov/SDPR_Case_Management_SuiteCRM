@@ -13,6 +13,7 @@ This Helm chart deploys a SuiteCRM instance on a Openshift/Kubernetes cluster us
   - [BC Gov Backup Storage Dependency Parameters](#bc-gov-backup-storage-dependency-parameters)
     - [`backup-storage.env`](#backup-storageenv)
     - [`backup-storage.backupConfig`](#backup-storagebackupconfig)
+  - [Misc Parameters](#misc-parameters)
 
 # Dependecies
 
@@ -130,7 +131,7 @@ For more information on how to deploy the BC Gov Backup Storage Helm Chart, and 
 >
 > This chart uses the [BC Gov Backup Container MariaDB Docker Image](https://github.com/BCDevOps/backup-container?tab=readme-ov-file). Check the documentation for more information on how to configure the backup storage container.
 >
-> Due to a bug in the MariaDB Docker image verification process, this project is bulding the image from [this Pull Request](https://github.com/BCDevOps/backup-container/pull/131), which fixes the bug (check [this issue](https://github.com/BCDevOps/backup-container/issues/82) for more information.
+> Due to a bug in the MariaDB Docker image verification process, this project is bulding the image from [this Pull Request](https://github.com/BCDevOps/backup-container/pull/131), which fixes the bug (check [this issue](https://github.com/BCDevOps/backup-container/issues/82) for more information).
 >
 > Check the [Creating ImageStream and BuildConfig](../../openshift/README.md#creating-imagestream-and-buildconfig) section on how to build and deploy a docker image from a Pull Request.
 
@@ -150,6 +151,50 @@ For more information on how to deploy the BC Gov Backup Storage Helm Chart, and 
 
 ### `backup-storage.env`
 
+Environment variables used by this project to configure the BC Gov Backup Storage container. The default values are:
+
+| Name | Description | Value |
+| ---- | ----------- | ----- |
+| `DATABASE_SERVICE_NAME` | The name of the service/host for the default database target. | `suitecrm-mariadb-galera` |
+| `NUM_BACKUPS` | This value is used with the daily backup strategy to set the number of backups to retain before pruning. | `31` |
+| `DAILY_BACKUPS` | When using the rolling backup strategy this value is used to determine the number of daily (Mon-Sat) backups to retain before pruning. | `6` |
+| `WEEKLY_BACKUPS` | When using the rolling backup strategy this value is used to determine the number of weekly (Sun) backups to retain before pruning. | `4` |
+| `MONTHLY_BACKUPS`| When using the rolling backup strategy this value is used to determine the number of monthly (last day of the month) backups to retain before pruning. | `1` |
+| `MYSQL_USER` | Username of the ephemeral database created to perform the database verification. | `user` |
+| `MYSQL_PASSWORD` | Password of the ephemeral database created to perform the database verification. | `user123` |
+| `MYSQL_DATABASE` | Name of the ephemeral database created to perform the database verification. | `advocase` |
+| `MYSQL_ROOT_PASSWORD` | Root password of the ephemeral database created to perform the database verification. | `root` |
+
+> [!NOTE]
+>
+> The values for `MYSQL_USER`, `MYSQL_PASSWORD`, `MYSQL_DATABASE`, and `MYSQL_ROOT_PASSWORD` are not sensitive since they are used for the verification process only.
+>
+> A database is created on the fly to verify if the backup file is working and can be restored. The database is deleted after the verification process is completed.
+
+In the `values.yaml` file, you should define this property value as follows:
+
+```yaml
+env:
+  DATABASE_SERVICE_NAME:
+    value: suitecrm-mariadb-galera
+  NUM_BACKUPS:
+    value: "31"
+  DAILY_BACKUPS:
+    value: "6"
+  WEEKLY_BACKUPS:
+    value: "4"
+  MONTHLY_BACKUPS:
+    value: "1"
+  MYSQL_USER:
+    value: "user"
+  MYSQL_PASSWORD:
+    value: "user123"
+  MYSQL_DATABASE:
+    value: "advocase"
+  MYSQL_ROOT_PASSWORD:
+    value: "root"
+```
+
 ### `backup-storage.backupConfig`
 
 CRON backup configuration default value:
@@ -160,7 +205,7 @@ suitecrm-mariadb-galera:3306/advocase
 0 1 * * * default ./backup.sh -s
 0 4 * * * default ./backup.sh -s -v all
 ```
-In the `values.yaml` file, you define the value as follows:
+In the `values.yaml` file, you should define this property value as follows:
 
 ```yaml
 backupConfig: |
@@ -171,4 +216,36 @@ backupConfig: |
 ```
 > [!NOTE]
 >
-> For more information on `backup-storage.env` and `backup-storage.backupConfig` parameters, check the [BCGov Backup Container](https://github.com/BCDevOps/backup-container?tab=readme-ov-file#deployment--configuration) documentation page.
+> For more information on `backup-storage.env.*` and `backup-storage.backupConfig` parameters, check the [BCGov Backup Container](https://github.com/BCDevOps/backup-container?tab=readme-ov-file#deployment--configuration) documentation page.
+
+## Misc Parameters
+
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `replicaCount` | Number of SuiteCRM pods | `2` |
+| `image.repository` | SuiteCRM Docker Image Repository | `image-registry.openshift-image-registry.svc:5000/d0d1b5-tools/bcgovsuitecrm` |
+| `image.pullPolicy` | SuiteCRM Docker Image Pull Policy | `Always` |
+| `image.tag` | SuiteCRM Docker Image Tag | `latest` |
+| `imagePullSecrets` | SuiteCRM Docker Image Pull Secrets | `[]` |
+| `nameOverride` | Override the SuiteCRM name | `""` |
+| `fullnameOverride` | Override the SuiteCRM full name | `""` |
+| `podAnnotations` | Pod Annotations | `{}` |
+| `podSecurityContext` | Pod Security Context | `{}` |
+| `securityContext` | Security Context | `{}` |
+| `service.type` | Service Type | `ClusteIP` |
+| `ingress.ingressClassName` | Ingress Class Name | `openshift-default` |
+| `ingress.annotations` | Ingress Annotations | `{}` |
+| `ingress.enabled` | Enable Ingress | `false` |
+| `ingress.hostname` | Ingress Hostname | defaults to `global.suitecrmHost` |
+| `ingress.port` | Ingress Port | `8181` |
+| `ingress.tls` | Ingress TLS | `true` |
+| `ingress.selfSigned` | Ingress Self Signed Certificate | `false` |
+| `ingress.extraTls` | Ingress Extra TLS | `- {}` |
+| `resources` | SuiteCRM Pod Resources | `{}` |
+| `autoscaling.enabled` | Enable HPA | `false` |
+| `autoscaling.minReplicas` | HPA Min Replicas | `1` |
+| `autoscaling.maxReplicas` | HPA Max Replicas | `5` |
+| `autoscaling.targetCPUUtilizationPercentage` | HPA Target CPU Utilization Percentage | `80` |
+| `nodeSelector` | Node Selector | `{}` |
+| `tolerations` | Tolerations | `[]` |
+| `affinity` | Affinity | `{}` |
