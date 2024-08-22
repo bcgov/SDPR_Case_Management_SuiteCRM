@@ -8,6 +8,9 @@ This Helm chart deploys a SuiteCRM instance on a Openshift/Kubernetes cluster us
 - [Installing the Chart](#installing-the-chart)
 - [Parameters](#parameters)
   - [Global Parameters](#global-parameters)
+  - [Redis Cluster Dependency Parameters](#redis-cluster-dependency-parameters)
+  - [MariaDB Galera Cluster Dependency Parameters](#mariadb-galera-cluster-dependency-parameters)
+  - [BC Gov Backup Storage Dependency Parameters](#bc-gov-backup-storage-dependency-parameters)
 
 # Dependecies
 
@@ -33,7 +36,7 @@ helm dependency update helm/suitecrm
 | App CRON Job | [cronjob.yaml](./templates/app-cron-job.yaml) | CRON Job to run SuiteCRM scheduled tasks | Yes |
 | S3 Files Backup CRON Job | [s3-backup-cronjob.yaml](./templates/s3-file-backup-cron-job.yaml) | CRON Job to backup SuiteCRM files to S3 | No |
 
-> [!INFO]
+> [!NOTE]
 >
 > Non-required components are optional and can be set as `enabled: false` in the `values.yaml` file.
 
@@ -73,5 +76,60 @@ helm install -n <license plate>-<namespace> my-release helm/suitecrm
 
 ## Global Parameters
 
-| Name | Description | Required | Default |
-| ---- | ----------- | -------- | ------- |
+| Name | Description |Default |
+| ---- | ----------- | ------- |
+| `global.env` | Namespace where the SuiteCRM resources will be deployed | `dev` |
+| `global.suitecrmHost` | SuiteCRM Hostname for SSO integration | `""` |
+| `global.ssoDomain` | SSO Domain for SuiteCRM SSO Integration | `""` |
+| `global.ssoRealm` | SSO Realm for SuiteCRM SSO Integration | `""` |
+| `global.ssoClientId` | SSO Client ID for SuiteCRM SSO Integration | `""` |
+| `global.secrets.suitecrmSecretName` | Secret Name containing all the required passwords for running SuiteCRM | `suitecrm-secrets` |
+| `global.secrets.databaseSecretName` | Secret Name containing all the required passwords for the Database | `suitecrm-database-credentials` |
+| `global.cron.app.schedule` | CRON Job schedule for SuiteCRM scheduled tasks | `"*/15 * * * *"` |
+| `global.cron.filesBackup.enabled` | Enable S3 Files Backup CRON Job | `false` |
+| `global.cron.filesBackup.schedule` | CRON Job schedule for SuiteCRM files backup to S3 if `global.cron.filesBackup.enabled: true` | `"0 2 * * *"` |
+| `global.volume.name` | Volume name for SuiteCRM shared volume to store uploaded files | `suitecrm-shared-volume-pvc` |
+| `global.volume.claimName` | PVC name for SuiteCRM shared volume to store uploaded files | `suitecrm-shared-volume-pvc` |
+
+## Redis Cluster Dependency Parameters
+
+For more information on how to deploy the Redis Cluster Helm Chart, and all available parameters, please refer to the [Bitnami Redis Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/redis-cluster) page.
+
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `redis- cluster.persistence.size` | Redis Cluster PVC size | `100Mi` |
+| `redis-cluster.redis.resources.requests.cpu` | CPU resource requests for Redis Cluster Pods | `10m` |
+| `redis-cluster.redis.resources.requests.memory` | Memory resource requests for Redis Cluster Pods | `50Mi` |
+| `redis-cluster.redis.resources.limits.cpu` | CPU resource limits for Redis Cluster Pods | `50m` |
+| `redis-cluster.redis.resources.limits.memory` | Memory resource limits for Redis Cluster Pods | `250Mi` |
+| `redis-cluster.userPassword` | Redis Cluster Password | `"false"` |
+| `redis-cluster.networkPolicy.allowExternal` | Allow external incoming traffic to Redis Cluster Pods | `false` |
+| `redis-cluster.existingSecret` | Existing Secret Name containing the Redis Cluster Password | `"suitecrm-redis-credentials"` |
+| `redis-cluster.existingSecretPasswordKey` | Existing Secret Key containing the Redis Cluster Password | `"redis-password"` |
+
+## MariaDB Galera Cluster Dependency Parameters
+
+For more information on how to deploy the MariaDB Galera Cluster Helm Chart, and all available parameters, please refer to the [Bitnami MariaDB Galera Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/mariadb-galera) page.
+
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `mariadb-galera.existingSecret` | Existing Secret Name containing the MariaDB Galera Cluster Password | `"suitecrm-database-credentials"` |
+| `mariadb-galera.replicaCount` | Number of MariaDB Galera Cluster replicas | `3` |
+| `mariadb-galera.persistence.size` | MariaDB Galera Cluster PVC size | `2Gi` |
+| `mariadb-galera.db.user` | MariaDB Galera Cluster Database Username | `"suitecrm"` |
+| `mariadb-galera.db.name` | MariaDB Galera Cluster Database Name | `"suitecrm"` |
+| `mariadb-galera.networkPolicy.allowExternal` | Allow external incoming traffic to MariaDB Galera Cluster Pods | `false` |
+
+## BC Gov Backup Storage Dependency Parameters
+
+For more information on how to deploy the BC Gov Backup Storage Helm Chart, and all available parameters, please refer to the [BCGov Backup Storage Helm Chart](https://github.com/bcgov/helm-charts/tree/master/charts/backup-storage) Github page.
+
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `backup-storage.image.repository` | BC Gov Backup Storage Image Repository | `docker.io/bcgovimages/backup-container-mariadb` |
+| `backup-storage.image.pullPolicy` | BC Gov Backup Storage Image Pull Policy | `Always` |
+|`backup-storage.image.tag` | BC Gov Backup Storage Image Tag | `latest` |
+| `backup-storage.persistence.backup.claimName` | BC Gov Backup Storage PVC Name | `suitecrm-db-backup-pvc` |
+| `backup-storage.persistence.verification.claimName` | BC Gov Backup Verification PVC Name | `suitecrm-db-backup-verification-pvc` |
+| `backup-storage.persistence.verification.mountPath` | BC Gov Backup Verification Mount Path | `/var/lib/mysql/data` |
+
