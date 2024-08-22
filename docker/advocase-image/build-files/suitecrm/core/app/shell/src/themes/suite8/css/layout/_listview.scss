@@ -286,6 +286,13 @@ span.field-group-field.pr-1 {
   background-color: $widget-bar-bg;
 }
 
+scrm-field.field.field-mode-detail.field-name-state.field-name-state-Open.field-type-enum {
+  border: none;
+  padding: 0;
+  background-color: white;
+  color: $primary_text;
+}
+
 .list-view-tableactions {
   background-color: $white;
 }
