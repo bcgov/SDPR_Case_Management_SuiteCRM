@@ -11,6 +11,8 @@ This Helm chart deploys a SuiteCRM instance on a Openshift/Kubernetes cluster us
   - [Redis Cluster Dependency Parameters](#redis-cluster-dependency-parameters)
   - [MariaDB Galera Cluster Dependency Parameters](#mariadb-galera-cluster-dependency-parameters)
   - [BC Gov Backup Storage Dependency Parameters](#bc-gov-backup-storage-dependency-parameters)
+    - [`backup-storage.env`](#backup-storageenv)
+    - [`backup-storage.backupConfig`](#backup-storagebackupconfig)
 
 # Dependecies
 
@@ -124,6 +126,14 @@ For more information on how to deploy the MariaDB Galera Cluster Helm Chart, and
 
 For more information on how to deploy the BC Gov Backup Storage Helm Chart, and all available parameters, please refer to the [BCGov Backup Storage Helm Chart](https://github.com/bcgov/helm-charts/tree/master/charts/backup-storage) Github page.
 
+> [!IMPORTANT]
+>
+> This chart uses the [BC Gov Backup Container MariaDB Docker Image](https://github.com/BCDevOps/backup-container?tab=readme-ov-file). Check the documentation for more information on how to configure the backup storage container.
+>
+> Due to a bug in the MariaDB Docker image verification process, this project is bulding the image from [this Pull Request](https://github.com/BCDevOps/backup-container/pull/131), which fixes the bug (check [this issue](https://github.com/BCDevOps/backup-container/issues/82) for more information.
+>
+> Check the [Creating ImageStream and BuildConfig](../../openshift/README.md#creating-imagestream-and-buildconfig) section on how to build and deploy a docker image from a Pull Request.
+
 | Name | Description | Default |
 | ---- | ----------- | ------- |
 | `backup-storage.image.repository` | BC Gov Backup Storage Image Repository | `docker.io/bcgovimages/backup-container-mariadb` |
@@ -132,4 +142,33 @@ For more information on how to deploy the BC Gov Backup Storage Helm Chart, and 
 | `backup-storage.persistence.backup.claimName` | BC Gov Backup Storage PVC Name | `suitecrm-db-backup-pvc` |
 | `backup-storage.persistence.verification.claimName` | BC Gov Backup Verification PVC Name | `suitecrm-db-backup-verification-pvc` |
 | `backup-storage.persistence.verification.mountPath` | BC Gov Backup Verification Mount Path | `/var/lib/mysql/data` |
+| `backup-storage.db.secretName` | BC Gov Backup Storage Secret Name containing the Database Credentials | `suitecrm-database-credentials` |
+| `backup-storage.db.usernameKey` | BC Gov Backup Storage Secret Key containing the Database Username | `mariadb-galera-root-user` |
+| `backup-storage.db.passwordKey` | BC Gov Backup Storage Secret Key containing the Database Password | `mariadb-root-password` |
+| `backup-storage.env.*` | BC Gov Backup Storage Environment Variables | check [`backup-storage.env`](#backup-storageenv) section for more info |
+| `backup-storage.backupConfig` | BC Gov Backup Storage Backup Configuration | check [`backup-storage.backupConfig`](#backup-storagebackupconfig) section for more info |
 
+### `backup-storage.env`
+
+### `backup-storage.backupConfig`
+
+CRON backup configuration default value:
+
+```
+suitecrm-mariadb-galera:3306/advocase
+
+0 1 * * * default ./backup.sh -s
+0 4 * * * default ./backup.sh -s -v all
+```
+In the `values.yaml` file, you define the value as follows:
+
+```yaml
+backupConfig: |
+  suitecrm-mariadb-galera:3306/advocase
+
+  0 1 * * * default ./backup.sh -s
+  0 4 * * * default ./backup.sh -s -v all
+```
+> [!NOTE]
+>
+> For more information on `backup-storage.env` and `backup-storage.backupConfig` parameters, check the [BCGov Backup Container](https://github.com/BCDevOps/backup-container?tab=readme-ov-file#deployment--configuration) documentation page.
