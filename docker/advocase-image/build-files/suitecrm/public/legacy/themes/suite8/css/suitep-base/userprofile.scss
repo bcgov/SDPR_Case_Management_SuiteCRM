@@ -604,9 +604,7 @@ form.userprofile {
             }
             #tab-actions {
                 a.dropdown-toggle {
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
+                    margin: 0;
                 }
             }
         }
@@ -666,8 +664,29 @@ form.userprofile {
           }
         }
       }
+
+    .panel-heading {
+        a {
+            width: 100%;
+
+            div {
+                text-align: left;
+            }
+        }
+    }
+    .detail-view .tab-content {
+        border: 1px solid $surface-color-border-default;
+    }
+    .moduleTitle {
+        margin-top: 12px;
+    }
 }
 
 #email_options td {
     padding: 8px 16px;
+}
+
+.content .detail-view>.nav-tabs>#tab-actions>.dropdown-menu .button,
+.detail-view .nav-tabs #tab-actions a.dropdown-toggle {
+    border: none;
 }
