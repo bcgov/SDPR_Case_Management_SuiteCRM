@@ -268,19 +268,22 @@ p.msg {
 #whole_subpanel_therevisions {
   position: absolute;
   width: 100%;
-  padding-right: 17px;
+  padding-right: 18px;
+  margin-left: 1px;
 }
 
 #whole_subpanel_contacts {
   position: absolute;
   width: 100%;
-  padding-right: 17px;
+  padding-right: 18px;
+  margin-left: -1px;
 }
 
 #whole_subpanel_cases {
   position: absolute;
   width: 100%;
-  padding-right: 17px;
+  padding-right: 18px;
+  margin-left: -1px;
 }
 
 #subpanel_history .evenListRowS1 td:nth-of-type(2) a {
