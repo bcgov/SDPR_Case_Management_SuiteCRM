@@ -104,6 +104,7 @@ export class ButtonGroupComponent implements OnInit, OnDestroy {
         if (this.internalConfig.dropdownOptions && this.internalConfig.dropdownOptions.icon) {
             this.dropdownConfig.icon = this.internalConfig.dropdownOptions.icon;
         }
+        this.dropdownConfig.label = "More Actions";
     }
 
     protected getBreakpoint(): number {
