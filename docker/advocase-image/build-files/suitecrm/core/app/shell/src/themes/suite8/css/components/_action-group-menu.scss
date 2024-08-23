@@ -72,3 +72,14 @@
 .dropdown-toggle .button-group-button .settings-button {
   margin-left: 16px;
 }
+
+button.dropdown-toggle.button-group-button.settings-button {
+  position: absolute;
+  right: 100px;
+  top: -28px;
+}
+
+.ng-star-inserted > .button-group-button.settings-button {
+  background-color: $surface-color-primary-button-default;
+  color: white;
+}
