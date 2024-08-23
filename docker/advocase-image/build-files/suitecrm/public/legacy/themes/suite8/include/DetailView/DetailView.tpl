@@ -99,12 +99,18 @@
                     <div class="col-xs-10 col-sm-11 col-md-11">
                         {sugar_translate label='{{$label}}' module='{{$module}}'}
                     </div>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.28125 13.2188L5.28125 9.21875C5 8.9375 4.90625 8.5 5.0625 8.125C5.21875 7.75 5.59375 7.5 6 7.5H14C14.4062 7.5 14.75 7.75 14.9062 8.125C15.0625 8.5 14.9688 8.9375 14.6875 9.21875L10.6875 13.2188C10.3125 13.625 9.65625 13.625 9.28125 13.2188Z" fill="white"/>
+                    </svg>
                 </a>
             </div>
             <div class="panel-body panel-collapse {{if (isset($tabDefs[$label_upper].panelDefault) && $tabDefs[$label_upper].panelDefault == 'collapsed') }}collapse{{else}}collapse in{{/if}}" id="panel-{{$panelCount}}" data-id="{{$label_upper}}">
                 <div class="tab-content">
                     {{include file='themes/suite8/include/DetailView/tab_panel_content.tpl'}}
                 </div>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.6875 5.8125L14.6875 9.8125C14.9688 10.0938 15.0625 10.5312 14.9062 10.9062C14.75 11.2812 14.375 11.5312 14 11.5312H6C5.59375 11.5312 5.21875 11.2812 5.0625 10.9062C4.90625 10.5312 5 10.0938 5.28125 9.8125L9.28125 5.8125C9.65625 5.40625 10.3125 5.40625 10.6875 5.8125Z" fill="white"/>
+                </svg>
             </div>
         </div>
         {{/if}}
