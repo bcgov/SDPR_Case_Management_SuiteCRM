@@ -214,7 +214,7 @@ Environment variables used by this project to configure the BC Gov Backup Storag
 >
 > The values for `MYSQL_USER`, `MYSQL_PASSWORD`, `MYSQL_DATABASE`, and `MYSQL_ROOT_PASSWORD` are not sensitive since they are used for the verification process only.
 >
-> A database is created on the fly to verify if the backup file is working and can be restored. The database is deleted after the verification process is completed.
+> A database is created "on the fly" to verify if the backup file is working and can be restored. The database is deleted after the verification process is completed.
 
 In the `values.yaml` file, you should define this property value as follows:
 
