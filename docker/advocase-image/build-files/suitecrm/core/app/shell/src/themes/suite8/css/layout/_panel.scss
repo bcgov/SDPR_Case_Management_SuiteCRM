@@ -77,6 +77,7 @@
   line-height: 2.25rem;
 }
 
+.modal-dialog .panel-title-header,
 .list-view-header .panel-title-header {
   display: none !important;
 }
@@ -133,4 +134,19 @@
 .detail-view-panel-caret {
   margin-left: auto;
   margin-right: 21px;
+}
+
+a.detail-view-panel-caret {
+  cursor: pointer;
+  margin-right: 9px;
+}
+
+a.clickable.detail-view-subpanel-title {
+  width: 100%;
+}
+
+.card-header.detail-view-subpanel-header.accordion-header {
+  display: flex;
+  align-items: center;
+  position: relative;
 }
