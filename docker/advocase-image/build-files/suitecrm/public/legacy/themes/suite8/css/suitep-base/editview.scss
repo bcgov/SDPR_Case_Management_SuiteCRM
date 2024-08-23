@@ -909,6 +909,14 @@ option:checked {
   height: fit-content;
 }
 
+.view-module-ACLRoles .moduleTitle {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 32px 56px;
+  margin: 10px -56px 0;
+}
+
 .actionbutton-footer {
   display: none;
 }
