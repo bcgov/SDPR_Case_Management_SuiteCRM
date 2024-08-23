@@ -79,12 +79,19 @@ form  #EditView_tabs .panel {
   text-decoration: none;
   padding: 0;
   color: $white;
-  text-align: center;
+  text-align: left;
   font-family: "BC Sans";
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 34px;
+  white-space: nowrap;
+  display: flex;
+  flex: 1;
+}
+
+#document_caret_icon {
+  margin-top: 6px;
 }
 
 .panel-default > .panel-heading > a::first-letter {
@@ -527,7 +534,7 @@ table.subpanelTabForm {
 @media (max-width: 767px) {
   .panel-heading a div {
     line-height: 35px;
-    width: 90% !important;
+    width: 100% !important;
     padding-left: 6px;
   }
 }
@@ -535,7 +542,7 @@ table.subpanelTabForm {
 @media (min-width: 768px) {
   .panel-heading a div {
     line-height: 35px;
-    width: 90% !important;
+    width: 100% !important;
   }
 }
 
