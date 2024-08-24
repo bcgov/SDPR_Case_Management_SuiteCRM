@@ -83,3 +83,22 @@ button.dropdown-toggle.button-group-button.settings-button {
   background-color: $surface-color-primary-button-default;
   color: white;
 }
+
+a.dropdown-item.settings-button.ng-star-inserted {
+  border: 0px;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+.dropdown-button-secondary .dropdown-menu.show {
+  background-color: white;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d8d8d8;
+  box-shadow: 0px .3px .9px 0px rgba(0, 0, 0, .1), 0px 1.6px 3.6px 0px rgba(0, 0, 0, .13);
+  margin-top: 8px !important;
+  right: -35px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
