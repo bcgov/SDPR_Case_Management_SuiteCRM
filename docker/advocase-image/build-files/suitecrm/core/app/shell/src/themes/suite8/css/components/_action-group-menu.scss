@@ -98,6 +98,16 @@ button.dropdown-toggle.button-group-button.settings-button {
   color: white;
 }
 
+.Cancel>button.button-group-button.settings-button {
+  background-color: white;
+  color: $typography-color-secondary;
+}
+
+.action-group-menu scrm-button-group.ng-star-inserted div.ng-star-inserted {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 a.dropdown-item.settings-button.ng-star-inserted {
   border: 0px;
   border-radius: 0px;
