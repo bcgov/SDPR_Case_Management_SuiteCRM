@@ -215,6 +215,10 @@ spec:
 
 If you followed the instructions from [Installing HELM](#installing-helm), you should have Helm installed in your local machine. To deploy the project using Helm, create a new file `values.yaml`. You can use the following template as a starting point:
 
+> [!NOTE]
+>
+> This example `values.yaml` file is not integrating SSO (IDIR/Keycloak) and is not using APS domain, only the default Openshift Ingress. To integrate SSO check the [SSO/Keycloak/IDIR Integration](./helm/suitecrm/README.md#ssokeycloakidir-integration) section and to use the APS domain check the [APS Domain Integration](./helm/suitecrm/README.md#aps-domain-integration) section.
+
 > [!IMPORTANT]
 >
 > Don't forget to replace the placeholders `<license plate>` and `<env>` with the appropriate values.
