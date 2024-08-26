@@ -6,7 +6,7 @@ This is the BC Gov SuiteCRM image. It is based on the PHP ([php:8.2-apache tag](
 
 ## Current SuiteCRM version
 
-The SuiteCRM version used in this image is 8.6.1. Check the release notes [here](https://docs.suitecrm.com/8.x/admin/releases/8.6/).
+The SuiteCRM version used in this image is the `8.6.1`. Check the release notes [here](https://docs.suitecrm.com/8.x/admin/releases/8.6/).
 
 # How to use this image
 
