@@ -41,6 +41,10 @@ form  #EditView_tabs .panel {
   visibility: collapse;
 }
 
+.modal-edit-dashboard .panel-template {
+  display: none;
+}
+
 .communication-panel-title {
   font-family: "BC Sans";
   font-size: 20px;
