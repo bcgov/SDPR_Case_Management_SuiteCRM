@@ -87,12 +87,12 @@ tr#pagination {
 }
 
 .list #pagination td .paginationTable .paginationActionButtons {
-  background-color: $white;
+  background-color: transparent;
   padding: 1em 0 0;
 }
 
 .list #pagination td .paginationTable .paginationChangeButtons {
-  background-color: $white;
+  background-color: transparent;
   padding: 1em 0 0;
 }
 
@@ -488,6 +488,7 @@ a.listViewTdToolsS1 {
 
 .list-view-rounded-corners {
   margin: 16px 0 16px 0;
+  padding-bottom: 97px;
   // .evenListRowS1 td {
   //   background: $table-alternate-row-bg;
   // }
@@ -1644,7 +1645,7 @@ div#search_form > .advanced input.button:hover {
 }
 
 .paginationTable .list-view-pagination-button {
-  background-color: $white;
+  background-color: transparent;
   color: $list-view-button-color;
   margin: 0 0 0 2px;
   padding: 0;
