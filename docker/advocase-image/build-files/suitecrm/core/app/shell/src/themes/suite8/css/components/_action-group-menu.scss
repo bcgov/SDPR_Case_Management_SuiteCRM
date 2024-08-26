@@ -73,10 +73,14 @@
   margin-left: 16px;
 }
 
+.record-view-header .button-display-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start !important;
+  gap: 24px;
+}
+
 button.dropdown-toggle.button-group-button.settings-button {
-  position: absolute;
-  right: 100px;
-  top: -28px;
   display: flex;
   justify-content: center;
   flex-direction: column;
