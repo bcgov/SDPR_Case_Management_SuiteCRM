@@ -18,6 +18,12 @@ Table of Contents
   - [Deploying the project on Openshift](#deploying-the-project-on-openshift)
     - [Deploying using ArgoCD](#deploying-using-argocd)
     - [Deploying using Helm](#deploying-using-helm)
+- [Maintenance](#maintenance)
+  - [Database](#database)
+    - [Accessing the database](#accessing-the-database)
+    - [Restoring the database](#restoring-the-database)
+      - [Restoring the last backup](#restoring-the-last-backup)
+      - [Restoring a specific backup](#restoring-a-specific-backup)
 
 # Technologies Used
 
@@ -306,3 +312,165 @@ After creating the `values.yaml` file, you can deploy the project using the foll
 ```bash
 helm install -n <license plate>-<namespace> suitecrm ./helm/suitecrm -f /path/to/your/custom/values.yaml
 ```
+
+# Maintenance
+
+## Database
+
+### Accessing the database
+
+To access the database, [make sure you are logged in to Openshift](#login-to-openshift-using-oc-cli) and select the appropriate project. After that, you can run the following command to list the available pods:
+
+```bash
+oc get svc
+
+# Output
+# NAME                               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
+# suitecrm                           ClusterIP   10.98.203.35   <none>        8181/TCP                     14d
+# suitecrm-mariadb-galera            ClusterIP   10.98.74.33    <none>        3306/TCP                     14d
+# suitecrm-mariadb-galera-headless   ClusterIP   None           <none>        4567/TCP,4568/TCP,4444/TCP   14d
+# suitecrm-redis-cluster             ClusterIP   10.98.208.91   <none>        6379/TCP                     14d
+# suitecrm-redis-cluster-headless    ClusterIP   None           <none>        6379/TCP,16379/TCP           14d
+```
+
+You need the `suitecrm-mariadb-galera` service to access the access the database. To access the database, you need to forward the traffic from your local machine to the database pod. You can do that by running the following command:
+
+> [!NOTE]
+>
+> Port forwarding works like this: `local_port:remote_port`
+> You can choose any port number for the local port, but the remote port should always be `3306` for MariaDB databases, unless you configured it differently.
+
+```bash
+oc port-forward svc/suitecrm-mariadb-galera 3306:3306
+```
+
+After running the command, you can access the database using your preferred database client. The database credentials are stored in the `suitecrm-database-credentials` secret and you can access it through Openshift web console
+
+### Restoring the database
+
+> [!CAUTION]
+>
+> Make sure you are restoring the database in the right environment. Restoring the database will overwrite the current database with the backup data.
+> If you are just practiging, TRIPLE check the environment you are in before restoring the database.
+
+If you want to restore the database to the latest backup, first you need to get the right pod, by running the following command:
+
+> [!NOTE]
+>
+> The backup pod name will follow this pattern `suitecrm-backup-storage-<some random string>`
+
+```bash
+oc get pods
+
+# Output
+# NAME                                                                READY   STATUS      RESTARTS   AGE
+# suitecrm-66b5c694bc-ffxtg                                           1/1     Running     0          36m
+# suitecrm-app-cron-job-28745145-vfvp6                                0/1     Completed   0          66m
+# suitecrm-app-cron-job-28745160-9jcgd                                0/1     Completed   0          51m
+# suitecrm-app-cron-job-28745175-l6rm2                                0/1     Completed   0          36m
+# suitecrm-app-cron-job-28745190-lld7c                                0/1     Completed   0          21m
+# suitecrm-app-cron-job-28745205-jslkv                                0/1     Completed   0          6m15s
+# --> suitecrm-backup-storage-5864c8d497-6r5qt <-- This is the one    1/1     Running     0          4d
+# suitecrm-mariadb-galera-0                                           1/1     Running     0          4d
+# suitecrm-redis-cluster-0                                            1/1     Running     0          6d6h
+# suitecrm-redis-cluster-1                                            1/1     Running     0          4d
+# suitecrm-redis-cluster-2                                            1/1     Running     0          5d6h
+# suitecrm-redis-cluster-3                                            1/1     Running     0          14d
+# suitecrm-redis-cluster-4                                            1/1     Running     0          7d6h
+# suitecrm-redis-cluster-5                                            1/1     Running     0          4d3h
+# suitecrm-s3-file-backup-cron-job-28745190-7nrb5                     0/1     Completed   0          21m
+# suitecrm-s3-file-backup-cron-job-28745195-kh46d                     0/1     Completed   0          16m
+# suitecrm-s3-file-backup-cron-job-28745200-cprvv                     0/1     Completed   0          11m
+# suitecrm-s3-file-backup-cron-job-28745205-qqdwx                     0/1     Completed   0          6m15s
+# suitecrm-s3-file-backup-cron-job-28745210-7hzbf                     0/1     Completed   0          75s
+```
+#### Restoring the last backup
+
+After getting the right pod, you can run the following command to restore the database to the last backup:
+
+> [!TIP]
+>
+> You can find more information on the restore command by running:
+>
+> ```bash
+> oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh --help
+> ```
+
+> [!WARNING]
+>
+> By running this command you will overwrite the current database with the backup data.
+> Make sure you are in the right environment before running this command.
+
+```bash
+oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -r <backup configuration>
+```
+> [!NOTE]
+>
+> You can replace the `<backup configuration>` placeholder with with the value set in the [`backup-storage.backupConfig`](./helm/suitecrm/README.md#backup-storagebackupconfig) parameter.
+
+#### Restoring a specific backup
+
+To restore a specific backup, first you need to get the list of available backups. You can do that by running the following command:
+
+> [!TIP]
+>
+> You can find more information on the restore command by running:
+>
+> ```bash
+> oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh --help
+> ```
+
+```bash
+oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -l
+
+# Output
+# ================================================================================================================================
+# Current Backups:
+
+# Database                               Current Size
+# suitecrm-mariadb-galera:3306/advocase  size in mb 24.8
+
+# Filesystem                                                                                                           Size  Used Avail Use% Mounted on
+# 192.168.105.124:/trident_qtree_pool_file_standard_SLUJFQHWUX/file_standard_pvc_65b9a520_1ed9_4210_b448_257089450ce3  5.0G  9.3M  5.0G   1% /backups
+# --------------------------------------------------------------------------------------------------------------------------------
+# 820K    2024-07-31 01:00        /backups/monthly/2024-07-31/suitecrm-mariadb-galera-advocase_2024-07-31_01-00-00.sql.gz
+# 824K    2024-07-31 01:00        /backups/monthly/2024-07-31
+# 828K    2024-07-31 01:00        /backups/monthly
+# 868K    2024-08-20 01:00        /backups/daily/2024-08-20/suitecrm-mariadb-galera-advocase_2024-08-20_01-00-00.sql.gz
+# 872K    2024-08-20 01:00        /backups/daily/2024-08-20
+# 880K    2024-08-21 01:00        /backups/daily/2024-08-21/suitecrm-mariadb-galera-advocase_2024-08-21_01-00-00.sql.gz
+# 884K    2024-08-21 01:00        /backups/daily/2024-08-21
+# 884K    2024-08-22 01:00        /backups/daily/2024-08-22/suitecrm-mariadb-galera-advocase_2024-08-22_01-00-00.sql.gz
+# 888K    2024-08-22 01:00        /backups/daily/2024-08-22
+# 896K    2024-08-23 01:00        /backups/daily/2024-08-23/suitecrm-mariadb-galera-advocase_2024-08-23_01-00-00.sql.gz
+# 900K    2024-08-23 01:00        /backups/daily/2024-08-23
+# 900K    2024-08-26 01:00        /backups/daily/2024-08-26/suitecrm-mariadb-galera-advocase_2024-08-26_01-00-00.sql.gz
+# 904K    2024-08-26 01:00        /backups/daily/2024-08-26
+# 900K    2024-08-24 01:00        /backups/daily/2024-08-24/suitecrm-mariadb-galera-advocase_2024-08-24_01-00-00.sql.gz
+# 904K    2024-08-24 01:00        /backups/daily/2024-08-24
+# 5.3M    2024-08-26 01:00        /backups/daily
+# 836K    2024-08-11 01:00        /backups/weekly/2024-08-11/suitecrm-mariadb-galera-advocase_2024-08-11_01-00-00.sql.gz
+# 840K    2024-08-11 01:00        /backups/weekly/2024-08-11
+# 856K    2024-08-18 01:00        /backups/weekly/2024-08-18/suitecrm-mariadb-galera-advocase_2024-08-18_01-00-00.sql.gz
+# 860K    2024-08-18 01:00        /backups/weekly/2024-08-18
+# 900K    2024-08-25 01:00        /backups/weekly/2024-08-25/suitecrm-mariadb-galera-advocase_2024-08-25_01-00-00.sql.gz
+# 904K    2024-08-25 01:00        /backups/weekly/2024-08-25
+# 780K    2024-08-04 01:00        /backups/weekly/2024-08-04/suitecrm-mariadb-galera-advocase_2024-08-04_01-00-00.sql.gz
+# 784K    2024-08-04 01:00        /backups/weekly/2024-08-04
+# 3.4M    2024-08-25 01:00        /backups/weekly
+# 9.4M    2024-08-26 01:00        /backups/
+# ================================================================================================================================
+```
+After selecting the backup file you want to restore, you can run the following command:
+
+> [!WARNING]
+>
+> By running this command you will overwrite the current database with the backup data.
+> Make sure you are in the right environment before running this command.
+
+```bash
+oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -r <backup configuration> -f <backup file>
+```
+> [!NOTE]
+>
+> You can replace the `<backup configuration>` placeholder with with the value set in the [`backup-storage.backupConfig`](./helm/suitecrm/README.md#backup-storagebackupconfig) parameter.
