@@ -60,13 +60,11 @@
       }
       
       width: auto !important;
-
+      border: none;
 
       span.p-element.p-dropdown-label.p-inputtext {
-        padding: 4px 8px;
-        border: 1px solid #f8bb47;
+        padding: 0;
         background-color: #fef1d8;
-        border-radius: 4px;
       }
 
       .p-dropdown-trigger {

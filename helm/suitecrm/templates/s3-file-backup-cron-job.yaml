@@ -1,3 +1,4 @@
+{{- if .Values.global.cron.filesBackup.enabled }}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -65,3 +66,4 @@ spec:
           terminationGracePeriodSeconds: 30
           activeDeadlineSeconds: 1600
           dnsPolicy: ClusterFirst
+{{- end }}

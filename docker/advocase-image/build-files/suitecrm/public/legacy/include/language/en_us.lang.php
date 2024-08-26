@@ -1669,7 +1669,7 @@ $app_strings = array(
     'LBL_OPPORTUNITY_NAME' => 'Opportunity Name',
     'LBL_OPPORTUNITY' => 'Opportunity',
     'LBL_OR' => 'OR',
-    'LBL_PANEL_OVERVIEW' => 'Case Overview',
+    'LBL_PANEL_OVERVIEW' => 'Overview',
     'LBL_PANEL_ASSIGNMENT' => 'OTHER',
     'LBL_PANEL_ADVANCED' => 'MORE INFORMATION',
     'LBL_PARENT_TYPE' => 'Parent Type',
@@ -2068,7 +2068,7 @@ $app_strings = array(
     //MB -Fixed Bug #32812 -Max
     'LBL_ASSIGNED_TO_NAME' => 'Assign to',
     'LBL_DESCRIPTION' => 'Description',
-    'LBL_CASE_ACTIONS' => 'Case Actions',
+    'LBL_CASE_ACTIONS' => 'Actions',
 
     'LBL_YESTERDAY' => 'yesterday',
     'LBL_TODAY' => 'today',

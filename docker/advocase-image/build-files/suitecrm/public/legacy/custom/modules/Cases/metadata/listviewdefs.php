@@ -16,14 +16,14 @@ array (
   ),
   'ADVOCASE_CASE_CITY_C' => 
   array (
-    'type' => 'varchar',
+    // 'type' => 'varchar',
     'default' => true,
     'label' => 'LBL_ADVOCASE_CASE_CITY_C',
     'width' => '10%',
   ),
   'ADVOCASE_CASE_REGION_C' => 
   array (
-    'type' => 'enum',
+    // 'type' => 'enum',
     'default' => true,
     'studio' => 'visible',
     'label' => 'LBL_ADVOCASE_CASE_REGION',

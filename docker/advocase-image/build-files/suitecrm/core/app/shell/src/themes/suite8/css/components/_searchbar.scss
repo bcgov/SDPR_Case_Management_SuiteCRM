@@ -24,7 +24,7 @@
  * the words "Supercharged by SuiteCRM".
  */
 
- .search-bar-global {
+.search-bar-global {
   max-width: 14em;
   min-width: 7em;
 }
@@ -37,16 +37,16 @@
     background-color: $dusky-light-blue;
     transition: background-color ease-in-out 0.15s;
     &:hover {
-      background-color: $smoky-grey;
+      background-color: $white;
       .search-bar-term {
         &::placeholder {
-          color: $lilac-grey;
+          color: $typography-color-placeholder;
         }
       }
 
       .search-button {
         .search-icon svg path {
-          fill: $lilac-grey;
+          fill: $typography-color-placeholder;
         }
       }
     }
@@ -79,14 +79,16 @@
 
       .search-icon {
         line-height: 14px;
+        width: 16px;
+        fill: $typography-color-placeholder;
 
         svg {
-          fill: $pale-bue-grey;
+          fill: $typography-color-placeholder;
           vertical-align: text-top;
         }
 
         svg path {
-          fill: $pale-bue-grey;
+          fill: $typography-color-placeholder;
         }
       }
     }
@@ -139,7 +141,10 @@
             pointer-events: none;
 
             svg path {
-              fill: $complementary;
+              fill: $typography-color-placeholder;
+            }
+            svg {
+              max-width: 16px;
             }
           }
 
@@ -160,11 +165,16 @@
   border-radius: 0.25em;
   border: 1px solid $border-default;
 
+  & .form-control {
+    color: $primary_text;
+  }
+
   & .form-control, &:hover ::placeholder {
-    color: $typography-color-disabled;
+    color: $typography-color-placeholder;
+    fill: $typography-color-placeholder;
   }
 
   & .search-button .search-icon svg {
-    fill: $typography-color-disabled;
+    fill: $typography-color-placeholder;
   }
 }

@@ -294,13 +294,6 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   justify-content: center;
   border: 1px solid $widget-border;
 
-  &.dropdown-toggle::after {
-    display: inline-block;
-    color: $typography-color-secondary;
-    margin: auto 0;
-    margin-left: 8px;
-  }
-
   & div {
     color: $typography-color-secondary;
   }
@@ -334,4 +327,22 @@ a.nav-link-nongrouped.dropdown-toggle::after {
   &.dropdown-item:hover {
     background-color: transparent;
   }
+}
+
+.dropdown-toggle:after {
+  border: none;
+}
+
+.navbar-caret {
+  margin-bottom: 4px;
+}
+
+.navbar-create-caret-container.ng-tns-c2810380880-2 {
+  margin-left: 8px;
+  margin-bottom: 4px;
+  width: 20px;
+}
+
+.navbar-create-caret path {
+  fill: $typography-color-secondary !important;
 }
