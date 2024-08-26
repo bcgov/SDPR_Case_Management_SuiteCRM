@@ -1,4 +1,5 @@
-FROM artifacts.developer.gov.bc.ca/ad0d-suitecrm-docker/bc-gov-suitecrm:latest
+# FROM artifacts.developer.gov.bc.ca/ad0d-suitecrm-docker/bc-gov-suitecrm:latest
+FROM rcsouz/bc-gov-suitecrm:latest
 
 USER root
 
