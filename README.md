@@ -322,7 +322,7 @@ helm install -n <license plate>-<namespace> suitecrm ./helm/suitecrm -f /path/to
 To access the database, [make sure you are logged in to Openshift](#login-to-openshift-using-oc-cli) and select the appropriate project. After that, you can run the following command to list the available pods:
 
 ```bash
-oc get svc
+oc get svc -n <license plate>-<namespace>
 
 # Output
 # NAME                               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
@@ -341,7 +341,7 @@ You need the `suitecrm-mariadb-galera` service to access the access the database
 > You can choose any port number for the local port, but the remote port should always be `3306` for MariaDB databases, unless you configured it differently.
 
 ```bash
-oc port-forward svc/suitecrm-mariadb-galera 3306:3306
+oc port-forward -n <license plate>-<namespace> svc/suitecrm-mariadb-galera 3306:3306
 ```
 
 After running the command, you can access the database using your preferred database client. The database credentials are stored in the `suitecrm-database-credentials` secret and you can access it through Openshift web console
@@ -360,7 +360,7 @@ If you want to restore the database to the latest backup, first you need to get 
 > The backup pod name will follow this pattern `suitecrm-backup-storage-<some random string>`
 
 ```bash
-oc get pods
+oc get pods -n <license plate>-<namespace>
 
 # Output
 # NAME                                                                READY   STATUS      RESTARTS   AGE
@@ -393,7 +393,7 @@ After getting the right pod, you can run the following command to restore the da
 > You can find more information on the restore command by running:
 >
 > ```bash
-> oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh --help
+> oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh --help
 > ```
 
 > [!WARNING]
@@ -402,7 +402,7 @@ After getting the right pod, you can run the following command to restore the da
 > Make sure you are in the right environment before running this command.
 
 ```bash
-oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -r <backup configuration>
+oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -r <backup configuration>
 ```
 > [!NOTE]
 >
@@ -421,7 +421,7 @@ To restore a specific backup, first you need to get the list of available backup
 > ```
 
 ```bash
-oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -l
+oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -l
 
 # Output
 # ================================================================================================================================
@@ -469,7 +469,7 @@ After selecting the backup file you want to restore, you can run the following c
 > Make sure you are in the right environment before running this command.
 
 ```bash
-oc exec suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -r <backup configuration> -f <backup file>
+oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -r <backup configuration> -f <backup file>
 ```
 > [!NOTE]
 >
