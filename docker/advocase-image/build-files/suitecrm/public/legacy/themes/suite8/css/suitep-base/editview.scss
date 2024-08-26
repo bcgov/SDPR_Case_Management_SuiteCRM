@@ -170,7 +170,7 @@ div#searchResults {
 }
 
 #create-invitees {
-  background-color: $panel-bg;
+  background-color: $white;
   color: $primary_text;
   padding: 32px 40px;
   margin-top: 32px;
@@ -183,7 +183,7 @@ div#searchResults {
 
 .schedulerInvitees {
   background-color: $panel-bg;
-  color: $main-font-color;
+  color: $primary_text;
   padding: 32px 40px;
   margin-top: 5px;
   border: 1px solid $panel-border-bg;
@@ -217,6 +217,11 @@ div#searchResults {
   padding-bottom: 8px;
   line-height: $input-line-height;
   vertical-align: top !important;
+}
+
+#create-invitees-buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 
 #cancel-create-invitee-btn {
@@ -617,7 +622,7 @@ textarea {
 }
 
 .edit-view-row .label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   width: 98%;
   text-align: left;
@@ -721,10 +726,6 @@ slot {
   padding: 0 5px 5px 5px;
 }
 
-#EditView_tabs.yui-navset.yui-navset-top .nav.nav-tabs {
-  margin-top: 15px;
-}
-
 #EditView_tabs .nav.nav-tabs {
   margin: 0;
 }
@@ -821,14 +822,40 @@ option:checked {
   line-height: 27px;
   text-transform: capitalize;
   height: auto;
+  font-size: 16px;
+  font-family: 'BC Sans';
+  border: 1px solid $surface-color-border-dark;
+  color: $typography-color-secondary;
+
   &:hover {
     background-color: $secondary-button-hover;
   }
 }
 
-#EditView  #SAVE_HEADER {
+#EditView #btn_view_change_log {
+  display: none;
+}
+
+#EditView #reset_user_preferences_header,
+#EditView #reset_homepage_header,
+#EditView #CANCEL_HEADER {
+  background: $white;
+  border: 1px solid $widget-border;
+  color: $typography-color-secondary;
+  &:hover {
+    background-color: $secondary-button-hover;
+  }
+}
+
+#EditView #SAVE_HEADER {
   background: $surface-color-background-blue;
   color: $white;
+  padding: 8px 16px;
+  margin: 4px;
+  font-weight: 700;
+  line-height: 27px;
+  text-transform: capitalize;
+  height: auto;
   &:hover {
     background-color: $surface-color-primary-hover;
 
@@ -849,26 +876,32 @@ option:checked {
   }
 }
 
-#EditView input[type="submit"] {
-  margin: 0.2em;
-  font-weight: bold;
-  height: 2.2em;
-  line-height: 1.1em;
-  padding: 0.3em 0.9em;
-  background-color: $button-bg-color;
+#EditView input[type="submit"],
+#EditView input[value=Cancel] #CANCEL {
+  background: $surface-color-primary-button-default;
+  padding: 8px 16px;
+  margin: 4px;
+  font-weight: 700;
+  line-height: 27px;
   text-transform: capitalize;
+  height: auto;
+  font-size: 16px;
+  font-family: 'BC Sans';
+  border: 1px solid $surface-color-border-dark;
+  color: $white;
+
   &:hover {
-    background-color: $btn-hover-bg-color;
+    background-color: $surface-color-primary-hover;
   }
 }
 
-#EditView .buttons ,.action_buttons {
+#EditView .buttons, .action_buttons {
   display: flex;
   justify-content: flex-end;
+  flex-direction: row-reverse;
   position: absolute;
-  bottom: 0.2em;
+  bottom: 12px;
   right: 0;
-  height: min-content;
 }
 
 .actionbutton-footer {
@@ -1244,7 +1277,7 @@ ul.noBullet {
 }
 
 #subpanel_list div.sub-panel{
-  margin: 0 40px;
+  margin: 0 -9px;
 }
 
 li.noBullet:first-child {
@@ -1436,9 +1469,12 @@ input.sqsEnabled {
 }
 
 .paginationTable {
-  margin-top: -20px;
-  margin-left: -45px;
-  margin-bottom: 35px;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  right: 43px;
+  margin-bottom: 66px;
+  border-bottom: 2px solid white;
 }
 
 .pageNumbers {
@@ -1455,7 +1491,7 @@ input.sqsEnabled {
   justify-content: flex-end;
   width: 100%;
   margin-top: 1.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 40px 32px;
 }
 
 .contentBox {
@@ -1802,7 +1838,15 @@ div.confirmTable {
   width: 200%;
   background-color: white;
   padding-left: 30px;
-  padding-top: 13px;
+  border-bottom: 1px solid $surface-color-border-default;
+}
+
+.view-module-Meetings .moduleTitle {
+  padding-top: 0;
+}
+
+.view-module-Documents .moduleTitle {
+  margin-top: 11px;
 }
 
 .moduleTitle h2 {
@@ -2395,8 +2439,12 @@ table.view {
 .table-wrapper {
   overflow: hidden;
   border-radius: 6px;
-  outline: 2px solid $grey-widget;
   margin: 24px 40px 0;
+}
+
+.view-module-Meetings .table-wrapper,
+#list_subpanel_aor_scheduled_reports_aor_reports .table-wrapper {
+  outline: none;
 }
 
 .evenListRowS1 {
@@ -5848,7 +5896,7 @@ div.content div.pagecontent form#EditView div.edit.view table tbody tr td input[
 }
 
 select, input, textarea, button, select[size], input[type=text], input:not([type]), input[type=password] {
-  border-color: $input-border;
+  border-color: $surface-color-border-default;
 }
 
 table.subpanel-table .pagination .action_buttons a,

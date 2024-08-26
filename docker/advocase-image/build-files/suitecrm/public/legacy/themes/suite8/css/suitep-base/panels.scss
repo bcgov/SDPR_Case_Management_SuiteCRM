@@ -146,6 +146,10 @@ form  #EditView_tabs .panel {
   background: $white;
 }
 
+#detailpanel_report {
+  padding: 32px 40px 100px 40px;
+}
+
 .panel-heading a.collapsed {
   background-color: $panel-collapsed-bg ;
 }

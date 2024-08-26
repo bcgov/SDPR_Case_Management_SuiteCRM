@@ -265,6 +265,24 @@ p.msg {
   display: none !important;
 }
 
+#whole_subpanel_therevisions {
+  position: absolute;
+  width: 100%;
+  padding-right: 17px;
+}
+
+#whole_subpanel_contacts {
+  position: absolute;
+  width: 100%;
+  padding-right: 17px;
+}
+
+#whole_subpanel_cases {
+  position: absolute;
+  width: 100%;
+  padding-right: 17px;
+}
+
 #subpanel_history .evenListRowS1 td:nth-of-type(2) a {
   border-bottom: none;
 }
@@ -709,4 +727,11 @@ table.subpanel-table .pagination li.single > a {
   font-family: "BC Sans";
   font-size: 14px;
   font-weight: 400;
+}
+
+li.dropdown-edit #edit_button {
+  margin: 0;
+  padding: 8px 16px;
+  height: fit-content;
+  line-height: 25px;
 }

@@ -3,13 +3,15 @@ Table of Contents
 - [Deployment pre-requisites](#deployment-pre-requisites)
   - [Allowing other namespaces to pull images from `-tools` namespace](#allowing-other-namespaces-to-pull-images-from--tools-namespace)
   - [Creating required components prior to HELM/ArgoCD deployment](#creating-required-components-prior-to-helmargocd-deployment)
-- [Allowing APS domains](#allowing-aps-domains)
 - [Creating Github Actions service account](#creating-github-actions-service-account)
 - [Building images on Openshift](#building-images-on-openshift)
   - [Creating ImageStream and BuildConfig](#creating-imagestream-and-buildconfig)
-  - [Starting a build](#starting-a-build)
+    - [`REPOSITORY_REF`](#repository_ref)
+    - [Starting a build](#starting-a-build)
 
-**IMPORTANT:** Always make sure to use the `-n <license plate>-<namespace>` flag when running `oc` commands to ensure you are running commands in the correct namespace.
+> [!WARNING]
+>
+> Always make sure to use the `-n <license plate>-<namespace>` flag when running `oc` commands to ensure you are running commands in the correct namespace.
 
 ## Deployment pre-requisites
 
@@ -28,7 +30,7 @@ Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-
 | Variable Name | Description | Required | Default value |
 | --- | --- | --- | --- |
 | `APP_NAME` | The name of the application | False | suitecrm |
-| `DB_ROOT_USER` | MariaDB Galera Cluster Root User | Fasle | root |
+| `DB_ROOT_USER` | MariaDB Galera Cluster Root User | False | root |
 | `DB_ROOT_PASSWORD` | MariaDB Galera Cluster Root Password | True | |
 | `DB_BACKUP_USER` | MariaDB Galera Cluster Backup User | True | |
 | `DB_BACKUP_PASSWORD` | MariaDB Galera Cluster Backup Password | True | |
@@ -36,6 +38,8 @@ Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-
 | `DB_USER` | MariaDB Galera Cluster Database User | False | suitecrm |
 | `DB_NAME` | MariaDB Galera Cluster Database Name | False | suitecrm |
 | `DB_HOST` | MariaDB Galera Cluster Database Host | True | |
+| `REDIS_PASSWORD` | Redis Cluster Password | True | |
+| `REDIS_HOST` | Redis Cluster Host | True | |
 | `SUITECRM_ADMIN_PASSWORD` | SuiteCRM Admin Password | True | |
 | `SSO_IDP_X509_CERT` | The SSO IDP X509 certificate for IDIR/Keycloak integration | False | cert |
 | `OAUTH_KEY` | The OAuth key for SuiteCRM | False | key |
@@ -47,22 +51,25 @@ Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-
 | `VERIFICATION_VOLUME_SIZE` | Backup Verification Volume Size | False | 2Gi |
 | `SUITECRM_SHARED_VOLUME_SIZE` | The size of the volume shared among SuiteCRM pods for file storage | False | 5Gi |
 
-**Note 1:** The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project. The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_ENDPOINT_URL`, and `S3_BUCKET_NAME` variables are extracted from the `s3-iam` secret provided by BC Gov DevOps team. The `S3URI` is in the format `https://<aws-access-key-id>:<aws-secret-access-key>@<aws-endpoint-url>`.
-<br />
-**Note 2:** The `DB_USER` and `DB_NAME` variables should match `mariadb-galera.db.user` and `mariadb-galera.db.name` in the HELM chart `values.yaml` file. Also, the `DB_HOST` variable should match the name of the MariaDB Galera Cluster service in the Openshift project. The name of the service is in the format `<chart name>-mariadb-galera`.
+> [!NOTE]
+> The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project.
+> 
+> The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_ENDPOINT_URL`, and `S3_BUCKET_NAME` variables are extracted from the `s3-iam` secret provided by BC Gov DevOps team. The `S3URI` is in the format `https://<aws-access-key-id>:<aws-secret-access-key>@<aws-endpoint-url>`.
+
+> [!NOTE]
+> The `DB_USER` and `DB_NAME` variables should match `mariadb-galera.db.user` and `mariadb-galera.db.name` in the HELM chart `values.yaml` file. Also, the `DB_HOST` variable should match the name of the MariaDB Galera Cluster service in the Openshift project.
+> 
+> The name of the service is in the format `<chart name>-mariadb-galera`.
+
+> [!NOTE]
+> The `REDIS_HOST` variable should match the name of the Redis Cluster service in the Openshift project.
+> 
+> The name of the service is in the format `<chart name>-redis-cluster`.
 
 Run the following command to create the components required for the HELM/ArgoCD deployment:
 
 ```bash
 oc process -f ./openshift/pre-deployment-template.yaml --param-file=./openshift/pre-deployment-envs.env | oc create -n <licence plate>-<namespace> -f -
-```
-
-## Allowing APS domains
-
-If you requested an APS domain for your project (e.g. `<your project>.apps.gov.bc.ca`), you need to apply the following NetworkPolicy, according to [BCGov documentation](https://developer.gov.bc.ca/docs/default/component/aps-infra-platform-docs/unlisted/owner-journey-v1/#ocp-network-policies):
-
-```bash
-oc apply -f ./openshift/aps-network-policy-gold-cluster.yaml
 ```
 
 ## Creating Github Actions service account
@@ -94,7 +101,15 @@ Run the following command to create the `ImageStream` and `BuildConfig`:
 oc process -f ./openshift/local-build-config-template.yaml --param-file=./openshift/local-build-config-envs.env | oc create -n <license plate>-<namespace> -f -
 ```
 
-### Starting a build
+#### `REPOSITORY_REF`
+This variable accepts any valid git reference, such as branch name, tag, commit hash, pull request, etc. To reference a pull request, you can use the following format: `refs/pull/<pull request number>/head`. Check the [Openshift documentation](https://docs.openshift.com/container-platform/4.16/cicd/builds/creating-build-inputs.html#builds-source-code_creating-build-inputs) for more information.
+
+Also, you can list all remote refs by running the following command:
+
+```bash
+git ls-remote
+```
+#### Starting a build
 
 To start a build, run the following command:
 

@@ -791,7 +791,7 @@ if (!defined('sugarEntry') || !sugarEntry) {
                     // } else {
                     //     $html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  nowrap>$select_link&nbsp;$export_link&nbsp;$delete_link&nbsp;$selected_objects_span";
                     // }
-                    $html_text .= "<div class='page-number-wrapper'><div class='pageNumbers'>(" . $start_record . " - " . $end_record . " " . $this->local_app_strings['LBL_LIST_OF'] . " " . $row_count . ")</div></div>";
+                    $html_text .= "<div class='page-number-wrapper'><div class='pageNumbers'>" . $start_record . " - " . $end_record . " " . $this->local_app_strings['LBL_LIST_OF'] . " " . $row_count . "</div></div>";
 
                     $this->smartyTemplate->assign("PAGINATION", $html_text);
                 }

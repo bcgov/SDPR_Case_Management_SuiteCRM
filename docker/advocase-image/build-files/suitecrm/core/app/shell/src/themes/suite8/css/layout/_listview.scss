@@ -179,7 +179,7 @@
 }
 
 .card-body .table-footer {
-  margin-top: 8px;
+  margin: 1.25rem 2.2rem;
 }
 
 .table td {
@@ -234,6 +234,8 @@
   background-color: $surface-warning;
   gap: 10px;
   border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .dynamic-field-name-assigned_user_name .mr-1 {
@@ -279,9 +281,16 @@ span.field-group-field.pr-1 {
 }
 
 .field-name-state-Closed {
-  border: 1px solid $border-danger;
-  color: $typography-color-danger;
+  border: 1px solid $support-borderColor-danger;
+  color: $support-borderColor-danger;
   background-color: $widget-bar-bg;
+}
+
+scrm-field.field.field-mode-detail.field-name-state.field-name-state-Open.field-type-enum {
+  border: none;
+  padding: 0;
+  background-color: white;
+  color: $primary_text;
 }
 
 .list-view-tableactions {
@@ -601,4 +610,8 @@ td.cdk-column-checkbox {
 
 .list-view .list-view-header {
   position: relative;
+}
+
+.ng-tns-c3177733119-5.p-overlay.p-component.ng-star-inserted {
+  width: 624px;
 }
