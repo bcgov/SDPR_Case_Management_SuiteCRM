@@ -286,6 +286,19 @@ p.msg {
   margin-left: -1px;
 }
 
+#whole_subpanel_users {
+  position: absolute;
+  width: 100%;
+  padding-right: 18px;
+  padding-left: 1px;
+}
+
+#whole_subpanel_aclroles {
+  position: absolute;
+  width: 100%;
+  padding-right: 20px;
+}
+
 #subpanel_history .evenListRowS1 td:nth-of-type(2) a {
   border-bottom: none;
 }
