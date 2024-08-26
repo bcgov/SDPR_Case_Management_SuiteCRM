@@ -94,6 +94,12 @@ Follow the instructions from the [Deployment pre-requisites](./openshift/README.
 
 ## Building the Docker images
 
+Check the [SuiteCRM Docker image](./docker/suitecrm-image/README.md) and [Advocase Docker image](./docker/advocase-image/README.md) pages to see how to build, configure, and customize the SuiteCRM and Advocase Docker images.
+
+Currently, both images are being built and pushed to JFrog Artifactory. Check [this documentation](https://developer.gov.bc.ca/docs/default/component/platform-developer-docs/docs/build-deploy-and-maintain-apps/push-pull-artifacts-artifactory/#pulling-container-images-using-an-artifactory-service-account) to see how to pull images from private repositories on Artifactory.
+
+To build and deploy the images to Openshift, follow the instructions from the [Building images on Openshift](./openshift/README.md#building-images-on-openshift) page.
+
 ## Deploying the project on Openshift
 
 Check the [Parameters](./helm/suitecrm/README.md#parameters) from the SuiteCRM Helm chart to see the available configuration parameters and the components that are being deployed.
