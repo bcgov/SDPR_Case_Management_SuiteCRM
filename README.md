@@ -545,20 +545,20 @@ oc debug -n <license plate>-<namespace> suitecrm-app-cron-job-28745145-vfvp6
 
 ### Restoring the files
 
-After creating the debug pod, you will have access to it's terminal. You can run the following command to list current files available inside the S3 bucket:
-
 > [!WARNING]
 >
 > Don't forget to replace the `<environment>` placeholder with the appropriate value. This value should be either `dev`, `test`, or `prod`, and it was defined in the [`global.env`](./helm/suitecrm/README.md#parameters) parameter when deployed.
+
+> [!NOTE]
+>
+> Inside the pod, the files are stored in the `/aws/suitecrm/public/legacy/upload` directory. This is a mounted directory, sharing the same files as the SuiteCRM pods by using the `suitecrm-shared-volume-pvc` PVC.
+
+After creating the debug pod, you will have access to it's terminal. You can run the following command to list current files available inside the S3 bucket:
 
 > [!WARNING]
 >
 > By running this command you will overwrite the current state of the application.
 > Make sure you are in the right environment before running this command.
-
-> [!NOTE]
->
-> Inside the pod, the files are stored in the `/aws/suitecrm/public/legacy/upload` directory. This is a mounted directory, sharing the same files as the SuiteCRM pods by using the `suitecrm-shared-volume-pvc` PVC.
 
 ```bash
 aws s3 ls s3://${S3_BUCKET}/<environment>/upload/
