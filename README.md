@@ -353,7 +353,7 @@ After running the command, you can access the database using your preferred data
 
 > [!TIP]
 >
-> Before restorgin the database to any given backup, if possible, create a backup of the current database to avoid any data loss. You can create a backup by running the following command:
+> Before restoring the database to any given backup, if possible, create a backup of the current database to avoid any data loss. You can create a backup by running the following command:
 > ```bash
 > oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -1
 > ```
