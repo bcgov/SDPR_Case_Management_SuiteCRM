@@ -336,7 +336,7 @@ oc get svc -n <license plate>-<namespace>
 # suitecrm-redis-cluster-headless    ClusterIP   None           <none>        6379/TCP,16379/TCP           14d
 ```
 
-You need the `suitecrm-mariadb-galera` service to access the access the database. To access the database, you need to forward the traffic from your local machine to the database pod. You can do that by running the following command:
+You need the `suitecrm-mariadb-galera` service to access the database. To access the database, you need to forward the traffic from your local machine to the database pod. You can do that by running the following command:
 
 > [!NOTE]
 >
