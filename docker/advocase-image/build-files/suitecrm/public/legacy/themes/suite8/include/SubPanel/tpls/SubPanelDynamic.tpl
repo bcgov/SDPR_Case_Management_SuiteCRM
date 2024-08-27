@@ -64,7 +64,7 @@
                 <th data-breakpoints="{if $breakpoints != 1}{$breakpoints}{/if}" data-type="html">{$header}</th>
                 {counter name="colCounter" print=false}
             {/foreach}
-            <th data-type="html">Actions</th>
+            <th data-type="html" class="action-column">Actions</th>
         </tr>
         <tr id="{$SUBPANEL_ID}_search" class="pagination" style="{$DISPLAY_SPS}">
             <td align="right" colspan="20">
