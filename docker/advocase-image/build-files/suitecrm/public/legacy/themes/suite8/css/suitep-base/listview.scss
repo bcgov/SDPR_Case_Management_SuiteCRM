@@ -3713,7 +3713,7 @@ a#securitygroups_users_select_button {
 input#securitygroups_users_select_button_old {
   display: flex !important;
   margin-left: 28px;
-  margin-top: 38px;
+  margin-top: 67px;
   background-color: $white;
   border: 1px solid;
   border-color: $surface-color-border-dark;
@@ -3722,4 +3722,10 @@ input#securitygroups_users_select_button_old {
   font-weight: 700;
   font-size: 16px;
   font-family: "BC Sans";
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 51px;
+  padding: 20px 16px;
+  line-height: 0;
 }
