@@ -272,6 +272,18 @@ p.msg {
   margin-left: 1px;
 }
 
+#list_subpanel_therevisions table:first-of-type {
+  .action-column, .footable-last-visible {
+    display: none !important;
+  }
+
+  #whole_subpanel_contacts {
+    .action-column, .footable-last-visible {
+      display: table-cell !important;
+    }
+  }
+}
+
 #whole_subpanel_contacts {
   position: absolute;
   width: 100%;

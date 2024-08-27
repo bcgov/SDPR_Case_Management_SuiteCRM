@@ -440,6 +440,14 @@ a.listViewTdToolsS1 {
   background: url($sub-panel-delete-background-url) no-repeat right;
 }
 
+[id^="cases_edit_"] {
+  background: url($sub-panel-edit-background-url) no-repeat right;
+}
+
+[id^="cases_remove_"] {
+  background: url($sub-panel-delete-background-url) no-repeat right;
+}
+
 [id^="users_remove_"] {
   background: url($sub-panel-delete-background-url) no-repeat right;
 }
