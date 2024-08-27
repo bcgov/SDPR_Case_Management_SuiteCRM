@@ -24,6 +24,7 @@ Table of Contents
     - [Restoring the database](#restoring-the-database)
       - [Restoring the last backup](#restoring-the-last-backup)
       - [Restoring a specific backup](#restoring-a-specific-backup)
+  - [Restoring files from S3 file backup bucket](#restoring-files-from-s3-file-backup-bucket)
 
 # Technologies Used
 
@@ -474,3 +475,65 @@ oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs 
 > [!NOTE]
 >
 > You can replace the `<backup configuration>` placeholder with with the value set in the [`backup-storage.backupConfig`](./helm/suitecrm/README.md#backup-storagebackupconfig) parameter.
+
+
+## Restoring files from S3 file backup bucket
+
+> [!CAUTION]
+>
+> Make sure you are restoring the files in the right environment. Restoring the files will overwrite the current files saved on your application pods.
+> If you are just practiging, TRIPLE check the environment you are in before restoring the backups.
+
+> [!NOTE]
+>
+> The backup pod name will follow this pattern `suitecrm-s3-file-backup-cron-job-<some random string>`
+
+```bash
+oc get pods -n <license plate>-<namespace>
+
+# Output
+# NAME                                                                    READY   STATUS      RESTARTS   AGE
+# suitecrm-66b5c694bc-ffxtg                                               1/1     Running     0          36m
+# suitecrm-app-cron-job-28745145-vfvp6                                    0/1     Completed   0          66m
+# suitecrm-app-cron-job-28745160-9jcgd                                    0/1     Completed   0          51m
+# suitecrm-app-cron-job-28745175-l6rm2                                    0/1     Completed   0          36m
+# suitecrm-app-cron-job-28745190-lld7c                                    0/1     Completed   0          21m
+# suitecrm-app-cron-job-28745205-jslkv                                    0/1     Completed   0          6m15s
+# suitecrm-backup-storage-5864c8d497-6r5qt                                1/1     Running     0          4d
+# suitecrm-mariadb-galera-0                                               1/1     Running     0          4d
+# suitecrm-redis-cluster-0                                                1/1     Running     0          6d6h
+# suitecrm-redis-cluster-1                                                1/1     Running     0          4d
+# suitecrm-redis-cluster-2                                                1/1     Running     0          5d6h
+# suitecrm-redis-cluster-3                                                1/1     Running     0          14d
+# suitecrm-redis-cluster-4                                                1/1     Running     0          7d6h
+# suitecrm-redis-cluster-5                                                1/1     Running     0          4d3h
+# --> suitecrm-s3-file-backup-cron-job-28745190-7nrb5 <-- This one        0/1     Completed   0          21m
+# --> suitecrm-s3-file-backup-cron-job-28745195-kh46d <-- Or this one     0/1     Completed   0          16m
+# --> suitecrm-s3-file-backup-cron-job-28745200-cprvv <-- Or this one     0/1     Completed   0          11m
+# --> suitecrm-s3-file-backup-cron-job-28745205-qqdwx <-- Or this one     0/1     Completed   0          6m15s
+# --> suitecrm-s3-file-backup-cron-job-28745210-7hzbf <-- Or this one     0/1     Completed   0          75s
+```
+After selecting the right pod, you can run the following command to create a debug pod in the desired namespace:
+
+```bash
+oc debug -n <license plate>-<namespace> suitecrm-app-cron-job-28745145-vfvp6
+```
+
+After running the above command, you will be inside the debug pod. You can run the following command to list current files available inside the bucket:
+
+> [!WARNING]
+>
+> Don't forget to replace the `<environment>` placeholder with the appropriate value. This value should be either `dev`, `test`, or `prod`, and it was defined in the [`global.env`](./helm/suitecrm/README.md#parameters) parameter when deployed.
+
+> [!NOTE]
+>
+> Inside the pod, the files are stored in the `/aws/suitecrm/public/legacy/upload` directory. This is a mounted directory, sharing the same files as the SuiteCRM pods by using the `suitecrm-shared-volume-pvc` PVC.
+
+```bash
+aws s3 ls s3://${S3_BUCKET}/<environment>/upload/
+```
+Before restoring the files, use the `--dryrun` flag to ensure that your command is correct and you are restoring the right files. The `--dryrun` flag will list all operations to be perfomed without actually executing them. The `--delete` flag will delete any files that are not present in the S3 bucket.
+
+```bash
+aws s3 sync s3://${S3_BUCKET}/<environment>/upload/ /aws/suitecrm/public/legacy/upload/ --dryrun --delete
+```
