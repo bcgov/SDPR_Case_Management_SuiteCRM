@@ -25,6 +25,8 @@ Table of Contents
       - [Restoring the last backup](#restoring-the-last-backup)
       - [Restoring a specific backup](#restoring-a-specific-backup)
   - [Restoring files from S3 file backup bucket](#restoring-files-from-s3-file-backup-bucket)
+    - [Creating a debug pod](#creating-a-debug-pod)
+    - [Restoring the files](#restoring-the-files)
 
 # Technologies Used
 
@@ -349,6 +351,13 @@ After running the command, you can access the database using your preferred data
 
 ### Restoring the database
 
+> [!TIP]
+>
+> Before restorgin the database to any given backup, if possible, create a backup of the current database to avoid any data loss. You can create a backup by running the following command:
+> ```bash
+> oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -1
+> ```
+
 > [!CAUTION]
 >
 > Make sure you are restoring the database in the right environment. Restoring the database will overwrite the current database with the backup data.
@@ -484,6 +493,21 @@ oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs 
 > Make sure you are restoring the files in the right environment. Restoring the files will overwrite the current files saved on your application pods.
 > If you are just practiging, TRIPLE check the environment you are in before restoring the backups.
 
+> [!TIP]
+>
+> Before restoring the files, if possible, create a backup of the current files to avoid any data loss. You can create a backup by running the following command inside a debug pod (check the [Creating a debug pod](#creating-a-debug-pod) section for more information):
+>
+> First, execute the command with the `--dryrun` flag to avoid mistakes
+> ```bash
+> aws s3 sync /aws/suitecrm/public/legacy/upload/ s3://${S3_BUCKET}/<environment>/upload/ --dryrun --delete
+> ```
+> After confirming that the command is correct, you can run the command without the `--dryrun` flag
+> ```bash
+> aws s3 sync /aws/suitecrm/public/legacy/upload/ s3://${S3_BUCKET}/<environment>/upload/ --delete
+> ```
+
+### Creating a debug pod
+
 > [!NOTE]
 >
 > The backup pod name will follow this pattern `suitecrm-s3-file-backup-cron-job-<some random string>`
@@ -519,7 +543,9 @@ After selecting the right pod, you can run the following command to create a deb
 oc debug -n <license plate>-<namespace> suitecrm-app-cron-job-28745145-vfvp6
 ```
 
-After running the above command, you will be inside the debug pod. You can run the following command to list current files available inside the bucket:
+### Restoring the files
+
+After creating the debug pod, you will have access to it's terminal. You can run the following command to list current files available inside the S3 bucket:
 
 > [!WARNING]
 >
