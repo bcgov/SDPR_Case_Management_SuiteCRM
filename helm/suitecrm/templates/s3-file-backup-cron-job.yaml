@@ -28,7 +28,7 @@ spec:
               command:
                 - "sh"
                 - "-c"
-                - "aws s3 sync /aws/suitecrm/public/legacy/upload s3://${S3_BUCKET}/{{ .Values.global.env }}/upload"
+                - "aws s3 sync /aws/suitecrm/public/legacy/upload s3://${S3_BUCKET}/{{ .Values.global.env }}/upload --delete"
               env:
                 - name: S3_URI
                   valueFrom:

@@ -1,5 +1,4 @@
 Table of Contents
-
 - [Deployment pre-requisites](#deployment-pre-requisites)
   - [Allowing other namespaces to pull images from `-tools` namespace](#allowing-other-namespaces-to-pull-images-from--tools-namespace)
   - [Creating required components prior to HELM/ArgoCD deployment](#creating-required-components-prior-to-helmargocd-deployment)
