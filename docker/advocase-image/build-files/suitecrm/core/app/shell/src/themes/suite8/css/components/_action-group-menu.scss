@@ -116,3 +116,22 @@ a.dropdown-item.settings-button.ng-star-inserted {
   flex-direction: column;
   gap: 4px;
 }
+
+.btn-outline-light:hover {
+  background-color: transparent;
+  fill: none;
+}
+
+.btn-outline-light:not(:disabled):not(.disabled).active:focus, .btn-outline-light:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-light.dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.btn-outline-light:not(:disabled):not(.disabled).active, .btn-outline-light:not(:disabled):not(.disabled):active, .show>.btn-outline-light.dropdown-toggle {
+  color: #212529;
+  background-color: transparent;
+  border-color: #f8f9fa;
+}
+
+.btn-outline-light.focus, .btn-outline-light:focus {
+  box-shadow: none;
+}
