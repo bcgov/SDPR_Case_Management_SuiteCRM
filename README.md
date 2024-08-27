@@ -361,7 +361,7 @@ After running the command, you can access the database using your preferred data
 > [!CAUTION]
 >
 > Make sure you are restoring the database in the right environment. Restoring the database will overwrite the current database with the backup data.
-> If you are just practiging, TRIPLE check the environment you are in before restoring the database.
+> If you are just practicing, TRIPLE check the environment you are in before restoring the database.
 
 If you want to restore the database to the latest backup, first you need to get the right pod, by running the following command:
 
@@ -491,7 +491,7 @@ oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs 
 > [!CAUTION]
 >
 > Make sure you are restoring the files in the right environment. Restoring the files will overwrite the current files saved on your application pods.
-> If you are just practiging, TRIPLE check the environment you are in before restoring the backups.
+> If you are just practicing, TRIPLE check the environment you are in before restoring the backups.
 
 > [!TIP]
 >
