@@ -551,6 +551,11 @@ After creating the debug pod, you will have access to it's terminal. You can run
 >
 > Don't forget to replace the `<environment>` placeholder with the appropriate value. This value should be either `dev`, `test`, or `prod`, and it was defined in the [`global.env`](./helm/suitecrm/README.md#parameters) parameter when deployed.
 
+> [!WARNING]
+>
+> By running this command you will overwrite the current state of the application.
+> Make sure you are in the right environment before running this command.
+
 > [!NOTE]
 >
 > Inside the pod, the files are stored in the `/aws/suitecrm/public/legacy/upload` directory. This is a mounted directory, sharing the same files as the SuiteCRM pods by using the `suitecrm-shared-volume-pvc` PVC.
