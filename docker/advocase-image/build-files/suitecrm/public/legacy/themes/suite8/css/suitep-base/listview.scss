@@ -79,6 +79,7 @@ tr#pagination {
 .list #pagination td .paginationTable tr td:first-of-type {
   padding: 0.4em 0 0.2em 0.5em;
   background-color: $white;
+  display: none;
 }
 
 .list #pagination td .paginationTable tr td:last-of-type {
@@ -86,12 +87,12 @@ tr#pagination {
 }
 
 .list #pagination td .paginationTable .paginationActionButtons {
-  background-color: $white;
+  background-color: transparent;
   padding: 1em 0 0;
 }
 
 .list #pagination td .paginationTable .paginationChangeButtons {
-  background-color: $white;
+  background-color: transparent;
   padding: 1em 0 0;
 }
 
@@ -487,6 +488,7 @@ a.listViewTdToolsS1 {
 
 .list-view-rounded-corners {
   margin: 16px 0 16px 0;
+  padding-bottom: 97px;
   // .evenListRowS1 td {
   //   background: $table-alternate-row-bg;
   // }
@@ -1643,7 +1645,7 @@ div#search_form > .advanced input.button:hover {
 }
 
 .paginationTable .list-view-pagination-button {
-  background-color: $white;
+  background-color: transparent;
   color: $list-view-button-color;
   margin: 0 0 0 2px;
   padding: 0;
@@ -3710,12 +3712,20 @@ a#securitygroups_users_select_button {
 
 input#securitygroups_users_select_button_old {
   display: flex !important;
-  margin-left: 35px;
-  margin-top: 38px;
+  margin-left: 28px;
+  margin-top: 67px;
   background-color: $white;
   border: 1px solid;
   border-color: $surface-color-border-dark;
   border-radius: 4px;
   color: $typography-color-secondary;
   font-weight: 700;
+  font-size: 16px;
+  font-family: "BC Sans";
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 51px;
+  padding: 20px 16px;
+  line-height: 0;
 }

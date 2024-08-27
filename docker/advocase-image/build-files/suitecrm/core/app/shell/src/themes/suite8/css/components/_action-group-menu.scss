@@ -72,3 +72,47 @@
 .dropdown-toggle .button-group-button .settings-button {
   margin-left: 16px;
 }
+
+.record-view-header .button-display-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start !important;
+  gap: 8px;
+}
+
+button.dropdown-toggle.button-group-button.settings-button {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg width=%2220%22 height=%2221%22 viewBox=%220%200%2020%2021%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cpath d=%22M14.6875 10.7188L10.7188 14.7188C10.5 14.9062 10.25 15 10 15C9.71875 15 9.46875 14.9062 9.28125 14.7188L5.3125 10.7188C5 10.4375 4.90625 10 5.0625 9.625C5.21875 9.25 5.59375 9 6 9H13.9688C14.375 9 14.7188 9.25 14.875 9.625C15.0312 10 14.9688 10.4375 14.6875 10.7188Z%22 fill=%22474543%22/%3E%3C/svg%3E');
+  background-size: 20px 21px;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 16px);
+  padding-right: 16px;
+  width: 167px;
+  height: 43px;
+}
+
+.ng-star-inserted > .button-group-button.settings-button {
+  background-color: $surface-color-primary-button-default;
+  color: white;
+}
+
+a.dropdown-item.settings-button.ng-star-inserted {
+  border: 0px;
+  border-radius: 0px;
+  padding: 0px;
+}
+
+.dropdown-button-secondary .dropdown-menu.show {
+  background-color: white;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d8d8d8;
+  box-shadow: 0px .3px .9px 0px rgba(0, 0, 0, .1), 0px 1.6px 3.6px 0px rgba(0, 0, 0, .13);
+  margin-top: 8px !important;
+  right: -35px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

@@ -44,7 +44,6 @@ export class LineActionBtnComponent {
 
   ngOnInit(): void {
     this.currentModule = this.module;
-    console.log(this.record);
   }
 
   onClickPhone(event: MouseEvent) {

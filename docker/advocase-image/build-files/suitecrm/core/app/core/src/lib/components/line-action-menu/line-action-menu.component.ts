@@ -143,7 +143,6 @@ export class LineActionMenuComponent implements OnInit, OnDestroy {
                 this.configState.next(this.getButtonGroupConfig(actions));
 
                 this.actions = actions;
-                console.log('actions: ',this.actions)
             })
         ).subscribe());
     }

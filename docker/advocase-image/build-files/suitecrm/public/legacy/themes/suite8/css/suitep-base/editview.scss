@@ -904,6 +904,19 @@ option:checked {
   right: 0;
 }
 
+.view-module-SecurityGroups #EditView .buttons {
+  top: -75px;
+  height: fit-content;
+}
+
+.view-module-ACLRoles .moduleTitle {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 32px 56px;
+  margin: 10px -56px 0;
+}
+
 .actionbutton-footer {
   display: none;
 }
@@ -1471,10 +1484,10 @@ input.sqsEnabled {
 .paginationTable {
   position: absolute;
   bottom: 0;
-  width: 0;
+  width: max-content;
   right: 43px;
   margin-bottom: 66px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid transparent;
 }
 
 .pageNumbers {
@@ -5896,7 +5909,7 @@ div.content div.pagecontent form#EditView div.edit.view table tbody tr td input[
 }
 
 select, input, textarea, button, select[size], input[type=text], input:not([type]), input[type=password] {
-  border-color: $surface-color-border-default;
+  border-color: $input-border;
 }
 
 table.subpanel-table .pagination .action_buttons a,
