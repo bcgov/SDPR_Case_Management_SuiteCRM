@@ -77,7 +77,7 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start !important;
-  gap: 24px;
+  gap: 8px;
 }
 
 button.dropdown-toggle.button-group-button.settings-button {
@@ -96,16 +96,6 @@ button.dropdown-toggle.button-group-button.settings-button {
 .ng-star-inserted > .button-group-button.settings-button {
   background-color: $surface-color-primary-button-default;
   color: white;
-}
-
-.Cancel>button.button-group-button.settings-button {
-  background-color: white;
-  color: $typography-color-secondary;
-}
-
-.action-group-menu scrm-button-group.ng-star-inserted div.ng-star-inserted {
-  display: flex;
-  flex-direction: row-reverse;
 }
 
 a.dropdown-item.settings-button.ng-star-inserted {
