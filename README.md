@@ -565,7 +565,7 @@ After creating the debug pod, you will have access to it's terminal. You can run
 ```bash
 aws s3 ls s3://${S3_BUCKET}/<environment>/upload/
 ```
-Before restoring the files, use the `--dryrun` flag to ensure that your command is correct and you are restoring the right files. The `--dryrun` flag will list all operations to be perfomed without actually executing them. The `--delete` flag will delete any files that are not present in the S3 bucket.
+Before restoring the files, use the `--dryrun` flag to ensure that your command is correct and you are restoring the right files. The `--dryrun` flag will list all operations to be perfomed without actually executing them. The `--delete` flag will delete any files in the destination that are not present in the S3 bucket.
 
 ```bash
 aws s3 sync s3://${S3_BUCKET}/<environment>/upload/ /aws/suitecrm/public/legacy/upload/ --dryrun --delete
