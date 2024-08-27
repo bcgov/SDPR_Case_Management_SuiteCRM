@@ -2056,6 +2056,9 @@ a.tabFormAdvLink:hover {
 }
 
 .view-module-SecurityGroups {
+  .evenListRowS1, .oddListRowS1 {
+    background: $white;
+  }
   .evenListRowS1 td,
   .oddListRowS1 td {
     color: $primary_text;
