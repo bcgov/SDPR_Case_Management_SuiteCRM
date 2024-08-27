@@ -2,6 +2,7 @@
 
 This Helm chart deploys a SuiteCRM instance on a Openshift/Kubernetes cluster using the Helm package manager.
 
+Table of contents:
 - [Dependecies](#dependecies)
 - [Components](#components)
   - [Network Policies](#network-policies)
