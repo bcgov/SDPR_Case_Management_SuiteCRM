@@ -508,6 +508,8 @@ oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs 
 
 ### Creating a debug pod
 
+Create a debug pod to access the files stored in the S3 bucket. First, you need to get the right pod, by running the following command:
+
 > [!NOTE]
 >
 > The backup pod name will follow this pattern `suitecrm-s3-file-backup-cron-job-<some random string>`
