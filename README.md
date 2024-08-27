@@ -570,3 +570,8 @@ Before restoring the files, use the `--dryrun` flag to ensure that your command 
 ```bash
 aws s3 sync s3://${S3_BUCKET}/<environment>/upload/ /aws/suitecrm/public/legacy/upload/ --dryrun --delete
 ```
+After confirming that the command is correct, you can run the command without the `--dryrun` flag:
+
+```bash
+aws s3 sync s3://${S3_BUCKET}/<environment>/upload/ /aws/suitecrm/public/legacy/upload/ --delete
+```
