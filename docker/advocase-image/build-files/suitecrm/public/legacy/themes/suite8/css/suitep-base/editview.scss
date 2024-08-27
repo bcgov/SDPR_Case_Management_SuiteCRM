@@ -2055,6 +2055,25 @@ a.tabFormAdvLink:hover {
   background-color: $white;
 }
 
+.view-module-SecurityGroups {
+  .evenListRowS1 td,
+  .oddListRowS1 td {
+    color: $primary_text;
+    background-color: $transparent;
+  }
+
+  .evenListRowS1:hover,
+  .oddListRowS1:hover {
+    background-color: $secondary-button-hover;
+    color: $typography-color-secondary;
+  }
+}
+
+.dropdown-menu .nav-item:hover, .action-new .dropdown-menu .new-list-item:hover{
+  background-color: $secondary-button-hover;
+  color: $typography-color-secondary;
+}
+
 .detail table {
   background-color: #cbdae6;
 }
