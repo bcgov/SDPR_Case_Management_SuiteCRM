@@ -25,7 +25,11 @@
             {/if}
 
                 </a>
-
+                <div class="subpanel-close-btn">
+                    <button type="button" title="" class="btn btn-outline-light btn-sm close-button">
+                        <span aria-hidden="true">x</span>
+                    </button>
+                </div>
             </div>
 
             {if $subpanel_tabs_properties.$i.expanded_subpanels == true}
