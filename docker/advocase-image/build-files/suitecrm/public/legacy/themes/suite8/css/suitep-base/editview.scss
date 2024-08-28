@@ -181,6 +181,14 @@ div#searchResults {
   border-collapse: collapse;
 }
 
+.meeting-scheduler #create-invitees {
+  border-top: none;
+  border-bottom: none;
+  padding: 0px 40px 32px;
+  border-radius: 0;
+  margin: 0;
+}
+
 .schedulerInvitees {
   background-color: $panel-bg;
   color: $primary_text;
