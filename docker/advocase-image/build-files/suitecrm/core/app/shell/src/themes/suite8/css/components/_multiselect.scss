@@ -32,11 +32,23 @@ form .p-multiselect {
 .p-multiselect {
   width: 100%;
 
-.p-multiselect-label {
-    font-size: 16px;
-    padding: 0;
-  }
+  .p-multiselect-label {
+      font-size: 16px;
+      color: $primary_text;
+      font-family: "BC Sans";
+      font-style: normal;
+      padding: 0;
+    }
 
+  .p-multiselect-trigger {
+    width: fit-content;
+    svg {
+      width: 14px;
+    }
+    .p-multiselect-clear-icon {
+      width: 14px;
+    }
+  }
 
   .p-multiselect-panel {
     .p-inputtext {

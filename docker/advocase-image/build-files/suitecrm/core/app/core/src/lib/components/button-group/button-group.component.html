@@ -29,6 +29,7 @@
     <ng-container *ngFor="let item of buttons.expanded">
         <scrm-button *ngIf="item && !(item?.items ?? '')"
                      [config]="item"
+                     [class] = "item.label"
                      (click) = "stopPropagation($event)">
         </scrm-button>
         <scrm-dropdown-button *ngIf="item && (item?.items ?? '') && ((item?.type ?? 'dropdown') === 'dropdown')"
@@ -40,6 +41,6 @@
     </ng-container>
 
     <scrm-dropdown-button autoClose="outside"
-                          *ngIf="buttons.collapsed.length"
+                          *ngIf="buttons.collapsed.length && checkDropdown()"
                           [config]="dropdownConfig"></scrm-dropdown-button>
 </div>

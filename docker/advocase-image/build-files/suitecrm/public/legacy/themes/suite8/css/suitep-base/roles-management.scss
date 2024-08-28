@@ -9,31 +9,44 @@
         top: 2em;
         border-radius: 10px;
         overflow: hidden;
+
+        td {
+            padding: 8px 24px;
+        }
     }
     .action-button {
         display: flex;
-        justify-content: flex-end;
+        flex-direction: row-reverse;
         margin-top: 2em;
         margin-bottom: 1em;
         .button {
-            background-color:$nepal-grey ;
-            font-size: 13px;
+            padding: 8px 16px;
+            color: $surface-color-border-dark;
             font-weight: 700;
-            height: 2.2em;
-            line-height: 1em;
-            padding: 0.3em 0.2em;
+            font-size: 16px;
+            line-height: 27px;
+            border: 1px solid $surface-color-border-dark;
+            background-color: $white;
             text-transform: capitalize;
-            margin-right: 0.1em;
-            border-radius: 0.25em;
+            height: fit-content;
+            margin: 0;
             &:hover {
-                background: $pale-blue;
+                background-color: $secondary-button-hover;
             }
-        }     
+        }
+        #SAVE_HEADER {
+            background: $surface-color-background-blue;
+            color: $white;
+            margin-left: 24px;
+            &:hover {
+                background-color: $surface-color-primary-hover;
+            }
+        }
     }
     .hidebtn {
         display: none;
     }
-    
+
     .heading-text {
         position: relative;
         top: 3.5em;
@@ -41,29 +54,49 @@
     }
     .action_buttons {
         position: absolute;
-        margin-top: -2em; 
+        top: 40px;
         bottom: auto;
+        display: flex;
+        gap: 24px;
         .btn {
-            background-color: $nepal-grey;
-            font-size: 13px;
+            background-color: $white;
+            font-size: 16px;
             font-weight: 700;
-            height: 2.2em;
-            line-height: 1em;
-            padding: 0.3em 1em;
+            height: fit-content;
+            line-height: 27px;
+            padding: 8px 16px;
             text-transform: capitalize;
-            margin: .2em;
-            border-radius: 0.25em;
+            margin: 0;
+            border-radius: 6px;
             display: flex;
-            border: none;
-            color: white;
+            border: 1px solid $surface-color-border-dark;
+            color:  $surface-color-border-dark;
             &:hover {
-                background: $pale-blue;
+                background: $secondary-button-hover;
             }
-        }      
+        }
+        input[title="Edit"] {
+            background: $surface-color-background-blue;
+            color: $white;
+            &:hover {
+                background-color: $surface-color-primary-hover;
+            }
+        }
     }
     .view {
         border-radius: 10px;
         overflow: hidden;
+
+        td {
+            padding: 8px;
+        }
+        td:last-child {
+            padding: 8px 16px 8px 8px;
+        }
+        td:first-child {
+            padding: 8px 8px 8px 16px;
+        }
+
     }
     select {
         background: url($select-edit-background-url) no-repeat right;
