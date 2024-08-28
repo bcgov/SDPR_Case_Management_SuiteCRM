@@ -27,7 +27,7 @@
 /* Panel Card header */
 .panel-card .card-header {
   background-color: $surface-color-background-blue;
-  padding: 0 0.5rem;
+  padding: 0 20px;
   height: 50px;
   color: $white;
   border-radius: 6px 6px 0px 0px;
@@ -101,7 +101,6 @@
 }
 
 .panel-title-upper-header {
-  padding: 0.5rem .75rem;
   color: $white;
   text-align: center;
   font-family: "BC Sans";

@@ -268,35 +268,43 @@ p.msg {
 #whole_subpanel_therevisions {
   position: absolute;
   width: 100%;
-  padding-right: 18px;
-  margin-left: 1px;
+  left: 0;
+}
+
+#list_subpanel_therevisions table:first-of-type {
+  .action-column, .footable-last-visible {
+    display: none !important;
+  }
+
+  #whole_subpanel_contacts {
+    .action-column, .footable-last-visible {
+      display: table-cell !important;
+    }
+  }
 }
 
 #whole_subpanel_contacts {
   position: absolute;
   width: 100%;
-  padding-right: 18px;
-  margin-left: -1px;
+  left: 0;
 }
 
 #whole_subpanel_cases {
   position: absolute;
   width: 100%;
-  padding-right: 18px;
-  margin-left: -1px;
+  left: 0;
 }
 
 #whole_subpanel_users {
   position: absolute;
   width: 100%;
-  padding-right: 18px;
-  padding-left: 1px;
+  left: 0;
 }
 
 #whole_subpanel_aclroles {
   position: absolute;
   width: 100%;
-  padding-right: 20px;
+  left: 0;
 }
 
 #subpanel_users {

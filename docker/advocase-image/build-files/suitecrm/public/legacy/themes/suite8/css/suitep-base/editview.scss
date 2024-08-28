@@ -1290,7 +1290,7 @@ ul.noBullet {
 }
 
 #subpanel_list div.sub-panel{
-  margin: 0 -9px;
+  margin: 0 !important;
 }
 
 li.noBullet:first-child {
@@ -2053,6 +2053,28 @@ a.tabFormAdvLink:hover {
 .oddListRowS1 td {
   color: $primary_text;
   background-color: $white;
+}
+
+.view-module-SecurityGroups {
+  .evenListRowS1, .oddListRowS1 {
+    background: $white;
+  }
+  .evenListRowS1 td,
+  .oddListRowS1 td {
+    color: $primary_text;
+    background-color: $transparent;
+  }
+
+  .evenListRowS1:hover,
+  .oddListRowS1:hover {
+    background-color: $secondary-button-hover;
+    color: $typography-color-secondary;
+  }
+}
+
+.dropdown-menu .nav-item:hover, .action-new .dropdown-menu .new-list-item:hover{
+  background-color: $secondary-button-hover;
+  color: $typography-color-secondary;
 }
 
 .detail table {
