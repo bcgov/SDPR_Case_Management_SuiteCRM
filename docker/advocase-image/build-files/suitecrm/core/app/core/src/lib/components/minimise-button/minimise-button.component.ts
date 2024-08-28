@@ -68,6 +68,7 @@ export class MinimiseButtonComponent implements OnInit, OnChanges {
     }
 
     toggleStatus(): void {
+        this.config.onClick();
         let newStatus: MinimiseButtonStatus = 'minimised';
         if (this.status === 'minimised') {
             newStatus = 'maximised';
@@ -76,6 +77,14 @@ export class MinimiseButtonComponent implements OnInit, OnChanges {
         this.buildButton();
     }
 
+    isCollapsed():Boolean {
+        if (this.status === 'minimised') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     getIcon(): string {
         if (this.status === 'minimised') {
             return 'expand_overview';
