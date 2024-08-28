@@ -1,0 +1,82 @@
+<! --
+/**
+* SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
+* Copyright (C) 2021 SalesAgility Ltd.
+*
+* This program is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Affero General Public License version 3 as published by the
+* Free Software Foundation with the addition of the following permission added
+* to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+* IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+* WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+*
+* This program is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+* details.
+*
+* You should have received a copy of the GNU Affero General Public License
+* along with this program.  If not, see http://www.gnu.org/licenses.
+*
+* In accordance with Section 7(b) of the GNU Affero General Public License
+* version 3, these Appropriate Legal Notices must retain the display of the
+* "Supercharged by SuiteCRM" logo. If the display of the logos is not reasonably
+* feasible for technical reasons, the Appropriate Legal Notices must display
+* the words "Supercharged by SuiteCRM".
+*/
+-->
+<ng-container *ngIf="(vm$ | async) as vm">
+    <div ngbAccordion class="sub-panel-banner" #accordion="ngbAccordion" activeIds="sub-panel-buttons">
+        <div ngbAccordionItem id="sub-panel-buttons" class="card" [collapsed]="isCollapsed()">
+            <div ngbAccordionHeader class="card-header detail-view-subpanel-header">
+                <a (click)="toggleSubPanels()" class="clickable detail-view-subpanel-title">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <scrm-label labelKey="LBL_SELECT_SUBPANEL_BANNER"></scrm-label>
+                    </div>
+                </a>
+                <a (click)="toggleSubPanels()" class="detail-view-panel-caret">
+                    <svg *ngIf="isCollapsed()" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.6875 5.8125L14.6875 9.8125C14.9688 10.0938 15.0625 10.5312 14.9062 10.9062C14.75 11.2812 14.375 11.5312 14 11.5312H6C5.59375 11.5312 5.21875 11.2812 5.0625 10.9062C4.90625 10.5312 5 10.0938 5.28125 9.8125L9.28125 5.8125C9.65625 5.40625 10.3125 5.40625 10.6875 5.8125Z" fill="white"/>
+                    </svg>
+                    <svg *ngIf="!isCollapsed()" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.28125 13.2188L5.28125 9.21875C5 8.9375 4.90625 8.5 5.0625 8.125C5.21875 7.75 5.59375 7.5 6 7.5H14C14.4062 7.5 14.75 7.75 14.9062 8.125C15.0625 8.5 14.9688 8.9375 14.6875 9.21875L10.6875 13.2188C10.3125 13.625 9.65625 13.625 9.28125 13.2188Z" fill="white"/>
+                    </svg>
+                </a>
+            </div>
+            <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                    <ng-template>
+                        <div id="collapseShowSubPanels">
+                            <div class="row insight-panel">
+                                <div class="col-xs-6 col-sm-3 col-md-2 insight-panel-card border-insight"
+                                     *ngFor="let item of vm.subpanels | keyvalue"
+                                     [ngClass]="{'sub-panel-banner-button-active': item.value.show === true}"
+                                     (click)="showSubpanel(item.key, item.value)">
+                                    <scrm-grid-widget [config]="getGridConfig(item.value)"></scrm-grid-widget>
+
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="sub-panels">
+        <ng-container *ngFor="let subpanelKey of this.openSubpanels">
+            <ng-container *ngIf="(vm.subpanels[subpanelKey]) as item">
+                <scrm-subpanel *ngIf="item.show"
+                               [maxColumns$]="maxColumns$"
+                               [store]="item"
+                               [filterConfig]="filterConfig"
+                               [onClose]="getCloseCallBack(subpanelKey, item)"
+                               class="sub-panel">
+                </scrm-subpanel>
+            </ng-container>
+        </ng-container>
+
+    </div>
+
+</ng-container>

@@ -27,7 +27,7 @@
 /* Panel Card header */
 .panel-card .card-header {
   background-color: $surface-color-background-blue;
-  padding: 0 0.5rem;
+  padding: 0 20px;
   height: 50px;
   color: $white;
   border-radius: 6px 6px 0px 0px;
@@ -77,6 +77,7 @@
   line-height: 2.25rem;
 }
 
+.modal-dialog .panel-title-header,
 .list-view-header .panel-title-header {
   display: none !important;
 }
@@ -100,7 +101,6 @@
 }
 
 .panel-title-upper-header {
-  padding: 0.5rem .75rem;
   color: $white;
   text-align: center;
   font-family: "BC Sans";
@@ -132,4 +132,20 @@
 
 .detail-view-panel-caret {
   margin-left: auto;
+  margin-right: 21px;
+}
+
+a.detail-view-panel-caret {
+  cursor: pointer;
+  margin-right: 9px;
+}
+
+a.clickable.detail-view-subpanel-title {
+  width: 100%;
+}
+
+.card-header.detail-view-subpanel-header.accordion-header {
+  display: flex;
+  align-items: center;
+  position: relative;
 }

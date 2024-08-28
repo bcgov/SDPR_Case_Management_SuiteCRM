@@ -622,7 +622,7 @@ textarea {
 }
 
 .edit-view-row .label {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   width: 98%;
   text-align: left;
@@ -724,10 +724,6 @@ slot {
 
 #EditView_tabs.yui-navset.yui-navset-top {
   padding: 0 5px 5px 5px;
-}
-
-#EditView_tabs.yui-navset.yui-navset-top .nav.nav-tabs {
-  margin-top: 15px;
 }
 
 #EditView_tabs .nav.nav-tabs {
@@ -840,6 +836,8 @@ option:checked {
   display: none;
 }
 
+#EditView #reset_user_preferences_header,
+#EditView #reset_homepage_header,
 #EditView #CANCEL_HEADER {
   background: $white;
   border: 1px solid $widget-border;
@@ -891,7 +889,7 @@ option:checked {
   font-family: 'BC Sans';
   border: 1px solid $surface-color-border-dark;
   color: $white;
-  
+
   &:hover {
     background-color: $surface-color-primary-hover;
   }
@@ -904,6 +902,19 @@ option:checked {
   position: absolute;
   bottom: 12px;
   right: 0;
+}
+
+.view-module-SecurityGroups #EditView .buttons {
+  top: -75px;
+  height: fit-content;
+}
+
+.view-module-ACLRoles .moduleTitle {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 32px 56px;
+  margin: 10px -56px 0;
 }
 
 .actionbutton-footer {
@@ -1279,7 +1290,7 @@ ul.noBullet {
 }
 
 #subpanel_list div.sub-panel{
-  margin: 0 40px;
+  margin: 0 !important;
 }
 
 li.noBullet:first-child {
@@ -1473,10 +1484,10 @@ input.sqsEnabled {
 .paginationTable {
   position: absolute;
   bottom: 0;
-  width: 0;
+  width: max-content;
   right: 43px;
   margin-bottom: 66px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid transparent;
 }
 
 .pageNumbers {
@@ -2044,6 +2055,28 @@ a.tabFormAdvLink:hover {
   background-color: $white;
 }
 
+.view-module-SecurityGroups {
+  .evenListRowS1, .oddListRowS1 {
+    background: $white;
+  }
+  .evenListRowS1 td,
+  .oddListRowS1 td {
+    color: $primary_text;
+    background-color: $transparent;
+  }
+
+  .evenListRowS1:hover,
+  .oddListRowS1:hover {
+    background-color: $secondary-button-hover;
+    color: $typography-color-secondary;
+  }
+}
+
+.dropdown-menu .nav-item:hover, .action-new .dropdown-menu .new-list-item:hover{
+  background-color: $secondary-button-hover;
+  color: $typography-color-secondary;
+}
+
 .detail table {
   background-color: #cbdae6;
 }
@@ -2441,7 +2474,6 @@ table.view {
 .table-wrapper {
   overflow: hidden;
   border-radius: 6px;
-  outline: 2px solid $grey-widget;
   margin: 24px 40px 0;
 }
 

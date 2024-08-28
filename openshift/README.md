@@ -1,5 +1,4 @@
 Table of Contents
-
 - [Deployment pre-requisites](#deployment-pre-requisites)
   - [Allowing other namespaces to pull images from `-tools` namespace](#allowing-other-namespaces-to-pull-images-from--tools-namespace)
   - [Creating required components prior to HELM/ArgoCD deployment](#creating-required-components-prior-to-helmargocd-deployment)
@@ -9,7 +8,7 @@ Table of Contents
     - [`REPOSITORY_REF`](#repository_ref)
     - [Starting a build](#starting-a-build)
 
-> 🚧 Warning
+> [!WARNING]
 >
 > Always make sure to use the `-n <license plate>-<namespace>` flag when running `oc` commands to ensure you are running commands in the correct namespace.
 
@@ -51,11 +50,20 @@ Copy the `./openshift/pre-deployment-envs.example.env` file to `./openshift/pre-
 | `VERIFICATION_VOLUME_SIZE` | Backup Verification Volume Size | False | 2Gi |
 | `SUITECRM_SHARED_VOLUME_SIZE` | The size of the volume shared among SuiteCRM pods for file storage | False | 5Gi |
 
-**Note 1:** The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project. The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_ENDPOINT_URL`, and `S3_BUCKET_NAME` variables are extracted from the `s3-iam` secret provided by BC Gov DevOps team. The `S3URI` is in the format `https://<aws-access-key-id>:<aws-secret-access-key>@<aws-endpoint-url>`.
-<br />
-**Note 2:** The `DB_USER` and `DB_NAME` variables should match `mariadb-galera.db.user` and `mariadb-galera.db.name` in the HELM chart `values.yaml` file. Also, the `DB_HOST` variable should match the name of the MariaDB Galera Cluster service in the Openshift project. The name of the service is in the format `<chart name>-mariadb-galera`.
-<br />
-**Note 3:** The `REDIS_HOST` variable should match the name of the Redis Cluster service in the Openshift project. The name of the service is in the format `<chart name>-redis-cluster`.
+> [!NOTE]
+> The `S3URI` and `bucketName` are provide by BC Gov DevOps team. You should contact them and submit a request to create a new S3 bucket for your project.
+> 
+> The `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `S3_ENDPOINT_URL`, and `S3_BUCKET_NAME` variables are extracted from the `s3-iam` secret provided by BC Gov DevOps team. The `S3URI` is in the format `https://<aws-access-key-id>:<aws-secret-access-key>@<aws-endpoint-url>`.
+
+> [!NOTE]
+> The `DB_USER` and `DB_NAME` variables should match `mariadb-galera.db.user` and `mariadb-galera.db.name` in the HELM chart `values.yaml` file. Also, the `DB_HOST` variable should match the name of the MariaDB Galera Cluster service in the Openshift project.
+> 
+> The name of the service is in the format `<chart name>-mariadb-galera`.
+
+> [!NOTE]
+> The `REDIS_HOST` variable should match the name of the Redis Cluster service in the Openshift project.
+> 
+> The name of the service is in the format `<chart name>-redis-cluster`.
 
 Run the following command to create the components required for the HELM/ArgoCD deployment:
 
