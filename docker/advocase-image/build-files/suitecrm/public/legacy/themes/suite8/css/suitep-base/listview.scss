@@ -440,6 +440,14 @@ a.listViewTdToolsS1 {
   background: url($sub-panel-delete-background-url) no-repeat right;
 }
 
+[id^="cases_edit_"] {
+  background: url($sub-panel-edit-background-url) no-repeat right;
+}
+
+[id^="cases_remove_"] {
+  background: url($sub-panel-delete-background-url) no-repeat right;
+}
+
 [id^="users_remove_"] {
   background: url($sub-panel-delete-background-url) no-repeat right;
 }
@@ -583,15 +591,20 @@ a.listViewTdToolsS1 {
   border-bottom: 1px solid $surface-color-border-default;
 }
 
+.view-module-SecurityGroups .table-responsive.list > tbody > tr > td {
+  a {
+    font-weight: bold;
+    color: $typography-color-secondary;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
 .table-responsive.list > tbody > tr > td > a {
   font-weight: bold;
   color: $typography-color-secondary;
   font-size: 16px;
   font-weight: 400;
-  // bor
-  // border-bottom-color: $list-view-link-color;
-  // border-bottom-style: dashed;
-  // border-bottom-width: 1px;
 }
 
 .table-responsive.list > tbody > tr > td svg {
