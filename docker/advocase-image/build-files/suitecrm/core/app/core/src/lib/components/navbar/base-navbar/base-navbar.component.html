@@ -213,7 +213,9 @@
                                         [class.dropdown-menu-right-center]="mobileNavbar"
                                         class="dropdown-menu dropdown-menu-left border shadow-sm-2" ngbDropdownMenu>
             
-                                        <ng-container *ngIf="(navbar?.current?.module ?? '') && currentQuickActions.length">
+                                        <ng-container *ngIf="(navbar?.current?.module ?? '') && currentQuickActions.length && (navbar?.current?.module !== 'contacts')
+                                            && (navbar?.current?.module !== 'cases') && (navbar?.current?.module !== 'meetings') && (navbar?.current?.module !== 'reports')
+                                            && (navbar?.current?.module !== 'knowledge-base' && (navbar?.current?.module !== 'knowledge-base-categories'))">
                                             <!-- <li class="new-list-item-header font-weight-bold">
                                                 <scrm-label labelKey="LBL_MODULE_NAME" [module]="navbar.current.module"></scrm-label>
                                             </li> -->
