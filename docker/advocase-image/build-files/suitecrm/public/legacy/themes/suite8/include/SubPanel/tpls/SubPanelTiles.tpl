@@ -28,7 +28,7 @@
                 <div class="subpanel-close-btn" onclick="toggleSubpanelCookie('{$subpanel_tab}');">
                     <a class="btn btn-outline-light btn-sm close-button" role="button" data-toggle="collapse" href="#subpanel_{$subpanel_tab}" aria-expanded="false"
                         onclick="toggleSubpanelCookie('{$subpanel_tab}');">
-                        <span aria-hidden="true">×</span>
+                        <span aria-hidden="true" class="close-btn-label">×</span>
                     </a>
                 </div>
             </div>
