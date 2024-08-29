@@ -763,12 +763,11 @@ if (!defined('sugarEntry') || !sugarEntry) {
                         }
                     }
 
-                    $html_text = '';
-                    // $html_text .= "<tr class='pagination' role='presentation'>\n";
-                    // $html_text .= "<td COLSPAN=\"$col_count\" align=\"right\">\n";
-                    // //$html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >$export_link$merge_link$selected_objects_span</td>\n";
+                    $html_text .= "<tr class='pagination' role='presentation'>\n";
+                    $html_text .= "<td COLSPAN=\"$col_count\" align=\"right\">\n";
+                    //$html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >$export_link$merge_link$selected_objects_span</td>\n";
                     //$html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >";
-                    // if ($subpanel_def != null) {
+                    if ($subpanel_def != null) {
                         include_once('include/SubPanel/SubPanelTiles.php');
                         $subpanelTiles = new SubPanelTiles($sugarbean);
                         $html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  >";
@@ -788,10 +787,13 @@ if (!defined('sugarEntry') || !sugarEntry) {
                         } else {
                             $html_text .= $subpanelTiles->get_buttons($subpanel_def);
                         }
-                    // } else {
-                    //     $html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr><td align=\"left\"  nowrap>$select_link&nbsp;$export_link&nbsp;$delete_link&nbsp;$selected_objects_span";
-                    // }
-                    $html_text .= "<div class='page-number-wrapper'><div class='pageNumbers'>" . $start_record . " - " . $end_record . " " . $this->local_app_strings['LBL_LIST_OF'] . " " . $row_count . "</div></div>";
+                    } else {
+                        $html_text .= "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\"><tr>< align=\"left\"  nowrap>$select_link&nbsp;$export_link&nbsp;$delete_link&nbsp;$selected_objects_span";
+                    }
+                    $html_text .= "</td>\n<td nowrap align=\"right\"><div class='pageNumbers'>" . $start_record . " - " . $end_record . " " . $this->local_app_strings['LBL_LIST_OF'] . " " .
+                    $row_count . "</div></td></tr></table>\n";
+                    $html_text .= "</td>\n";
+                    $html_text .= "</tr>\n";
 
                     $this->smartyTemplate->assign("PAGINATION", $html_text);
                 }
