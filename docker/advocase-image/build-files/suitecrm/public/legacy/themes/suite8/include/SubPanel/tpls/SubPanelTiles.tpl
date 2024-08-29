@@ -25,10 +25,11 @@
             {/if}
 
                 </a>
-                <div class="subpanel-close-btn">
-                    <button type="button" title="" class="btn btn-outline-light btn-sm close-button">
-                        <span aria-hidden="true">x</span>
-                    </button>
+                <div class="subpanel-close-btn" onclick="toggleSubpanelCookie('{$subpanel_tab}');">
+                    <a class="btn btn-outline-light btn-sm close-button" role="button" data-toggle="collapse" href="#subpanel_{$subpanel_tab}" aria-expanded="false"
+                        onclick="toggleSubpanelCookie('{$subpanel_tab}');">
+                        <span aria-hidden="true">×</span>
+                    </a>
                 </div>
             </div>
 
