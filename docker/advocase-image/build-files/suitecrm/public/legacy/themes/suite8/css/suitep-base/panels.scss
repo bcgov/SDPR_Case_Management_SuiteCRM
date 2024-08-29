@@ -640,6 +640,7 @@ a.btn.btn-outline-light.btn-sm.close-button span {
   height: 20px;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 a.btn.btn-outline-light.btn-sm.close-button:focus {
@@ -647,7 +648,10 @@ a.btn.btn-outline-light.btn-sm.close-button:focus {
 }
 
 .btn-outline-light:hover {
-  color: #212529;
+  color: black;
   background-color: white !important;
   border-color: white;
+  span.close-btn-label {
+    color: black;
+  }
 }
