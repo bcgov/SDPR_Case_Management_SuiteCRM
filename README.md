@@ -747,12 +747,12 @@ Make a copy of the `.env.example` file and rename it to `.env`. After that, you 
 
 | Variable | Description |
 | --- | --- |
-| `KEYCLOAK_AUTH_URL` | |
-| `KEYCLOAK_REALM` | |
-| `KEYCLOAK_CLIENT_ID` | |
-| `KEYCLOAK_USER` | |
-| `KEYCLOAK_PASSWORD` | |
-| `BASE_URL` | |
+| `KEYCLOAK_AUTH_URL` | The Keycloak/IDIR/SSO URL |
+| `KEYCLOAK_REALM` | The Keycloak/IDIR/SSO realm |
+| `KEYCLOAK_CLIENT_ID` | The Keycloak/IDIR/SSO client ID |
+| `KEYCLOAK_USER` | The Keycloak/IDIR/SSO user |
+| `KEYCLOAK_PASSWORD` | The Keycloak/IDIR/SSO password |
+| `BASE_URL` | The SuiteCRM base URL |
 
 ## Running the E2E test
 
