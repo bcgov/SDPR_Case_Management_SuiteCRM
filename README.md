@@ -36,6 +36,11 @@ Table of Contents
       - [Building the new images](#building-the-new-images)
       - [Building the BC Gov Advocase image to production](#building-the-bc-gov-advocase-image-to-production)
     - [Scaling up the pods](#scaling-up-the-pods)
+- [Design](#design)
+- [Testing](#testing)
+  - [Setting up the E2E test environment](#setting-up-the-e2e-test-environment)
+  - [Running the E2E test](#running-the-e2e-test)
+  - [Accessibility tests](#accessibility-tests)
 
 # Technologies Used
 
@@ -44,6 +49,7 @@ Table of Contents
   - [PHP](https://www.php.net/)
   - [Apache](https://httpd.apache.org/)
   - [Angular](https://angular.dev/)
+- [Cypress](https://www.cypress.io/)
 - [Helm](https://helm.sh/)
   - [Bitnami MariaDB Galera Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/mariadb-galera)
   - [Bitnami Redis Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/redis-cluster)
@@ -709,4 +715,64 @@ After patching the application, you can scale up the pods to the desired number 
 
 ```bash
 oc scale -n <license plate>-<namespace> deployment/suitecrm --replicas=2
+```
+
+# Design
+
+You can find the design documentation inside the [./design](./design) directory. Bellow a list of files and their descriptions:
+
+- [./design/Advocase Design Handoff.fig](./design/Advocase%20Design%20Handoff.fig): This file contains the design handoff for the Advocase project. It contains the design system, components, and styles used in the project in FIGMA format.
+- [./design/Advocase Design Handoff.pdf](./design/Advocase%20Design%20Handoff.pdf): This file contains the design handoff for the Advocase project. It contains the design system, components, and styles used in the project in PDF format.
+- [./design/Manual Accessibility Test Guideline.pdf](./design/Manual%20Accessibility%20Test%20Guideline.pdf): This file contains the manual accessibility test guideline for the Advocase project. It contains the steps to test the accessibility of the project.
+
+# Testing
+
+E2E test were implemented for the Advocase project, in order to validate that all the functional requirements are working as expected.
+
+## Setting up the E2E test environment
+
+First you need to navigate to the test directory:
+
+```bash
+cd tests
+```
+
+After that, you need to install the dependencies:
+
+```bash
+npm install
+```
+
+Make a copy of the `.env.example` file and rename it to `.env`. After that, you need to fill the environment variables with the appropriate values.
+
+| Variable | Description |
+| --- | --- |
+| `KEYCLOAK_AUTH_URL` | |
+| `KEYCLOAK_REALM` | |
+| `KEYCLOAK_CLIENT_ID` | |
+| `KEYCLOAK_USER` | |
+| `KEYCLOAK_PASSWORD` | |
+| `BASE_URL` | |
+
+## Running the E2E test
+
+If you want to run the tests using the interactive mode, you can run the following command:
+
+```bash
+npm run cy:electron
+```
+
+If you want to run the tests in headless mode, you can run the following command:
+
+```bash
+npm run cy:run
+```
+
+## Accessibility tests
+
+The accessibility tests are implemented using the `cypress-axe` plugin. The plugin will run the accessibility tests on the application and will generate a report with the results.
+If you want to run the accessibility tests, you can run the following command:
+
+```bash
+npm run cy:accessibility
 ```
