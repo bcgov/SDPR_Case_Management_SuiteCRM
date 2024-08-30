@@ -266,7 +266,7 @@ p.msg {
 }
 
 #whole_subpanel_therevisions {
-  position: absolute;
+  position: relative;
   width: 100%;
   left: 0;
 }
@@ -284,30 +284,46 @@ p.msg {
 }
 
 #whole_subpanel_contacts {
-  position: absolute;
+  position: relative;
   width: 100%;
   left: 0;
 }
 
 #whole_subpanel_cases {
-  position: absolute;
+  position: relative;
   width: 100%;
   left: 0;
 }
 
 #whole_subpanel_users {
-  position: absolute;
+  position: relative;
   width: 100%;
   left: 0;
 }
 
 #whole_subpanel_aclroles {
-  position: absolute;
+  position: relative;
   width: 100%;
   left: 0;
 }
 
 #subpanel_users {
+  padding-top: 60px;
+}
+
+#subpanel_aclroles {
+  padding-top: 60px;
+}
+
+#subpanel_therevisions {
+  padding-top: 60px;
+}
+
+#subpanel_contacts {
+  padding-top: 60px;
+}
+
+#subpanel_cases {
   padding-top: 60px;
 }
 

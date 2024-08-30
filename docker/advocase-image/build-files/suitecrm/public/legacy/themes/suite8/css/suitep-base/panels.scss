@@ -273,7 +273,7 @@ div.sub-panel {
 
 .sub-panel tbody tr td .sugar_action_button > a:link {
   border-bottom: none;
-  color: $list-view-button-color;
+  color: transparent;
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -619,4 +619,39 @@ table.subpanelTabForm {
 .clickMenu li a.disabled {
   color: $disabled-btn-color;
   cursor: default ;
+}
+
+a.btn.btn-outline-light.btn-sm.close-button {
+  background-color: transparent;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  font-weight: 700;
+  line-height: 1;
+  font-size: 1.3em;
+  padding: 0;
+  height: 20px;
+  width: 20px;
+}
+
+a.btn.btn-outline-light.btn-sm.close-button span {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+a.btn.btn-outline-light.btn-sm.close-button:focus {
+  outline: none;
+}
+
+.btn-outline-light:hover {
+  color: black;
+  background-color: white !important;
+  border-color: white;
+  span.close-btn-label {
+    color: black !important;
+  }
 }
