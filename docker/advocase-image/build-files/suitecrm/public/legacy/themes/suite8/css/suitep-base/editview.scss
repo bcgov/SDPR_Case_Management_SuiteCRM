@@ -181,6 +181,14 @@ div#searchResults {
   border-collapse: collapse;
 }
 
+.meeting-scheduler #create-invitees {
+  border-top: none;
+  border-bottom: none;
+  padding: 0px 40px 32px;
+  border-radius: 0;
+  margin: 0;
+}
+
 .schedulerInvitees {
   background-color: $panel-bg;
   color: $primary_text;
@@ -904,6 +912,19 @@ option:checked {
   right: 0;
 }
 
+.view-module-SecurityGroups #EditView .buttons {
+  top: -75px;
+  height: fit-content;
+}
+
+.view-module-ACLRoles .moduleTitle {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 32px 56px;
+  margin: 10px -56px 0;
+}
+
 .actionbutton-footer {
   display: none;
 }
@@ -1277,7 +1298,7 @@ ul.noBullet {
 }
 
 #subpanel_list div.sub-panel{
-  margin: 0 -9px;
+  margin: 0 !important;
 }
 
 li.noBullet:first-child {
@@ -1471,10 +1492,10 @@ input.sqsEnabled {
 .paginationTable {
   position: absolute;
   bottom: 0;
-  width: 0;
+  width: max-content;
   right: 43px;
   margin-bottom: 66px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid transparent;
 }
 
 .pageNumbers {
@@ -1484,7 +1505,7 @@ input.sqsEnabled {
   line-height: 21px;
   color: $primary_text;
   margin: 0 0 0 0;
-  padding-bottom: 7px;
+  padding: 24px 40px;
 }
 .page-number-wrapper {
   display: flex;
@@ -2040,6 +2061,28 @@ a.tabFormAdvLink:hover {
 .oddListRowS1 td {
   color: $primary_text;
   background-color: $white;
+}
+
+.view-module-SecurityGroups {
+  .evenListRowS1, .oddListRowS1 {
+    background: $white;
+  }
+  .evenListRowS1 td,
+  .oddListRowS1 td {
+    color: $primary_text;
+    background-color: $transparent;
+  }
+
+  .evenListRowS1:hover,
+  .oddListRowS1:hover {
+    background-color: $secondary-button-hover;
+    color: $typography-color-secondary;
+  }
+}
+
+.dropdown-menu .nav-item:hover, .action-new .dropdown-menu .new-list-item:hover{
+  background-color: $secondary-button-hover;
+  color: $typography-color-secondary;
 }
 
 .detail table {
@@ -5896,7 +5939,7 @@ div.content div.pagecontent form#EditView div.edit.view table tbody tr td input[
 }
 
 select, input, textarea, button, select[size], input[type=text], input:not([type]), input[type=password] {
-  border-color: $surface-color-border-default;
+  border-color: $input-border;
 }
 
 table.subpanel-table .pagination .action_buttons a,

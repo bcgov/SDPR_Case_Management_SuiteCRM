@@ -10,9 +10,8 @@ array (
       array (
         'buttons' => 
         array (
-          0 => 'EDIT',
-          1 => 'DUPLICATE',
-          2 => 'DELETE',
+          0 => 'DUPLICATE',
+          1 => 'DELETE',
         ),
         'headerTpl' => 'modules/Documents/tpls/detailHeader.tpl',
       ),

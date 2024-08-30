@@ -26,8 +26,8 @@ RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/su
 && yarn run build:shell \
 && rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist \
 && npm uninstall -g yarn sass \
-&& apt remove nodejs npm -y \
-&& apt autoremove -y
+&& apt-get remove nodejs npm -y \
+&& apt-get autoremove -y
 
 # Fixing permissions for backwards compatibility with OpenShift and Kubernetes
 RUN chgrp -R 0 /suitecrm && \

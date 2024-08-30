@@ -75,7 +75,6 @@
       position: relative;
     }
 
-  .view-module-Meetings,
   .view-module-AOR_Reports {
     #subpanel_list li.noBullet {
       margin: 0;
@@ -341,7 +340,7 @@
 
   .detail-view .tab-content {
     background-color: $tab-bg;
-    padding-top: 1rem;
+    padding-top: 2rem;
     padding-bottom: 2rem;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;

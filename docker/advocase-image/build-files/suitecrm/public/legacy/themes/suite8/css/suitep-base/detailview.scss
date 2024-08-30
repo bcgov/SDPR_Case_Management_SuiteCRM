@@ -266,21 +266,65 @@ p.msg {
 }
 
 #whole_subpanel_therevisions {
-  position: absolute;
+  position: relative;
   width: 100%;
-  padding-right: 17px;
+  left: 0;
+}
+
+#list_subpanel_therevisions table:first-of-type {
+  .action-column, .footable-last-visible {
+    display: none !important;
+  }
+
+  #whole_subpanel_contacts {
+    .action-column, .footable-last-visible {
+      display: table-cell !important;
+    }
+  }
 }
 
 #whole_subpanel_contacts {
-  position: absolute;
+  position: relative;
   width: 100%;
-  padding-right: 17px;
+  left: 0;
 }
 
 #whole_subpanel_cases {
-  position: absolute;
+  position: relative;
   width: 100%;
-  padding-right: 17px;
+  left: 0;
+}
+
+#whole_subpanel_users {
+  position: relative;
+  width: 100%;
+  left: 0;
+}
+
+#whole_subpanel_aclroles {
+  position: relative;
+  width: 100%;
+  left: 0;
+}
+
+#subpanel_users {
+  padding-top: 60px;
+}
+
+#subpanel_aclroles {
+  padding-top: 60px;
+}
+
+#subpanel_therevisions {
+  padding-top: 60px;
+}
+
+#subpanel_contacts {
+  padding-top: 60px;
+}
+
+#subpanel_cases {
+  padding-top: 60px;
 }
 
 #subpanel_history .evenListRowS1 td:nth-of-type(2) a {

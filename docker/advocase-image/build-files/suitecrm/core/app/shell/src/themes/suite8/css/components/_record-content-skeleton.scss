@@ -1,6 +1,6 @@
 /**
  * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
- * Copyright (C) 2023 SalesAgility Ltd.
+ * Copyright (C) 2022 SalesAgility Ltd.
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License version 3 as published by the
@@ -24,53 +24,23 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-/* --------- MESSAGE SECTION ---------- */
-form .p-multiselect {
-  margin-bottom: 16px;
+.record-content-skeleton .nav-tabs.nav {
+  height: 50px;
+  opacity: 0.6;
 }
 
-.p-multiselect {
-  width: 100%;
-
-  .p-multiselect-label {
-      font-size: 16px;
-      color: $primary_text;
-      font-family: "BC Sans";
-      font-style: normal;
-      padding: 0;
-    }
-
-  .p-multiselect-trigger {
-    width: fit-content;
-    svg {
-      width: 14px;
-    }
-    .p-multiselect-clear-icon {
-      width: 14px;
-    }
-  }
-
-  .p-multiselect-panel {
-    .p-inputtext {
-      padding: 0.3rem 0.6rem;
-    }
-
-    .p-multiselect-close {
-      padding: 0.6em;
-      background-color: $pale-grey;
-      &:hover {
-        background-color: $cool-blue;
-      }
-    }
-
-    ul.p-multiselect-items {
-      padding-inline-start: 0em;
-    }
-  }
-
-  .p-overlay {
-    z-index: 1!important;
-  }
+.record-content-skeleton .tab-content .col-form-label-sm {
+  background-color: $midnight-blue;
+  opacity: 0.4;
 }
 
+.record-content-skeleton .tab-content .skeleton-field-content {
+  background-color: $geyser-blue;
+  opacity: 0.6;
+}
 
+.dynamic-field .skeleton-field-content {
+  height: 34px;
+  background-color: $geyser-blue;
+  opacity: 0.6;
+}
