@@ -41,6 +41,10 @@ form  #EditView_tabs .panel {
   visibility: collapse;
 }
 
+.modal-edit-dashboard .panel-template {
+  display: none;
+}
+
 .communication-panel-title {
   font-family: "BC Sans";
   font-size: 20px;
@@ -79,12 +83,19 @@ form  #EditView_tabs .panel {
   text-decoration: none;
   padding: 0;
   color: $white;
-  text-align: center;
+  text-align: left;
   font-family: "BC Sans";
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 34px;
+  white-space: nowrap;
+  display: flex;
+  flex: 1;
+}
+
+.document_caret_icon {
+  margin-top: 6px;
 }
 
 .panel-default > .panel-heading > a::first-letter {
@@ -262,7 +273,7 @@ div.sub-panel {
 
 .sub-panel tbody tr td .sugar_action_button > a:link {
   border-bottom: none;
-  color: $list-view-button-color;
+  color: transparent;
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -527,7 +538,7 @@ table.subpanelTabForm {
 @media (max-width: 767px) {
   .panel-heading a div {
     line-height: 35px;
-    width: 90% !important;
+    width: 100% !important;
     padding-left: 6px;
   }
 }
@@ -535,7 +546,7 @@ table.subpanelTabForm {
 @media (min-width: 768px) {
   .panel-heading a div {
     line-height: 35px;
-    width: 90% !important;
+    width: 100% !important;
   }
 }
 
@@ -608,4 +619,39 @@ table.subpanelTabForm {
 .clickMenu li a.disabled {
   color: $disabled-btn-color;
   cursor: default ;
+}
+
+a.btn.btn-outline-light.btn-sm.close-button {
+  background-color: transparent;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  font-weight: 700;
+  line-height: 1;
+  font-size: 1.3em;
+  padding: 0;
+  height: 20px;
+  width: 20px;
+}
+
+a.btn.btn-outline-light.btn-sm.close-button span {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+a.btn.btn-outline-light.btn-sm.close-button:focus {
+  outline: none;
+}
+
+.btn-outline-light:hover {
+  color: black;
+  background-color: white !important;
+  border-color: white;
+  span.close-btn-label {
+    color: black !important;
+  }
 }

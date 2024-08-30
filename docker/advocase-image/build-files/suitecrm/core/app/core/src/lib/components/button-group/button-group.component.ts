@@ -27,6 +27,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Button, ButtonGroupInterface, ButtonInterface, DropdownButtonInterface, AnyButtonInterface} from 'common';
 import {Observable, Subscription} from 'rxjs';
+import { Router } from '@angular/router';
 
 interface SplitButtons {
     expanded: AnyButtonInterface[];
@@ -54,7 +55,7 @@ export class ButtonGroupComponent implements OnInit, OnDestroy {
     private sub: Subscription;
 
 
-    constructor() {
+    constructor(private router: Router) {
     }
 
     ngOnInit(): void {
@@ -62,7 +63,6 @@ export class ButtonGroupComponent implements OnInit, OnDestroy {
             this.internalConfig = {...config};
             this.splitButtons();
         });
-        console.log(this.config$);
     }
 
     ngOnDestroy(): void {
@@ -104,6 +104,7 @@ export class ButtonGroupComponent implements OnInit, OnDestroy {
         if (this.internalConfig.dropdownOptions && this.internalConfig.dropdownOptions.icon) {
             this.dropdownConfig.icon = this.internalConfig.dropdownOptions.icon;
         }
+        this.dropdownConfig.label = "More Actions";
     }
 
     protected getBreakpoint(): number {
@@ -155,5 +156,16 @@ export class ButtonGroupComponent implements OnInit, OnDestroy {
 
     stopPropagation(event: MouseEvent) {
         event.stopPropagation();
+    }
+
+    checkDropdown():boolean {
+        const currentUrl = this.router.url;
+        const targetPath = '/cases/';
+        const correctUrl = currentUrl.startsWith(targetPath);
+        if (correctUrl && this.buttons.expanded.length == 1 && this.buttons.expanded[0].label == 'Edit') { 
+            return true;
+        } else {
+            return false;
+        }
     }
 }
