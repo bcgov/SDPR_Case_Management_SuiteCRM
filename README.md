@@ -18,6 +18,7 @@ Table of Contents
   - [Deploying the project on Openshift](#deploying-the-project-on-openshift)
     - [Deploying using ArgoCD](#deploying-using-argocd)
     - [Deploying using Helm](#deploying-using-helm)
+- [Theming](#theming)
 - [Maintenance](#maintenance)
   - [Database](#database)
     - [Accessing the database](#accessing-the-database)
@@ -36,6 +37,12 @@ Table of Contents
       - [Building the new images](#building-the-new-images)
       - [Building the BC Gov Advocase image to production](#building-the-bc-gov-advocase-image-to-production)
     - [Scaling up the pods](#scaling-up-the-pods)
+- [Design](#design)
+- [Testing](#testing)
+  - [Setting up the E2E test environment](#setting-up-the-e2e-test-environment)
+  - [Running the E2E test](#running-the-e2e-test)
+  - [Accessibility tests](#accessibility-tests)
+- [Monitoring](#monitoring)
 
 # Technologies Used
 
@@ -44,6 +51,7 @@ Table of Contents
   - [PHP](https://www.php.net/)
   - [Apache](https://httpd.apache.org/)
   - [Angular](https://angular.dev/)
+- [Cypress](https://www.cypress.io/)
 - [Helm](https://helm.sh/)
   - [Bitnami MariaDB Galera Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/mariadb-galera)
   - [Bitnami Redis Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/redis-cluster)
@@ -324,6 +332,10 @@ After creating the `values.yaml` file, you can deploy the project using the foll
 ```bash
 helm install -n <license plate>-<namespace> suitecrm ./helm/suitecrm -f /path/to/your/custom/values.yaml
 ```
+
+# Theming
+
+Check the [BC Gov SuiteCRM Theme documentation](./bcgov-theme/README.md) and the [BC Gov SuiteCRM Docker image `Theming customizations`](./docker/suitecrm-image/README.md#theming-customizations) section to see how to apply the BC Gov SuiteCRM theme and/or theme the SuiteCRM application.
 
 # Maintenance
 
@@ -710,3 +722,71 @@ After patching the application, you can scale up the pods to the desired number 
 ```bash
 oc scale -n <license plate>-<namespace> deployment/suitecrm --replicas=2
 ```
+
+# Design
+
+You can find the design documentation inside the [./design](./design) directory. Bellow a list of files and their descriptions:
+
+- [./design/Advocase Design Handoff.fig](./design/Advocase%20Design%20Handoff.fig): This file contains the design handoff for the Advocase project. It contains the design system, components, and styles used in the project in FIGMA format.
+- [./design/Advocase Design Handoff.pdf](./design/Advocase%20Design%20Handoff.pdf): This file contains the design handoff for the Advocase project. It contains the design system, components, and styles used in the project in PDF format.
+- [./design/Manual Accessibility Test Guideline.pdf](./design/Manual%20Accessibility%20Test%20Guideline.pdf): This file contains the manual accessibility test guideline for the Advocase project. It contains the steps to test the accessibility of the project.
+
+# Testing
+
+E2E test were implemented for the Advocase project, in order to validate that all the functional requirements are working as expected.
+
+## Setting up the E2E test environment
+
+First you need to navigate to the test directory:
+
+```bash
+cd tests
+```
+
+After that, you need to install the dependencies:
+
+```bash
+npm install
+```
+
+Make a copy of the `.env.example` file and rename it to `.env`. After that, you need to fill the environment variables with the appropriate values.
+
+| Variable | Description |
+| --- | --- |
+| `KEYCLOAK_AUTH_URL` | The Keycloak/IDIR/SSO URL. Refer to `global.ssoDomain` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_REALM` | The Keycloak/IDIR/SSO realm. Refer to `global.ssoRealm` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_CLIENT_ID` | The Keycloak/IDIR/SSO client ID. Refer to `global.ssoClientId` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_USER` | The Keycloak/IDIR/SSO user |
+| `KEYCLOAK_PASSWORD` | The Keycloak/IDIR/SSO password |
+| `BASE_URL` | The SuiteCRM base URL. Refer to `global.suitecrmHost` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+
+> [!IMPORTANT]
+>
+> If using APS domains, you might need to whitelist your IP address in the APS domain configurations. Contact the CTO team to get your IP address whitelisted.
+
+## Running the E2E test
+
+If you want to run the tests using the interactive mode, you can run the following command:
+
+```bash
+npm run cy:electron
+```
+
+If you want to run the tests in headless mode, you can run the following command:
+
+```bash
+npm run cy:run
+```
+
+## Accessibility tests
+
+The accessibility tests are implemented using the `cypress-axe` plugin. The plugin will run the accessibility tests on the application and will generate a report with the results.
+If you want to run the accessibility tests, you can run the following command:
+
+```bash
+npm run cy:accessibility
+```
+
+# Monitoring
+
+Refer to the [BC GOV Sysdig Monitoring documentation](https://developer.gov.bc.ca/docs/default/component/platform-developer-docs/docs/app-monitoring/sysdig-monitor-setup-team/#part-1-compose-the-sysdig-team-object-manifest) to integrate your Openshift project with Sysdig.
