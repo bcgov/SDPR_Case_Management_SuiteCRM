@@ -18,6 +18,7 @@ Table of Contents
   - [Deploying the project on Openshift](#deploying-the-project-on-openshift)
     - [Deploying using ArgoCD](#deploying-using-argocd)
     - [Deploying using Helm](#deploying-using-helm)
+- [Theming](#theming)
 - [Maintenance](#maintenance)
   - [Database](#database)
     - [Accessing the database](#accessing-the-database)
@@ -27,6 +28,21 @@ Table of Contents
   - [Restoring files from S3 file backup bucket](#restoring-files-from-s3-file-backup-bucket)
     - [Creating a debug pod](#creating-a-debug-pod)
     - [Restoring the files](#restoring-the-files)
+  - [Patching](#patching)
+    - [Scaling down the pods](#scaling-down-the-pods)
+    - [Downloading the patch](#downloading-the-patch)
+    - [Patching the application](#patching-the-application)
+    - [Building new images for BC Gov SuiteCRM and BC Gov Advocase Images](#building-new-images-for-bc-gov-suitecrm-and-bc-gov-advocase-images)
+      - [Changing the SuiteCRM version](#changing-the-suitecrm-version)
+      - [Building the new images](#building-the-new-images)
+      - [Building the BC Gov Advocase image to production](#building-the-bc-gov-advocase-image-to-production)
+    - [Scaling up the pods](#scaling-up-the-pods)
+- [Design](#design)
+- [Testing](#testing)
+  - [Setting up the E2E test environment](#setting-up-the-e2e-test-environment)
+  - [Running the E2E test](#running-the-e2e-test)
+  - [Accessibility tests](#accessibility-tests)
+- [Monitoring](#monitoring)
 
 # Technologies Used
 
@@ -35,6 +51,7 @@ Table of Contents
   - [PHP](https://www.php.net/)
   - [Apache](https://httpd.apache.org/)
   - [Angular](https://angular.dev/)
+- [Cypress](https://www.cypress.io/)
 - [Helm](https://helm.sh/)
   - [Bitnami MariaDB Galera Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/mariadb-galera)
   - [Bitnami Redis Cluster Helm Chart](https://artifacthub.io/packages/helm/bitnami/redis-cluster)
@@ -316,6 +333,10 @@ After creating the `values.yaml` file, you can deploy the project using the foll
 helm install -n <license plate>-<namespace> suitecrm ./helm/suitecrm -f /path/to/your/custom/values.yaml
 ```
 
+# Theming
+
+Check the [BC Gov SuiteCRM Theme documentation](./bcgov-theme/README.md) and the [BC Gov SuiteCRM Docker image `Theming customizations`](./docker/suitecrm-image/README.md#theming-customizations) section to see how to apply the BC Gov SuiteCRM theme and/or theme the SuiteCRM application.
+
 # Maintenance
 
 ## Database
@@ -575,3 +596,197 @@ After confirming that the command is correct, you can run the command without th
 ```bash
 aws s3 sync s3://${S3_BUCKET}/<environment>/upload/ /aws/suitecrm/public/legacy/upload/ --delete
 ```
+
+## Patching
+
+> [!TIP]
+>
+> Before patching the application, create a backup of the current database to avoid any data loss. You can create a backup by running the following command:
+> ```bash
+> oc exec -n <license plate>-<namespace> suitecrm-backup-storage-5864c8d497-5h9bs -- ./backup.sh -1
+> ```
+
+### Scaling down the pods
+
+Before executing the commands, scale down the pods to one replica. You can do it through the Openshift web console or by running the following command:
+
+```bash
+oc scale -n <license plate>-<namespace> deployment/suitecrm --replicas=1
+```
+
+### Downloading the patch
+
+> [!NOTE]
+>
+> This patching process is following the guidelines from the [SuiteCRM Upgrading Guide](https://docs.suitecrm.com/8.x/admin/upgrading/upgrading-82x-versions/)
+
+> [!WARNING]
+>
+> Always patch to the `latest` version and not to a `beta` one in production. Try the `beta` version locally or in the `dev` environment
+
+First you need to select the SuiteCRM pod to download the patch. You can do that by running the following command:
+
+```bash
+oc get pods -n <license plate>-<namespace>
+
+# Output
+
+# NAME                                                 READY   STATUS      RESTARTS   AGE
+# --> suitecrm-86db69fd6c-xz94h <-- This one           1/1     Running     0          21m
+# suitecrm-app-cron-job-28750635-zwn45                 0/1     Completed   0          70m
+# suitecrm-app-cron-job-28750650-kbp4s                 0/1     Completed   0          55m
+# suitecrm-app-cron-job-28750665-g99fx                 0/1     Completed   0          40m
+# suitecrm-app-cron-job-28750680-gtjk6                 0/1     Completed   0          25m
+# suitecrm-app-cron-job-28750695-fxs2w                 0/1     Completed   0          10m
+# suitecrm-backup-storage-6bcb6d4ccf-txjgg             1/1     Running     0          43h
+# suitecrm-mariadb-galera-0                            1/1     Running     0          43h
+# suitecrm-redis-cluster-0                             1/1     Running     0          43h
+# suitecrm-redis-cluster-1                             1/1     Running     0          43h
+# suitecrm-redis-cluster-2                             1/1     Running     0          43h
+# suitecrm-redis-cluster-3                             1/1     Running     0          43h
+# suitecrm-redis-cluster-4                             1/1     Running     0          43h
+# suitecrm-redis-cluster-5                             1/1     Running     0          43h
+# suitecrm-s3-file-backup-cron-job-28750685-mxrn9      0/1     Completed   0          20m
+# suitecrm-s3-file-backup-cron-job-28750690-mh4s5      0/1     Completed   0          15m
+# suitecrm-s3-file-backup-cron-job-28750695-xrd7v      0/1     Completed   0          10m
+# suitecrm-s3-file-backup-cron-job-28750700-mrn64      0/1     Completed   0          5m26s
+# suitecrm-s3-file-backup-cron-job-28750705-mg9hq      0/1     Completed   0          26s
+```
+
+Create the folder to store the patch file:
+
+```bash
+oc exec -n <license plate>-<namespace> suitecrm-86db69fd6c-xz94h -- mkdir -p /suitecrm/tmp/package/upgrade
+```
+
+Then, download the patch from the SuiteCRM website or Github repository. For this guide, we are using the [SuiteCRM Github repository releases page](https://github.com/salesagility/SuiteCRM-Core/releases). Run the following command to download the patch:
+
+> [!NOTE]
+>
+> Don't forget to replace the placeholders `<SuiteCRM version>` with the appropriate version number and also check the whole URL to make sure it's correct.
+
+```bash
+oc exec -n <license plate>-<namespace> suitecrm-86db69fd6c-xz94h -- curl -L -o /suitecrm/tmp/package/upgrade/SuiteCRM-<SuiteCRM version> https://github.com/salesagility/SuiteCRM-Core/releases/download/v<SuiteCRM version>/SuiteCRM-<SuiteCRM version>.zip
+```
+
+### Patching the application
+
+> [!NOTE]
+>
+> Don't forget to replace the placeholders `<SuiteCRM version>` with the appropriate version number.
+
+After downloading the patch, you can run the following commands to patch the application:
+
+```bash
+oc exec -n <license plate>-<namespace> suitecrm-86db69fd6c-xz94h -- /suitecrm/bin/console suitecrm:app:upgrade -t SuiteCRM-<SuiteCRM version>
+```
+
+### Building new images for BC Gov SuiteCRM and BC Gov Advocase Images
+
+#### Changing the SuiteCRM version
+
+You will need to change the SuiteCRM version to donwload in the [./docker/suitecrm-image/suitecrm/scripts/suitecrm/donwload.sh](./docker/suitecrm-image/suitecrm/scripts/suitecrm/download.sh) file. Change is made in the line `22`:
+
+> [!IMPORTANT]
+>
+> The `<SuiteCRM new version>` placeholder should be replaced with the appropriate version number, splited by dots. I.e.: `8.6.2`.
+
+```sh
+local suitecrm_version="<SuiteCRM new version>"
+```
+
+After changing the SuiteCRM version, create a new branch and push the changes to the repository. After that, you can create a pull request to merge the changes to the `dev`, `test`, and `main` branches.
+
+#### Building the new images
+
+> [!IMPORTANT]
+>
+> After merging the changes into the `dev` and `test` branches, the pipelines will be triggered automatically to build new BC Gov Advocase images. Cancel the worflow run and run it again after the `BC Gov SuiteCRM` image is built.
+
+> [!TIP]
+>
+> Before patching `prod` environment, patch the `dev` and `test` environments, respectively, to make sure everything is working as expected.
+
+After changing the SuiteCRM version, you need to build the new image. You can do that by triggering the [BC Gov SuiteCRM build image](https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/actions/workflows/suitecrm-push-to-artifactory.yaml) pipeline on the repository. Click on the `Run workflow` button, select the `main`branch for both `Use workflow from` and `Building BC GOV SuiteCRM image from (branch)` fields, and click on the `Run workflow` button.
+
+After the BC Gov SuiteCRM image pipeline is finished, you can re-run the [[DEV/UAT] Advocase DEV/UAT Deployment](https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/actions/workflows/advocase-pr-merge-deployment.yaml).
+
+#### Building the BC Gov Advocase image to production
+
+After patching is done in both `dev` and `test` environments, you can patch the `prod` environment. To do that, you need to trigger the [[PROD] Advocase Production Deployment](https://github.com/bcgov/SDPR_Case_Management_SuiteCRM/actions/workflows/advocase-main-deployment.yaml). Click on the `Run workflow` button, select the `main` branch for both `Use workflow from`, and click on the `Run workflow` button.
+
+### Scaling up the pods
+
+After patching the application, you can scale up the pods to the desired number of replicas. You can do that through the Openshift web console or by running the following command:
+
+```bash
+oc scale -n <license plate>-<namespace> deployment/suitecrm --replicas=2
+```
+
+# Design
+
+You can find the design documentation inside the [./design](./design) directory. Bellow a list of files and their descriptions:
+
+- [./design/Advocase Design Handoff.fig](./design/Advocase%20Design%20Handoff.fig): This file contains the design handoff for the Advocase project. It contains the design system, components, and styles used in the project in FIGMA format.
+- [./design/Advocase Design Handoff.pdf](./design/Advocase%20Design%20Handoff.pdf): This file contains the design handoff for the Advocase project. It contains the design system, components, and styles used in the project in PDF format.
+- [./design/Manual Accessibility Test Guideline.pdf](./design/Manual%20Accessibility%20Test%20Guideline.pdf): This file contains the manual accessibility test guideline for the Advocase project. It contains the steps to test the accessibility of the project.
+
+# Testing
+
+E2E test were implemented for the Advocase project, in order to validate that all the functional requirements are working as expected.
+
+## Setting up the E2E test environment
+
+First you need to navigate to the test directory:
+
+```bash
+cd tests
+```
+
+After that, you need to install the dependencies:
+
+```bash
+npm install
+```
+
+Make a copy of the `.env.example` file and rename it to `.env`. After that, you need to fill the environment variables with the appropriate values.
+
+| Variable | Description |
+| --- | --- |
+| `KEYCLOAK_AUTH_URL` | The Keycloak/IDIR/SSO URL. Refer to `global.ssoDomain` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_REALM` | The Keycloak/IDIR/SSO realm. Refer to `global.ssoRealm` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_CLIENT_ID` | The Keycloak/IDIR/SSO client ID. Refer to `global.ssoClientId` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_USER` | The Keycloak/IDIR/SSO user |
+| `KEYCLOAK_PASSWORD` | The Keycloak/IDIR/SSO password |
+| `BASE_URL` | The SuiteCRM base URL. Refer to `global.suitecrmHost` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+
+> [!IMPORTANT]
+>
+> If using APS domains, you might need to whitelist your IP address in the APS domain configurations. Contact the CTO team to get your IP address whitelisted.
+
+## Running the E2E test
+
+If you want to run the tests using the interactive mode, you can run the following command:
+
+```bash
+npm run cy:electron
+```
+
+If you want to run the tests in headless mode, you can run the following command:
+
+```bash
+npm run cy:run
+```
+
+## Accessibility tests
+
+The accessibility tests are implemented using the `cypress-axe` plugin. The plugin will run the accessibility tests on the application and will generate a report with the results.
+If you want to run the accessibility tests, you can run the following command:
+
+```bash
+npm run cy:accessibility
+```
+
+# Monitoring
+
+Refer to the [BC GOV Sysdig Monitoring documentation](https://developer.gov.bc.ca/docs/default/component/platform-developer-docs/docs/app-monitoring/sysdig-monitor-setup-team/#part-1-compose-the-sysdig-team-object-manifest) to integrate your Openshift project with Sysdig.
