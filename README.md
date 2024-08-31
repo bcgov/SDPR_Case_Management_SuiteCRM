@@ -747,12 +747,16 @@ Make a copy of the `.env.example` file and rename it to `.env`. After that, you 
 
 | Variable | Description |
 | --- | --- |
-| `KEYCLOAK_AUTH_URL` | The Keycloak/IDIR/SSO URL |
-| `KEYCLOAK_REALM` | The Keycloak/IDIR/SSO realm |
-| `KEYCLOAK_CLIENT_ID` | The Keycloak/IDIR/SSO client ID |
+| `KEYCLOAK_AUTH_URL` | The Keycloak/IDIR/SSO URL. Refer to `global.ssoDomain` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_REALM` | The Keycloak/IDIR/SSO realm. Refer to `global.ssoRealm` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+| `KEYCLOAK_CLIENT_ID` | The Keycloak/IDIR/SSO client ID. Refer to `global.ssoClientId` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
 | `KEYCLOAK_USER` | The Keycloak/IDIR/SSO user |
 | `KEYCLOAK_PASSWORD` | The Keycloak/IDIR/SSO password |
-| `BASE_URL` | The SuiteCRM base URL |
+| `BASE_URL` | The SuiteCRM base URL. Refer to `global.suitecrmHost` from [SuiteCRM Helm Chart Global Parameters](./helm/suitecrm/README.md#global-parameters) |
+
+> [!IMPORTANT]
+>
+> If using APS domains, you might need to whitelist your IP address in the APS domain configurations. Contact the CTO team to get your IP address whitelisted.
 
 ## Running the E2E test
 
