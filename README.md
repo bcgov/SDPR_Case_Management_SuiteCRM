@@ -18,6 +18,7 @@ Table of Contents
   - [Deploying the project on Openshift](#deploying-the-project-on-openshift)
     - [Deploying using ArgoCD](#deploying-using-argocd)
     - [Deploying using Helm](#deploying-using-helm)
+- [Theming](#theming)
 - [Maintenance](#maintenance)
   - [Database](#database)
     - [Accessing the database](#accessing-the-database)
@@ -331,6 +332,10 @@ After creating the `values.yaml` file, you can deploy the project using the foll
 ```bash
 helm install -n <license plate>-<namespace> suitecrm ./helm/suitecrm -f /path/to/your/custom/values.yaml
 ```
+
+# Theming
+
+Check the [BC Gov SuiteCRM Theme documentation](./bcgov-theme/README.md) and the [BC Gov SuiteCRM Docker image `Theming customizations`](./docker/suitecrm-image/README.md#theming-customizations) section to see how to apply the BC Gov SuiteCRM theme and/or theme the SuiteCRM application.
 
 # Maintenance
 
