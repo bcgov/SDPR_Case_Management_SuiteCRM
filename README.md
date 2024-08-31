@@ -41,6 +41,7 @@ Table of Contents
   - [Setting up the E2E test environment](#setting-up-the-e2e-test-environment)
   - [Running the E2E test](#running-the-e2e-test)
   - [Accessibility tests](#accessibility-tests)
+- [Monitoring](#monitoring)
 
 # Technologies Used
 
@@ -780,3 +781,7 @@ If you want to run the accessibility tests, you can run the following command:
 ```bash
 npm run cy:accessibility
 ```
+
+# Monitoring
+
+Refer to the [BC GOV Sysdig Monitoring documentation](https://developer.gov.bc.ca/docs/default/component/platform-developer-docs/docs/app-monitoring/sysdig-monitor-setup-team/#part-1-compose-the-sysdig-team-object-manifest) to integrate your Openshift project with Sysdig.
