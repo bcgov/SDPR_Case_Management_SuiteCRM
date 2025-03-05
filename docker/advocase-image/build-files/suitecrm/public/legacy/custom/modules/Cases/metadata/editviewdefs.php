@@ -169,12 +169,16 @@ array (
         ),
         8 => 
         array (
-          0 => '',
-          1 => 
+          0 => 
           array (
             'name' => 'adovcase_case_agencies_c',
             'studio' => 'visible',
             'label' => 'LBL_ADOVCASE_CASE_AGENCIES',
+          ),
+          1 =>
+          array (
+            'name' => 'advocase_case_outcome_c',
+            'label' => 'LBL_ADVOCASE_CASE_OUTCOME',
           ),
         ),
         9 => 

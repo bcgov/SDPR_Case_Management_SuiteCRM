@@ -13,6 +13,7 @@ $mod_strings['LBL_ADVOCASE_CASE_ISSUE_5'] = 'Issue 5';
 $mod_strings['LBL_ADVOCASE_CASE_OTHER_ISSUE'] = 'If other, please specify';
 $mod_strings['LBL_ADVOCASE_CASE_OTHER_NONE'] = 'If other or None, please specify';
 $mod_strings['LBL_ADVOCASE_CASE_REGION'] = 'Region for Case';
+$mod_strings['LBL_ADVOCASE_CASE_OUTCOME'] = 'Case Outcome';
 $mod_strings['LBL_ADVOCASE_COMMUNICATION_DATE'] = 'Date of Communication';
 $mod_strings['LBL_ADVOCASE_COMMUNICATION_TYPE'] = 'Type of Communication';
 $mod_strings['LBL_ADVOCASE_OASQ_AWARENESS'] = 'How did the contact hear about the OASQ?';
