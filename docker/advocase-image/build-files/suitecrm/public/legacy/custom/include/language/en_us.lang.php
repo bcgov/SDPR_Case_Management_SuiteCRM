@@ -99,6 +99,7 @@ $app_list_strings['advocase_case_issues_list']=array (
   'INDIGENOUS' => 'Indigenous',
   'LACK_OF_COLLABORATION' => 'Lack of collaboration',
   'MENTAL_HEALTH' => 'Mental health',
+  'MONITORING' => 'Monitoring',
   'POLICY_PRACTICE_CLBC' => 'Policy/practice - CLBC',
   'POLICY_PRACTICE_GOVERNMENT' => 'Policy/practice - Government',
   'PROVINCIAL_ASSESSMENT_CENTRE' => 'Provincial Assessment Centre (PAC)',
