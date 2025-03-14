@@ -318,3 +318,20 @@ $dictionary['Case']['fields']['advocase_other_comm_type_c'] = array(
   'reportable' => true,
   'unified_search' => false,
 );
+
+$dictionary['Case']['fields']['advocase_case_outcome_c'] = array(
+  'name' => 'advocase_case_outcome_c',
+  'vname' => 'LBL_ADVOCASE_CASE_OUTCOME',
+  'type' => 'varchar',
+  'required' => false,
+  'default' => '',
+  'len' => '255',
+  'studio' => 'visible',
+  'inline_edit' => '1',
+  'duplicate_merge' => 'disabled',
+  'massupdate' => '0',
+  'audited' => false,
+  'importable' => true,
+  'reportable' => true,
+  'unified_search' => false,
+);
