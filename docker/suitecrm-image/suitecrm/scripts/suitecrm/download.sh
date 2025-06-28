@@ -19,7 +19,7 @@ RUN_DIR=${RUN_DIR:-"/opt/suitecrm/scripts"}
 function download_suitecrm() {
   info "Downloading SuiteCRM"
 
-  local suitecrm_version="8.6.2"
+  local suitecrm_version="8.7.0"
   local suitecrm_file="/SuiteCRM-$suitecrm_version.zip"
   local url="https://github.com/salesagility/SuiteCRM-Core/releases/download/v$suitecrm_version/SuiteCRM-$suitecrm_version.zip"
 
