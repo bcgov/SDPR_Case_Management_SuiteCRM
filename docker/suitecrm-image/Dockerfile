@@ -30,7 +30,7 @@ RUN touch /usr/local/etc/php/php.ini && \
     chmod -R g=u /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /var/lib/apache2 && \
     find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} \; && \
     find /suitecrm -type f -not -perm 0664 -exec chmod 0664 {} \; && \
-    chmod -R g+w /suitecrm \;
+    chmod -R g+w /suitecrm
 
 RUN chmod -R 775 /opt/suitecrm && \
     chmod +x /suitecrm/bin/console
