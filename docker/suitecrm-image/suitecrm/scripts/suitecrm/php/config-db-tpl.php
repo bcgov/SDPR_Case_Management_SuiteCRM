@@ -29,7 +29,7 @@ $sugar_config = array (
     'ssl' => false,
   ),
   'default_theme' => 'suite8',
-  'host_name' => 'localhost',
+  'host_name' => getenv('SUITECRM_HOSTNAME'),
   'languages' => 
   array (
     'en_us' => 'English (US)',
