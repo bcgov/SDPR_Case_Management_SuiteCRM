@@ -300,7 +300,8 @@ function make_sugar_config(&$sugar_config)
             '110', '143', '993', '995'
         ],
         'web_to_lead_allowed_redirect_hosts' => [],
-        'trusted_hosts' => []
+        'trusted_hosts' => [],
+        'installed' => true
     );
 }
 
@@ -338,6 +339,7 @@ function get_sugar_config_defaults(): array
         ],
         'export_delimiter' => ',',
         'export_excel_compatible' => false,
+        'enable_record_pagination' => true,
         'cache_dir' => 'cache/',
         'calculate_response_time' => true,
         'create_default_user' => false,
@@ -609,7 +611,8 @@ function get_sugar_config_defaults(): array
             '110', '143', '993', '995'
         ],
         'web_to_lead_allowed_redirect_hosts' => [],
-        'trusted_hosts' => []
+        'trusted_hosts' => [],
+        'installed' => true
     ];
 
     if (!is_object($locale)) {
@@ -1130,13 +1133,10 @@ function showFullName()
     static $showFullName = null;
 
     if (is_null($showFullName)) {
-        $sysPref = !empty($sugar_config['use_real_names']);
         $userPref = (is_object($current_user)) ? $current_user->getPreference('use_real_names') : null;
 
-        if ($userPref != null) {
+        if ($userPref != null && $userPref !== 'off') {
             $showFullName = ($userPref == 'on');
-        } else {
-            $showFullName = $sysPref;
         }
     }
 
@@ -1768,7 +1768,10 @@ function create_guid()
     $microTime = microtime();
     list($a_dec, $a_sec) = explode(' ', $microTime);
 
-    $dec_hex = dechex($a_dec * 1000000);
+    $dec_hex_number = $a_dec * 1000000;
+
+    $dec_hex = dechex($dec_hex_number);
+
     $sec_hex = dechex($a_sec);
 
     ensure_length($dec_hex, 5);
@@ -2121,7 +2124,10 @@ function sugar_die($error_message, $exit_code = 1)
 {
     global $focus;
     sugar_cleanup();
-    echo $error_message;
+
+    if (!empty($GLOBALS['disable_echos'])) {
+        echo $error_message;
+    }
     throw new Exception($error_message, $exit_code);
 }
 
@@ -3174,8 +3180,7 @@ function get_emails_by_assign_or_link($params)
     // directly assigned emails
     $return_array['join'][] = "
         SELECT
-            eb.email_id,
-            'direct' source
+            eb.email_id
         FROM
             emails_beans eb
         WHERE
@@ -3187,8 +3192,7 @@ function get_emails_by_assign_or_link($params)
     // Related by directly by email
     $return_array['join'][] = "
         SELECT DISTINCT
-            eear.email_id,
-            'relate' source
+            eear.email_id
         FROM
             emails_email_addr_rel eear
         INNER JOIN
@@ -3210,8 +3214,7 @@ function get_emails_by_assign_or_link($params)
         // Assigned to contacts
         $return_array['join'][] = "
             SELECT DISTINCT
-                eb.email_id,
-                'contact' source
+                eb.email_id
             FROM
                 emails_beans eb
             $rel_join AND link_bean.id = eb.bean_id
@@ -3222,8 +3225,7 @@ function get_emails_by_assign_or_link($params)
         // Related by email to linked contact
         $return_array['join'][] = "
             SELECT DISTINCT
-                eear.email_id,
-                'relate_contact' source
+                eear.email_id
             FROM
                 emails_email_addr_rel eear
             INNER JOIN
@@ -3247,7 +3249,7 @@ function get_emails_by_assign_or_link($params)
 
     if ($bean->object_name == 'Case' && !empty($bean->case_number)) {
         $where = str_replace('%1', $bean->case_number, (string) $bean->getEmailSubjectMacro());
-        $return_array['where'] .= "\n AND (email_ids.source = 'direct' OR emails.name LIKE '%$where%')";
+        $return_array['where'] .= "\n AND (emails.name LIKE '%$where%')";
     }
 
     return $return_array;
@@ -3763,10 +3765,12 @@ function sugar_cleanup($exit = false)
         //this is not an ajax call and the user preference error flag is set, so reset the flag and print js to flash message
         $err_mess = $app_strings['ERROR_USER_PREFS'];
         $_SESSION['USER_PREFRENCE_ERRORS'] = false;
-        echo "
-		<script>
-			ajaxStatus.flashStatus('$err_mess',7000);
-		</script>";
+        if (!empty($GLOBALS['disable_echos'])) {
+            echo "
+            <script>
+                ajaxStatus.flashStatus('$err_mess',7000);
+            </script>";
+        }
     }
 
     pre_login_check();
@@ -5306,6 +5310,10 @@ function sugar_ucfirst($string, $charset = 'UTF-8')
  */
 function unencodeMultienum($string)
 {
+    if (is_null($string)){
+        $string = [];
+    }
+
     if (is_array($string)) {
         return $string;
     }
@@ -6124,7 +6132,7 @@ function getAppString($key)
 }
 
 function set_session_name(){
-    $sessionName = 'PHPSESSID';
+    $sessionName = 'SCRMSESSID';
     if (!empty($GLOBALS['sugar_config']['session_name'])) {
         $sessionName = $GLOBALS['sugar_config']['session_name'];
     }
@@ -6527,6 +6535,23 @@ function isWebToLeadAllowedRedirectHost(string $url): bool {
 
     return false;
 }
+
+/**
+ * Set the proper decimal separator according to the user/system configuration
+ *
+ * @param Decimal $decimalValue
+ * @param Boolean $userSetting. Indicates whether to choose user or system configuration
+ * @return Decimal
+ */
+function formatDecimalInConfigSettings($decimalValue, $userSetting = false) {
+    global $current_user, $sugar_config;
+    if ($userSetting) {
+        $user_dec_sep = (!empty($current_user->id) ? $current_user->getPreference('dec_sep') : null);
+    }
+    $dec_sep = empty($user_dec_sep) ? $sugar_config['default_decimal_seperator'] : $user_dec_sep;
+    return str_replace('.', $dec_sep, $decimalValue);
+}
+
 
 if (!function_exists('endsWith')) {
     function endsWith($str, $end) {
