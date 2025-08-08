@@ -30,16 +30,11 @@ import {
     take,
 } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {
-    Action,
-    ActionContext,
-    ActionHandler,
-    LogicDefinitions,
-    ModeActions,
-    Record,
-    ViewMode,
-    Panel
-} from 'common';
+import { Action, ActionContext, ActionHandler, ModeActions } from '../../../common/actions/action.model';
+import {LogicDefinitions} from '../../../common/metadata/metadata.model';
+import {Panel} from '../../../common/metadata/metadata.model';
+import {Record} from '../../../common/record/record.model';
+import {ViewMode} from '../../../common/views/view.model';
 import { MetadataStore, RecordViewMetadata } from '../../../store/metadata/metadata.store.service';
 import { RecordViewStore } from '../store/record-view/record-view.store';
 import { RecordActionManager } from '../actions/record-action-manager.service';

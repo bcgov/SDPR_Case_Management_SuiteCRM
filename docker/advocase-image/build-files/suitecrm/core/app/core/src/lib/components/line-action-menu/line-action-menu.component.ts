@@ -25,25 +25,20 @@
  */
 
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {
-    Action,
-    ActionContext,
-    ActionDataSource,
-    Button,
-    ButtonGroupInterface,
-    ButtonInterface,
-    isFalse,
-    Record
-} from 'common';
-import {LanguageStore, LanguageStrings} from '../../store/language/language.store';
-import {SubpanelActionManager} from "../../containers/subpanel/components/subpanel/action-manager.service";
-import {BehaviorSubject, combineLatestWith, Observable, Subscription} from 'rxjs';
+import { Action, ActionContext, ActionDataSource } from '../../common/actions/action.model';
+import { Button, ButtonInterface } from '../../common/components/button/button.model';
+import { ButtonGroupInterface } from '../../common/components/button/button-group.model';
+import { isFalse } from '../../common/utils/value-utils';
+import { Record } from '../../common/record/record.model';
+import { LanguageStore, LanguageStrings } from '../../store/language/language.store';
+import { SubpanelActionManager } from "../../containers/subpanel/components/subpanel/action-manager.service";
+import { BehaviorSubject, combineLatestWith, Observable, Subscription } from 'rxjs';
 import {
     ScreenSize,
     ScreenSizeObserverService
 } from '../../services/ui/screen-size-observer/screen-size-observer.service';
-import {SystemConfigStore} from '../../store/system-config/system-config.store';
-import {map} from 'rxjs/operators';
+import { SystemConfigStore } from '../../store/system-config/system-config.store';
+import { map} from 'rxjs/operators';
 
 export interface LineActionMenuViewModel {
     actions: Action[];
