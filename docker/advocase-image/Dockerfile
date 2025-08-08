@@ -6,7 +6,7 @@ USER root
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && \
     apt-get install nodejs npm -y && \
-    npm install --global yarn sass
+    npm install -g corepack sass
 
 # Copying builded SuiteCRM files to container
 COPY ./build-files /tmp/build-files
@@ -18,16 +18,16 @@ RUN /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 WORKDIR /suitecrm
 
 # Bundling and building SuiteCRM theme modifications
-RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/suite8/css/Dawn/style.css --style compressed \ 
-&& yarn install \
-&& yarn run build:defaultExt \
-&& yarn run build:common \
-&& yarn run build:core \
-&& yarn run build:shell \
-&& rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist \
-&& npm uninstall -g yarn sass \
-&& apt-get remove nodejs npm -y \
-&& apt-get autoremove -y
+RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/suite8/css/Dawn/style.css --style compressed
+RUN yarn set version stable
+RUN yarn install
+RUN yarn merge-angular-json
+RUN yarn build
+RUN yarn build:extension defaultExt
+RUN rm -r /suitecrm/.angular /suitecrm/node_modules /suitecrm/dist
+RUN npm uninstall -g corepack sass
+RUN apt-get remove nodejs npm -y
+RUN apt-get autoremove -y
 
 # Fixing permissions for backwards compatibility with OpenShift and Kubernetes
 RUN chgrp -R 0 /suitecrm && \
