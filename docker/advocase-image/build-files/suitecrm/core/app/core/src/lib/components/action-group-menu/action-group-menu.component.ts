@@ -24,16 +24,32 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import { Component, Input, OnInit } from '@angular/core';
-import { Action, ActionContext, ActionDataSource, Button, ButtonGroupInterface, ButtonInterface, isFalse } from 'common';
-import { BehaviorSubject, combineLatestWith, Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { SystemConfigStore } from '../../store/system-config/system-config.store';
+import { Component, Input, OnInit } from "@angular/core";
+import {
+  Action,
+  ActionContext,
+  ActionDataSource,
+  Button,
+  ButtonGroupInterface,
+  ButtonInterface,
+  isFalse,
+} from "common";
+import {
+  BehaviorSubject,
+  combineLatestWith,
+  Observable,
+  Subscription,
+} from "rxjs";
+import { map } from "rxjs/operators";
+import { SystemConfigStore } from "../../store/system-config/system-config.store";
 import {
   ScreenSize,
-  ScreenSizeObserverService
-} from '../../services/ui/screen-size-observer/screen-size-observer.service';
-import { LanguageStore, LanguageStrings } from '../../store/language/language.store';
+  ScreenSizeObserverService,
+} from "../../services/ui/screen-size-observer/screen-size-observer.service";
+import {
+  LanguageStore,
+  LanguageStrings,
+} from "../../store/language/language.store";
 
 export interface ActionGroupMenuViewModel {
   actions: Action[];
@@ -42,30 +58,29 @@ export interface ActionGroupMenuViewModel {
 }
 
 @Component({
-  selector: 'scrm-action-group-menu',
-  templateUrl: './action-group-menu.component.html',
+  selector: "scrm-action-group-menu",
+  templateUrl: "./action-group-menu.component.html",
 })
 export class ActionGroupMenuComponent implements OnInit {
-
-  @Input() klass = '';
-  @Input() buttonClass = 'btn btn-sm';
-  @Input() buttonGroupClass = 'button-display-wrapper';
+  @Input() klass = "";
+  @Input() buttonClass = "btn btn-sm";
+  @Input() buttonGroupClass = "button-display-wrapper";
   @Input() actionContext: ActionContext;
   @Input() config: ActionDataSource;
-  @Input() actionLimitConfig: string = 'recordview_actions_limits';
+  @Input() actionLimitConfig: string = "recordview_actions_limits";
   configState = new BehaviorSubject<ButtonGroupInterface>({ buttons: [] });
   config$ = this.configState.asObservable();
 
   vm$: Observable<ActionGroupMenuViewModel>;
 
   inlineConfirmationEnabled = false;
-  confirmationLabel = '';
-  confirmationDynamicLabel = '';
+  confirmationLabel = "";
+  confirmationDynamicLabel = "";
   inlineCancelButton: ButtonInterface = null;
   inlineConfirmButton: ButtonInterface = null;
   loading = false;
 
-  protected buttonGroupDropdownClass = 'dropdown-button-secondary';
+  protected buttonGroupDropdownClass = "dropdown-button-secondary";
 
   protected subs: Subscription[];
   protected screen: ScreenSize = ScreenSize.Medium;
@@ -76,15 +91,11 @@ export class ActionGroupMenuComponent implements OnInit {
     protected languages: LanguageStore,
     protected screenSize: ScreenSizeObserverService,
     protected systemConfigStore: SystemConfigStore,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.vm$ = this.config?.getActions().pipe(
-      combineLatestWith(
-        this.screenSize.screenSize$,
-        this.languages.vm$
-      ),
+      combineLatestWith(this.screenSize.screenSize$, this.languages.vm$),
       map(([actions, screenSize, languages]) => {
         if (screenSize) {
           this.screen = screenSize;
@@ -92,7 +103,7 @@ export class ActionGroupMenuComponent implements OnInit {
         this.configState.next(this.getButtonGroupConfig(actions));
 
         return { actions, screenSize, languages };
-      })
+      }),
     );
   }
 
@@ -101,7 +112,6 @@ export class ActionGroupMenuComponent implements OnInit {
   }
 
   getButtonGroupConfig(actions: Action[]): ButtonGroupInterface {
-
     const expanded = [];
     const collapsed = [];
 
@@ -130,19 +140,20 @@ export class ActionGroupMenuComponent implements OnInit {
 
     return {
       buttonKlass: [this.buttonClass],
-      dropdownLabel: this.languages.getAppString('LBL_ACTIONS') || '',
+      dropdownLabel: this.languages.getAppString("LBL_ACTIONS") || "",
       breakpoint,
       dropdownOptions: {
-        placement: ['bottom-right'],
-        wrapperKlass: [(this.buttonGroupDropdownClass)]
+        placement: ["bottom-right"],
+        wrapperKlass: [this.buttonGroupDropdownClass],
       },
-      buttons
+      buttons,
     } as ButtonGroupInterface;
   }
 
   getBreakpoint(): number {
-
-    const breakpointMap = this.systemConfigStore.getConfigValue(this.actionLimitConfig);
+    const breakpointMap = this.systemConfigStore.getConfigValue(
+      this.actionLimitConfig,
+    );
 
     if (this.screen && breakpointMap && breakpointMap[this.screen]) {
       this.breakpoint = breakpointMap[this.screen];
@@ -158,30 +169,29 @@ export class ActionGroupMenuComponent implements OnInit {
 
   protected buildButton(action: Action): ButtonInterface {
     const button = {
-      label: action.label || '',
-      labelModule: this?.actionContext?.module ?? '',
-      labelKey: action.labelKey || '',
+      label: action.label || "",
+      labelModule: this?.actionContext?.module ?? "",
+      labelKey: action.labelKey || "",
       klass: this.buttonClass,
-      titleKey: action.titleKey || '',
+      titleKey: action.titleKey || "",
       onClick: (): void => {
-
         const inlineConfirmation = action?.params?.inlineConfirmation ?? false;
         if (inlineConfirmation) {
           this.triggerTemporaryLoading();
           const callback = (): void => {
             this.config.runAction(action, this.actionContext);
-          }
+          };
           this.initInlineConfirmation(action, callback);
 
           return;
         }
 
         this.config.runAction(action, this.actionContext);
-      }
+      },
     } as ButtonInterface;
 
     if (!button.label) {
-      button.labelKey = action.labelKey ?? '';
+      button.labelKey = action.labelKey ?? "";
     }
 
     const debounceClick = action?.params?.debounceClick ?? null;
@@ -209,27 +219,36 @@ export class ActionGroupMenuComponent implements OnInit {
 
   protected triggerTemporaryLoading() {
     this.loading = true;
-    const delay = parseInt(this.systemConfigStore.getUi('inline_confirmation_loading_delay')) ?? 200;
+    const delay =
+      parseInt(
+        this.systemConfigStore.getUi("inline_confirmation_loading_delay"),
+      ) ?? 200;
     setTimeout(() => {
       this.loading = false;
     }, delay);
   }
 
   protected initInlineConfirmation(action: Action, callback: () => void): void {
-    const cancelConfig = action?.params?.inlineConfirmationButtons?.cancel ?? {};
-    const confirmConfig = action?.params?.inlineConfirmationButtons?.confirm ?? {};
-    this.confirmationLabel = action?.params?.confirmationLabel ?? '';
-    this.confirmationDynamicLabel = action?.params?.confirmationDynamicLabel ?? '';
+    const cancelConfig =
+      action?.params?.inlineConfirmationButtons?.cancel ?? {};
+    const confirmConfig =
+      action?.params?.inlineConfirmationButtons?.confirm ?? {};
+    this.confirmationLabel = action?.params?.confirmationLabel ?? "";
+    this.confirmationDynamicLabel =
+      action?.params?.confirmationDynamicLabel ?? "";
 
-    this.inlineCancelButton = this.buildInlineCancelButton(cancelConfig)
-    this.inlineConfirmButton = this.buildInlineConfirmButton(confirmConfig, callback)
+    this.inlineCancelButton = this.buildInlineCancelButton(cancelConfig);
+    this.inlineConfirmButton = this.buildInlineConfirmButton(
+      confirmConfig,
+      callback,
+    );
     this.inlineConfirmationEnabled = true;
   }
 
   protected buildInlineCancelButton(config: ButtonInterface): ButtonInterface {
     const defaults = {
-      labelKey: 'LBL_NO',
-      klass: 'btn btn-sm p-0 m-0 btn-link border-0 line-height-initial',
+      labelKey: "LBL_NO",
+      klass: "btn btn-sm p-0 m-0 btn-link border-0 line-height-initial",
       debounceClick: true,
     } as ButtonInterface;
     const button = { ...defaults, ...(config ?? {}) };
@@ -237,15 +256,18 @@ export class ActionGroupMenuComponent implements OnInit {
     button.onClick = (): void => {
       this.triggerTemporaryLoading();
       this.resetInlineConfirmation();
-    }
+    };
 
     return button;
   }
 
-  protected buildInlineConfirmButton(config: ButtonInterface, callback: Function): ButtonInterface {
+  protected buildInlineConfirmButton(
+    config: ButtonInterface,
+    callback: Function,
+  ): ButtonInterface {
     const defaults = {
-      labelKey: 'LBL_YES',
-      klass: 'btn btn-sm p-0 m-0 btn-link border-0 line-height-initial',
+      labelKey: "LBL_YES",
+      klass: "btn btn-sm p-0 m-0 btn-link border-0 line-height-initial",
       debounceClick: true,
     } as ButtonInterface;
     const button = { ...defaults, ...(config ?? {}) };
@@ -254,15 +276,15 @@ export class ActionGroupMenuComponent implements OnInit {
       this.triggerTemporaryLoading();
       callback();
       this.resetInlineConfirmation();
-    }
+    };
 
     return button;
   }
 
   protected resetInlineConfirmation(): void {
     this.inlineConfirmationEnabled = false;
-    this.confirmationDynamicLabel = '';
-    this.confirmationLabel = '';
+    this.confirmationDynamicLabel = "";
+    this.confirmationLabel = "";
     this.inlineConfirmButton = null;
     this.inlineCancelButton = null;
   }

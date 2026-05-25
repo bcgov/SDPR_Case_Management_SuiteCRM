@@ -24,52 +24,56 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, HostListener, Input} from '@angular/core';
-import {ActionDataSource, ButtonInterface, PaginationDataSource, SelectionDataSource} from 'common';
-import {BulkActionDataSource} from '../../bulk-action-menu/bulk-action-menu.component';
-import {TableConfig} from "../table.model";
+import { Component, HostListener, Input } from "@angular/core";
+import {
+  ActionDataSource,
+  ButtonInterface,
+  PaginationDataSource,
+  SelectionDataSource,
+} from "common";
+import { BulkActionDataSource } from "../../bulk-action-menu/bulk-action-menu.component";
+import { TableConfig } from "../table.model";
 
 @Component({
-    selector: 'scrm-table-footer',
-    templateUrl: 'table-footer.component.html',
+  selector: "scrm-table-footer",
+  templateUrl: "table-footer.component.html",
 })
 export class TableFooterComponent {
-    @Input() selection: SelectionDataSource;
-    @Input() bulkActions: BulkActionDataSource;
-    @Input() pagination: PaginationDataSource;
-    @Input() tableActions: ActionDataSource;
-    @Input() paginationType: string;
-    @Input() config: TableConfig;
+  @Input() selection: SelectionDataSource;
+  @Input() bulkActions: BulkActionDataSource;
+  @Input() pagination: PaginationDataSource;
+  @Input() tableActions: ActionDataSource;
+  @Input() paginationType: string;
+  @Input() config: TableConfig;
 
-    ngOnInit(): void {
-        const isPageRefreshed = localStorage.getItem('isPageRefreshed');
-        if (isPageRefreshed === 'true') {
-            this.config.refreshLoading();
-            localStorage.removeItem('isPageRefreshed');
-        }
+  ngOnInit(): void {
+    const isPageRefreshed = localStorage.getItem("isPageRefreshed");
+    if (isPageRefreshed === "true") {
+      this.config.refreshLoading();
+      localStorage.removeItem("isPageRefreshed");
     }
+  }
 
-    @HostListener('window:beforeunload', ['$event'])
-    beforeUnloadHandler(event: Event) {
-      localStorage.setItem('isPageRefreshed', 'true');
-    }
+  @HostListener("window:beforeunload", ["$event"])
+  beforeUnloadHandler(event: Event) {
+    localStorage.setItem("isPageRefreshed", "true");
+  }
 
-    isPaginationEnabled(): boolean {
-        return this.paginationType === 'pagination';
-    }
+  isPaginationEnabled(): boolean {
+    return this.paginationType === "pagination";
+  }
 
-    getLoadMoreButton(): ButtonInterface {
-        return {
-            klass: 'load-more',
-            labelKey: 'LBL_LOAD_MORE',
-            onClick: () => {
-                this.config.loadMore();
-            }
-        } as ButtonInterface;
-    }
+  getLoadMoreButton(): ButtonInterface {
+    return {
+      klass: "load-more",
+      labelKey: "LBL_LOAD_MORE",
+      onClick: () => {
+        this.config.loadMore();
+      },
+    } as ButtonInterface;
+  }
 
-    allLoaded(): boolean {
-        return this.config?.allLoaded();
-    }
-
+  allLoaded(): boolean {
+    return this.config?.allLoaded();
+  }
 }

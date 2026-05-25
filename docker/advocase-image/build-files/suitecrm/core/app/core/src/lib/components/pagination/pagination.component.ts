@@ -24,64 +24,67 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, Input, OnInit} from '@angular/core';
-import {combineLatestWith, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import {PageSelection, PaginationCount, PaginationDataSource} from 'common';
-import {LanguageStore, LanguageStringMap} from '../../store/language/language.store';
-import {SelectionService} from '../../services/ui/selectRow/selectRow.service';
+import { Component, Input, OnInit } from "@angular/core";
+import { combineLatestWith, Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { PageSelection, PaginationCount, PaginationDataSource } from "common";
+import {
+  LanguageStore,
+  LanguageStringMap,
+} from "../../store/language/language.store";
+import { SelectionService } from "../../services/ui/selectRow/selectRow.service";
 
 export interface PaginationViewModel {
-    appStrings: LanguageStringMap;
-    pageCount: PaginationCount;
+  appStrings: LanguageStringMap;
+  pageCount: PaginationCount;
 }
 
 @Component({
-    selector: 'scrm-pagination',
-    templateUrl: 'pagination.component.html'
+  selector: "scrm-pagination",
+  templateUrl: "pagination.component.html",
 })
 export class PaginationComponent implements OnInit {
+  @Input() allowPagination = true;
+  @Input() state: PaginationDataSource;
+  displayResponsiveTable: any;
 
-    @Input() allowPagination = true;
-    @Input() state: PaginationDataSource;
-    displayResponsiveTable: any;
+  appStrings$: Observable<LanguageStringMap> = this.languageStore.appStrings$;
+  vm$: Observable<PaginationViewModel> = null;
 
-    appStrings$: Observable<LanguageStringMap> = this.languageStore.appStrings$;
-    vm$: Observable<PaginationViewModel> = null;
+  constructor(
+    protected languageStore: LanguageStore,
+    private selectionService: SelectionService,
+  ) {}
 
-    constructor(
-        protected languageStore: LanguageStore,
-        private selectionService: SelectionService,
-    ) {
-    }
-    
+  ngOnInit(): void {
+    const pageCount$ = this.state.getPaginationCount();
 
-    ngOnInit(): void {
-        const pageCount$ = this.state.getPaginationCount();
+    this.vm$ = this.appStrings$.pipe(
+      combineLatestWith(pageCount$),
+      map(([appStrings, pageCount]: [LanguageStringMap, PaginationCount]) => ({
+        appStrings,
+        pageCount,
+      })),
+    );
+  }
 
-        this.vm$ = this.appStrings$.pipe(
-            combineLatestWith(pageCount$),
-            map(([appStrings, pageCount]: [LanguageStringMap, PaginationCount]) => ({appStrings, pageCount}))
-        );
-    }
+  first(): void {
+    this.selectionService.deselectAll();
+    this.state.changePage(PageSelection.FIRST);
+  }
 
-    first(): void {
-        this.selectionService.deselectAll();
-        this.state.changePage(PageSelection.FIRST);
-    }
+  previous(): void {
+    this.selectionService.deselectAll();
+    this.state.changePage(PageSelection.PREVIOUS);
+  }
 
-    previous(): void {
-        this.selectionService.deselectAll();
-        this.state.changePage(PageSelection.PREVIOUS);
-    }
+  next(): void {
+    this.selectionService.deselectAll();
+    this.state.changePage(PageSelection.NEXT);
+  }
 
-    next(): void {
-        this.selectionService.deselectAll();
-        this.state.changePage(PageSelection.NEXT);
-    }
-
-    last(): void {
-        this.selectionService.deselectAll();
-        this.state.changePage(PageSelection.LAST);
-    }
+  last(): void {
+    this.selectionService.deselectAll();
+    this.state.changePage(PageSelection.LAST);
+  }
 }

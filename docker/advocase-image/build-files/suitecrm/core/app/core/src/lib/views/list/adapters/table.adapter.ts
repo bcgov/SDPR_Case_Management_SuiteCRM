@@ -24,134 +24,138 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {of} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {ActionDataSource, SortDirection} from 'common';
-import {ListViewStore} from '../store/list-view/list-view.store';
-import {MetadataStore} from '../../../store/metadata/metadata.store.service';
-import {TableConfig} from '../../../components/table/table.model';
-import {LineActionsAdapter} from './line-actions.adapter';
-import {LineActionActionManager} from '../../../components/table/line-actions/line-action-manager.service';
-import {AsyncActionService} from '../../../services/process/processes/async-action/async-action';
-import {MessageService} from '../../../services/message/message.service';
-import {ConfirmationModalService} from '../../../services/modals/confirmation-modal.service';
-import {LanguageStore} from '../../../store/language/language.store';
-import {BulkActionsAdapterFactory} from './bulk-actions.adapter.factory';
-import {BulkActionsAdapter} from './bulk-actions.adapter';
-import {SelectModalService} from '../../../services/modals/select-modal.service';
-import {UserPreferenceStore} from "../../../store/user-preference/user-preference.store";
-import {SystemConfigStore} from "../../../store/system-config/system-config.store";
-import {ListviewTableActionsAdapterFactory} from "./listview-table-actions.adapter.factory";
-import {AppMetadataStore} from "../../../store/app-metadata/app-metadata.store.service";
+import { of } from "rxjs";
+import { Injectable } from "@angular/core";
+import { ActionDataSource, SortDirection } from "common";
+import { ListViewStore } from "../store/list-view/list-view.store";
+import { MetadataStore } from "../../../store/metadata/metadata.store.service";
+import { TableConfig } from "../../../components/table/table.model";
+import { LineActionsAdapter } from "./line-actions.adapter";
+import { LineActionActionManager } from "../../../components/table/line-actions/line-action-manager.service";
+import { AsyncActionService } from "../../../services/process/processes/async-action/async-action";
+import { MessageService } from "../../../services/message/message.service";
+import { ConfirmationModalService } from "../../../services/modals/confirmation-modal.service";
+import { LanguageStore } from "../../../store/language/language.store";
+import { BulkActionsAdapterFactory } from "./bulk-actions.adapter.factory";
+import { BulkActionsAdapter } from "./bulk-actions.adapter";
+import { SelectModalService } from "../../../services/modals/select-modal.service";
+import { UserPreferenceStore } from "../../../store/user-preference/user-preference.store";
+import { SystemConfigStore } from "../../../store/system-config/system-config.store";
+import { ListviewTableActionsAdapterFactory } from "./listview-table-actions.adapter.factory";
+import { AppMetadataStore } from "../../../store/app-metadata/app-metadata.store.service";
 
 @Injectable()
 export class TableAdapter {
+  constructor(
+    protected store: ListViewStore,
+    protected metadata: MetadataStore,
+    protected actionManager: LineActionActionManager,
+    protected asyncActionService: AsyncActionService,
+    protected message: MessageService,
+    protected confirmation: ConfirmationModalService,
+    protected language: LanguageStore,
+    protected bulkActionsAdapterFactory: BulkActionsAdapterFactory,
+    protected listviewTableActionsAdapterFactory: ListviewTableActionsAdapterFactory,
+    protected selectModalService: SelectModalService,
+    protected preferences: UserPreferenceStore,
+    protected systemConfigs: SystemConfigStore,
+    protected appMetadataStore: AppMetadataStore,
+  ) {}
 
-    constructor(
-        protected store: ListViewStore,
-        protected metadata: MetadataStore,
-        protected actionManager: LineActionActionManager,
-        protected asyncActionService: AsyncActionService,
-        protected message: MessageService,
-        protected confirmation: ConfirmationModalService,
-        protected language: LanguageStore,
-        protected bulkActionsAdapterFactory: BulkActionsAdapterFactory,
-        protected listviewTableActionsAdapterFactory: ListviewTableActionsAdapterFactory,
-        protected selectModalService: SelectModalService,
-        protected preferences: UserPreferenceStore,
-        protected systemConfigs: SystemConfigStore,
-        protected appMetadataStore: AppMetadataStore
-    ) {
-    }
+  getTable(): TableConfig {
+    return {
+      showHeader: true,
+      showFooter: true,
 
-    getTable(): TableConfig {
-        return {
-            showHeader: true,
-            showFooter: true,
+      module: this.store.getModuleName(),
 
-            module: this.store.getModuleName(),
+      columns: this.store.columns$,
+      lineActions: this.getLineActionsDataSource(),
+      selection$: this.store.selection$,
+      sort$: this.store.sort$,
+      maxColumns$: of(4),
+      loading$: this.store.recordList.loading$,
 
-            columns: this.store.columns$,
-            lineActions: this.getLineActionsDataSource(),
-            selection$: this.store.selection$,
-            sort$: this.store.sort$,
-            maxColumns$: of(4),
-            loading$: this.store.recordList.loading$,
+      dataSource: this.store.recordList,
+      selection: this.store.recordList,
+      bulkActions: this.getBulkActionsDataSource(this.store),
+      tableActions: this.getTableActions(this.store),
+      pagination: this.store.recordList,
 
-            dataSource: this.store.recordList,
-            selection: this.store.recordList,
-            bulkActions: this.getBulkActionsDataSource(this.store),
-            tableActions: this.getTableActions(this.store),
-            pagination: this.store.recordList,
+      paginationType:
+        this.preferences.getUserPreference("listview_pagination_type") ??
+        this.systemConfigs.getConfigValue("listview_pagination_type"),
 
-            paginationType: this.preferences.getUserPreference('listview_pagination_type') ?? this.systemConfigs.getConfigValue('listview_pagination_type'),
+      toggleRecordSelection: (id: string): void => {
+        this.store.recordList.toggleSelection(id);
+      },
 
-            toggleRecordSelection: (id: string): void => {
-                this.store.recordList.toggleSelection(id);
-            },
+      updateSorting: (orderBy: string, sortOrder: SortDirection): void => {
+        this.store.recordList.updateSorting(orderBy, sortOrder);
+        this.store.updateSortLocalStorage();
+      },
 
-            updateSorting: (orderBy: string, sortOrder: SortDirection): void => {
-                this.store.recordList.updateSorting(orderBy, sortOrder);
-                this.store.updateSortLocalStorage();
-            },
+      maxListHeight:
+        this.preferences.getUserPreference("listview_max_height") ??
+        this.systemConfigs.getConfigValue("listview_max_height"),
 
-            maxListHeight: this.preferences.getUserPreference('listview_max_height') ?? this.systemConfigs.getConfigValue('listview_max_height'),
+      loadMore: (): void => {
+        const jump =
+          this.preferences.getUserPreference("list_max_entries_per_page") ??
+          this.systemConfigs.getConfigValue("list_max_entries_per_page");
+        const pagination = this.store.recordList.getPagination();
+        const currentPageSize = pagination.pageSize || 0;
+        const newPageSize = Number(currentPageSize) + Number(jump);
 
-            loadMore: (): void => {
-                const jump = this.preferences.getUserPreference('list_max_entries_per_page') ?? this.systemConfigs.getConfigValue('list_max_entries_per_page');
-                const pagination = this.store.recordList.getPagination();
-                const currentPageSize = pagination.pageSize || 0;
-                const newPageSize = Number(currentPageSize) + Number(jump);
+        this.store.recordList.setPageSize(newPageSize);
+        this.store.recordList.updatePagination(pagination.current);
+      },
 
-                this.store.recordList.setPageSize(newPageSize);
-                this.store.recordList.updatePagination(pagination.current)
-            },
+      refreshLoading: (): void => {
+        const jump =
+          this.preferences.getUserPreference("list_max_entries_per_page") ??
+          this.systemConfigs.getConfigValue("list_max_entries_per_page");
+        const pagination = this.store.recordList.getPagination();
 
-            refreshLoading: (): void => {
-                const jump = this.preferences.getUserPreference('list_max_entries_per_page') ?? this.systemConfigs.getConfigValue('list_max_entries_per_page');
-                const pagination = this.store.recordList.getPagination();
-                
-                this.store.recordList.setPageSize(jump);
-                this.store.recordList.updatePagination(pagination.current)
-            },
+        this.store.recordList.setPageSize(jump);
+        this.store.recordList.updatePagination(pagination.current);
+      },
 
-            allLoaded: (): boolean => {
-                const pagination = this.store.recordList.getPagination();
+      allLoaded: (): boolean => {
+        const pagination = this.store.recordList.getPagination();
 
-                if (!pagination) {
-                    return false;
-                }
+        if (!pagination) {
+          return false;
+        }
 
-                if (Number(pagination.pageLast) >= Number(pagination.total)) {
-                    return true;
-                }
+        if (Number(pagination.pageLast) >= Number(pagination.total)) {
+          return true;
+        }
 
-                return Number(pagination.pageSize) >= Number(pagination.total);
-            }
+        return Number(pagination.pageSize) >= Number(pagination.total);
+      },
+    } as TableConfig;
+  }
 
-        } as TableConfig;
-    }
+  getLineActionsDataSource(): ActionDataSource {
+    return new LineActionsAdapter(
+      this.store,
+      this.actionManager,
+      this.asyncActionService,
+      this.message,
+      this.confirmation,
+      this.language,
+      this.selectModalService,
+      this.metadata,
+      this.appMetadataStore,
+    );
+  }
 
-    getLineActionsDataSource(): ActionDataSource {
+  getBulkActionsDataSource(store: ListViewStore): BulkActionsAdapter {
+    return this.bulkActionsAdapterFactory.create(store);
+  }
 
-        return new LineActionsAdapter(
-            this.store,
-            this.actionManager,
-            this.asyncActionService,
-            this.message,
-            this.confirmation,
-            this.language,
-            this.selectModalService,
-            this.metadata,
-            this.appMetadataStore
-        );
-    }
-
-    getBulkActionsDataSource(store: ListViewStore): BulkActionsAdapter {
-        return this.bulkActionsAdapterFactory.create(store);
-    }
-
-    private getTableActions(store: ListViewStore) {
-        return this.listviewTableActionsAdapterFactory.create(store);
-    }
+  private getTableActions(store: ListViewStore) {
+    return this.listviewTableActionsAdapterFactory.create(store);
+  }
 }

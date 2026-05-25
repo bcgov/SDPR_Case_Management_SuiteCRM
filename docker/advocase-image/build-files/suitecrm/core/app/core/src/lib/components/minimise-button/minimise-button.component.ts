@@ -24,71 +24,76 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Button, ButtonInterface} from 'common';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
+import { Button, ButtonInterface } from "common";
 
-export type MinimiseButtonStatus = 'minimised' | 'maximised';
+export type MinimiseButtonStatus = "minimised" | "maximised";
 
 @Component({
-    selector: 'scrm-minimise-button',
-    templateUrl: './minimise-button.component.html',
-    styleUrls: []
+  selector: "scrm-minimise-button",
+  templateUrl: "./minimise-button.component.html",
+  styleUrls: [],
 })
 export class MinimiseButtonComponent implements OnInit, OnChanges {
-    @Input() config: ButtonInterface;
-    @Input() status: MinimiseButtonStatus = 'maximised';
-    internalConfig: ButtonInterface;
+  @Input() config: ButtonInterface;
+  @Input() status: MinimiseButtonStatus = "maximised";
+  internalConfig: ButtonInterface;
 
-    buttonClasses = ['minimise-button'];
+  buttonClasses = ["minimise-button"];
 
-    constructor() {
-    }
+  constructor() {}
 
-    ngOnInit(): void {
-        this.buildButton();
-        console.log("mini-btn: ", this.config);
-        console.log("mini-btn,internal: ", this.internalConfig);
-    }
+  ngOnInit(): void {
+    this.buildButton();
+    console.log("mini-btn: ", this.config);
+    console.log("mini-btn,internal: ", this.internalConfig);
+  }
 
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes.config) {
-            this.buildButton();
-        }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config) {
+      this.buildButton();
     }
+  }
 
-    buildButton(): void {
-        const btn = Button.fromButton(this.config);
-        btn.addClasses(this.buttonClasses);
-        btn.icon = this.getIcon();
-        btn.onClick = (): void => {
-            this.config.onClick();
-            this.toggleStatus();
-        };
-        this.internalConfig = btn;
-    }
+  buildButton(): void {
+    const btn = Button.fromButton(this.config);
+    btn.addClasses(this.buttonClasses);
+    btn.icon = this.getIcon();
+    btn.onClick = (): void => {
+      this.config.onClick();
+      this.toggleStatus();
+    };
+    this.internalConfig = btn;
+  }
 
-    toggleStatus(): void {
-        this.config.onClick();
-        let newStatus: MinimiseButtonStatus = 'minimised';
-        if (this.status === 'minimised') {
-            newStatus = 'maximised';
-        }
-        this.status = newStatus;
-        this.buildButton();
+  toggleStatus(): void {
+    this.config.onClick();
+    let newStatus: MinimiseButtonStatus = "minimised";
+    if (this.status === "minimised") {
+      newStatus = "maximised";
     }
+    this.status = newStatus;
+    this.buildButton();
+  }
 
-    isCollapsed():Boolean {
-        if (this.status === 'minimised') {
-            return true;
-        } else {
-            return false;
-        }
+  isCollapsed(): Boolean {
+    if (this.status === "minimised") {
+      return true;
+    } else {
+      return false;
     }
-    
-    getIcon(): string {
-        if (this.status === 'minimised') {
-            return 'expand_overview';
-        }
-        return 'minimise_overview';
+  }
+
+  getIcon(): string {
+    if (this.status === "minimised") {
+      return "expand_overview";
     }
+    return "minimise_overview";
+  }
 }

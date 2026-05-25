@@ -2,17 +2,18 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 services:
-  mariadb-galera:
-    image: bitnami/mariadb-galera:latest
+  mariadb:
+    container_name: mariadb
+    image: mariadb:11.3
     ports:
       - '3307:3306'
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_USER=bn_suitecrm
-      - MARIADB_DATABASE=bitnami_suitecrm
-      - MARIADB_PASSWORD=bitnami123
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes # Official name for ALLOW_EMPTY_PASSWORD
+      - MARIADB_USER=mariadb_suitecrm
+      - MARIADB_DATABASE=mariadb_suitecrm
+      - MARIADB_PASSWORD=mariadb123
     volumes:
-      - './db:/bitnami/mariadb'
+      - './db:/var/lib/mysql'
     networks:
       - suitecrm
 

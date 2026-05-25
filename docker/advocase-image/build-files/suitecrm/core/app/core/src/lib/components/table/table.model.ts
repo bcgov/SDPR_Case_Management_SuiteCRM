@@ -24,54 +24,54 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Observable} from 'rxjs';
-import {DataSource} from '@angular/cdk/collections';
+import { Observable } from "rxjs";
+import { DataSource } from "@angular/cdk/collections";
 import {
-    ActionDataSource,
-    ColumnDefinition,
-    PaginationDataSource,
-    Record,
-    RecordSelection,
-    SelectionDataSource,
-    SelectionStatus,
-    SortDirection,
-    SortingSelection
-} from 'common';
-import {BulkActionDataSource} from '../bulk-action-menu/bulk-action-menu.component';
+  ActionDataSource,
+  ColumnDefinition,
+  PaginationDataSource,
+  Record,
+  RecordSelection,
+  SelectionDataSource,
+  SelectionStatus,
+  SortDirection,
+  SortingSelection,
+} from "common";
+import { BulkActionDataSource } from "../bulk-action-menu/bulk-action-menu.component";
 
 export interface TableConfig {
-    showHeader: boolean;
-    showFooter: boolean;
-    klass?: string;
-    dataSource: DataSource<Record>;
+  showHeader: boolean;
+  showFooter: boolean;
+  klass?: string;
+  dataSource: DataSource<Record>;
 
-    columns: Observable<ColumnDefinition[]>;
-    maxColumns$: Observable<number>;
-    lineActions?: ActionDataSource;
-    maxListHeight?: number;
-    selection$?: Observable<RecordSelection>;
-    selectedCount$?: Observable<number>;
-    selectedStatus$?: Observable<SelectionStatus>;
-    sort$?: Observable<SortingSelection>;
-    loading$?: Observable<boolean>;
+  columns: Observable<ColumnDefinition[]>;
+  maxColumns$: Observable<number>;
+  lineActions?: ActionDataSource;
+  maxListHeight?: number;
+  selection$?: Observable<RecordSelection>;
+  selectedCount$?: Observable<number>;
+  selectedStatus$?: Observable<SelectionStatus>;
+  sort$?: Observable<SortingSelection>;
+  loading$?: Observable<boolean>;
 
-    selection?: SelectionDataSource;
+  selection?: SelectionDataSource;
 
-    bulkActions?: BulkActionDataSource;
-    pagination?: PaginationDataSource;
-    tableActions?: ActionDataSource;
+  bulkActions?: BulkActionDataSource;
+  pagination?: PaginationDataSource;
+  tableActions?: ActionDataSource;
 
-    paginationType?: string;
+  paginationType?: string;
 
-    loadMore?(): void;
+  loadMore?(): void;
 
-    refreshLoading?(): void;
+  refreshLoading?(): void;
 
-    allLoaded?(): boolean;
+  allLoaded?(): boolean;
 
-    module?: string;
+  module?: string;
 
-    toggleRecordSelection(id: string): void;
+  toggleRecordSelection(id: string): void;
 
-    updateSorting(orderBy: string, sortOrder: SortDirection): void;
+  updateSorting(orderBy: string, sortOrder: SortDirection): void;
 }

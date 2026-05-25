@@ -24,258 +24,272 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {combineLatestWith, Observable, of, Subscription} from 'rxjs';
-import {map, shareReplay} from 'rxjs/operators';
 import {
-    ColumnDefinition,
-    Field,
-    Record,
-    RecordSelection,
-    SelectionStatus,
-    SortDirection,
-    SortingSelection
-} from 'common';
-import {FieldManager} from '../../../services/record/field/field.manager';
-import {TableConfig} from '../table.model';
-import {SortDirectionDataSource} from '../../sort-button/sort-button.model';
-import {LoadingBufferFactory} from '../../../services/ui/loading-buffer/loading-buffer.factory';
-import {LoadingBuffer} from '../../../services/ui/loading-buffer/loading-buffer.service';
-import {SelectionService} from '../../../services/ui/selectRow/selectRow.service';
-import { Router } from '@angular/router';
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
+import { combineLatestWith, Observable, of, Subscription } from "rxjs";
+import { map, shareReplay } from "rxjs/operators";
+import {
+  ColumnDefinition,
+  Field,
+  Record,
+  RecordSelection,
+  SelectionStatus,
+  SortDirection,
+  SortingSelection,
+} from "common";
+import { FieldManager } from "../../../services/record/field/field.manager";
+import { TableConfig } from "../table.model";
+import { SortDirectionDataSource } from "../../sort-button/sort-button.model";
+import { LoadingBufferFactory } from "../../../services/ui/loading-buffer/loading-buffer.factory";
+import { LoadingBuffer } from "../../../services/ui/loading-buffer/loading-buffer.service";
+import { SelectionService } from "../../../services/ui/selectRow/selectRow.service";
+import { Router } from "@angular/router";
 
 interface TableViewModel {
-    columns: ColumnDefinition[];
-    selection: RecordSelection;
-    selected: { [key: string]: string };
-    selectionStatus: SelectionStatus;
-    displayedColumns: string[];
-    records: Record[] | readonly Record[];
-    loading: boolean;
+  columns: ColumnDefinition[];
+  selection: RecordSelection;
+  selected: { [key: string]: string };
+  selectionStatus: SelectionStatus;
+  displayedColumns: string[];
+  records: Record[] | readonly Record[];
+  loading: boolean;
 }
 
 @Component({
-    selector: 'scrm-table-body',
-    templateUrl: 'table-body.component.html',
+  selector: "scrm-table-body",
+  templateUrl: "table-body.component.html",
 })
 export class TableBodyComponent implements OnInit, OnDestroy {
-    @Input() config: TableConfig;
-    @Input() subpanel: boolean;
-    @Output() deselectAllEvent = new EventEmitter<void>();
-    maxColumns = 4;
-    popoverColumns: ColumnDefinition[];
-    vm$: Observable<TableViewModel>;
-    protected loadingBuffer: LoadingBuffer;
-    protected subs: Subscription[] = [];
-    caseActionLabel: string;
-    latestViewModel: TableViewModel;
-    selectedRecord: Set<string>;
+  @Input() config: TableConfig;
+  @Input() subpanel: boolean;
+  @Output() deselectAllEvent = new EventEmitter<void>();
+  maxColumns = 4;
+  popoverColumns: ColumnDefinition[];
+  vm$: Observable<TableViewModel>;
+  protected loadingBuffer: LoadingBuffer;
+  protected subs: Subscription[] = [];
+  caseActionLabel: string;
+  latestViewModel: TableViewModel;
+  selectedRecord: Set<string>;
 
-    constructor(
-        protected fieldManager: FieldManager,
-        protected loadingBufferFactory: LoadingBufferFactory,
-        private selectionService: SelectionService,
-        private router: Router,
-    ) {
-        this.loadingBuffer = this.loadingBufferFactory.create('table_loading_display_delay');
-    }
+  constructor(
+    protected fieldManager: FieldManager,
+    protected loadingBufferFactory: LoadingBufferFactory,
+    private selectionService: SelectionService,
+    private router: Router,
+  ) {
+    this.loadingBuffer = this.loadingBufferFactory.create(
+      "table_loading_display_delay",
+    );
+  }
 
-    ngOnInit(): void {
-        this.selectedRecord = new Set();
-        this.caseActionLabel = "LBL_CASE_ACTIONS";
-        const selection$ = this.config.selection$ || of(null).pipe(shareReplay(1));
-        let loading$ = this.initLoading();
+  ngOnInit(): void {
+    this.selectedRecord = new Set();
+    this.caseActionLabel = "LBL_CASE_ACTIONS";
+    const selection$ = this.config.selection$ || of(null).pipe(shareReplay(1));
+    let loading$ = this.initLoading();
 
-        this.vm$ = this.config.columns.pipe(
-            combineLatestWith(
-                selection$,
-                this.config.maxColumns$,
-                this.config.dataSource.connect(null),
-                loading$
-            ),
-            map((
-                [
-                    columns,
-                    selection,
-                    maxColumns,
-                    records,
-                    loading
-                ]
-            ) => {
-                const displayedColumns: string[] = [];
+    this.vm$ = this.config.columns.pipe(
+      combineLatestWith(
+        selection$,
+        this.config.maxColumns$,
+        this.config.dataSource.connect(null),
+        loading$,
+      ),
+      map(([columns, selection, maxColumns, records, loading]) => {
+        const displayedColumns: string[] = [];
 
-                this.maxColumns = maxColumns;
+        this.maxColumns = maxColumns;
 
-                const columnsDefs = this.buildDisplayColumns(columns);
-                this.popoverColumns = this.buildHiddenColumns(columns, columnsDefs);
+        const columnsDefs = this.buildDisplayColumns(columns);
+        this.popoverColumns = this.buildHiddenColumns(columns, columnsDefs);
 
-                if (selection) {
-                    displayedColumns.push('checkbox');
-                }
-
-                if (this.popoverColumns && this.popoverColumns.length) {
-                    displayedColumns.push('show-more');
-                }
-
-                displayedColumns.push(...columnsDefs);
-
-                displayedColumns.push('line-actions');
-
-                const selected = selection && selection.selected || {};
-                const selectionStatus = selection && selection.status || SelectionStatus.NONE;
-
-                return {
-                    columns,
-                    selection,
-                    selected,
-                    selectionStatus,
-                    displayedColumns,
-                    records: records || [],
-                    loading
-                };
-            })
-        );
-
-        this.subs.push(this.vm$.subscribe(vm => this.latestViewModel = vm));
-        this.subs.push(this.selectionService.deselectAll$.subscribe(() => this.deselectAll()));
-    }
-
-    ngOnDestroy() {
-        this.subs.forEach(sub => sub.unsubscribe());
-        this.deselectAll();
-    }
-
-    deselectAll(): void {
-        for (let id of this.selectedRecord) {
-            this.config.toggleRecordSelection(id);
-        }
-        this.selectedRecord.clear();
-    }
-
-    toggleSelectAll(): void {
-        let isSelectAll = false;
-        if (this.selectedRecord.size != this.latestViewModel.records.length) {
-            isSelectAll = true;
-        }
-        for (let record of this.latestViewModel.records) {
-            this.toggleSelection(record.id, isSelectAll);
-        }
-    }
-
-    toggleSelection(id: string, selectAll: boolean): void {
-        if (!selectAll && this.selectedRecord.has(id)) {
-            this.selectedRecord.delete(id);
-            this.config.toggleRecordSelection(id);
-        } else {
-            if (!this.selectedRecord.has(id)) {
-                this.selectedRecord.add(id);
-                this.config.toggleRecordSelection(id);
-            }
-        }
-    }
-
-    onRowClick(row: any): void {
-        this.router.navigate([row.module, 'record', row.id]);
-    }
-
-    isChecked(index: number): boolean {
-        return (this.selectedRecord.has(this.latestViewModel.records[index].id))
-    }
-
-    allSelected(status: SelectionStatus): boolean {
-        return status === SelectionStatus.ALL;
-    }
-
-    buildDisplayColumns(metaFields: ColumnDefinition[]): string[] {
-        let i = 0;
-        let hasLinkField = false;
-        const displayedColumns = [];
-
-        const fields = metaFields.filter(function (field) {
-            return !field.hasOwnProperty('default')
-                || (field.hasOwnProperty('default') && field.default === true);
-        });
-
-        while (i < this.maxColumns && i < fields.length) {
-            displayedColumns.push(fields[i].name);
-            hasLinkField = hasLinkField || fields[i].link;
-            i++;
-        }
-        if (!hasLinkField && (this.maxColumns < fields.length)) {
-            for (i = this.maxColumns; i < fields.length; i++) {
-                if (fields[i].link) {
-                    displayedColumns.splice(-1, 1);
-                    displayedColumns.push(fields[i].name);
-                    break;
-                }
-            }
+        if (selection) {
+          displayedColumns.push("checkbox");
         }
 
-        return displayedColumns;
-    }
-
-    buildHiddenColumns(metaFields: ColumnDefinition[], displayedColumns:string[]): ColumnDefinition[] {
-        const fields = metaFields.filter(function (field) {
-            return !field.hasOwnProperty('default')
-                || (field.hasOwnProperty('default') && field.default === true);
-        });
-
-        let missingFields = [];
-
-        for (let i = 0; i < fields.length; i++) {
-            if (displayedColumns.indexOf(fields[i].name) === -1) {
-                missingFields.push(fields[i].name);
-            }
+        if (this.popoverColumns && this.popoverColumns.length) {
+          displayedColumns.push("show-more");
         }
 
-        let hiddenColumns= fields.filter(obj => missingFields.includes(obj.name));
+        displayedColumns.push(...columnsDefs);
 
-        return hiddenColumns;
-    }
+        displayedColumns.push("line-actions");
 
-    getFieldSort(field: ColumnDefinition): SortDirectionDataSource {
+        const selected = (selection && selection.selected) || {};
+        const selectionStatus =
+          (selection && selection.status) || SelectionStatus.NONE;
+
         return {
-            getSortDirection: (): Observable<SortDirection> => this.config.sort$.pipe(
-                map((sort: SortingSelection) => {
-                    let direction = SortDirection.NONE;
+          columns,
+          selection,
+          selected,
+          selectionStatus,
+          displayedColumns,
+          records: records || [],
+          loading,
+        };
+      }),
+    );
 
-                    if (sort.orderBy === field.name) {
-                        direction = sort.sortOrder;
-                    }
+    this.subs.push(this.vm$.subscribe((vm) => (this.latestViewModel = vm)));
+    this.subs.push(
+      this.selectionService.deselectAll$.subscribe(() => this.deselectAll()),
+    );
+  }
 
-                    return direction;
-                })
-            ),
-            changeSortDirection: (direction: SortDirection): void => {
-                this.config.updateSorting(field.name, direction);
+  ngOnDestroy() {
+    this.subs.forEach((sub) => sub.unsubscribe());
+    this.deselectAll();
+  }
+
+  deselectAll(): void {
+    for (let id of this.selectedRecord) {
+      this.config.toggleRecordSelection(id);
+    }
+    this.selectedRecord.clear();
+  }
+
+  toggleSelectAll(): void {
+    let isSelectAll = false;
+    if (this.selectedRecord.size != this.latestViewModel.records.length) {
+      isSelectAll = true;
+    }
+    for (let record of this.latestViewModel.records) {
+      this.toggleSelection(record.id, isSelectAll);
+    }
+  }
+
+  toggleSelection(id: string, selectAll: boolean): void {
+    if (!selectAll && this.selectedRecord.has(id)) {
+      this.selectedRecord.delete(id);
+      this.config.toggleRecordSelection(id);
+    } else {
+      if (!this.selectedRecord.has(id)) {
+        this.selectedRecord.add(id);
+        this.config.toggleRecordSelection(id);
+      }
+    }
+  }
+
+  onRowClick(row: any): void {
+    this.router.navigate([row.module, "record", row.id]);
+  }
+
+  isChecked(index: number): boolean {
+    return this.selectedRecord.has(this.latestViewModel.records[index].id);
+  }
+
+  allSelected(status: SelectionStatus): boolean {
+    return status === SelectionStatus.ALL;
+  }
+
+  buildDisplayColumns(metaFields: ColumnDefinition[]): string[] {
+    let i = 0;
+    let hasLinkField = false;
+    const displayedColumns = [];
+
+    const fields = metaFields.filter(function (field) {
+      return (
+        !field.hasOwnProperty("default") ||
+        (field.hasOwnProperty("default") && field.default === true)
+      );
+    });
+
+    while (i < this.maxColumns && i < fields.length) {
+      displayedColumns.push(fields[i].name);
+      hasLinkField = hasLinkField || fields[i].link;
+      i++;
+    }
+    if (!hasLinkField && this.maxColumns < fields.length) {
+      for (i = this.maxColumns; i < fields.length; i++) {
+        if (fields[i].link) {
+          displayedColumns.splice(-1, 1);
+          displayedColumns.push(fields[i].name);
+          break;
+        }
+      }
+    }
+
+    return displayedColumns;
+  }
+
+  buildHiddenColumns(
+    metaFields: ColumnDefinition[],
+    displayedColumns: string[],
+  ): ColumnDefinition[] {
+    const fields = metaFields.filter(function (field) {
+      return (
+        !field.hasOwnProperty("default") ||
+        (field.hasOwnProperty("default") && field.default === true)
+      );
+    });
+
+    let missingFields = [];
+
+    for (let i = 0; i < fields.length; i++) {
+      if (displayedColumns.indexOf(fields[i].name) === -1) {
+        missingFields.push(fields[i].name);
+      }
+    }
+
+    let hiddenColumns = fields.filter((obj) =>
+      missingFields.includes(obj.name),
+    );
+
+    return hiddenColumns;
+  }
+
+  getFieldSort(field: ColumnDefinition): SortDirectionDataSource {
+    return {
+      getSortDirection: (): Observable<SortDirection> =>
+        this.config.sort$.pipe(
+          map((sort: SortingSelection) => {
+            let direction = SortDirection.NONE;
+
+            if (sort.orderBy === field.name) {
+              direction = sort.sortOrder;
             }
-        } as SortDirectionDataSource;
+
+            return direction;
+          }),
+        ),
+      changeSortDirection: (direction: SortDirection): void => {
+        this.config.updateSorting(field.name, direction);
+      },
+    } as SortDirectionDataSource;
+  }
+
+  getField(column: ColumnDefinition, record: Record): Field {
+    if (!column || !record) {
+      return null;
     }
 
-    getField(column: ColumnDefinition, record: Record): Field {
+    return this.fieldManager.addField(record, column);
+  }
 
-        if (!column || !record) {
-            return null;
-        }
+  protected initLoading(): Observable<boolean> {
+    let loading$ = of(false).pipe(shareReplay(1));
 
-        return this.fieldManager.addField(record, column);
+    if (this.config.loading$) {
+      this.subs.push(
+        this.config.loading$.subscribe((loading) => {
+          this.loadingBuffer.updateLoading(loading);
+        }),
+      );
+
+      loading$ = this.loadingBuffer.loading$;
     }
+    return loading$;
+  }
 
-    protected initLoading(): Observable<boolean> {
-        let loading$ = of(false).pipe(shareReplay(1));
-
-        if (this.config.loading$) {
-            this.subs.push(this.config.loading$.subscribe(loading => {
-                this.loadingBuffer.updateLoading(loading);
-            }));
-
-            loading$ = this.loadingBuffer.loading$;
-        }
-        return loading$;
-    }
-
-    trackRecord(index: number, item: Record): any {
-        return item?.id ?? '';
-    }
+  trackRecord(index: number, item: Record): any {
+    return item?.id ?? "";
+  }
 }
-
