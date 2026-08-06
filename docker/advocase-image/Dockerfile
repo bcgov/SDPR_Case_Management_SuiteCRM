@@ -17,12 +17,14 @@ RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
 RUN corepack enable && corepack prepare yarn@4.10.3 --activate
 RUN npm install --global sass
 
+WORKDIR /suitecrm
+
 RUN yarn install
+
 COPY ./build-files /tmp/build-files
 COPY ./scripts/suitecrm/copy-custom-files.sh /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 RUN /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 
-WORKDIR /suitecrm
 
 RUN sass public/legacy/themes/suite8/css/Dawn/style.scss \
   public/legacy/themes/suite8/css/Dawn/style.css --style compressed
