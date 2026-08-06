@@ -1,57 +1,51 @@
 ARG BASE_IMAGE=artifacts.developer.gov.bc.ca/ad0d-suitecrm-docker/bc-gov-suitecrm:latest
 ARG ENVIRONMENT=production
 
-# ── Stage 1: builder ──────────────────────────────────────
+# Stage 1: builder — discarded wholesale, so nothing installed here reaches the final image
 FROM ${BASE_IMAGE} AS builder
 
-ARG ENVIRONMENT 
+ARG ENVIRONMENT
 
 USER root
 
-# Update and upgrade and install required packages
-RUN echo "Build environment: ${ENVIRONMENT}"
-RUN apt-get update && apt-get upgrade -y && apt-get install -y curl ca-certificates
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
-RUN apt-get install -y nodejs
-RUN corepack enable
-RUN corepack prepare yarn@4.10.3 --activate
-RUN npm install --global sass @angular/cli
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends curl ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+  && apt-get install -y --no-install-recommends nodejs \
+  && rm -rf /var/lib/apt/lists/*
+RUN corepack enable && corepack prepare yarn@4.10.3 --activate
+RUN npm install --global sass
 
-# Copying builded SuiteCRM files to container
+RUN yarn install
 COPY ./build-files /tmp/build-files
 COPY ./scripts/suitecrm/copy-custom-files.sh /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
-
-# Running script to copy modified files to SuiteCRM
 RUN /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 
 WORKDIR /suitecrm
 
-# Bundling and building SuiteCRM theme modifications
-RUN sass public/legacy/themes/suite8/css/Dawn/style.scss public/legacy/themes/suite8/css/Dawn/style.css --style compressed
-RUN ng version
-RUN yarn -v
-RUN yarn install
-RUN yarn merge-angular-json
-RUN ls -a
-# RUN yarn build
+RUN sass public/legacy/themes/suite8/css/Dawn/style.scss \
+  public/legacy/themes/suite8/css/Dawn/style.css --style compressed
 
-# ── Stage 2: final ────────────────────────────────────────
-# FROM ${BASE_IMAGE}
+RUN yarn run build:core
+RUN yarn run build:shell
 
+# Stage 2: final
+FROM ${BASE_IMAGE}
 
-# Copy only the compiled output and custom overrides — no Node.js, no node_modules, ever
-# COPY --from=builder /suitecrm/public /suitecrm/public
-# COPY --from=builder /suitecrm/config /suitecrm/config
-# COPY --from=builder /suitecrm /suitecrm
+USER root
 
-# Fixing permissions for backwards compatibility with OpenShift and Kubernetes
-RUN chgrp -R 0 /suitecrm
-RUN find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} \;
-RUN find /suitecrm -type f -not -perm 0664 -exec chmod 0664 {} \;
-RUN chown -R 1001:0 /suitecrm
-RUN chmod +x /suitecrm/bin/console
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+
+# Build products only; node_modules, .angular and dist/ never leave the builder
+COPY --from=builder --chown=1001:0 /suitecrm/public /suitecrm/public
+COPY --from=builder --chown=1001:0 /suitecrm/core   /suitecrm/core
+COPY --from=builder --chown=1001:0 /suitecrm/config /suitecrm/config
+
+RUN find /suitecrm -type d -not -perm 2775 -exec chmod 2775 {} + \
+  && find /suitecrm -type f -not -perm 0664 -exec chmod 0664 {} + \
+  && chmod +x /suitecrm/bin/console
 
 USER 1001:0
 
-# Exposed ports
 EXPOSE 8181

@@ -3,19 +3,29 @@
 
 services:
   mariadb:
-    container_name: mariadb
-    image: mariadb:11.3
+    container_name: mariadb-galera
+    image: advocase/mariadb-galera:local
     ports:
       - '3307:3306'
     environment:
-      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes # Official name for ALLOW_EMPTY_PASSWORD
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_GALERA_CLUSTER_ADDRESS=gcomm:// # bootstraps a single-node cluster
       - MARIADB_USER=mariadb_suitecrm
       - MARIADB_DATABASE=mariadb_suitecrm
       - MARIADB_PASSWORD=mariadb123
     volumes:
-      - './db:/var/lib/mysql'
+      - 'mariadb_database:/bitnami/mariadb'
+    healthcheck:
+      test: ['CMD', '/opt/bitnami/scripts/mariadb-galera/healthcheck.sh']
+      interval: 15s
+      timeout: 5s
+      retries: 6
     networks:
       - suitecrm
 
 networks:
   suitecrm:
+
+volumes:
+  mariadb_database:
+    name: mariadb_database

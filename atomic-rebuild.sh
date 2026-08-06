@@ -22,7 +22,7 @@ echo ""
 echo "   To get your credentials, go to:"
 echo "   OpenShift Console > (Set User as Administrator) > Workloads > Secrets > artifacts-github-actions-vezsxm"
 echo ""
-echo "   Then run: docker login -u <USERNAME> -p <PASSWORD>"
+echo "   Then run: docker login -u <USERNAME> -p <PASSWORD> artifacts.developer.gov.bc.ca"
 echo ""
 echo "   See docker/advocase-image/README.md for full instructions."
 echo ""
@@ -58,21 +58,51 @@ CURRENT_STEP="stopping all running containers"
 echo "==> $CURRENT_STEP..."
 docker ps -q | xargs -r docker stop
 
-CURRENT_STEP="Tearing down Docker Compose and wiping DB volume"
+CURRENT_STEP="Tearing down Docker Compose"
 echo "==> $CURRENT_STEP..."
-(cd docker && docker compose down -v && rm -rf db/)
+(cd docker && docker compose down -v --remove-orphans)
 
-CURRENT_STEP="Removing suitecrm/advocase containers"
+CURRENT_STEP="Removing volumes"
 echo "==> $CURRENT_STEP..."
-docker rm -f suitecrm advocase 2>/dev/null || true
+# docker_mariadb_database is the legacy Compose-prefixed name, pre-`name:` pinning
+for vol in mariadb_database docker_mariadb_database; do
+  { docker ps -aq --filter "volume=$vol" | xargs -r docker rm -f; } 2>/dev/null || true
+  docker volume rm -f "$vol" 2>/dev/null || true
+done
+
+CURRENT_STEP="Removing network"
+echo "==> $CURRENT_STEP..."
+docker network rm docker_suitecrm 2>/dev/null || true
 
 CURRENT_STEP="Removing old images"
 echo "==> $CURRENT_STEP..."
-docker rmi "$DOCKER_USERNAME/suitecrm" "$DOCKER_USERNAME/advocase" 2>/dev/null || true
+# advocase is built FROM suitecrm, so the child must go first
+docker rmi -f "$DOCKER_USERNAME/advocase" 2>/dev/null || true
+docker rmi -f "$DOCKER_USERNAME/suitecrm" 2>/dev/null || true
+docker rmi -f advocase/mariadb-galera:local 2>/dev/null || true
+docker image prune -f || true
 
 CURRENT_STEP="Clearing build cache"
 echo "==> $CURRENT_STEP..."
 docker builder prune -f
+
+CURRENT_STEP="Removing suitecrm/advocase containers"
+echo "==> $CURRENT_STEP..."
+docker rm -f suitecrm advocase mariadb-galera 2>/dev/null || true
+
+CURRENT_STEP="Removing old images"
+echo "==> $CURRENT_STEP..."
+docker rmi "$DOCKER_USERNAME/suitecrm" "$DOCKER_USERNAME/advocase" advocase/mariadb-galera:local 2>/dev/null || true
+
+CURRENT_STEP="Clearing build cache"
+echo "==> $CURRENT_STEP..."
+docker builder prune -f
+
+CURRENT_STEP="Building mariadb-galera image"
+echo "==> $CURRENT_STEP..."
+docker build --platform linux/amd64 \
+  -t advocase/mariadb-galera:local \
+  docker/mariadb-galera/13.0/debian-12
 
 CURRENT_STEP="Building suitecrm image"
 echo "==> $CURRENT_STEP..."
@@ -89,5 +119,12 @@ docker build --platform linux/amd64 \
 CURRENT_STEP="starting DB"
 echo "==> $CURRENT_STEP..."
 (cd docker && docker compose up -d --remove-orphans)
+
+CURRENT_STEP="waiting for mariadb-galera to become healthy"
+echo "==> $CURRENT_STEP..."
+for _ in $(seq 1 60); do
+  [[ "$(docker inspect -f '{{.State.Health.Status}}' mariadb-galera 2>/dev/null)" == "healthy" ]] && break
+  sleep 5
+done
 
 echo "==> Done! Advocase will be available at http://localhost:8182 once initialized."

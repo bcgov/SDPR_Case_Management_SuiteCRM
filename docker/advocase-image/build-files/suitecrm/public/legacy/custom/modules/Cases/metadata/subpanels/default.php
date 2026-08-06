@@ -73,7 +73,7 @@ $subpanel_layout['list_fields'] = array (
   ),
 );
 
-$subpanel_layout['insightWidget'] = array(
+$subpanel_layout['subpanelWidget'] = array(
   'rows' => [
     [
       'justify' => 'start',

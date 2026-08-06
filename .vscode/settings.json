@@ -1,0 +1,7 @@
+// .vscode/settings.json
+{
+  // Dead SuiteCRM 8.6 theme fork — superseded by docker/advocase-image
+  "search.exclude": {
+    "docker/bcgovtheme-image/**": true
+  }
+}

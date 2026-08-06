@@ -8,7 +8,7 @@
 #
 # Prerequisites:
 #   - Docker Compose DB must be running: docker compose -f docker/docker-compose.yaml up -d
-#   - Images must already be built (run ground-zero-reset.sh first)
+#   - Images must already be built (run atomic-rebuild.sh first)
 #
 # Run from the repo root:
 #   chmod +x run-local.sh
@@ -22,6 +22,19 @@ if [[ -n "$1" ]]; then
 else
   read -rp "==> Enter your Docker Hub username: " DOCKER_USERNAME
 fi
+
+echo "==> Starting mariadb-galera container..."
+docker run -d --name mariadb-galera \
+  --platform linux/amd64 \
+  --network docker_suitecrm --network-alias mariadb \
+  -p 3307:3306 \
+  -e ALLOW_EMPTY_PASSWORD=yes \
+  -e MARIADB_GALERA_CLUSTER_ADDRESS=gcomm:// \
+  -e MARIADB_USER=mariadb_suitecrm \
+  -e MARIADB_DATABASE=mariadb_suitecrm \
+  -e MARIADB_PASSWORD=mariadb123 \
+  -v mariadb_database:/bitnami/mariadb \
+  "$DOCKER_USERNAME/mariadb-galera:local"
 
 echo "==> Starting suitecrm container..."
 docker run -d --name suitecrm --platform linux/amd64 --network docker_suitecrm \
