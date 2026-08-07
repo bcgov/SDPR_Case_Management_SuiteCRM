@@ -26,17 +26,19 @@
 
 import { Observable } from "rxjs";
 import { DataSource } from "@angular/cdk/collections";
+import { ActionDataSource } from "../../common/actions/action.model";
+import { ColumnDefinition } from "../../common/metadata/list.metadata.model";
+import { PaginationDataSource } from "../../common/components/pagination/pagination.model";
+import { Record } from "../../common/record/record.model";
 import {
-  ActionDataSource,
-  ColumnDefinition,
-  PaginationDataSource,
-  Record,
   RecordSelection,
-  SelectionDataSource,
   SelectionStatus,
+} from "../../common/views/list/record-selection.model";
+import { SelectionDataSource } from "../../common/views/list/selection.model";
+import {
   SortDirection,
   SortingSelection,
-} from "common";
+} from "../../common/views/list/list-navigation.model";
 import { BulkActionDataSource } from "../bulk-action-menu/bulk-action-menu.component";
 
 export interface TableConfig {

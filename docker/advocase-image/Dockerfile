@@ -29,6 +29,8 @@ RUN /opt/suitecrm/scripts/suitecrm/copy-custom-files.sh
 RUN sass public/legacy/themes/suite8/css/Dawn/style.scss \
   public/legacy/themes/suite8/css/Dawn/style.css --style compressed
 
+RUN yarn merge-angular-json
+RUN yarn run build:extension defaultExt
 RUN yarn run build:core
 RUN yarn run build:shell
 
