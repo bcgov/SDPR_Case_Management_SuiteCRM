@@ -24,148 +24,171 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Button, ButtonGroupInterface, ButtonInterface, DropdownButtonInterface, AnyButtonInterface} from 'common';
-import {Observable, Subscription} from 'rxjs';
-import { Router } from '@angular/router';
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Button, ButtonInterface } from "../../common/components/button/button.model";
+import { ButtonGroupInterface } from "../../common/components/button/button-group.model";
+import {
+  AnyButtonInterface,
+  DropdownButtonInterface,
+} from "../../common/components/button/dropdown-button.model";
+import { Observable, Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 interface SplitButtons {
-    expanded: AnyButtonInterface[];
-    collapsed: AnyButtonInterface[];
+  expanded: AnyButtonInterface[];
+  collapsed: AnyButtonInterface[];
 }
 
 @Component({
-    selector: 'scrm-button-group',
-    templateUrl: './button-group.component.html',
-    styles: [],
+  selector: "scrm-button-group",
+  templateUrl: "./button-group.component.html",
+  styles: [],
 })
 export class ButtonGroupComponent implements OnInit, OnDestroy {
+  @Input() config$: Observable<ButtonGroupInterface>;
+  @Input() klass: string = "";
 
-    @Input() config$: Observable<ButtonGroupInterface>;
-    @Input() klass: string = '';
+  buttons: SplitButtons = {
+    expanded: [],
+    collapsed: [],
+  };
 
-    buttons: SplitButtons = {
-        expanded: [],
-        collapsed: [],
-    };
+  dropdownConfig: DropdownButtonInterface;
 
-    dropdownConfig: DropdownButtonInterface;
+  protected internalConfig: ButtonGroupInterface;
+  private sub: Subscription;
 
-    protected internalConfig: ButtonGroupInterface;
-    private sub: Subscription;
+  constructor(private router: Router) {}
 
+  ngOnInit(): void {
+    this.sub = this.config$.subscribe((config) => {
+      this.internalConfig = { ...config };
+      this.splitButtons();
+    });
+  }
 
-    constructor(private router: Router) {
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  buildDropdownConfig(): void {
+    let buttonClasses = ["button-group-button"];
+
+    if (
+      this.internalConfig.buttonKlass &&
+      this.internalConfig.buttonKlass.length > 0
+    ) {
+      buttonClasses = buttonClasses.concat(this.internalConfig.buttonKlass);
     }
 
-    ngOnInit(): void {
-        this.sub = this.config$.subscribe(config => {
-            this.internalConfig = {...config};
-            this.splitButtons();
-        });
+    if (this?.internalConfig?.dropdownOptions?.klass) {
+      buttonClasses = buttonClasses.concat(
+        this.internalConfig.dropdownOptions.klass,
+      );
     }
 
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
+    let wrapperClasses = ["button-group-dropdown"];
+
+    const dropdownOptions = this.internalConfig.dropdownOptions;
+    const optionsWrapperKlass = dropdownOptions && dropdownOptions.wrapperKlass;
+
+    if (optionsWrapperKlass && optionsWrapperKlass.length > 0) {
+      wrapperClasses = wrapperClasses.concat(optionsWrapperKlass);
     }
 
-    buildDropdownConfig(): void {
+    this.dropdownConfig = {
+      label: this.internalConfig.dropdownLabel,
+      klass: [...buttonClasses],
+      wrapperKlass: wrapperClasses,
+      items: this.buttons.collapsed,
+    } as DropdownButtonInterface;
 
-        let buttonClasses = ['button-group-button'];
-
-        if (this.internalConfig.buttonKlass && this.internalConfig.buttonKlass.length > 0) {
-            buttonClasses = buttonClasses.concat(this.internalConfig.buttonKlass);
-        }
-
-        if (this?.internalConfig?.dropdownOptions?.klass) {
-            buttonClasses = buttonClasses.concat(this.internalConfig.dropdownOptions.klass);
-        }
-
-        let wrapperClasses = ['button-group-dropdown'];
-
-        const dropdownOptions = this.internalConfig.dropdownOptions;
-        const optionsWrapperKlass = dropdownOptions && dropdownOptions.wrapperKlass;
-
-        if (optionsWrapperKlass && optionsWrapperKlass.length > 0) {
-            wrapperClasses = wrapperClasses.concat(optionsWrapperKlass);
-        }
-
-        this.dropdownConfig = {
-            label: this.internalConfig.dropdownLabel,
-            klass: [...buttonClasses],
-            wrapperKlass: wrapperClasses,
-            items: this.buttons.collapsed,
-        } as DropdownButtonInterface;
-
-        if (this.internalConfig.dropdownOptions && this.internalConfig.dropdownOptions.placement) {
-            this.dropdownConfig.placement = this.internalConfig.dropdownOptions.placement;
-        }
-
-        if (this.internalConfig.dropdownOptions && this.internalConfig.dropdownOptions.icon) {
-            this.dropdownConfig.icon = this.internalConfig.dropdownOptions.icon;
-        }
-        this.dropdownConfig.label = "More Actions";
+    if (
+      this.internalConfig.dropdownOptions &&
+      this.internalConfig.dropdownOptions.placement
+    ) {
+      this.dropdownConfig.placement =
+        this.internalConfig.dropdownOptions.placement;
     }
 
-    protected getBreakpoint(): number {
+    if (
+      this.internalConfig.dropdownOptions &&
+      this.internalConfig.dropdownOptions.icon
+    ) {
+      this.dropdownConfig.icon = this.internalConfig.dropdownOptions.icon;
+    }
+    this.dropdownConfig.label = "More Actions";
+  }
 
-        if (!this.internalConfig.breakpoint && this.internalConfig.breakpoint !== 0) {
-            return 4;
+  protected getBreakpoint(): number {
+    if (
+      !this.internalConfig.breakpoint &&
+      this.internalConfig.breakpoint !== 0
+    ) {
+      return 4;
+    }
+
+    return this.internalConfig.breakpoint;
+  }
+
+  protected splitButtons(): void {
+    this.buttons.expanded = [];
+    this.buttons.collapsed = [];
+
+    if (
+      !this.internalConfig.buttons ||
+      this.internalConfig.buttons.length < 1
+    ) {
+      return;
+    }
+
+    let count = 0;
+
+    const showAfterBreakpoint = this.internalConfig.showAfterBreakpoint ?? true;
+
+    this.internalConfig.buttons.forEach((button) => {
+      if (!button) {
+        return;
+      }
+
+      if (count < this.getBreakpoint()) {
+        let classes = ["button-group-button"];
+        if (
+          this.internalConfig.buttonKlass &&
+          this.internalConfig.buttonKlass.length > 0
+        ) {
+          classes = classes.concat(this.internalConfig.buttonKlass);
         }
+        const newButton = { ...button };
+        Button.appendClasses(newButton, [...classes]);
 
-        return this.internalConfig.breakpoint;
+        this.buttons.expanded.push(newButton);
+      } else if (showAfterBreakpoint === true) {
+        this.buttons.collapsed.push({ ...button });
+      }
+
+      count++;
+    });
+
+    this.buildDropdownConfig();
+  }
+
+  stopPropagation(event: MouseEvent) {
+    event.stopPropagation();
+  }
+
+  checkDropdown(): boolean {
+    const currentUrl = this.router.url;
+    const targetPath = "/cases/";
+    const correctUrl = currentUrl.startsWith(targetPath);
+    if (
+      correctUrl &&
+      this.buttons.expanded.length == 1 &&
+      this.buttons.expanded[0].label == "Edit"
+    ) {
+      return true;
+    } else {
+      return false;
     }
-
-    protected splitButtons(): void {
-
-        this.buttons.expanded = [];
-        this.buttons.collapsed = [];
-
-        if (!this.internalConfig.buttons || this.internalConfig.buttons.length < 1) {
-            return;
-        }
-
-        let count = 0;
-
-        const showAfterBreakpoint = this.internalConfig.showAfterBreakpoint ?? true;
-
-        this.internalConfig.buttons.forEach(button => {
-
-            if (!button) {
-                return;
-            }
-
-            if (count < this.getBreakpoint()) {
-                let classes = ['button-group-button'];
-                if (this.internalConfig.buttonKlass && this.internalConfig.buttonKlass.length > 0) {
-                    classes = classes.concat(this.internalConfig.buttonKlass);
-                }
-                const newButton = {...button};
-                Button.appendClasses(newButton, [...classes]);
-
-                this.buttons.expanded.push(newButton);
-            } else if(showAfterBreakpoint === true) {
-                this.buttons.collapsed.push({...button});
-            }
-
-            count++;
-        });
-
-        this.buildDropdownConfig();
-    }
-
-    stopPropagation(event: MouseEvent) {
-        event.stopPropagation();
-    }
-
-    checkDropdown():boolean {
-        const currentUrl = this.router.url;
-        const targetPath = '/cases/';
-        const correctUrl = currentUrl.startsWith(targetPath);
-        if (correctUrl && this.buttons.expanded.length == 1 && this.buttons.expanded[0].label == 'Edit') { 
-            return true;
-        } else {
-            return false;
-        }
-    }
+  }
 }

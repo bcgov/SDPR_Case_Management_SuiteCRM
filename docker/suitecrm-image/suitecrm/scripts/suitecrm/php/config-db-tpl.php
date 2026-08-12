@@ -34,5 +34,6 @@ $sugar_config = array (
   array (
     'en_us' => 'English (US)',
   ),
-  'site_url' => 'http://localhost:8181',
+  'unique_key' => getenv('SUITE_UNIQUE_KEY') ?: md5(getenv('SITE_URL')),
+  'site_url' => getenv('SITE_URL'),
 );

@@ -24,254 +24,272 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BaseWidgetComponent } from '../../../widgets/base-widget.model';
-import { SingleValueStatisticsStore } from '../../../../store/single-value-statistics/single-value-statistics.store';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { BaseWidgetComponent } from "../../../widgets/base-widget.model";
+import { SingleValueStatisticsStore } from "../../../../store/single-value-statistics/single-value-statistics.store";
+import { SingleValueStatisticsStoreFactory } from "../../../../store/single-value-statistics/single-value-statistics.store.factory";
+import { map, take } from "rxjs/operators";
 import {
-    SingleValueStatisticsStoreFactory
-} from '../../../../store/single-value-statistics/single-value-statistics.store.factory';
-import { map, take } from 'rxjs/operators';
-import { LanguageStore, LanguageStringMap } from '../../../../store/language/language.store';
-import { combineLatestWith, Observable, of, Subscription } from 'rxjs';
-import { SingleValueStatisticsState, StatisticsQuery, ViewContext } from 'common';
+  LanguageStore,
+  LanguageStringMap,
+} from "../../../../store/language/language.store";
+import { combineLatestWith, Observable, of, Subscription } from "rxjs";
+import { StatisticsQuery } from "../../../../common/statistics/statistics.model";
+import { SingleValueStatisticsState } from "../../../../common/statistics/statistics-store.model";
+import { ViewContext } from "../../../../common/views/view.model";
 
 interface StatisticsTopWidgetState {
-    statistics: { [key: string]: SingleValueStatisticsState };
-    appStrings: LanguageStringMap;
+  statistics: { [key: string]: SingleValueStatisticsState };
+  appStrings: LanguageStringMap;
 }
 
 interface StatisticsEntry {
-    labelKey: string;
-    endLabelKey?: string;
-    hideValueIfEmpty?: boolean;
-    hideIfEmpty?: boolean;
-    type: string;
-    store: SingleValueStatisticsStore;
+  labelKey: string;
+  endLabelKey?: string;
+  hideValueIfEmpty?: boolean;
+  hideIfEmpty?: boolean;
+  type: string;
+  store: SingleValueStatisticsStore;
 }
 
 interface StatisticsEntryMap {
-    [key: string]: StatisticsEntry;
+  [key: string]: StatisticsEntry;
 }
 
 @Component({
-    selector: 'scrm-statistics-top-widget',
-    templateUrl: './statistics-top-widget.component.html',
-    styles: []
+  selector: "scrm-statistics-top-widget",
+  templateUrl: "./statistics-top-widget.component.html",
+  styles: [],
 })
-export class StatisticsTopWidgetComponent extends BaseWidgetComponent implements OnInit, OnDestroy {
-    statistics: StatisticsEntryMap = {};
-    vm$: Observable<StatisticsTopWidgetState>;
-    messageLabelKey: string;
-    loading$: Observable<boolean>;
-    protected loading = true;
-    protected subs: Subscription[] = [];
+export class StatisticsTopWidgetComponent
+  extends BaseWidgetComponent
+  implements OnInit, OnDestroy
+{
+  statistics: StatisticsEntryMap = {};
+  vm$: Observable<StatisticsTopWidgetState>;
+  messageLabelKey: string;
+  loading$: Observable<boolean>;
+  protected loading = true;
+  protected subs: Subscription[] = [];
 
-    constructor(
-        protected language: LanguageStore,
-        protected factory: SingleValueStatisticsStoreFactory
-    ) {
-        super();
+  constructor(
+    protected language: LanguageStore,
+    protected factory: SingleValueStatisticsStoreFactory,
+  ) {
+    super();
+  }
+
+  ngOnInit(): void {
+    if (!this.context || !this.context.module) {
+      this.messageLabelKey = "LBL_CONFIG_BAD_CONTEXT";
+      return;
     }
 
+    if (!this.config) {
+      this.messageLabelKey = "LBL_CONFIG_NO_CONFIG";
+      return;
+    }
 
-    ngOnInit(): void {
+    if (
+      !this.config.options ||
+      !this.config.options.statistics ||
+      !this.config.options.statistics.length
+    ) {
+      this.messageLabelKey = "LBL_CONFIG_NO_STATISTICS_KEY";
+      return;
+    }
 
-        if (!this.context || !this.context.module) {
-            this.messageLabelKey = 'LBL_CONFIG_BAD_CONTEXT';
-            return;
+    if (this.context$) {
+      this.subs.push(
+        this.context$.subscribe((context: ViewContext) => {
+          this.context = context;
+        }),
+      );
+    }
+
+    const statistics$: Observable<SingleValueStatisticsState>[] = [];
+    const loadings$: Observable<boolean>[] = [];
+    this.config.options.statistics.forEach((statistic) => {
+      if (!statistic.type) {
+        return;
+      }
+
+      this.statistics[statistic.type] = {
+        labelKey: statistic.labelKey || "",
+        endLabelKey: statistic.endLabelKey || "",
+        hideValueIfEmpty: statistic.hideValueIfEmpty || false,
+        type: statistic.type,
+        store: this.factory.create(),
+      };
+
+      this.statistics[statistic.type].store
+        .init(this.context.module, {
+          key: statistic.type,
+          context: { ...this.context },
+        } as StatisticsQuery)
+        .pipe(take(1))
+        .subscribe();
+
+      statistics$.push(this.statistics[statistic.type].store.state$);
+      loadings$.push(this.statistics[statistic.type].store.loading$);
+    });
+
+    let statisticObs = null;
+
+    if (statistics$.length < 1) {
+      statisticObs = of([]);
+    } else if (statistics$.length === 1) {
+      statisticObs = statistics$[0].pipe(map((value) => [value]));
+    } else {
+      let firsObs = null;
+      let others;
+      [firsObs, ...others] = statistics$;
+      statisticObs = firsObs.pipe(combineLatestWith(others));
+    }
+
+    this.loading$ = loadings$[0].pipe(
+      combineLatestWith(...loadings$),
+      map((loadings) => {
+        if (!loadings || loadings.length < 1) {
+          this.loading = false;
+          return false;
         }
 
-        if (!this.config) {
-            this.messageLabelKey = 'LBL_CONFIG_NO_CONFIG';
-            return;
-        }
+        let loading = true;
 
-        if (!this.config.options || !this.config.options.statistics || !this.config.options.statistics.length) {
-            this.messageLabelKey = 'LBL_CONFIG_NO_STATISTICS_KEY';
-            return;
-        }
-
-        if (this.context$) {
-            this.subs.push(this.context$.subscribe((context: ViewContext) => {
-                this.context = context;
-            }));
-        }
-
-        const statistics$: Observable<SingleValueStatisticsState>[] = [];
-        const loadings$: Observable<boolean>[] = [];
-        this.config.options.statistics.forEach(statistic => {
-
-            if (!statistic.type) {
-                return;
-            }
-
-            this.statistics[statistic.type] = {
-                labelKey: statistic.labelKey || '',
-                endLabelKey: statistic.endLabelKey || '',
-                hideValueIfEmpty: statistic.hideValueIfEmpty || false,
-                type: statistic.type,
-                store: this.factory.create()
-            };
-
-            this.statistics[statistic.type].store.init(
-                this.context.module,
-                {
-                    key: statistic.type,
-                    context: { ...this.context }
-                } as StatisticsQuery,
-            ).pipe(take(1)).subscribe();
-
-            statistics$.push(this.statistics[statistic.type].store.state$);
-            loadings$.push(this.statistics[statistic.type].store.loading$);
+        loadings.forEach((value) => {
+          loading = loading && value;
         });
 
-        let statisticObs = null;
+        this.loading = loading;
 
-        if (statistics$.length < 1) {
-            statisticObs = of([]);
-        } else if (statistics$.length === 1) {
-            statisticObs = statistics$[0].pipe(
-                map(value => [value])
-            );
-        } else {
-            let firsObs = null;
-            let others;
-            [firsObs, ...others] = statistics$;
-            statisticObs = firsObs.pipe(
-                combineLatestWith(others)
-            );
-        }
+        return loading;
+      }),
+    );
 
-        this.loading$ = loadings$[0].pipe(
-            combineLatestWith(...loadings$),
-            map((loadings) => {
-                if (!loadings || loadings.length < 1) {
-                    this.loading = false;
-                    return false;
-                }
+    this.subs.push(this.loading$.subscribe());
 
-                let loading = true;
+    this.vm$ = statisticObs.pipe(
+      combineLatestWith(this.language.appStrings$),
+      map(([statistics, appStrings]) => {
+        const statsMap: { [key: string]: SingleValueStatisticsState } = {};
+        statistics.forEach((value) => {
+          statsMap[value.query.key] = value;
 
-                loadings.forEach(value => {
-                    loading = loading && value;
-                });
+          this.statistics[value.query.key].labelKey = this.getMetadataEntry(
+            value,
+            "labelKey",
+          );
+          this.statistics[value.query.key].endLabelKey = this.getMetadataEntry(
+            value,
+            "endLabelKey",
+          );
+        });
+        if (statsMap["contact-last-touchpoint"]) return null;
+        return {
+          statistics: statsMap,
+          appStrings,
+        };
+      }),
+    );
 
-                this.loading = loading;
+    if (this.config.reload$) {
+      this.subs.push(
+        this.config.reload$.subscribe(() => {
+          if (this.loading === false) {
+            this.loading = true;
+            this.config.options.statistics.forEach((statistic) => {
+              if (!statistic.type) {
+                return;
+              }
 
-                return loading;
-            })
-        );
+              if (
+                !this.statistics[statistic.type] ||
+                !this.statistics[statistic.type].store
+              ) {
+                return;
+              }
 
-        this.subs.push(this.loading$.subscribe());
+              this.statistics[statistic.type].store
+                .load(false)
+                .pipe(take(1))
+                .subscribe();
+            });
+          }
+        }),
+      );
+    }
+  }
 
-        this.vm$ = statisticObs.pipe(
-            combineLatestWith(this.language.appStrings$),
-            map(([statistics, appStrings]) => {
-                const statsMap: { [key: string]: SingleValueStatisticsState } = {};
-                statistics.forEach(value => {
-                    statsMap[value.query.key] = value;
+  ngOnDestroy(): void {
+    this.subs.forEach((sub) => sub.unsubscribe());
+  }
 
-                    this.statistics[value.query.key].labelKey = this.getMetadataEntry(value, 'labelKey');
-                    this.statistics[value.query.key].endLabelKey = this.getMetadataEntry(value, 'endLabelKey');
-                });
-                if (statsMap['contact-last-touchpoint']) return null;
-                return {
-                    statistics: statsMap,
-                    appStrings
-                };
-            })
-        );
+  /**
+   * Check if statistics should be hidden
+   * @param stats
+   * @param item
+   */
+  shouldHide(stats: SingleValueStatisticsState, item: StatisticsEntry) {
+    // // console.log('🚀 ~ StatisticsTopWidgetComponent ~ shouldHide ~ item:', item.labelKey);
+    // // console.log('🚀 ~ StatisticsTopWidgetComponent ~ shouldHide ~ item:', item.type);
+    // // console.log('🚀 ~ StatisticsTopWidgetComponent ~ shouldHide ~ stats:', stats.field);
+    // if (item.labelKey !== 'LBL_NO_INTERACTION') return true;
+    return (
+      this.hasLoaded(stats) &&
+      this.isValueEmpty(stats) &&
+      item.hideIfEmpty === true
+    );
+  }
 
-        if (this.config.reload$) {
-            this.subs.push(this.config.reload$.subscribe(() => {
-                if (this.loading === false) {
+  /**
+   * Check if statistics have been loaded
+   * @param stats
+   */
+  hasLoaded(stats: SingleValueStatisticsState): boolean {
+    return !stats.loading;
+  }
 
-                    this.loading = true;
-                    this.config.options.statistics.forEach(statistic => {
-
-                        if (!statistic.type) {
-                            return;
-                        }
-
-                        if (!this.statistics[statistic.type] || !this.statistics[statistic.type].store) {
-                            return;
-                        }
-
-                        this.statistics[statistic.type].store.load(false).pipe(take(1)).subscribe();
-                    });
-
-                }
-            }));
-        }
-
-
+  /**
+   * Check if value is empty
+   * @param stats
+   */
+  isValueEmpty(stats: SingleValueStatisticsState) {
+    const emptyValue = stats?.statistic?.metadata?.emptyValueString ?? null;
+    if (emptyValue !== null) {
+      return true;
     }
 
-    ngOnDestroy(): void {
-        this.subs.forEach(sub => sub.unsubscribe());
+    const value = stats?.field?.value ?? null;
+
+    if (value) {
+      return false;
     }
 
-    /**
-     * Check if statistics should be hidden
-     * @param stats
-     * @param item
-     */
-    shouldHide(stats: SingleValueStatisticsState, item: StatisticsEntry) {
-        // // console.log('🚀 ~ StatisticsTopWidgetComponent ~ shouldHide ~ item:', item.labelKey);
-        // // console.log('🚀 ~ StatisticsTopWidgetComponent ~ shouldHide ~ item:', item.type);
-        // // console.log('🚀 ~ StatisticsTopWidgetComponent ~ shouldHide ~ stats:', stats.field);
-        // if (item.labelKey !== 'LBL_NO_INTERACTION') return true;
-        return this.hasLoaded(stats) && this.isValueEmpty(stats) && item.hideIfEmpty === true;
+    return emptyValue === value;
+  }
+
+  /**
+   * Get metadata entry for statistic
+   * @param stat
+   * @param name
+   */
+  getMetadataEntry(stat: SingleValueStatisticsState, name: string): string {
+    const value = stat.statistic.metadata && stat.statistic.metadata[name];
+    if (value !== null && typeof value !== "undefined") {
+      return value;
     }
 
-    /**
-     * Check if statistics have been loaded
-     * @param stats
-     */
-    hasLoaded(stats: SingleValueStatisticsState): boolean {
-        return !stats.loading;
-    }
+    return this.statistics[stat.query.key][name];
+  }
 
-    /**
-     * Check if value is empty
-     * @param stats
-     */
-    isValueEmpty(stats: SingleValueStatisticsState) {
-        const emptyValue = stats?.statistic?.metadata?.emptyValueString ?? null;
-        if (emptyValue !== null) {
-            return true;
-        }
-
-        const value = stats?.field?.value ?? null;
-
-        if (value) {
-            return false;
-        }
-
-        return emptyValue === value;
-    }
-
-    /**
-     * Get metadata entry for statistic
-     * @param stat
-     * @param name
-     */
-    getMetadataEntry(stat: SingleValueStatisticsState, name: string): string {
-        const value = stat.statistic.metadata && stat.statistic.metadata[name];
-        if (value !== null && typeof value !== 'undefined') {
-            return value;
-        }
-
-        return this.statistics[stat.query.key][name];
-    }
-
-    /**
-     * Get label value
-     * @param key
-     */
-    getLabel(key: string): string {
-        const context = this.context || {} as ViewContext;
-        const module = context.module || '';
-        return this.language.getFieldLabel(key, module);
-    }
+  /**
+   * Get label value
+   * @param key
+   */
+  getLabel(key: string): string {
+    const context = this.context || ({} as ViewContext);
+    const module = context.module || "";
+    return this.language.getFieldLabel(key, module);
+  }
 }

@@ -1,6 +1,7 @@
 <h1>BC GOV Advocase image</h1>
 
 Table of contents
+
 - [Overview](#overview)
   - [Current SuiteCRM version](#current-suitecrm-version)
 - [How to use this image](#how-to-use-this-image)
@@ -15,7 +16,7 @@ This is the BC Gov SuiteCRM image. It is based on the [BC Gov SuiteCRM image](..
 
 ## Current SuiteCRM version
 
-The SuiteCRM version used in this image is the `8.6.2`. Check the release notes [here](https://docs.suitecrm.com/8.x/admin/releases/8.6/).
+The SuiteCRM version used in this image is the `8.10`. Check the release notes [here](https://docs.suitecrm.com/8.x/admin/releases/8.10/).
 
 # How to use this image
 
@@ -25,30 +26,55 @@ This image will check for you if you already have a database with all SuiteCRM t
 
 ## Building the SuiteCRM image
 
+First you need to login to docker with the secret stored on OpenShift:
+
+(Set User as Administrator) > Workloads > Secrets > `artifacts-github-actions-vezsxm`:
+
+```bash
+docker login -u <USERNAME> -p <PASSWORD>
+```
+
 Build the image using the following command:
 
 ```bash
-docker build -t your-user/advocase docker/advocase-image
+docker build -t [YOUR_DOCKER_HUB_USERNAME]/advocase docker/advocase-image
 ```
+
 ## Running the SuiteCRM container
 
 Run the following command to start the SuiteCRM container:
 
 ```bash
-docker run -d --name suitecrm -p 8181:8181 -e DATABASE_URL="mysql://suitecrm:suitecrm@localhost:3306/suitecrm" -e SUITE_DB_HOST="localhost" -e SUITE_DB_USER="suitecrm" -e SUITE_DB_NAME="suitecrm" -e SUITE_DB_PASSW="suitecrm" -e SUITE_DB_PORT=3306 -e SESSION_SAVE_HANDLER="files" -e SESSION_SAVE_PATH="/tmp" -e SUITECRM_ADMIN_PWD="admin" your-user/advocase
+docker run -d --name advocase --platform linux/amd64 --network docker_suitecrm \
+  -e SUITE_DB_HOST=mariadb \
+  -e SUITE_DB_USER=mariadb_suitecrm \
+  -e SUITE_DB_PASSW=mariadb123 \
+  -e SUITE_DB_NAME=mariadb_suitecrm \
+  -e SUITE_DB_PORT=3306 \
+  -e APP_SECRET=secret32CharplayprojectzomboidB42 \
+  -e AUTH_TYPE=native \
+  -e SITE_URL=http://localhost:8182 \
+  -e SAML_AUTOCREATE_ATTRIBUTES_MAP='{}' \
+  -e TEMPORARY_FILE_BASE_DIR=/tmp \
+  -e SUITECRM_ADMIN_PWD=admin \
+  -p 8182:8181 \
+  [YOUR_DOCKER_HUB_USERNAME]/advocase
 ```
+
 ## Environment variables
 
 The following environment variables are the same as the [BC Gov SuiteCRM image environment variables](../suitecrm-image/README.md#environment-variables):
 
-| Variable | Description | Required | Default value |
-|----------|-------------|----------|---------------|
-| `DATABASE_URL` | Database URL | Yes | |
-| `SUITE_DB_HOST` | Database host | Yes | |
-| `SUITE_DB_USER` | Database user | Yes | |
-| `SUITE_DB_NAME` | Database name | Yes | |
-| `SUITE_DB_PASSW` | Database password | Yes | |
-| `SUITE_DB_PORT` | Database port | Yes | |
-| `SESSION_SAVE_HANDLER` | PHP Session save handler | Yes | |
-| `SESSION_SAVE_PATH` | PHP Session save path | Yes | |
-| `SUITECRM_ADMIN_PWD` | SuiteCRM admin password | Yes | |
+| Variable                         | Description                                                                  | Required | Default value |
+| -------------------------------- | ---------------------------------------------------------------------------- | -------- | ------------- |
+| `SUITE_DB_HOST`                  | Database host                                                                | Yes      |               |
+| `SUITE_DB_USER`                  | Database user                                                                | Yes      |               |
+| `SUITE_DB_NAME`                  | Database name                                                                | Yes      |               |
+| `SUITE_DB_PASSW`                 | Database password                                                            | Yes      |               |
+| `SUITE_DB_PORT`                  | Database port                                                                | Yes      |               |
+| `SUITECRM_ADMIN_PWD`             | SuiteCRM admin password                                                      | Yes      |               |
+| `APP_SECRET`                     | Symfony app secret (min 32 chars, use `openssl rand -hex 32` for production) | Yes      |               |
+| `AUTH_TYPE`                      | Authentication type: `native` for local dev, `saml` for production           | Yes      |               |
+| `SITE_URL`                       | Full public URL of the SuiteCRM instance                                     | Yes      |               |
+| `SAML_AUTOCREATE_ATTRIBUTES_MAP` | SAML user attribute mapping JSON                                             | Yes      | `'{}'`        |
+| `TEMPORARY_FILE_BASE_DIR`        | Base directory for temporary files                                           | Yes      | `/tmp`        |

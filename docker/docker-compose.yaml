@@ -2,19 +2,26 @@
 # SPDX-License-Identifier: APACHE-2.0
 
 services:
-  mariadb-galera:
-    image: bitnami/mariadb-galera:latest
+  mariadb:
+    container_name: mariadb-galera
+    image: advocase/mariadb-galera:local
+    platform: linux/amd64 # production runs on amd64; pinned so local dev matches
     ports:
       - '3307:3306'
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-      - MARIADB_USER=bn_suitecrm
-      - MARIADB_DATABASE=bitnami_suitecrm
-      - MARIADB_PASSWORD=bitnami123
+      - MARIADB_GALERA_CLUSTER_ADDRESS=gcomm:// # bootstraps a single-node cluster
+      - MARIADB_USER=mariadb_suitecrm
+      - MARIADB_DATABASE=mariadb_suitecrm
+      - MARIADB_PASSWORD=mariadb123
     volumes:
-      - './db:/bitnami/mariadb'
+      - 'mariadb_database:/bitnami/mariadb'
     networks:
       - suitecrm
 
 networks:
   suitecrm:
+
+volumes:
+  mariadb_database:
+    name: mariadb_database

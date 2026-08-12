@@ -2,6 +2,13 @@ FROM php:8.2-apache
 
 WORKDIR /
 
+
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+# Create the user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
 # Update and upgrade and install required packages
 # Update and upgrade fixes the following CVEs:
 # - From docker vulnerability scan (checked on July 18th, 2024): https://hub.docker.com/layers/library/php/8.2-apache/images/sha256-2dd18816e6297162cf10c553fe19bd97af1493f30e2cf25a9a0836076ca0a5dc?context=explore
@@ -12,6 +19,7 @@ RUN apt-get update && \
     apt-get clean && \
     apt-get install unzip mariadb-client -y && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
 
 # Install php extensions
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -35,6 +43,10 @@ RUN chmod -R 775 /opt/suitecrm && \
     chmod +x /suitecrm/bin/console
 
 RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2
+
+# php.ini reads these; an unset value resolves to "" and breaks session_start()
+ENV SESSION_SAVE_HANDLER=files \
+    SESSION_SAVE_PATH=/tmp
 
 # Exposed ports
 EXPOSE 8181

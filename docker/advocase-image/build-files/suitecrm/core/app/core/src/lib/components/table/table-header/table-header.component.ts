@@ -24,23 +24,24 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, Input} from '@angular/core';
-import {ActionDataSource, PaginationDataSource, SelectionDataSource} from 'common';
-import {BulkActionDataSource} from '../../bulk-action-menu/bulk-action-menu.component';
+import { Component, Input } from "@angular/core";
+import { ActionDataSource } from "../../../common/actions/action.model";
+import { PaginationDataSource } from "../../../common/components/pagination/pagination.model";
+import { SelectionDataSource } from "../../../common/views/list/selection.model";
+import { BulkActionDataSource } from "../../bulk-action-menu/bulk-action-menu.component";
 
 @Component({
-    selector: 'scrm-table-header',
-    templateUrl: 'table-header.component.html',
+  selector: "scrm-table-header",
+  templateUrl: "table-header.component.html",
 })
 export class TableHeaderComponent {
-    @Input() selection: SelectionDataSource;
-    @Input() bulkActions: BulkActionDataSource;
-    @Input() pagination: PaginationDataSource;
-    @Input() tableActions: ActionDataSource;
-    @Input() paginationType: string;
+  @Input() selection: SelectionDataSource;
+  @Input() bulkActions: BulkActionDataSource;
+  @Input() pagination: PaginationDataSource;
+  @Input() tableActions: ActionDataSource;
+  @Input() paginationType: string;
 
-
-    isPaginationEnabled(): boolean {
-        return this.paginationType === 'pagination';
-    }
+  isPaginationEnabled(): boolean {
+    return this.paginationType === "pagination";
+  }
 }

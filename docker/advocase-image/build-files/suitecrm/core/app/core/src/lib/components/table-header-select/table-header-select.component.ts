@@ -24,108 +24,120 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
-import {BulkActionsMap, DropdownButtonInterface, SelectionDataSource, SelectionStatus} from 'common';
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Observable, Subscription } from "rxjs";
+import { BulkActionsMap } from "../../common/actions/bulk-action.model";
+import { DropdownButtonInterface } from "../../common/components/button/dropdown-button.model";
+import { SelectionDataSource } from "../../common/views/list/selection.model";
+import { SelectionStatus } from "../../common/views/list/record-selection.model";
 
 export interface TableHeaderSelectDataSource {
-    getBulkActions(): Observable<BulkActionsMap>;
+  getBulkActions(): Observable<BulkActionsMap>;
 
-    executeBulkAction(action: string): void;
+  executeBulkAction(action: string): void;
 }
 
 export interface TableHeaderSelectViewModel {
-    status: SelectionStatus;
-    count: number;
-    actions: BulkActionsMap;
+  status: SelectionStatus;
+  count: number;
+  actions: BulkActionsMap;
 }
- 
+
 @Component({
-    selector: 'scrm-table-header-select',
-    templateUrl: 'table-header-select.component.html'
+  selector: "scrm-table-header-select",
+  templateUrl: "table-header-select.component.html",
 })
 export class TableHeaderSelectComponent implements OnInit, OnDestroy {
+  @Input() selectionSource: SelectionDataSource;
+  @Input() actionSource: TableHeaderSelectDataSource;
 
-    @Input() selectionSource: SelectionDataSource;
-    @Input() actionSource: TableHeaderSelectDataSource;
+  dropdownConfig: DropdownButtonInterface;
+  dropdownSmallConfig: DropdownButtonInterface;
+  subs: Subscription[] = [];
+  status: SelectionStatus = SelectionStatus.NONE;
+  count: number = 0;
 
-    dropdownConfig: DropdownButtonInterface;
-    dropdownSmallConfig: DropdownButtonInterface;
-    subs: Subscription[] = [];
-    status: SelectionStatus = SelectionStatus.NONE;
-    count: number = 0;
+  ngOnDestroy(): void {
+    this.subs.forEach((sub) => sub.unsubscribe());
+    this.subs = [];
+    this.count = 0;
+    this.status = SelectionStatus.NONE;
+  }
 
-    ngOnDestroy(): void {
-        this.subs.forEach(sub => sub.unsubscribe());
-        this.subs = [];
-        this.count = 0;
-        this.status = SelectionStatus.NONE;
+  ngOnInit(): void {
+    this.subs = [];
+
+    this.subs.push(
+      this.selectionSource
+        .getSelectionStatus()
+        .subscribe((status) => (this.status = status)),
+    );
+    this.subs.push(
+      this.selectionSource
+        .getSelectedCount()
+        .subscribe((count) => (this.count = count)),
+    );
+
+    this.subs.push(
+      this.actionSource.getBulkActions().subscribe((actions) => {
+        const dropdownConfig = {
+          labelKey: "LBL_BULK_ACTION_BUTTON_LABEL",
+          klass: ["bulk-action-button", "btn", "btn-sm"],
+          wrapperKlass: ["bulk-action-group", "float-left"],
+          items: [],
+        } as DropdownButtonInterface;
+
+        const dropdownSmallConfig = {
+          labelKey: "LBL_ACTION",
+          klass: ["bulk-action-button", "btn", "btn-sm"],
+          wrapperKlass: ["bulk-action-group", "float-left"],
+          items: [],
+        } as DropdownButtonInterface;
+
+        Object.keys(actions).forEach((actionKey) => {
+          const action = actions[actionKey];
+          dropdownConfig.items.push({
+            labelKey: action.labelKey ?? "",
+            klass: [`${actionKey}-bulk-action`],
+            onClick: (): void => {
+              this.actionSource.executeBulkAction(action.key);
+            },
+          });
+          dropdownSmallConfig.items.push({
+            labelKey: action.labelKey ?? "",
+            klass: [`${actionKey}-bulk-action`],
+            onClick: (): void => {
+              this.actionSource.executeBulkAction(action.key);
+            },
+          });
+        });
+
+        this.dropdownConfig = dropdownConfig;
+        this.dropdownSmallConfig = dropdownSmallConfig;
+      }),
+    );
+  }
+
+  selectPage(): void {
+    this.selectionSource.updateSelection(SelectionStatus.PAGE);
+  }
+
+  selectAll(): void {
+    this.selectionSource.updateSelection(SelectionStatus.ALL);
+  }
+
+  deselectAll(): void {
+    this.selectionSource.updateSelection(SelectionStatus.NONE);
+  }
+
+  toggleSelection(status: SelectionStatus): void {
+    if (status === SelectionStatus.ALL) {
+      this.selectionSource.updateSelection(SelectionStatus.NONE);
+      return;
     }
 
-    ngOnInit(): void {
-        this.subs = [];
+    this.selectionSource.updateSelection(SelectionStatus.ALL);
+  }
 
-        this.subs.push(this.selectionSource.getSelectionStatus().subscribe(status => this.status = status));
-        this.subs.push(this.selectionSource.getSelectedCount().subscribe(count => this.count = count));
-
-        this.subs.push(this.actionSource.getBulkActions().subscribe(actions => {
-            const dropdownConfig = {
-                labelKey: 'LBL_BULK_ACTION_BUTTON_LABEL',
-                klass: ['bulk-action-button', 'btn', 'btn-sm'],
-                wrapperKlass: ['bulk-action-group', 'float-left'],
-                items: []
-            } as DropdownButtonInterface;
-
-            const dropdownSmallConfig = {
-                labelKey: 'LBL_ACTION',
-                klass: ['bulk-action-button', 'btn', 'btn-sm'],
-                wrapperKlass: ['bulk-action-group', 'float-left'],
-                items: []
-            } as DropdownButtonInterface;
-
-            Object.keys(actions).forEach(actionKey => {
-                const action = actions[actionKey];
-                dropdownConfig.items.push({
-                    labelKey: action.labelKey ?? '',
-                    klass: [`${actionKey}-bulk-action`],
-                    onClick: (): void => {
-                        this.actionSource.executeBulkAction(action.key);
-                    }
-                });
-                dropdownSmallConfig.items.push({
-                    labelKey: action.labelKey ?? '',
-                    klass: [`${actionKey}-bulk-action`],
-                    onClick: (): void => {
-                        this.actionSource.executeBulkAction(action.key);
-                    }
-                });
-            });
-
-            this.dropdownConfig = dropdownConfig;
-            this.dropdownSmallConfig = dropdownSmallConfig;
-        }));
-    }
-
-    selectPage(): void {
-        this.selectionSource.updateSelection(SelectionStatus.PAGE);
-    }
-
-    selectAll(): void {
-        this.selectionSource.updateSelection(SelectionStatus.ALL);
-    }
-
-    deselectAll(): void {
-        this.selectionSource.updateSelection(SelectionStatus.NONE);
-    }
-
-    toggleSelection(status: SelectionStatus): void {
-        if (status === SelectionStatus.ALL) {
-            this.selectionSource.updateSelection(SelectionStatus.NONE);
-            return;
-        }
-
-        this.selectionSource.updateSelection(SelectionStatus.ALL);
-    }
-
-    protected readonly SelectionStatus = SelectionStatus;
+  protected readonly SelectionStatus = SelectionStatus;
 }

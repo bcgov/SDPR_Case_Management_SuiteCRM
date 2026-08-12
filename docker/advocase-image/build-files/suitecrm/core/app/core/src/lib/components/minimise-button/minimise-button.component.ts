@@ -24,71 +24,97 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Button, ButtonInterface} from 'common';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges,
+} from "@angular/core";
+import { Observable, Subscription } from "rxjs";
+import { Button, ButtonInterface } from "../../common/components/button/button.model";
 
-export type MinimiseButtonStatus = 'minimised' | 'maximised';
+export type MinimiseButtonStatus = "minimised" | "maximised";
 
 @Component({
-    selector: 'scrm-minimise-button',
-    templateUrl: './minimise-button.component.html',
-    styleUrls: []
+  selector: "scrm-minimise-button",
+  templateUrl: "./minimise-button.component.html",
+  styleUrls: [],
 })
-export class MinimiseButtonComponent implements OnInit, OnChanges {
-    @Input() config: ButtonInterface;
-    @Input() status: MinimiseButtonStatus = 'maximised';
-    internalConfig: ButtonInterface;
+export class MinimiseButtonComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() config: ButtonInterface;
+  @Input() status: MinimiseButtonStatus = "maximised";
+  @Input() status$: Observable<MinimiseButtonStatus>;
+  internalConfig: ButtonInterface;
 
-    buttonClasses = ['minimise-button'];
+  buttonClasses = ["minimise-button"];
 
-    constructor() {
-    }
+  protected subs: Subscription[] = [];
 
-    ngOnInit(): void {
-        this.buildButton();
-        console.log("mini-btn: ", this.config);
-        console.log("mini-btn,internal: ", this.internalConfig);
-    }
+  constructor() {}
 
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes.config) {
-            this.buildButton();
-        }
-    }
+  ngOnInit(): void {
+    this.buildButton();
 
-    buildButton(): void {
-        const btn = Button.fromButton(this.config);
-        btn.addClasses(this.buttonClasses);
-        btn.icon = this.getIcon();
-        btn.onClick = (): void => {
-            this.config.onClick();
-            this.toggleStatus();
-        };
-        this.internalConfig = btn;
+    if (this.status$) {
+      this.subs.push(
+        this.status$.subscribe((status: MinimiseButtonStatus) => {
+          this.setStatus(status);
+        }),
+      );
     }
+  }
 
-    toggleStatus(): void {
-        this.config.onClick();
-        let newStatus: MinimiseButtonStatus = 'minimised';
-        if (this.status === 'minimised') {
-            newStatus = 'maximised';
-        }
-        this.status = newStatus;
-        this.buildButton();
-    }
+  ngOnDestroy(): void {
+    this.subs.forEach((sub: Subscription) => sub.unsubscribe());
+    this.subs = [];
+  }
 
-    isCollapsed():Boolean {
-        if (this.status === 'minimised') {
-            return true;
-        } else {
-            return false;
-        }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.config) {
+      this.buildButton();
     }
-    
-    getIcon(): string {
-        if (this.status === 'minimised') {
-            return 'expand_overview';
-        }
-        return 'minimise_overview';
+  }
+
+  buildButton(): void {
+    const btn = Button.fromButton(this.config);
+    btn.addClasses(this.buttonClasses);
+    btn.icon = this.getIcon();
+    btn.onClick = (): void => {
+      this.config.onClick();
+      this.toggleStatus();
+    };
+    this.internalConfig = btn;
+  }
+
+  toggleStatus(): void {
+    this.config.onClick();
+    let newStatus: MinimiseButtonStatus = "minimised";
+    if (this.status === "minimised") {
+      newStatus = "maximised";
     }
+    this.status = newStatus;
+    this.buildButton();
+  }
+
+  setStatus(newStatus: MinimiseButtonStatus): void {
+    this.status = newStatus;
+    this.buildButton();
+  }
+
+  isCollapsed(): Boolean {
+    if (this.status === "minimised") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getIcon(): string {
+    if (this.status === "minimised") {
+      return "expand_overview";
+    }
+    return "minimise_overview";
+  }
 }
