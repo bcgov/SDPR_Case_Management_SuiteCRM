@@ -29,12 +29,14 @@ import {
   Action,
   ActionContext,
   ActionDataSource,
+} from "../../common/actions/action.model";
+import {
   Button,
-  ButtonGroupInterface,
   ButtonInterface,
-  isFalse,
-  Record,
-} from "common";
+} from "../../common/components/button/button.model";
+import { ButtonGroupInterface } from "../../common/components/button/button-group.model";
+import { isFalse } from "../../common/utils/value-utils";
+import { Record } from "../../common/record/record.model";
 import {
   LanguageStore,
   LanguageStrings,

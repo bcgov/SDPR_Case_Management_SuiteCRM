@@ -1,12 +1,12 @@
 /**
- * SuiteCRM is a customer relationship management program developed by SalesAgility Ltd.
- * Copyright (C) 2021 SalesAgility Ltd.
+ * SuiteCRM is a customer relationship management program developed by SuiteCRM Ltd.
+ * Copyright (C) 2021 SuiteCRM Ltd.
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Affero General Public License version 3 as published by the
  * Free Software Foundation with the addition of the following permission added
  * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
- * IN WHICH THE COPYRIGHT IS OWNED BY SALESAGILITY, SALESAGILITY DISCLAIMS THE
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUITECRM, SUITECRM DISCLAIMS THE
  * WARRANTY OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
@@ -24,138 +24,140 @@
  * the words "Supercharged by SuiteCRM".
  */
 
-import { of } from "rxjs";
-import { Injectable } from "@angular/core";
-import { ActionDataSource, SortDirection } from "common";
-import { ListViewStore } from "../store/list-view/list-view.store";
-import { MetadataStore } from "../../../store/metadata/metadata.store.service";
-import { TableConfig } from "../../../components/table/table.model";
-import { LineActionsAdapter } from "./line-actions.adapter";
-import { LineActionActionManager } from "../../../components/table/line-actions/line-action-manager.service";
-import { AsyncActionService } from "../../../services/process/processes/async-action/async-action";
-import { MessageService } from "../../../services/message/message.service";
-import { ConfirmationModalService } from "../../../services/modals/confirmation-modal.service";
-import { LanguageStore } from "../../../store/language/language.store";
-import { BulkActionsAdapterFactory } from "./bulk-actions.adapter.factory";
-import { BulkActionsAdapter } from "./bulk-actions.adapter";
-import { SelectModalService } from "../../../services/modals/select-modal.service";
-import { UserPreferenceStore } from "../../../store/user-preference/user-preference.store";
-import { SystemConfigStore } from "../../../store/system-config/system-config.store";
-import { ListviewTableActionsAdapterFactory } from "./listview-table-actions.adapter.factory";
-import { AppMetadataStore } from "../../../store/app-metadata/app-metadata.store.service";
+import {of} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActionDataSource} from '../../../common/actions/action.model';
+import {SortDirection} from '../../../common/views/list/list-navigation.model';
+import {ListViewStore} from '../store/list-view/list-view.store';
+import {MetadataStore} from '../../../store/metadata/metadata.store.service';
+import {TableConfig} from '../../../components/table/table.model';
+import {LineActionsAdapter} from './line-actions.adapter';
+import {LineActionActionManager} from '../../../components/table/line-actions/line-action-manager.service';
+import {AsyncActionService} from '../../../services/process/processes/async-action/async-action';
+import {MessageService} from '../../../services/message/message.service';
+import {ConfirmationModalService} from '../../../services/modals/confirmation-modal.service';
+import {LanguageStore} from '../../../store/language/language.store';
+import {BulkActionsAdapterFactory} from './bulk-actions.adapter.factory';
+import {BulkActionsAdapter} from './bulk-actions.adapter';
+import {SelectModalService} from '../../../services/modals/select-modal.service';
+import {UserPreferenceStore} from "../../../store/user-preference/user-preference.store";
+import {SystemConfigStore} from "../../../store/system-config/system-config.store";
+import {ListviewTableActionsAdapterFactory} from "./listview-table-actions.adapter.factory";
+import {AppMetadataStore} from "../../../store/app-metadata/app-metadata.store.service";
+import {FieldModalService} from "../../../services/modals/field-modal.service";
+import {FieldLogicManager} from "../../../fields/field-logic/field-logic.manager";
 
 @Injectable()
 export class TableAdapter {
-  constructor(
-    protected store: ListViewStore,
-    protected metadata: MetadataStore,
-    protected actionManager: LineActionActionManager,
-    protected asyncActionService: AsyncActionService,
-    protected message: MessageService,
-    protected confirmation: ConfirmationModalService,
-    protected language: LanguageStore,
-    protected bulkActionsAdapterFactory: BulkActionsAdapterFactory,
-    protected listviewTableActionsAdapterFactory: ListviewTableActionsAdapterFactory,
-    protected selectModalService: SelectModalService,
-    protected preferences: UserPreferenceStore,
-    protected systemConfigs: SystemConfigStore,
-    protected appMetadataStore: AppMetadataStore,
-  ) {}
 
-  getTable(): TableConfig {
-    return {
-      showHeader: true,
-      showFooter: true,
+    constructor(
+        protected store: ListViewStore,
+        protected metadata: MetadataStore,
+        protected actionManager: LineActionActionManager,
+        protected asyncActionService: AsyncActionService,
+        protected message: MessageService,
+        protected confirmation: ConfirmationModalService,
+        protected language: LanguageStore,
+        protected bulkActionsAdapterFactory: BulkActionsAdapterFactory,
+        protected listviewTableActionsAdapterFactory: ListviewTableActionsAdapterFactory,
+        protected selectModalService: SelectModalService,
+        protected fieldModalService: FieldModalService,
+        protected preferences: UserPreferenceStore,
+        protected systemConfigs: SystemConfigStore,
+        protected appMetadataStore: AppMetadataStore,
+        protected logic: FieldLogicManager,
+    ) {
+    }
 
-      module: this.store.getModuleName(),
+    getTable(): TableConfig {
+        return {
+            showHeader: true,
+            showFooter: true,
 
-      columns: this.store.columns$,
-      lineActions: this.getLineActionsDataSource(),
-      selection$: this.store.selection$,
-      sort$: this.store.sort$,
-      maxColumns$: of(4),
-      loading$: this.store.recordList.loading$,
+            module: this.store.getModuleName(),
 
-      dataSource: this.store.recordList,
-      selection: this.store.recordList,
-      bulkActions: this.getBulkActionsDataSource(this.store),
-      tableActions: this.getTableActions(this.store),
-      pagination: this.store.recordList,
+            columns: this.store.columns$,
+            lineActions: this.getLineActionsDataSource(),
+            selection$: this.store.selection$,
+            sort$: this.store.sort$,
+            maxColumns$: of(4),
+            loading$: this.store.recordList.loading$,
 
-      paginationType:
-        this.preferences.getUserPreference("listview_pagination_type") ??
-        this.systemConfigs.getConfigValue("listview_pagination_type"),
+            dataSource: this.store.recordList,
+            selection: this.store.recordList,
+            bulkActions: this.getBulkActionsDataSource(this.store),
+            tableActions: this.getTableActions(this.store),
+            pagination: this.store.recordList,
 
-      toggleRecordSelection: (id: string): void => {
-        this.store.recordList.toggleSelection(id);
-      },
+            paginationType: this.preferences.getUserPreference('listview_pagination_type') ?? this.systemConfigs.getConfigValue('listview_pagination_type'),
+            maxListHeight: this.preferences.getUserPreference('listview_max_height') ?? this.systemConfigs.getConfigValue('listview_max_height'),
 
-      updateSorting: (orderBy: string, sortOrder: SortDirection): void => {
-        this.store.recordList.updateSorting(orderBy, sortOrder);
-        this.store.updateSortLocalStorage();
-      },
+            toggleRecordSelection: (id: string): void => {
+                this.store.recordList.toggleSelection(id);
+            },
 
-      maxListHeight:
-        this.preferences.getUserPreference("listview_max_height") ??
-        this.systemConfigs.getConfigValue("listview_max_height"),
+            updateSorting: (orderBy: string, sortOrder: SortDirection): void => {
+                this.store.recordList.updateSorting(orderBy, sortOrder);
+                this.store.updateSortLocalStorage();
+            },
 
-      loadMore: (): void => {
-        const jump =
-          this.preferences.getUserPreference("list_max_entries_per_page") ??
-          this.systemConfigs.getConfigValue("list_max_entries_per_page");
-        const pagination = this.store.recordList.getPagination();
-        const currentPageSize = pagination.pageSize || 0;
-        const newPageSize = Number(currentPageSize) + Number(jump);
+            loadMore: (): void => {
+                const jump = this.preferences.getUserPreference('list_max_entries_per_page') ?? this.systemConfigs.getConfigValue('list_max_entries_per_page');
+                const pagination = this.store.recordList.getPagination();
+                const currentPageSize = pagination.pageSize || 0;
+                const newPageSize = Number(currentPageSize) + Number(jump);
 
-        this.store.recordList.setPageSize(newPageSize);
-        this.store.recordList.updatePagination(pagination.current);
-      },
+                this.store.recordList.setPageSize(newPageSize);
+                this.store.recordList.updatePagination(pagination.current)
+            },
 
-      refreshLoading: (): void => {
-        const jump =
-          this.preferences.getUserPreference("list_max_entries_per_page") ??
-          this.systemConfigs.getConfigValue("list_max_entries_per_page");
-        const pagination = this.store.recordList.getPagination();
+            refreshLoading: (): void => {
+                const jump = this.preferences.getUserPreference('list_max_entries_per_page') ?? this.systemConfigs.getConfigValue('list_max_entries_per_page');
+                const pagination = this.store.recordList.getPagination();
 
-        this.store.recordList.setPageSize(jump);
-        this.store.recordList.updatePagination(pagination.current);
-      },
+                this.store.recordList.setPageSize(jump);
+                this.store.recordList.updatePagination(pagination.current);
+            },
 
-      allLoaded: (): boolean => {
-        const pagination = this.store.recordList.getPagination();
+            allLoaded: (): boolean => {
+                const pagination = this.store.recordList.getPagination();
 
-        if (!pagination) {
-          return false;
-        }
+                if (!pagination) {
+                    return false;
+                }
 
-        if (Number(pagination.pageLast) >= Number(pagination.total)) {
-          return true;
-        }
+                if (Number(pagination.pageLast) >= Number(pagination.total)) {
+                    return true;
+                }
 
-        return Number(pagination.pageSize) >= Number(pagination.total);
-      },
-    } as TableConfig;
-  }
+                return Number(pagination.pageSize) >= Number(pagination.total);
+            }
 
-  getLineActionsDataSource(): ActionDataSource {
-    return new LineActionsAdapter(
-      this.store,
-      this.actionManager,
-      this.asyncActionService,
-      this.message,
-      this.confirmation,
-      this.language,
-      this.selectModalService,
-      this.metadata,
-      this.appMetadataStore,
-    );
-  }
+        } as TableConfig;
+    }
 
-  getBulkActionsDataSource(store: ListViewStore): BulkActionsAdapter {
-    return this.bulkActionsAdapterFactory.create(store);
-  }
+    getLineActionsDataSource(): ActionDataSource {
 
-  private getTableActions(store: ListViewStore) {
-    return this.listviewTableActionsAdapterFactory.create(store);
-  }
+        return new LineActionsAdapter(
+            this.store,
+            this.actionManager,
+            this.asyncActionService,
+            this.message,
+            this.confirmation,
+            this.language,
+            this.selectModalService,
+            this.fieldModalService,
+            this.metadata,
+            this.appMetadataStore,
+            this.logic
+        );
+    }
+
+    getBulkActionsDataSource(store: ListViewStore): BulkActionsAdapter {
+        return this.bulkActionsAdapterFactory.create(store);
+    }
+
+    private getTableActions(store: ListViewStore) {
+        return this.listviewTableActionsAdapterFactory.create(store);
+    }
 }

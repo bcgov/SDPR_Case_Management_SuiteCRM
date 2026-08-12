@@ -58,10 +58,6 @@ CURRENT_STEP="stopping all running containers"
 echo "==> $CURRENT_STEP..."
 docker ps -q | xargs -r docker stop
 
-CURRENT_STEP="Tearing down Docker Compose"
-echo "==> $CURRENT_STEP..."
-(cd docker && docker compose down -v --remove-orphans)
-
 CURRENT_STEP="Removing volumes"
 echo "==> $CURRENT_STEP..."
 # docker_mariadb_database is the legacy Compose-prefixed name, pre-`name:` pinning
@@ -72,7 +68,7 @@ done
 
 CURRENT_STEP="Removing network"
 echo "==> $CURRENT_STEP..."
-docker network rm docker_suitecrm 2>/dev/null || true
+docker network rm advocase 2>/dev/null || true
 
 CURRENT_STEP="Removing old images"
 echo "==> $CURRENT_STEP..."
@@ -115,16 +111,5 @@ docker build --platform linux/amd64 \
   --build-arg ENVIRONMENT="$ENVIRONMENT" \
   -t "$DOCKER_USERNAME/advocase" \
   docker/advocase-image
-
-CURRENT_STEP="starting DB"
-echo "==> $CURRENT_STEP..."
-(cd docker && docker compose up -d --remove-orphans)
-
-CURRENT_STEP="waiting for mariadb-galera to become healthy"
-echo "==> $CURRENT_STEP..."
-for _ in $(seq 1 60); do
-  [[ "$(docker inspect -f '{{.State.Health.Status}}' mariadb-galera 2>/dev/null)" == "healthy" ]] && break
-  sleep 5
-done
 
 echo "==> Done! Advocase will be available at http://localhost:8182 once initialized."

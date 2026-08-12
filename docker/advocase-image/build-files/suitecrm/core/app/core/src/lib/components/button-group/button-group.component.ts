@@ -25,13 +25,12 @@
  */
 
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Button, ButtonInterface } from "../../common/components/button/button.model";
+import { ButtonGroupInterface } from "../../common/components/button/button-group.model";
 import {
-  Button,
-  ButtonGroupInterface,
-  ButtonInterface,
-  DropdownButtonInterface,
   AnyButtonInterface,
-} from "common";
+  DropdownButtonInterface,
+} from "../../common/components/button/dropdown-button.model";
 import { Observable, Subscription } from "rxjs";
 import { Router } from "@angular/router";
 

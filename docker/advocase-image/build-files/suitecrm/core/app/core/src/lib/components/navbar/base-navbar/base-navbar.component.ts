@@ -67,7 +67,9 @@ import {
   AppStateStore,
 } from "../../../store/app-state/app-state.store";
 import { AuthService } from "../../../services/auth/auth.service";
-import { MenuItem, ready, RecentlyViewed } from "common";
+import { ready } from "../../../common/utils/object-utils";
+import { MenuItem } from "../../../common/menu/menu.model";
+import { RecentlyViewed } from "../../../common/record/recently-viewed.model";
 import {
   AsyncActionInput,
   AsyncActionService,

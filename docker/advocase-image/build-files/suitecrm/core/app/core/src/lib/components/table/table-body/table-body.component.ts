@@ -34,15 +34,17 @@ import {
 } from "@angular/core";
 import { combineLatestWith, Observable, of, Subscription } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
+import { ColumnDefinition } from "../../../common/metadata/list.metadata.model";
+import { Field } from "../../../common/record/field.model";
+import { Record } from "../../../common/record/record.model";
 import {
-  ColumnDefinition,
-  Field,
-  Record,
   RecordSelection,
   SelectionStatus,
+} from "../../../common/views/list/record-selection.model";
+import {
   SortDirection,
   SortingSelection,
-} from "common";
+} from "../../../common/views/list/list-navigation.model";
 import { FieldManager } from "../../../services/record/field/field.manager";
 import { TableConfig } from "../table.model";
 import { SortDirectionDataSource } from "../../sort-button/sort-button.model";

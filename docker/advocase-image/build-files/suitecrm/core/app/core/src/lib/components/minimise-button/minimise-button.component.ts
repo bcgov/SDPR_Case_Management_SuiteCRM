@@ -28,10 +28,12 @@ import {
   Component,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   SimpleChanges,
 } from "@angular/core";
-import { Button, ButtonInterface } from "common";
+import { Observable, Subscription } from "rxjs";
+import { Button, ButtonInterface } from "../../common/components/button/button.model";
 
 export type MinimiseButtonStatus = "minimised" | "maximised";
 
@@ -40,19 +42,33 @@ export type MinimiseButtonStatus = "minimised" | "maximised";
   templateUrl: "./minimise-button.component.html",
   styleUrls: [],
 })
-export class MinimiseButtonComponent implements OnInit, OnChanges {
+export class MinimiseButtonComponent implements OnInit, OnChanges, OnDestroy {
   @Input() config: ButtonInterface;
   @Input() status: MinimiseButtonStatus = "maximised";
+  @Input() status$: Observable<MinimiseButtonStatus>;
   internalConfig: ButtonInterface;
 
   buttonClasses = ["minimise-button"];
+
+  protected subs: Subscription[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
     this.buildButton();
-    console.log("mini-btn: ", this.config);
-    console.log("mini-btn,internal: ", this.internalConfig);
+
+    if (this.status$) {
+      this.subs.push(
+        this.status$.subscribe((status: MinimiseButtonStatus) => {
+          this.setStatus(status);
+        }),
+      );
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach((sub: Subscription) => sub.unsubscribe());
+    this.subs = [];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -78,6 +94,11 @@ export class MinimiseButtonComponent implements OnInit, OnChanges {
     if (this.status === "minimised") {
       newStatus = "maximised";
     }
+    this.status = newStatus;
+    this.buildButton();
+  }
+
+  setStatus(newStatus: MinimiseButtonStatus): void {
     this.status = newStatus;
     this.buildButton();
   }

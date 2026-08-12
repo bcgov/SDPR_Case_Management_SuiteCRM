@@ -44,6 +44,10 @@ RUN chmod -R 775 /opt/suitecrm && \
 
 RUN chown -R 1001:0 /opt/suitecrm /etc/apache2 /usr/local/etc/php /var/run/apache2 /suitecrm /var/lib/apache2
 
+# php.ini reads these; an unset value resolves to "" and breaks session_start()
+ENV SESSION_SAVE_HANDLER=files \
+    SESSION_SAVE_PATH=/tmp
+
 # Exposed ports
 EXPOSE 8181
 
