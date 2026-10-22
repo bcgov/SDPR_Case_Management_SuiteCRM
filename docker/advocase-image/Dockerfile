@@ -1,5 +1,8 @@
 FROM artifacts.developer.gov.bc.ca/ad0d-suitecrm-docker/bc-gov-suitecrm:latest
 
+# Reject a stale base image before building (CVE-2026-109618 / CVE-2026-109619).
+RUN php -r 'if (PHP_VERSION_ID < 80235 || PHP_VERSION_ID >= 80300) { fwrite(STDERR, "Rebuild the SuiteCRM base with PHP 8.2.35 or later in the 8.2 series.\n"); exit(1); }'
+
 USER root
 
 # Update and upgrade and install required packages
